@@ -17,14 +17,14 @@ export const PureContent = ({location}) => {
     //     console.log('[CONTENT_PAGES] : ' , location)
     // })
 
-    console.log('[LOCATION]', location, location.state.id)
+    // console.log('[LOCATION]', location, location.state.id)
 
     const purePage = useSelector(state => state.pages.purepage)
     const dispatch = useDispatch();
 
-    useEffect ( () => {
-      dispatch (getPurePage (location.state.id));
-    },[location.state.id]);
+    // useEffect ( () => {
+    //   dispatch (getPurePage (location.state.id));
+    // },[location.state.id]);
 
     console.log('[PURE PAGE]', purePage)
 

@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 import {COVID, ABOUT, CONTACTUS, SIGNIN, FORGROUPS} from '../PageComponents/TopMenuComponents'
 import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../PageComponents/MiddleMenuComponents' 
@@ -17,22 +18,35 @@ import { TourDetails } from '../ThirdPageofSearchModule/TourDetails'
 import {SingleHotel} from '../../Library/HotelsUkraineTestComponents/single_hotel'
 import { TestCities } from '../../Library/HotelsUkraineTestComponents/test_cities'
 import {useLocation} from 'react-router-dom'
+import Login from "../../Library/Authorization/Login";
+import Register from "../../Library/Authorization/Register";
+import { logout } from "../../../Redux/actions/auth";
 // import { findByLabelText } from '@testing-library/react'
 
 //Call: +38 044 498 4880 / inquiry@arktur.ua / COVID-19 / ABOUT US / CONTACT US / SIGN IN / FOR GROUPS / LOGIN / TRANSLATE
 
 
 export const TopMenu = () => {
-	
+	const { user: currentUser } = useSelector((state) => state.auth);
+	const dispatch = useDispatch();
+	const logOut = () => {
+		dispatch(logout());
+	};
 	return (
-	<header class='wrapperMain'>		
+	// <header class='wrapperMain'>
+	<header class='wrapperMain'>
 	  {/* <BrowserRouter > */}
 
 	   		<div className='topMenu'>
 				<div className='topMenu_right'>
 					<NavLink exact to='/covid-19' activeClassName='active'>COVID</NavLink>
 					<NavLink exact to='/contact_us' activeClassName='active'>CONTACT US</NavLink>
-					<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>
+					{currentUser ? (
+						<NavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</NavLink>
+					) : (
+						<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>
+					)}
+					{/*<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>*/}
 					<NavLink exact to='/forgroups' activeClassName='active'>FOR GROUPS</NavLink>
 				</div>
 
@@ -115,7 +129,9 @@ export const TopMenu = () => {
                 	<Route exact path='/covid-19' component={PureContent} />
                     <Route exact path='/about' component={PureContent} />
             		<Route exact path='/contact_us' component={CONTACTUS} />
-                    <Route exact path='/sign_in' component={SIGNIN} />    
+                    {/*<Route exact path='/sign_in' component={SIGNIN} />    */}
+                    {/*<Route exact path='/sign_in' component={Login} />
+                    <Route exact path='/sign_up' component={Register} />*/}
 					<Route exact path='/forgroups' component={FORGROUPS} />
 					{/* <Route component={NotFound} /> */}
 
