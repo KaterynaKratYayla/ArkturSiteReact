@@ -29,7 +29,7 @@ export const SIGNIN = () => {
          <title>Arktur DMC Partners</title>
          <link rel='shortcut icon' href={ArkturDMClogoICO} />
        </Helmet>
-         <h2>Sign In</h2>
+            <h2>Sign In</h2>
       </div>
     )
 }
