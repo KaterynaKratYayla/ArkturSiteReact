@@ -11,7 +11,6 @@ import Login from "./Components/Library/Authorization/Login";
 import Register from "./Components/Library/Authorization/Register";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.css";
 
 import { logout } from "./Redux/actions/auth";
 import { clearMessage } from "./Redux/actions/message";
