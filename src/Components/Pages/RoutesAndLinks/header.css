@@ -1,0 +1,221 @@
+.wrapperMain{
+    min-height: 100vh;
+}
+.topMenu{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    /* background: rgb(114, 83, 44, 0.9); */
+    /* background-color: #91724A; */
+    /* background-color: #001959; */
+    /* background-color: rgb(40, 14, 92); */
+    background-color: #003057;
+    height: 5vh;
+    padding: 0.3vw;    
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    
+}
+
+.topMenu_right{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 3vw;    
+    text-align: center;
+    position: fixed;
+}
+
+.topMenu a{
+    font-family: Arial;
+    /* font-weight:bold; */
+    font-size: 11px;
+    padding-left:5px;
+    color: white;
+    text-decoration: none;
+}
+
+.topMenu a:hover{
+    /* color:rgb(133,133,244); */
+    /* color: #7a7581; */
+    color: #BCD7EE;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.middleMenu ,
+.middleMenu_left{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+.middleMenu{
+    margin-top: 3vw;
+}
+
+.middleMenu h2{
+    /* font-family: 'Helvetica Neue'; */
+    font-family: "Arial Narrow";
+    font-size:16px;
+    font-weight: bold;
+    text-align: center;
+    width: 10vw;
+    line-height : 3vw;
+    /* background-color: rgb(122, 6, 8); */
+}
+
+
+.middleMenu_left a{
+    /* color:rgb(3, 3, 63); */
+    color: #003057;
+    text-decoration: none;
+    min-width: 10vw;
+    line-height: 3vw;
+}
+
+.middleMenu_left h2:hover{
+    /* color:rgb(133,133,244); */
+    /* color: #9F71DE; */
+    /* color: #005AEB; */
+    color: white;
+    font-style: italic;
+    /* background-color: rgb(235, 214, 188); */
+    /* background-color: #BCD7EE; */
+    /* background-color: #5fa2d8; */
+    background-color: #82b3db;
+    width: 10vw;
+    /* line-height: 3vw; */
+    border-radius: 6px;
+}
+
+.middleMenu_left a:hover{
+    /* color:rgb(133,133,244);*/
+    /* color: #9F71DE; */
+    /* color: #005AEB; */
+    color: white;
+    font-style: italic;
+    /* height: 2vh; */
+}
+
+a.active{
+    /* color: rgb(133,133,244); */
+    /* color: #9F71DE; */
+    color: #005AEB;
+    text-decoration: underline;
+}
+
+a{
+    padding: 2vw;
+    /* margin-bottom: 2vw; */
+}
+
+.notactive{
+    color:red
+}
+
+.dropdown_list {
+    display: none;
+}
+
+.dropdown:hover .dropdown_list{
+    display: block;
+    position: absolute;
+    z-index: 1000;
+    /* background-color: rgb(235, 214, 188); */
+    background-color: #BCD7EE;
+    /* background-color: #5fa2d8; */
+    list-style-type: none;
+    width: 10vw;
+    padding: 0;
+    margin-left: 0px;
+    border-radius: 10px;
+}
+
+.dropdown:hover{
+    /* background-color: rgb(235, 214, 188); */
+    /* background-color: #f8d8ae; */
+    border-radius: 6px;
+    color: #001959;
+    /* color:rgb(133,133,244); */
+    font-style: italic;
+}
+
+.list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: rgb(235, 214, 188); */
+    background-color: #BCD7EE;
+    display: block;
+    border-radius: 10px;
+    position: absolute;
+    z-index: 1000;
+    width: 15vw;
+    /* text-align: left;
+    margin-left: '179px';
+    margin-top: '64' */
+
+}
+
+.list_2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.list li{
+    list-style-type: none;
+    margin-bottom: 0.5vw;
+
+}
+
+.testLi {
+    list-style-type: none;
+    position:absolute;
+    z-index: 1000;
+    background-color: rgb(235, 214, 188);
+    border: 2px solid burlywood;
+    border-radius: 10px;
+    padding: 0 auto;
+    text-align: left;
+}
+
+.toursList{
+    position: relative;   
+    /* margin-top: -60px; */
+    /* margin-left: 150px; */
+    font-family: "Calibri";
+    font-size: 12px;
+
+}
+
+.toursListLi a{
+    text-decoration: none;
+    /* color:rgb(3, 3, 63); */
+    color: #001959
+}
+
+.toursListLi a:hover{
+    text-decoration: underline;
+    /* color: rgb(133,133,244) */
+    color: #005AEB;
+}
+.purecontentPage{
+    display: flex;
+    flex-direction: column;
+    min-width: 60vw;
+    /* padding: 2vw; */
+    color: rgb(3, 3, 63);
+    justify-content: center;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
