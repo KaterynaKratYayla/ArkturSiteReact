@@ -13,6 +13,7 @@ import {MinRate} from './MinRate'
 import {TourDetails} from '../ThirdPageofSearchModule/TourDetails'
 import {ValidateQuery} from '../Helpers/helper'
 // import 'moment/locale/uk'
+import {Example} from '../../Library/LiqPay/Example';
 
 moment.locale('uk')
 
@@ -23,7 +24,7 @@ export const ItemObj = ({tariff, searchResults}) => {
 
   let search_data = ValidateQuery(location)
   console.log('ITEM OBJ LOCATION', location)
-  
+
     //фильтрую объект с тарифами, датами так, чтобы вывести первую встречающую дату каждого вида (к примеру, у меня пришло
     //в массиве 10 раз дата 2021-03-03, 3 раза дата 2021-03-04, 4 раза дата 2021-03-05 - я вывожу новый массив, где будет
     //объект в массиве, где первый раз встречается 2021-03-03, потом объект, где встречается 2021-03-04 первый раз, и т.д.)
@@ -66,10 +67,10 @@ setDetailsList([outline]);
 
   return (
     <div class='div_ItemObj'>
-    
+
       <div className='availablePeriods'>
        <div style={{fontSize: '12px',fontWeight: 'bold'}}>Available dates : </div>
-        <select 
+        <select
             value={selection}
             onChange={selectedPeriod}
             style={{fontSize: '12px',color:'#001959'}}>
@@ -77,34 +78,35 @@ setDetailsList([outline]);
             {
               filtered_tour_dates && filtered_tour_dates.map((filter,index)=>{
                 return (
-                  <option 
+                  <option
                    value={filter.date}
                     key={tariff.tour_id, '-' , index}>
-                      {filter.date} -- {moment(filter.date).add(tariff.duration, 'days').format('YYYY-MM-DD')} ({tariff.duration} days)  
+                      {filter.date} -- {moment(filter.date).add(tariff.duration, 'days').format('YYYY-MM-DD')} ({tariff.duration} days)
                     </option>
-                )    
+                )
               })
             }
           </>
         </select>
     </div>
 
-    <div className='minimumRate'>   
+    <div className='minimumRate'>
        <div style={{fontSize: '10px', color:"grey", fontStyle:'italic'}}>{selection}</div>
-       <MinRate 
+       <MinRate
           selection={selection}
           datesArray={tariff.rate}
         />
-      <button 
+      <button
           type='submmit'
           className='availableButton'
           onClick={addToDetails}
           >VIEW DETAILS
-      </button> 
-      <div style={{fontSize: '10px', color:"grey", fontStyle:'italic'}}>{tariff.tour_id}</div> 
+      </button>
+      <div style={{fontSize: '10px', color:"grey", fontStyle:'italic'}}>{tariff.tour_id}</div>
     </div>
 
-          <>       
+          <>
+          <Example />
               {/* {detailsList.length > 0 && ( */}
         {/* <TourDetails  */}
           {/* selection={selection}/> */}
@@ -112,7 +114,6 @@ setDetailsList([outline]);
            {/* } */}
         </>
 
-  </div> 
+  </div>
    )
   }
-  
