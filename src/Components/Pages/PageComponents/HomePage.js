@@ -6,6 +6,9 @@ import {Helmet} from 'react-helmet'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {TopTours} from './TopTours'
 
+import ArkturDMClogo from '../../Library/Images/ArkturDMClogo.svg'
+
+
 export const HomePage = () => {
     
     const images = [
@@ -23,12 +26,18 @@ export const HomePage = () => {
                <title>Arktur DMC</title>
                <link rel='shortcut icon' href={ArkturDMClogoICO} />
            </Helmet>
-           <h2 style={{marginTop: '0.5vh', 
-                       color: 'rgb(170,15,15)', 
+
+           <h2 style={{
+                        marginTop: '5vh', 
+                    //    paddingTop: '1vh',
+                       paddingBottom: '1vh',
+                       color: 'rgb(122,6,8)', 
                        fontSize: '25px', 
                        fontFamily: 'Arial',
                        fontWeight: 'bold',
-                       textAlign: 'center'}}> ARKTUR TourOperator and DMC is your reliable partner in Ukraine</h2>
+                       textAlign: 'center',
+                      }}> ARKTUR TourOperator and DMC is your reliable partner in Ukraine</h2>
+
            <Slider slides={images}/>
            <Search />
            <TopTours/>

@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 import {Router} from 'react-router'
 import Helmet from '../../Library/PageDevices/Helmet'
+import {Container, Row, Col} from 'react-bootstrap'
 
 import {getPages} from '../../../Redux/actions/pages'
 import './footer.css'
@@ -12,6 +13,9 @@ export const Footer = () => {
 
   const pages = useSelector(state => state.pages.pages)
   const dispatch = useDispatch();
+  const [sm, setSm] = useState('');
+  const [md, setMd] = useState('');
+  const [lg,setLg] = useState('');
 
      useEffect ( () => {
       dispatch (getPages ());
@@ -23,29 +27,55 @@ export const Footer = () => {
 
   console.log('[PAGES SMART]', pages)
 
+  const windowWidthCheck = () =>{
+	let window = window.innerWidth;
+	if (window >= 576){
+		setSm(window);
+	}
+	else if(window >= 768){
+		setMd(window);
+	}
+	else if(window >=992){
+		setLg(window);
+	}
+  }
+//   {window.innerWidth >= 992? 'footer': window.innerWidth >=768? 'footer': 'footerXS'}
+
    return (
-	 <footer class='footer'>
+	// <Container fluid='xs,sm,md,lg,xl'>
+	 <footer onLoad={windowWidthCheck}
+	 		//  class={sm? 'footerSM' : md? 'footer': 'footer'}
+			class='footer'>
 
 		 <div class="footerLinks">
-		   <div class='Hotels'>	
+		 <Container fluid='xs,sm,md,lg,xl'>
+          <Row xs={1} sm={1} md={2} lg={3}>
+		   <Col Col lg={true}>
+		    <div class='Hotels'>	
+		   	
 		  	 <h3>CITY HOTELS</h3>
 			    <ul>
+				
 					  {
 						pages && pages.map((page)=>{
 						  if(page.name.includes('Hotels')){	
 							return (
-							<li>
+							 <li>
 								<div>
 									<Link exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
 									                 state: {id: page.id}}}>{page.name}</Link> 
 								</div>
-						   </li>
+						    </li>
+						   
 						   )
 						  }
 						})
 					  }
 				</ul>
-			</div>
+			  
+			 </div>
+			 </Col>
+			 <Col lg={true}> 
 			<div class='SPA'>
 			  <h3>RESORTS AND MEDICAL SPA DESTINATIONS</h3>
 			    <ul>
@@ -66,6 +96,8 @@ export const Footer = () => {
 					  }
 				</ul>
 			  </div>
+			  </Col> 
+			  <Col lg={true}> 
 			 <div class='INFO'>
 			   <h3>INFORMATION</h3>
 			    <ul>
@@ -84,10 +116,13 @@ export const Footer = () => {
 						  }
 						})
 					  }
-				</ul>
-			  </div>
+					</ul>
+			  	  </div>
+			  	 </Col> 
+			    </Row> 
+			  </Container>
 			 </div>
-
+			 {/* </Container> */}
 			 <Switch>
 				  <Route path='/helmet' component={Helmet} />
 					{
@@ -99,7 +134,8 @@ export const Footer = () => {
 						})
 					}
 			 </Switch>		
-	 </footer>
+		 </footer>
+	//   </Container>
    )
  }
 

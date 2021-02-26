@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from'@emotion/styled'
 
+
 const SliderContent = styled.div`
     transform: translateX(-${props => props.translate}px); 
     height: 100%; 

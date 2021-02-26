@@ -14,7 +14,7 @@ import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 export const PureContent = ({location}) => {
 
     // contentPages.forEach(function(item){
-    //     console.log('[CONTENT_PAGES] : ' , location)
+        // console.log('[CONTENT_PAGES] : ' , location)
     // })
 
     // console.log('[LOCATION]', location, location.state.id)
@@ -22,9 +22,9 @@ export const PureContent = ({location}) => {
     const purePage = useSelector(state => state.pages.purepage)
     const dispatch = useDispatch();
 
-    // useEffect ( () => {
-    //   dispatch (getPurePage (location.state.id));
-    // },[location.state.id]);
+    useEffect ( () => {
+      dispatch (getPurePage (location.state.id));
+    },[location.state.id]);
 
     console.log('[PURE PAGE]', purePage)
 

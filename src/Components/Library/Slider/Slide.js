@@ -3,7 +3,6 @@ import {css, jsx} from '@emotion/react'
 import './SliderCss.css'
 
 
-
 // const Slide = (props) => { 
 //     const {name} = props;
 //       return(

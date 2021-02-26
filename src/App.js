@@ -41,7 +41,7 @@ function App() {
 
         <Switch>
             <Route exact path="/sign_in" component={Login} />
-            <Route exact path="/sign_up" component={Register} />
+            {/* <Route exact path="/sign_up" component={Register} /> */}
         </Switch>
 
         <Footer />

@@ -2,7 +2,8 @@ import axios from "axios";
 
 /* My new server */
 // const API_URL = "http://authentication-jwt/api/";
-const API_URL = "http://content-server/interface/remote/";
+// const API_URL = "http://content-server/interface/remote/";
+const API_URL = "http://smartbooker.biz/interface/remote/";
 
 const register = (firstName, lastName, username, email, password) => {
   return axios.post(API_URL + "create_user", JSON.stringify({

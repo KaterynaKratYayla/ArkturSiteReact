@@ -8,6 +8,7 @@ import content from './content';
 import pages from './pages';
 import auth from "./auth";
 import message from "./message";
+import toptours from './toptours'
 
 
 //{combineReducers} - это библиотека из редакса для комбинации нескольких редьюсеров
@@ -18,6 +19,7 @@ const root_reducer = combineReducers({
 	cities,
 	content,
 	pages,
+	toptours,
 	auth,
 	message,
 });

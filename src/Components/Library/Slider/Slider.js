@@ -6,6 +6,7 @@ import './SliderCss.css'
 import {Arrow} from './ArrowSlider'
 // import Dots from './dots'
 
+
 const Slider = props => {
 
   const getWidth = () => window.innerWidth

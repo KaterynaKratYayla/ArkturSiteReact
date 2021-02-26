@@ -3,7 +3,8 @@ import authHeader from "./auth-header";
 
 /* My new server */
 // const API_URL = "http://authentication-jwt/api/";
-const API_URL = "http://content-server/interface/remote/";
+// const API_URL = "http://content-server/interface/remote/";
+const API_URL = "http://smartbooker.biz/interface/remote/";
 // const API_URL = "http://localhost:8080/api/test/";
 
 /*const getPublicContent = () => {

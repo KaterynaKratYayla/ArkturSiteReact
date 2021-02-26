@@ -1,17 +1,23 @@
 import React, {useState, useEffect} from 'react'
-// import {history} from '../../Front Page/History'
+import { useHistory } from "react-router-dom";
 import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 // import ReactHtmlParser from 'react-html-parser'
+import {Container, Row, Col} from 'react-bootstrap'
 
-import {getGeneralGeo, getContent} from '../../../Redux/actions'
+import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
 import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
-// import ArkturDMClogo from '../../Library/Images/ArkturDMClogo.svg'
+import './TopToursCSS.css'
 
 export const TopTours = () => {
 
     const dispatch = useDispatch();
     const toptours = useSelector(state => state.cities.gen_locs)
+    const TopToursContents = useSelector(state => state.toptours.toptours)
+
+    const history = useHistory();
+
+    const [toptourdetails, setTopTourDetails] = useState('')
 
 console.log('[TOURTOURS]', toptours)
  
@@ -20,48 +26,83 @@ console.log('[TOURTOURS]', toptours)
     dispatch (getGeneralGeo ());
   }, [])
 
+  useEffect ( () => {
+     dispatch (getTopTours ());
+    },[]);
+
+    if( !TopToursContents ){
+      return <div> Loading...</div>
+  }
+
+  const GetTourDetails = (e) =>{  
+    
+    let route_query = `?tour_id=${e.target.id}`
+
+    history.push(`/toptours/${route_query}`)
+    // console.log('[HISTORY : ] ', history)
+  }
+
+  console.log('[TopToursContents]',TopToursContents)
+
     return (
         <div>
-
+          {/* <>
+<Container>
+     <Row>
+       <Col sm={1}>Row 1, Column 1</Col>
+       <Col sm={1}>Row 1, Column 2</Col>
+       <Col sm={1}>Row 1, Column 3</Col>
+     </Row>
+     <Row sm={1}>
+       <Col>Row 2, Column 1</Col>
+       <Col>Row 2, Column 2</Col>
+       <Col>Row 2, Column 3</Col>
+     </Row>
+   </Container>
+   </> */}
          <div style={{textAlign: 'center'}}><img src={ArkturCollection}/></div>
-         <div style={{marginLeft: 'auto', marginRight: 'auto', width: '60vw'}}>
+         <div class="TopToursWrapper">
+
             <ul style={{
-                        display: 'grid', 
-                        gridTemplateColumns: 'repeat(3, 20vw)',
+                        // display: 'grid', 
+                        // gridTemplateColumns: 'repeat(3, 20vw)',
                         listStyle: 'none',
                         paddingLeft: '0'
                         }}>
-             <>
+         <Container fluid="sm, md, lg, xl">
+                <Row sm={12} md={3} lg={3}>
                 {
-                    toptours.length > 0 ? (toptours.map((tour,index) => { 
+                    TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => { 
                         if(index < 12){
                           return(
-                            <li key={tour.tour_id}>
-                                <TopToursDetails 
-                                    tour_id={tour.tour_id}/>
-                                    
-                                <div style={{
-                                        display:'block',
-                                        color: 'white', 
-                                        fontFamily: 'Tahoma',
-                                        fontWeight: 'bold',
-                                        // fontStyle: 'Italic',
-                                        background: 'rgb(214, 114, 116)',
-                                        width: '18vw',
-                                        padding: '0.5vw',
-                                        marginTop: '0.2vh',
-                                        marginBottom: '2vh',
-                                        minHeight: '8vh',
-                                        borderRadius: '5px'}}>{tour.tour_name}</div>
-                            </li>
+                           <Col sm={1} >
+                             <li 
+                                key={tour.tour_id}
+                                onClick={GetTourDetails}>
+                                {/* <TopToursDetails 
+                                    tour_id={tour.tour_id}
+                                   /> */}
+                                    <div>
+                                       <img 
+                                            id={tour.tour_id}
+                                            class="TopToursImage"
+                                            src={'http://' + tour.main_photo[0]}/>
+                                    </div>
+                                    <div id={tour.tour_id} 
+                                         class="TopToursTitle">
+                                           {tour.tour_name}
+                                    </div>
+                              </li>
+                            </Col>
                           )
                         }
                     }))
                     :
                     (<div>{null}</div>)
                  }
-             </>
-            </ul>
+                    </Row>
+                  </Container> 
+              </ul>
           </div>
         </div>
     )
@@ -85,39 +126,25 @@ const TopToursDetails = ({tour_id}) =>{
 
    console.log('[ttDetails]', ttDetails)
 
-//     const TopToursContents = useSelector(state => state.content.content)
-//     const dispatch = useDispatch();
-
-//     useEffect ( () => {
-//       dispatch (getContent (tour_id));
-//     },[]);
-
-//     if( !TopToursContents ){
-//       return <div> Loading...</div>
-//   }
-
-//   console.log('[TopToursContents]',TopToursContents)
-
     return(
         <div>
-            {
-                ttDetails && ttDetails.map((onetour)=>{
-                  if(onetour.content_name === 'Image')
-                    return(
-                        // <div>
-                            <img 
-                        style = {{
-                            width: '18vw',
-                            height: '17vw',
-                            borderRadius: '5px'}}
-
-                            src={'http://' + onetour.text[1]}/>
-                     /* </div> */
-                    )
-                    // else if(!(onetour.content_name === 'Image')){
-                        // return <div><img src={Arktur_DMC_logo} /></div>
-                })
-              }
+            {/* { */}
+                 {/* ttDetails && ttDetails.map((onetour)=>{ */}
+                  {/* // if(onetour.content_name === 'Image') */}
+                    {/* // return( */}
+                        {/* // <div> */}
+                        {/* //     <img  */}
+                        {/* // style = {{ */}
+                        {/* //     width: '272px', */}
+                        {/* //     height: '250px', */}
+                        {/* //     borderRadius: '5px'}} */}
+                        {/*  */}
+                        {/* //     src={'http://' + onetour.text[1]}/> */}
+                     {/* /* </div> */}
+                    {/* // ) */}
+         
+                {/* // }) */}
+              {/* // } */}
         </div>
     )
 }

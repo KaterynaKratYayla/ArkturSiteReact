@@ -35,3 +35,6 @@ export const GET_PAGES_ERR = "GET_PAGES_ERR";
 export const GET_PurePage_REQ = "GET_PurePage_REQ";
 export const GET_PurePage_RES = "GET_PurePage_RES";
 export const GET_PurePage_ERR = "GET_PurePage_ERR";
+export const GET_TOPTOURS_REQ = "GET_TOPTOURS_REQ";
+export const GET_TOPTOURS_RES = "GET_TOPTOURS_RES";
+export const GET_TOPTOURS_ERR = "GET_TOPTOURS_ERR";

@@ -1,10 +1,36 @@
 .footer{
-    width: 100%;
-    background-color: #001959;
-    min-height: 25vw;
+    width: 100% ;
+    /* background-color: #001959; */
+    background-color: #003057;
+    min-height: 25vh;
+    padding-bottom: 3vw;
+    /* padding-left: 50vw; */
+    bottom: 0;
+    /* text-align: center; */
+    /* right: 0; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+/* .footerXS {
+    min-width: 400px;
+    background-color: orange;
+    min-height: 25vh;
     padding-bottom: 3vw;
     bottom: 0;
+    color: red;
 }
+
+.footerSX .footerLinks{
+    padding-top: 2vw;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* min-width: 110vw; */
+/* }  */
 
 .footer ul a{
     height: 1.5vw;
@@ -12,12 +38,15 @@
     padding-bottom: 0.3vw;
     color: white;
     padding-left: 0;
-    font-size: 12px;
+    font-size: 15px;
+    font-family: Arial;
 }
 
 .footer ul{
     list-style: none;
     padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .footer ul a:hover{
@@ -28,8 +57,8 @@
     padding-top: 2vw;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    min-width: 100%;
+    justify-content: space-between;
+    /* min-width: 110vw; */
 }
 
 .footerLinks h3{
@@ -45,5 +74,6 @@
 .footer h3{
     color: white;
     font-weight: bold;
-    font-size: 13px;
+    font-family: Tahoma;
+    font-size: 15px;
  }

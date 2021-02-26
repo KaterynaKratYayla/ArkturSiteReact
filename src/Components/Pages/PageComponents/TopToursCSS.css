@@ -1,0 +1,32 @@
+.TopToursWrapper{
+    margin-left: auto;
+    margin-right: auto; 
+    width: 60vw;
+}
+
+.TopToursWrapper:hover{
+    cursor: pointer;
+}
+
+.TopToursImage{
+ /* width: '18vw', */
+  /* height: '33vh', */
+  width: 272px;
+  height: 250px;
+  border-radius: 5px;
+}
+
+.TopToursTitle{
+ /* display:block; */
+ color: white; 
+ font-family: Tahoma;
+ font-weight: bold;
+ background: rgb(214, 114, 116);
+ width: 272px;
+ padding: 0.5vw;
+ margin-top: 0.2vh;
+ margin-bottom: 2vh;
+ min-height: 8vh;
+ border-radius: 5px;
+
+}

@@ -8,6 +8,7 @@ import { DatePicker ,Space } from 'antd';
 import {GuestItem} from '../SecondPageofSearchModule/GuestItem';
 import {Switcher, SwitcherItem} from '../../Library/PageDevices/Switcher'
 import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
+import {getTopTours} from "../../../Redux/actions/toptours"
 
 import './Search.css';
 import './SwitcherFront.css';
@@ -33,6 +34,7 @@ export const Search = (props) => {
   const dispatch = useDispatch();
   const geo = useSelector(state => state.cities.locs)
   const geoGeneral = useSelector(state => state.cities.gen_locs)
+  const topTours = useSelector(state => state.toptours.toptours)
 
   // const dateFormat = 'DD-MM-YYYY'
 
@@ -41,10 +43,15 @@ export const Search = (props) => {
   }, []);
       console.log('[GEO] : ' , geo)
 
-      useEffect ( () => {
-        dispatch (getGeneralGeo ());
-     }, []);
-         console.log('[general_GEO] : ' , geoGeneral)
+  useEffect ( () => {
+     dispatch (getGeneralGeo ());
+  }, []);
+     console.log('[general_GEO] : ' , geoGeneral)
+
+  useEffect ( () => {
+    dispatch (getTopTours ());
+  }, []);
+    console.log('[GetTopTours] : ' , topTours)
 
   const toggler = ( me ) => _ => {
     setAlign(me);
