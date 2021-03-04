@@ -4,6 +4,9 @@ import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 // import ReactHtmlParser from 'react-html-parser'
 import {Container, Row, Col} from 'react-bootstrap'
+import {LoadingOutlined} from '@ant-design/icons'
+
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 
 import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
 import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
@@ -18,7 +21,7 @@ export const TopTours = () => {
     const history = useHistory();
 
     const [toptourdetails, setTopTourDetails] = useState('')
-
+    const [width, height] = useWindowWidthAndHeight();
 console.log('[TOURTOURS]', toptours)
  
   ///получаю из смарта тур имя, тур айди, сити имя, сити айди
@@ -31,7 +34,7 @@ console.log('[TOURTOURS]', toptours)
     },[]);
 
     if( !TopToursContents ){
-      return <div> Loading...</div>
+      return <div> <LoadingOutlined /></div>
   }
 
   const GetTourDetails = (e) =>{  
@@ -45,106 +48,181 @@ console.log('[TOURTOURS]', toptours)
   console.log('[TopToursContents]',TopToursContents)
 
     return (
-        <div>
-          {/* <>
-<Container>
-     <Row>
-       <Col sm={1}>Row 1, Column 1</Col>
-       <Col sm={1}>Row 1, Column 2</Col>
-       <Col sm={1}>Row 1, Column 3</Col>
-     </Row>
-     <Row sm={1}>
-       <Col>Row 2, Column 1</Col>
-       <Col>Row 2, Column 2</Col>
-       <Col>Row 2, Column 3</Col>
-     </Row>
-   </Container>
-   </> */}
-         <div style={{textAlign: 'center'}}><img src={ArkturCollection}/></div>
-         <div class="TopToursWrapper">
+       <div>
+ 
+        { width > 1000 ?(    
+          <LargeScreenTopTours 
+           TopToursContents = {TopToursContents}
+           GetTourDetails={GetTourDetails}/>)
+        :
+        width > 768?(
+          <MediumScreenTopTours 
+          TopToursContents = {TopToursContents}
+          GetTourDetails={GetTourDetails}
+          width={width}/>
+        )
+         :
+        (
+          <SmallScreenTopTours 
+            TopToursContents = {TopToursContents}
+            width={width}
+            GetTourDetails={GetTourDetails}/>
+        )
+        }
+  
+    </div>
+        
+    )
+}
 
-            <ul style={{
-                        // display: 'grid', 
-                        // gridTemplateColumns: 'repeat(3, 20vw)',
-                        listStyle: 'none',
-                        paddingLeft: '0'
-                        }}>
-         <Container fluid="sm, md, lg, xl">
-                <Row sm={12} md={3} lg={3}>
+
+const LargeScreenTopTours = ({TopToursContents,GetTourDetails}) =>{
+  // const [width, height] = useWindowWidthAndHeight();
+
+  return(
+    <div>
+      <div style={{textAlign: 'center'}}><img src={ArkturCollection}/>
+      </div>
+      
+      <div class="TopToursWrapper"> 
+
+           <ul style={{
+                       display: 'grid', 
+                       gridTemplateColumns: 'repeat(3, 20vw)',
+                       listStyle: 'none',
+                       paddingLeft: '0'}}>
+
+                {
+                    TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => {
+                        if(index < 12){
+                            return( 
+                              <li 
+                                 key={tour.tour_id}
+                                 onClick={GetTourDetails}>
+                                        {/* <TopToursDetails  
+                                            tour_id={tour.tour_id}
+                                          />  */}
+                                        <div> 
+                                          <img  
+                                            id={tour.tour_id}
+                                            class="TopToursImage"
+                                            src={'http://' + tour.main_photo[0]}/>
+                                        </div> 
+                                       <div class='TopToursTitle'>
+                                          <h4 id={tour.tour_id}> 
+                                                {tour.tour_name} 
+                                          </h4> 
+                                      </div> 
+                                </li> 
+                            ) 
+                          } 
+                      })) 
+                     : 
+                      (<div>{null}</div>) 
+                    } 
+                </ul> 
+      </div> 
+    </div>
+  )
+}
+
+const MediumScreenTopTours = ({TopToursContents,GetTourDetails,width}) =>{
+  // const [width, height] = useWindowWidthAndHeight();
+
+  return(
+    <div>
+      <div style={{textAlign: 'center'}}><img src={ArkturCollection}/>
+      </div>
+      
+      <div class="TopToursWrapper"> 
+
+           <ul style={{
+                       display: 'grid', 
+                       gridTemplateColumns: `repeat(2, ${width/3}px)`,
+                       listStyle: 'none',
+                       marginLeft:'auto',
+                       marginRight: 'auto'
+                       }}>
+
+                {
+                    TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => {
+                        if(index < 12){
+                            return( 
+                              <li 
+                                 key={tour.tour_id}
+                                 onClick={GetTourDetails}>
+                                        {/* <TopToursDetails  
+                                            tour_id={tour.tour_id}
+                                          />  */}
+                                        <div> 
+                                          <img  
+                                            id={tour.tour_id}
+                                            class="TopToursImage"
+                                            src={'http://' + tour.main_photo[0]}/>
+                                        </div> 
+                                       <div class='TopToursTitle'>
+                                          <h4 id={tour.tour_id}> 
+                                                {tour.tour_name} 
+                                          </h4> 
+                                      </div> 
+                                </li> 
+                            ) 
+                          } 
+                      })) 
+                     : 
+                      (<div>{null}</div>) 
+                    } 
+                </ul> 
+      </div> 
+    </div>
+  )
+}
+
+const SmallScreenTopTours = ({width,TopToursContents,GetTourDetails}) =>{
+  // const [width, height] = useWindowWidthAndHeight();
+
+  return(
+    <div>
+      <div style={{textAlign: 'center'}}>
+              <img src={ArkturCollection}
+                   style={{width:width}}/>
+            </div>
+              <div class="SmallerTopToursWrapper">
+
+              <ul style={{
+                listStyle: 'none',
+                paddingLeft: '0'
+                }}>
                 {
                     TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => { 
                         if(index < 12){
                           return(
-                           <Col sm={1} >
                              <li 
                                 key={tour.tour_id}
                                 onClick={GetTourDetails}>
-                                {/* <TopToursDetails 
-                                    tour_id={tour.tour_id}
-                                   /> */}
                                     <div>
                                        <img 
                                             id={tour.tour_id}
-                                            class="TopToursImage"
+                                            class="SmallerTopToursImage"
+                                            style={{width:width}}
                                             src={'http://' + tour.main_photo[0]}/>
                                     </div>
-                                    <div id={tour.tour_id} 
-                                         class="TopToursTitle">
+                                    <div class='SmallerTopToursTitle'
+                                          style={{width:width}}>
+                                      <h4 id={tour.tour_id}>
                                            {tour.tour_name}
+                                      </h4>
                                     </div>
                               </li>
-                            </Col>
                           )
                         }
                     }))
                     :
                     (<div>{null}</div>)
                  }
-                    </Row>
-                  </Container> 
+
               </ul>
           </div>
-        </div>
-    )
-}
-
-const TopToursDetails = ({tour_id}) =>{
-
-    const [ttDetails, setTTDetails] = useState()  
-    
-    useEffect ( () => {
-    axios.get(`http://smartbooker.biz/interface/content?id=${tour_id}&language=en`)
-      .then( res => {
-        setTTDetails(res.data)
-        })
-      
-    .catch( error => {
-        setTTDetails(undefined)
-      console.log( '[axios error] : ' , error)
-       });
-   }, []);
-
-   console.log('[ttDetails]', ttDetails)
-
-    return(
-        <div>
-            {/* { */}
-                 {/* ttDetails && ttDetails.map((onetour)=>{ */}
-                  {/* // if(onetour.content_name === 'Image') */}
-                    {/* // return( */}
-                        {/* // <div> */}
-                        {/* //     <img  */}
-                        {/* // style = {{ */}
-                        {/* //     width: '272px', */}
-                        {/* //     height: '250px', */}
-                        {/* //     borderRadius: '5px'}} */}
-                        {/*  */}
-                        {/* //     src={'http://' + onetour.text[1]}/> */}
-                     {/* /* </div> */}
-                    {/* // ) */}
-         
-                {/* // }) */}
-              {/* // } */}
-        </div>
-    )
+    </div>
+  )
 }

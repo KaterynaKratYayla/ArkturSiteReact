@@ -11,22 +11,56 @@
 .TopToursImage{
  /* width: '18vw', */
   /* height: '33vh', */
-  width: 272px;
-  height: 250px;
+  width: 285px;
+  height: 270px;
   border-radius: 5px;
 }
 
-.TopToursTitle{
+.TopToursTitle h4{
  /* display:block; */
- color: white; 
- font-family: Tahoma;
+ color: #003057; 
+ font-family: 'Arial Narrow';
  font-weight: bold;
- background: rgb(214, 114, 116);
- width: 272px;
+ /* background: rgb(214, 114, 116); */
+ /* background-color: #005AEB; */
+ /* background-color: #BCD7EE; */
+ /* border: 2px solid #005AEB; */
+ text-align: center;
+ width: 285px;
+ /* max-height: 60px; */
+ /* line-height: 1.1em;
+ overflow: hidden; */
  padding: 0.5vw;
- margin-top: 0.2vh;
- margin-bottom: 2vh;
- min-height: 8vh;
- border-radius: 5px;
+ font-size: 20px;
+}
+ 
+.TopToursTitle{
+    background-color: #BCD7EE;
+    display: block;
+    width: 285px;
+    height: 8vh;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-top: 0.2vh;
+    margin-bottom: 2vh;
+} 
 
+.SmallerTopToursWrapper{
+    margin-left: auto;
+    margin-right: auto;    
+}
+
+.SmallerTopToursImage{
+    height: 270px;
+    border-radius: 5px;   
+}
+
+.SmallerTopToursTitle{
+    background-color: #BCD7EE;
+    display: block;
+    height: 8vh;
+    overflow: hidden;
+    border-radius: 5px;
+    margin-top: 0.2vh;
+    margin-bottom: 2vh;   
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import '../RoutesAndLinks/header.css'
+import '../PageComponents/ResponsiveHeader/header.css'
 import Slider from '../../Library/Slider/Slider'
 import {Search} from '../FirstPageofSearchModule/SearchFront'
 import {Helmet} from 'react-helmet'

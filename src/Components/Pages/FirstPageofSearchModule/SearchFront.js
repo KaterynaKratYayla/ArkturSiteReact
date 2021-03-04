@@ -4,20 +4,26 @@ import {useDispatch, useSelector} from 'react-redux';
 import moment from 'moment';
 import Autocomplete from 'react-autocomplete';
 import { DatePicker ,Space } from 'antd';
+import {Container, Row, Col} from 'react-bootstrap'
 
 import {GuestItem} from '../SecondPageofSearchModule/GuestItem';
-import {Switcher, SwitcherItem} from '../../Library/PageDevices/Switcher'
+import {Switcher, SwitcherItem} from './Switcher'
 import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
 import {getTopTours} from "../../../Redux/actions/toptours"
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+import {LargeScreenSearch} from './LargeScreenSearch'
+import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
 
 import './Search.css';
 import './SwitcherFront.css';
 import 'antd/dist/antd.css';
+import '../../Library/SearchPannel/SearchPannelCSS.css'
 
 moment.locale('uk')
 
 export const Search = (props) => {
       // console.log('[PROPS] : ', props)
+      const genProps = props
 
 
   const [date, setDate] = useState('');
@@ -36,6 +42,7 @@ export const Search = (props) => {
   const geoGeneral = useSelector(state => state.cities.gen_locs)
   const topTours = useSelector(state => state.toptours.toptours)
 
+  const [width, height] = useWindowWidthAndHeight();
   // const dateFormat = 'DD-MM-YYYY'
 
   useEffect ( () => {
@@ -53,13 +60,13 @@ export const Search = (props) => {
   }, []);
     console.log('[GetTopTours] : ' , topTours)
 
-  const toggler = ( me ) => _ => {
-    setAlign(me);
-   }
+  // const toggler = ( me ) => _ => {
+  //   setAlign(me);
+  //  }
 
-  function dateFunc (e) {      
-      return setDate (e.target.value)
-      }
+  // function dateFunc (e) {      
+  //     return setDate (e.target.value)
+  //     }
 
   function onChange(date, dateString) {
     setTestDate(dateString)
@@ -120,100 +127,28 @@ export const Search = (props) => {
    
   return(
         <div>
-        
-         <div class='switcher'>
-             <Switcher name={'align'} changeHandler={toggler} active={align}>
-                  <SwitcherItem value='HOTELS'>HOTELS</SwitcherItem>
-                  <SwitcherItem value='TOURS'>TOURS</SwitcherItem>
-                {/* <SwitcherItem value='job Applicant'>Job Applicant</SwitcherItem> */}
-             </Switcher>   
-          </div>  
-
-          <div class='formOuterWrapper'>
-        
-           <div class="formInnerWrapper">
-             <form className='mySearch' onSubmit={onSubmit}> 
-               <div class='Autocomplete'>
-                <Autocomplete
-                   {...props}
-                   menuStyle={{
-                                fontFamily: 'Tahoma',
-                                 fontSize: '16px',
-                                 background: '#d9e6f1',
-                                 borderRadius: '5px',
-                                 border: '2px solid #BCD7EE',
-                                 color: 'darkslategrey',
-                                //  marginTop: '0.2vw',
-                                 marginLeft: '-2.2vw',
-                                 position: 'fixed', ///
-                                 display: 'block',
-                                 zIndex: '100',
-                                 overflow: 'auto' ///
-                               }
-                              }
-                    inputProps={{style: 
-                                    { width: '35vw',
-                                      height: '3vw', 
-                                      fontFamily: 'Tahoma', 
-                                      fontSize: '16px',
-                                      borderTop: 'none',
-                                      borderBottom: 'none',
-                                      borderLeft: 'none',
-                                      marginTop: '0.2vw',
-                                      marginLeft: '2vw',
-                                      
-                                    }, 
-                                      
-                                  placeholder: 
-                                      'Please input country, city or tour name' ,
-                                
-                                  }}
-                    items={geo}
-                    shouldItemRender={(item, value) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                    getItemValue={item => item.name}
-                    getItemId={item => item.name}
-                    open={open}
-                    onMenuVisibilityChange={isOpen =>setOpen(false)}
-                    renderItem={(item, highlighted) =>
-                      <div
-                          key={item.id}
-                          style={{ backgroundColor: highlighted ? 'lightblue' : 'transparent'}}
-                           >
-                          {item.name}
-                      </div>
-                        }
-                    value={value}
-                    onChange={optionChecker}
-                    onSelect={value => setValue(value) + setOpen(false)}
-                    // wrapperProps={wrapperProps(value)}
-                    />
-                 </div>              
-
-             <div>
-
-             {/* <DatePicker /> */}
-
-             <Space direction="vertical">
-                 <DatePicker size={'large'} 
-                             onChange={onChange} 
-                             picker="month" 
-                            //  format={dateFormat} 
-                             placeholder='Choose month'
-                             bordered={false}
-                            //  className='datePicker'
-                            //  dropdownClassName='dropdownDatePicker'
-                             style={{fontFamily:'Tahoma', paddingTop: '0.8vw'}}/>
-            </Space>
-          
-             </div>          
-       
-          <div  class='borderInnerWrapper2'>
-            <button type='submit' onClick={addToList}>SEARCH</button>
-          </div>
-     </form> 
-    </div>
-    </div>
-      
+             { width > 1000 ?
+				
+        <LargeScreenSearch
+            wrapper='formOuterWrapper'
+            innerWrapper='formInnerWrapper'
+            formClass='mySearch'
+            autocompleteClass='Autocomplete'
+            datepickerClass='datePicker'
+            props={genProps}
+            width={width}
+            />
+            :
+        <SearchInner
+           wrapper='formOuterWrapper_inner'
+           innerWrapper='formInnerWrapper_inner'
+           formClass='mySearch_inner'
+           autocompleteClass={null}
+           datepickerClass='datePicker_inner'
+           props={genProps}
+           width={width}
+           />
+          }                                   
         
             <>       
               {list.length > 0 && (
@@ -224,6 +159,7 @@ export const Search = (props) => {
              )
            }
         </>
+
        </div>
       )
     }

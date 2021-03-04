@@ -1,7 +1,7 @@
 import React, {useState,useEffect} from 'react'
 import './SearchPannelCSS.css';
 import {GuestItem} from '../../Pages/SecondPageofSearchModule/GuestItem';
-import {Switcher, SwitcherItem} from '../PageDevices/Switcher'
+import {Switcher, SwitcherItem} from '../../Pages/FirstPageofSearchModule/Switcher'
 import '../../Pages/FirstPageofSearchModule/SwitcherFront.css';
 import moment from 'moment';
 import Autocomplete from 'react-autocomplete'
@@ -9,9 +9,16 @@ import { useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
 import { DatePicker ,Space } from 'antd'
-import 'antd/dist/antd.css'
 
-export const SearchInner = (props) => {
+import {Hotels} from '../Icons/hotels'
+import {Tours} from '../Icons/tours'
+
+import {useWindowWidthAndHeight} from '../../Pages/Helpers/WindowResizeHook'
+import 'antd/dist/antd.css'
+import '../../Pages/FirstPageofSearchModule/SwitcherFront.css'
+import './SearchPannelCSS.css'
+
+export const SearchInner = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
    
 const [date, setDate] = useState('');
 const [testDate, setTestDate] = useState('');
@@ -26,6 +33,8 @@ const history = useHistory();
 const dispatch = useDispatch();
 const geo = useSelector(state => state.cities.locs)
 const geoGeneral = useSelector(state => state.cities.gen_locs)
+
+const [width, height] = useWindowWidthAndHeight();
 
 // const dateFormat = 'DD-MM-YYYY'
 
@@ -63,22 +72,38 @@ const optionChecker = (e) => {
 
   // console.log('[TODAY DATE]' , moment().format('YYYY-MM') , '[TEST_DATE] : ' , testDate)
 
-const addToList = () => {
+  const addToList = () => {
+
+ 
+    const filtered = geo.filter(function(item){
+        return item.name === value
+    })
+
+    const filtered_city_id = geoGeneral.filter(function(item){
+      if(item.tour_id === filtered[0].id){
+        return item.city_id
+      }
+      else return item.city_id === filtered[0].id
+    })
+    
+    console.log('FILTERED_CITY_ID', filtered_city_id )
 
     const newList = {
-        // date: date,
-        title: value,
-        date: testDate
-    };
+      id: filtered[0].id,
+      title: value,
+      date: testDate
+  };
 
-setList([...list, newList]);
-setDate('');
-setValue('');
+  setList([...list, newList]);
+  setDate('');
+  setValue('');
 
-console.log('[NewList] : ' , newList)
+  let route_query = `?title=${value},date=${testDate},id=${filtered[0].id},city_id=${filtered_city_id[0].city_id}`
 
-history.push(`/search_results` , [...list, newList])
-console.log('[HISTORY : ] ', history)
+  console.log('[NewList] : ' , newList)
+
+  history.push(`/search_results/${route_query}` , [...list, newList])
+  console.log('[HISTORY : ] ', history)
 }
 
 const onSubmit = (e) =>{
@@ -86,17 +111,21 @@ const onSubmit = (e) =>{
 }
  
 return(
-      <div>
+      <div style={{width: `${width*0,7}`,
+                  marginLeft:'auto',
+                  marginRight:'auto',
+                  textAlign:'center',
+                  }}>
 
-          <div class='formOuterWrapper_inner'>
-           <div class="formInnerWrapper_inner">
-             <form className='mySearch_inner' onSubmit={onSubmit}>
+                  <Switcher className='SwitcherSearchPannel' name={'align'} changeHandler={toggler} active={align}>.
+                      <SwitcherItem value='HOTELS'><Hotels/> Hotels</SwitcherItem>
+                      <SwitcherItem value='TOURS'><Tours/> Tours</SwitcherItem>
+                 </Switcher> 
+          <div class={wrapper}>
+           <div class={innerWrapper}>
+             <form className={formClass} onSubmit={onSubmit}>
                  {/* <input class='textInput_inner' type='text' value={inputSelect} onChange={changeHandler} placeholder={'Country or City'}/> */}
-                          
-                 <Switcher className='SwitcherSearchPannel' name={'align'} changeHandler={toggler} active={align}>.
-                        <SwitcherItem value='HOTELS'>HOTELS</SwitcherItem>
-                        <SwitcherItem value='TOURS'>TOURS</SwitcherItem>
-                 </Switcher>   
+                            
               
                <div>
                      <Autocomplete
@@ -117,19 +146,22 @@ return(
                              }
                             }
                   inputProps={{style: 
-                                  { width: '14vw',
-                                    height: '3vw', 
+                                  { width: `${width*0.8}px`,
+                                    height: '37px', 
                                     fontFamily: 'Tahoma', 
                                     fontSize: '16px',
                                     border: '1px solid lightgrey',
-                                    marginTop: '0.2vw',
-                                    marginLeft: '0.5vw'
+                                    marginTop: '1vh',
+                                    marginLeft: '4.4vw',
+                                    marginBottom: '1vh'
                                   }, 
                                     
                                 placeholder: 
                                     'Country, city or tour name' }}
                   items={geo}
-                  shouldItemRender={(item, value) => item.name.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                  shouldItemRender={(item, value) => 
+                    value!== ""? item.name.toLowerCase().includes(value.toLowerCase()): null}
+                    
                   getItemValue={item => item.name}
                   open={open}
                   onMenuVisibilityChange={isOpen =>setOpen(false)}
@@ -158,17 +190,20 @@ return(
                           //  format={dateFormat} 
                            placeholder='Choose month'
                            bordered={true}
-                          //  className='datePicker'
+                           className={datepickerClass}
+                           style={{width:`${width*0.8}px`}}
                           //  dropdownClassName='dropdownDatePicker'
-                           style={{fontFamily:'Tahoma', 
-                                    paddingTop: '0.8vw',
-                                    marginLeft: '0.5vw',
-                                    width: '14vw'}}/>
+                          // style={{fontFamily:'Tahoma', 
+                          //           paddingTop: '0.8vw',
+                          //           marginLeft: '0.5vw',
+                          //            width: 
+                          //            }}
+                                    />
           </Space>
         </div>
 
           <div  class='borderInnerWrapper2_inner'>
-            <button type='submit'>SEARCH</button>
+            <button type='submit' onClick={addToList}>SEARCH</button>
           </div>
      </form> 
  

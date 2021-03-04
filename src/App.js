@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import {TopMenu} from './Components/Pages/RoutesAndLinks/Header'
+import {TopMenu} from './Components/Pages/PageComponents/ResponsiveHeader/Header'
 import {Footer} from './Components/Pages/RoutesAndLinks/Footer'
 import './App.css';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {ScrollToTop} from './Components/Library/PageDevices/ScrollToTop';
+import {RouteSwitcher} from './Components/Pages/PageComponents/ResponsiveHeader/Header'
 // import AxiosDemo from './Redux/components/pages/Axios';
 import Login from "./Components/Library/Authorization/Login";
 import Register from "./Components/Library/Authorization/Register";
@@ -14,6 +15,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { logout } from "./Redux/actions/auth";
 import { clearMessage } from "./Redux/actions/message";
+import {HomePage} from "./Components/Pages/PageComponents/HomePage"
 
 import { history } from "./Redux/helpers/history";
 
@@ -34,15 +36,9 @@ function App() {
   return (
     <BrowserRouter history={history}>
         <ScrollToTop />
-
+        {/* <RouteSwitcher/> */}
         <TopMenu />
         {/* <hr /> */}
-
-
-        <Switch>
-            <Route exact path="/sign_in" component={Login} />
-            {/* <Route exact path="/sign_up" component={Register} /> */}
-        </Switch>
 
         <Footer />
 
