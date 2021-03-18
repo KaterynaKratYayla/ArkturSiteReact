@@ -5,13 +5,19 @@ import { Provider } from "react-redux";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import store from "./Redux/redux/store";
+import { IntlProvider } from 'react-intl';
 
-
+import messages from './translations/common';
 
 ReactDOM.render(
   <React.StrictMode>
       <Provider store={store}>
-        <App />
+        <IntlProvider
+          locale = "uk"
+          messages = {messages['uk']}
+        >
+          <App />
+        </IntlProvider>
       </Provider>
   </React.StrictMode>,
   document.getElementById('root')

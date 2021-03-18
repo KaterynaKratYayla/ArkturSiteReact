@@ -1,11 +1,11 @@
 export default {
     uk: {
-        'common.name' : ''
+        'common.name' : 'Готелі'
     },
     en: {
-        '' : ''
+        'common.name' : 'Hotels'
     },
     ru: {
-        '' : ''
+        'common.name' : 'Гостиницы'
     }
 }
