@@ -64,3 +64,20 @@
     margin-top: 0.2vh;
     margin-bottom: 2vh;   
 }
+
+.LoadingOutlinedIcon{
+    border:none;
+    rotate: 20%;
+    font-size: 40px;
+    text-align: center;
+    
+}
+
+.Loading{
+    width: 285px;
+    height: 270px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

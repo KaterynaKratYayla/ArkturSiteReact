@@ -3,7 +3,8 @@ export const Hotels = () =>{
         <svg 
             
             color='#003057'
-            width="26%"
+            width="20"
+            height="20"
             aria-hidden="true" 
             focusable="false" 
             data-prefix="fas" 

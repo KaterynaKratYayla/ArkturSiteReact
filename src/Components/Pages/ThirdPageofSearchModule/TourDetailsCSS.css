@@ -60,6 +60,23 @@
     margin-top: 1vw;
 }
 
+.RateChoiceBlock{
+    display: grid;
+    grid-template-columns: repeat(2, 20vw);
+    margin-top: 1vw;
+    padding-left: 3vw;
+}
+
+.first{
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+}
+
+.third{
+    order:2;
+}
+
+
 .BookingChoice h4{
     font-family: 'Arial Narrow';
     font-weight: bold;
@@ -67,17 +84,80 @@
     color: rgb(77, 75, 75);
 }
 
+.RateChoiceBlock h4{
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgb(77, 75, 75);
+}
+
+.PaxChoice{
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+}
+
+.PaxChoice h4{
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgb(77, 75, 75);
+}
+
+.DropdownButton{
+    margin-top: 0.5vh;
+    background-color: white;
+    border: 2px solid rgb(177, 174, 174);
+    border-radius: 5px;
+    min-width: 200px;
+}
+
+.DropdownItem{
+    /* min-width: 200px; */
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    color: #102D69;
+}
+
+.DropdownItem:hover{  
+    background-color: #d7ebfc;
+    text-decoration: none;
+}
+
 .DescriptionTourDetails{
     /* max-width: 50%; */
     margin-left: 4vw;
 }
 
-.PopUp{
+.PopUpNotActive{
     display : none;
 }
 
-.PopUp .active{
+.PopUpActive{
     display: block;
+    position:absolute;
+    background-color: white;
+    z-index: 1000;
+    width: 23vw;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding: 15px;
+    overflow: hidder;
+}
+
+.PopUpButton{
+    background: #009FE3;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    font-size: 19px;
+    width: 19vw;
+    height: 50px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 6px;
 }
 
 .BookingChoiceInner{
@@ -95,8 +175,10 @@
     background-Color: #009FE3;
     border: 0.8vw solid #009FE3;
     border-radius: 5vw;
-    font-size: 2.5vh;
-    font-weight: bold
+    font-size: 15px;
+    font-weight: bolder;
+    width: 40px;
+    height: 40px
 }
 
 .Plus {
@@ -104,6 +186,8 @@
    background-Color: #009FE3;
    border: 0.8vw solid #009FE3;
    border-radius: 5vw;
-   font-size: 2.5vh;
-   font-weight: bold;
+   font-size: 15px;
+   font-weight: bolder;
+   width: 40px;
+   height: 40px
 }

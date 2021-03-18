@@ -54,8 +54,10 @@ export const TopToursDetails = (props) =>{
                           <h2 style={{
                                 color: '#102D69',
                                 fontFamily: "Arial",
-                                fontSize: '22px',
+                                fontSize: '30px',
                                 fontWeight: 'bold',
+                                textAlign:'center',
+                                marginTop: '4vh'
                             }}>
                                 {item.contract_name}
                           </h2>
