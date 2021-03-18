@@ -3,7 +3,7 @@ import {Helmet} from 'react-helmet'
 import {useDispatch, useSelector} from 'react-redux'
 import ReactHtmlParser from 'react-html-parser'
 
-import '../RoutesAndLinks/header.css'
+import '../PageComponents/ResponsiveHeader/header.css'
 // import contentPages from './contentPages.json'
 import {HomePage } from './HomePage'
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'

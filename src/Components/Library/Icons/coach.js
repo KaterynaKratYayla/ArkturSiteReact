@@ -5,7 +5,8 @@ export const Coach = () =>{
   return (
     <svg 
         color="#102D69"
-        width="10%"
+        width='20'
+        height='20'
         aria-hidden="true" 
         focusable="false" 
         data-prefix="fas" 

@@ -18,7 +18,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    
 }
 
 .topMenu_right{
@@ -56,22 +56,21 @@
 }
 
 .middleMenu{
-    /* margin-top: 3vw; */
     padding-top: 3vw;
     padding-bottom: 1vh;
     background-color: #dce5ee;
-
+    width: 100%;
 }
 
 .middleMenu h2{
-    /* font-family: 'Helvetica Neue'; */
-    font-family: "Arial Narrow";
-    font-size:16px;
-    font-weight: bold;
-    text-align: center;
-    width: 10vw;
-    line-height : 3vw;
-    /* background-color: rgb(122, 6, 8); */
+  /* font-family: 'Helvetica Neue'; */
+  font-family: "Arial Narrow";
+  font-size:16px;
+  font-weight: bold;
+  text-align: center;
+  width: 10vw;
+  line-height : 3vw;
+  /* background-color: rgb(122, 6, 8); */
 }
 
 
@@ -84,7 +83,7 @@
 }
 
 .middleMenu_left h2:hover{
-    /* color:rgb(133,133,244); */
+       /* color:rgb(133,133,244); */
     /* color: #9F71DE; */
     /* color: #005AEB; */
     color: white;

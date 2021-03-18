@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 import {COVID, ABOUT, CONTACTUS, SIGNIN, FORGROUPS} from '../PageComponents/TopMenuComponents'
-import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../PageComponents/MiddleMenuComponents'
+import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../PageComponents/MiddleMenuComponents' 
 import {HomePage} from '../PageComponents/HomePage'
 import {TOURS} from '../PageComponents/DropDownTours'
 import './header.css'
@@ -34,10 +34,11 @@ export const TopMenu = () => {
 		dispatch(logout());
 	};
 	return (
-	<header class='wrapperMain'>
+	<header class='wrapperMain'>		
 	  {/* <BrowserRouter > */}
 
 	   		<div className='topMenu'>
+
 				<div className='topMenu_right'>
 
 					<NavLink exact to='/covid-19' activeClassName='active'>COVID</NavLink>
@@ -46,35 +47,34 @@ export const TopMenu = () => {
 						<NavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</NavLink>
 					) : (
 						<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>
-					)}					<NavLink exact to='/forgroups' activeClassName='active'>FOR GROUPS</NavLink>
+					)}					
 					<NavLink exact to='/forgroups' activeClassName='active'>FOR GROUPS</NavLink>
 				</div>
+				{/* <div style={{
+							
+						}}>
+							<NavLink exact to='/covid-19' activeClassName='active'>COVID</NavLink>
+							<NavLink exact to='/contact_us' activeClassName='active'>CONTACT US</NavLink>
+						</div> */}
 
-				<div className='topMenu_center'>
-
-				</div>
-
-				<div className='topMenu_left'>
-
-				</div>
 			</div>
 
-			<div className='middleMenu'>
-				<div>
-				   <NavLink exact to='/' >
-							<img
+		 		<div className='middleMenu'>
+					<div>
+					   <NavLink exact to='/' >
+							<img 
 								style={{
 										paddingTop:'1vh',
-										maxWidth: '45%',
+										maxWidth: '45%', 
 										maxHeight: '10vh'
 										}}
-							    src={ArkturDMClogo}
+							    src={ArkturDMClogo} 
 							 	alt='Arktur DMC logo'/>
-					</NavLink>
-				</div>
-
+					   </NavLink>	 
+					</div>
+	
 				  <div class='middleMenu_left'>
-
+				   
 					  <h2>
 					    <NavLink exact to='/' activeClassName='active'>HOME</NavLink>
 					  </h2>
@@ -84,11 +84,11 @@ export const TopMenu = () => {
 					  <h2>
  					    <NavLink exact to='/hotels_in_ukraine' activeClassName='active'>HOTELS</NavLink>
 					  </h2>
-
+			
 						<div class ='dropdown'>
-					  	   <h2>
-								  <NavLink exact to='/' activeClassName='active'>TOURS</NavLink>
-
+					  	   <h2> 
+								  <NavLink exact to='/' activeClassName='active'>TOURS</NavLink> 
+						 
 					  		  <ul class = 'dropdown_list'>
 								<li>
 								   <NavLink exact to='/Kyiv' activeClassName='active'>Kyiv</NavLink>
@@ -117,60 +117,55 @@ export const TopMenu = () => {
 					<h2>
                         <NavLink exact to='/gallery' activeClassName='active'>GALLERY</NavLink>
 					</h2>
+					<>
 					{currentUser ? (
 						<h2>
 							<NavLink exact to='/testcities' activeClassName='active'>TestCities</NavLink>
 						</h2>
 					) : true}
-
-
+					</>
+	
+				    </div>
+							    
+					<div class="middleMenu_right"> 
 				</div>
+			  </div>					
 
-			   <div class="middleMenu_middle">
-
-			   </div>
-
-
-			   <div class="middleMenu_right">
-
-		 	   </div>
-
-
-			</div>
-
-				 <Switch>
-
-					{/* <Route path='/helmet' component={Helmet} /> */}
-
-                	<Route exact path='/covid-19' component={PureContent} />
-                    <Route exact path='/about' component={PureContent} />
-            		<Route exact path='/contact_us' component={CONTACTUS} />
-                    <Route exact path='/sign_in' component={SIGNIN} />
-					<Route exact path="/sign_up" component={Register} />
-					<Route exact path='/forgroups' component={FORGROUPS} />
-					{/* <Route component={NotFound} /> */}
-
-						<Route exact path='/' component={HomePage} />
-                        <Route exact path='/hotels_in_ukraine' component={SingleHotel}/*{HOTELS}*/ />
-                        <Route exact path='/gallery' component={PureContent} />
-						<Route exact path='/testcities' component={TestCities} />
-						<Route exact path='/search_results' component={GuestItem}/>
-						<Route exact path='/tour_details' component={TourDetails} />
-						<Route exact path='/toptours' component={TopToursDetails} />
-						<Route exact to='/Kyiv' component={PureContent}/>
-						<Route exact to='/Odesa' component={PureContent}/>
-					    <Route exact to='/Lviv' component={PureContent}/>
-					    <Route exact to='/Kharkiv' component={PureContent}/>
-					    <Route exact to='/Vinnitsya' component={PureContent}/>
-					    <Route exact to='/Bukovel_Resort' component={PureContent}/>
-					    <Route exact to='/Mariupol' component={PureContent}/>
-
-				</Switch>
-
-		  {/* </BrowserRouter> */}
-		</header>
-
+		   <RouteSwitcher />
+		</header> 
+		
 	)
  }
 
+export const RouteSwitcher = () =>{
+	return(
+		<Switch>
 
+		{/* <Route path='/helmet' component={Helmet} /> */}
+	 
+		<Route exact path='/covid-19' component={PureContent} />
+		<Route exact path='/about' component={PureContent} />
+		<Route exact path='/contact_us' component={CONTACTUS} />
+		<Route exact path='/sign_in' component={SIGNIN} />    
+		<Route exact path="/sign_up" component={Register} />
+		<Route exact path='/forgroups' component={FORGROUPS} />
+		{/* <Route component={NotFound} /> */}
+
+			<Route exact path='/' component={HomePage} />
+			<Route exact path='/hotels_in_ukraine' component={SingleHotel}/*{HOTELS}*/ />					
+			<Route exact path='/gallery' component={PureContent} />  
+			<Route exact path='/testcities' component={TestCities} /> 
+			<Route exact path='/search_results' component={GuestItem}/>
+			<Route exact path='/tour_details' component={TourDetails} />
+			<Route exact path='/toptours' component={TopToursDetails} />
+			<Route exact to='/Kyiv' component={PureContent}/>
+			<Route exact to='/Odesa' component={PureContent}/>
+			<Route exact to='/Lviv' component={PureContent}/>
+			<Route exact to='/Kharkiv' component={PureContent}/>
+			<Route exact to='/Vinnitsya' component={PureContent}/>
+			<Route exact to='/Bukovel_Resort' component={PureContent}/>
+			<Route exact to='/Mariupol' component={PureContent}/>
+	
+	</Switch>
+	)
+}

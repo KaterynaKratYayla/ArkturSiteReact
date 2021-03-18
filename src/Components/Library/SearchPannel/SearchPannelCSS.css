@@ -1,8 +1,8 @@
 .mySearch_inner{
     display: flex;
     flex-direction: column;
-    /* justify-content: flex-start; */
-
+    /* align-items: center; */
+    /* justify-content: flex-end; */
 }
 
 .SwitcherSearchPannel{
@@ -46,7 +46,7 @@
      /* border-right: none; */
 
 }
-
+/* 
 .number_inner{
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
@@ -57,7 +57,7 @@
     border-top: none;
      border-left: none;
      border-right: none;
-}
+} */
 
 .mySearch_inner button{
         background-color: #005AEB;
@@ -70,6 +70,7 @@
         font-weight: bold;     
         margin-top: 0.9vh;
         margin-right: 0.5vw;
+        text-align: center;
 }
 
 .mySearch_inner button:hover{
@@ -86,14 +87,13 @@
 }
 
 .formOuterWrapper_inner{
-    border-top: 4vw solid #BCD7EE;
-    border-left: 1vw solid  #BCD7EE;
-    border-right: 1vw solid #BCD7EE;
-    border-bottom: 4vw solid  #BCD7EE;
+    border-top: 4vw solid #96c6f0;
+    border-left: 1vw solid  #96c6f0;
+    border-right: 1vw solid #96c6f0;
+    border-bottom: 4vw solid  #96c6f0;
       margin-left: 2vw;
       margin-top: 1vw;
       border-radius: 0.5vw; 
-      width: 17vw;
 }
 
 .borderInnerWrapper2_inner{
@@ -108,4 +108,12 @@
     margin-left: auto;
     margin-right: auto;
     font-family:  Arial, Helvetica, sans-serif;
+}
+
+div.datePicker_inner{
+    /* display:block; */
+    font-family:Tahoma; 
+    padding-top: 0.8vw;
+    margin-left: 4.5vw;
+    /* width: 35vw; */
 }

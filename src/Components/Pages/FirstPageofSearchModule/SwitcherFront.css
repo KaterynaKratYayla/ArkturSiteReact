@@ -20,27 +20,33 @@
 } */
 
 .switcher{
-    margin-top: 2vw;
-    margin-left: 4.9vw;
-    margin-bottom: -0.3vw;
+    position: relative;
+    margin-top: 1vw;
+    width: 83.7%;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .switcher__item.active{
-    background-color: #005AEB;
-    color: white;
+    /* background-color: #005AEB; */
+    background-color: #96c6f0;
+    color: #003057;
 
 }
 
 .switcher__item{
-    background-color: #BCD7EE;
-    color: #001959;
+    background-color: #cddef8;
+    color: rgb(175, 170, 170);
     font-weight: bold;    
     cursor: pointer;
-    padding: 1vw 2vw 0.5vw 2vw;
+    padding: 15px;
     border-top: 1px solid #8bc0f0;
     border-left: 1px solid #8bc0f0;
     border-right : 1px solid #8bc0f0;
     border-bottom: none;
     border-top-right-radius: 1vw;
+    border-top-left-radius: 1vw;
+    max-width: 7vw;
 
 }

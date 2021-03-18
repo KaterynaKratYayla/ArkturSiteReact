@@ -38,13 +38,13 @@ export const Switcher = (props) =>{
   console.log(props);
   
     return (
-      <span className={
+      <button className={
         active ? 'switcher__item active' : "switcher__item"
         } 
         onClick={changeHandler}
-         type='button'>
+         >
         {children}
-        </span>
+        </button>
     )
   
   }

@@ -1,6 +1,6 @@
 import React , {useState, useEffect} from 'react'
 import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
-import '../RoutesAndLinks/header.css'
+import '../PageComponents/ResponsiveHeader/header.css'
 import {NotFound} from './MenuPageGenerator'
 
 export const TOURS = (props) => {
