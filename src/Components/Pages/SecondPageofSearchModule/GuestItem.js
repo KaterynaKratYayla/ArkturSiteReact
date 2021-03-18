@@ -14,6 +14,8 @@ import ReactHtmlParser from 'react-html-parser'
 import {ItemContent} from './ItemContent'
 import {ItemObj} from './ItemObj'
 import {ValidateQuery} from '../Helpers/helper'
+
+import {Search} from '../FirstPageofSearchModule/SearchFront'
 // import 'moment/locale/uk'
 
 moment.locale('uk')
@@ -103,14 +105,23 @@ useEffect ( () => {
  console.log('[SET_RATE] : ' , rate)
 
     return(
-        <div class='searchrender_Wrapper'>
-      
-          <div>
-          <h3>Search Results</h3>
-              <SearchInner />
-               </div>
+      <div>
+        
+        {/* <h3>Search Results</h3> */}
+            <div>
+              <Search />
+            </div>
+            <div class='searchrendering_Wrapper'>
+            <div>
+              <h3 style={{marginTop:'2vw', color:'#003057',fontFamily:'Arial',fontSize:'30px',fontWeight:'bold'}}>Search Results</h3>
+            </div>
+          {/* <div  style={{width:'100%',marginLeft:'auto',marginRight:'auto'}}> */}
+             
+              {/* <SearchInner /> */}
+           {/* </div> */}
+               
                 {/* <div>{history.location.pathname}</div> */}
-                 <div>
+              <div>
                   <ul className='descriptionUl'>
                     <>
                       {
@@ -158,14 +169,15 @@ useEffect ( () => {
               {/* <hr /> */}
            </ul>  
          </div>
-         <>
+         
            {/* {
              searchResults[0].click && ( 
                 <TourDetails searchResultsNew={searchResults}/>
              )
            } */}
-         </>
+      
 
+       </div>
     </div>
   )
 }

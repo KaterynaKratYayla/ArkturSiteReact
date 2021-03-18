@@ -5,45 +5,31 @@ import {Router} from 'react-router'
 import Helmet from '../../Library/PageDevices/Helmet'
 import {Container, Row, Col} from 'react-bootstrap'
 
+import {ContentPages} from '../PageComponents/ContentPages'
 import {getPages} from '../../../Redux/actions/pages'
 import './footer.css'
 import { PureContent } from '../PageComponents/MenuPageGenerator'
 
+
 export const Footer = () => {
 
-  const pages = useSelector(state => state.pages.pages)
-  const dispatch = useDispatch();
-  const [sm, setSm] = useState('');
-  const [md, setMd] = useState('');
-  const [lg,setLg] = useState('');
+const pages = ContentPages();
 
-     useEffect ( () => {
-      dispatch (getPages ());
-    },[]);
+//   const pages = useSelector(state => state.pages.pages)
+//   const dispatch = useDispatch();
+//      useEffect ( () => {
+//       dispatch (getPages ());
+//     },[]);
 
-    if( !pages ){
-      return <div> Loading...</div>
-  }
+//     if( !pages ){
+//       return <div> Loading...</div>
+//   }
 
   console.log('[PAGES SMART]', pages)
 
-  const windowWidthCheck = () =>{
-	let window = window.innerWidth;
-	if (window >= 576){
-		setSm(window);
-	}
-	else if(window >= 768){
-		setMd(window);
-	}
-	else if(window >=992){
-		setLg(window);
-	}
-  }
-//   {window.innerWidth >= 992? 'footer': window.innerWidth >=768? 'footer': 'footerXS'}
-
    return (
 	// <Container fluid='xs,sm,md,lg,xl'>
-	 <footer onLoad={windowWidthCheck}
+	 <footer
 	 		//  class={sm? 'footerSM' : md? 'footer': 'footer'}
 			class='footer'>
 

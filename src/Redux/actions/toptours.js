@@ -11,7 +11,7 @@ export const getTopTours = () => ( dispatch, getState ) => {
 
     dispatch({ type: GET_TOPTOURS_REQ });
 
-    axios.get('http://smartbooker.biz/interface/toptours',  {
+    axios.get('https://hotels-ua.biz/interface/toptours',  {
     }) 
         .then( res => {
                   

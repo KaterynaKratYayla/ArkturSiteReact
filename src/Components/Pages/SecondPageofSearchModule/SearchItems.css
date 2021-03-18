@@ -80,9 +80,10 @@
     color:rgb(250, 250, 141)
   } */
 
-  .searchrender_Wrapper{
+  .searchrendering_Wrapper{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    align-items: center;
     /* width: 30vw; */
   }
 

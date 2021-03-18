@@ -1,9 +1,15 @@
 .mySearch{
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    /* width: 40vw; */
-
+    justify-content: center;
+    width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    border-radius: 0 10px 10px 10px;
+    border-right: 50px solid #96c6f0;
+    border-left: 50px solid #96c6f0;
+    border-top: 15px solid #96c6f0;
+    border-bottom: 15px solid #96c6f0;
 }
 
  .textInput ,
@@ -19,36 +25,28 @@
      border-right: 1px solid #001959;
     }
 
-.datePicker{
-    /* width: 30vw; */
-    /* background-color: blue; */
-}
-
 .dropdownDatePicker{
-    /* color: red; */
-    /* background-color: blue; */
-    /* width: 20vw; */
-    font-family: 'Tahoma';
+    font-family: 'Arial';
 }
 
 
 .dateInput{
-    font-size: 16px;
+    /* font-size: 16px;
      font-family: Arial, Helvetica, sans-serif;
-     color: #001959;
-     width: 20vw;
+     color: #001959; */
+     /* width: 20vw; */
      /* position: absolute; */
      /* margin-left: 45vw; */
-     border-bottom: none;
-     border-top: none;
+     /* border-bottom: none;*/
+     /* border-top: none;
      border-left: none;
      border-right: none ; 
-     cursor: pointer;
+     cursor: pointer; */
 
 }
 
 .number{
-    font-size: 16px;
+    /* font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     color: #001959;
     width: 7vw;
@@ -57,7 +55,7 @@
     border-top: none;
     border-left: none;
     border-right: 1px solid #001959;
-    
+     */
 }
 
 .mySearch button{
@@ -86,24 +84,16 @@
 .formInnerWrapper{
     border: 3px solid white;
     width: 70.5vw;
-    margin: -0.2vw;
+    /* margin: -1vw; */
     border-radius: 0.5vw; 
 
 }
 
 .formOuterWrapper{
-    /* border-top: 1.5vw solid rgb(114, 83, 44, 0.9);
-      border-bottom: 1.5vw solid rgb(114, 83, 44, 0.9);
-      border-left: 5vw solid rgb(114, 83, 44, 0.9);
-      border-right: 5vw solid rgb(114, 83, 44, 0.9); */
-      /* border-top: 1.5vw solid #DEB887;
-      border-bottom: 1.5vw solid #DEB887;
-      border-left: 5vw solid#DEB887;
-      border-right: 5vw solid #DEB887; */
-      border-top: 1.5vw solid #BCD7EE;
-      border-bottom: 1.5vw solid #BCD7EE;
-      border-left: 5vw solid#BCD7EE;
-      border-right: 5vw solid #BCD7EE;
+      border-top: 1.5vw solid #96c6f0;
+      border-bottom: 1.5vw solid #96c6f0;
+      border-left: 5vw solid#96c6f0;
+      border-right: 5vw solid #96c6f0;
       margin-left: auto;
       margin-right: auto;
       margin-top: 0.3vw;
@@ -113,14 +103,20 @@
 
 .borderInnerWrapper2{
     border: 2px solid white;
-
+    width: 15vw;
 }
 
-.noResultSearch{
+/* .noResultSearch{
     color: darkslategrey;
     font-size: 18px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
     font-family:  Arial, Helvetica, sans-serif;
+} */
+
+div.datePicker{
+    font-family:'Tahoma'; 
+    padding-top: 0.8vw;
+    width: 15vw;
 }

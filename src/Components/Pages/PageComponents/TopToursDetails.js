@@ -6,6 +6,7 @@ import ReactHtmlParser from 'react-html-parser'
 // import ReactHtmlParser from 'react-html-parser'
 import {Container, Row, Col} from 'react-bootstrap'
 
+import {Search} from '../FirstPageofSearchModule/SearchFront'
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
 import {ValidateQuery} from '../Helpers/helper'
 import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
@@ -38,6 +39,7 @@ export const TopToursDetails = (props) =>{
 
     return(
         <div>
+          <Search />
             <div style={{display:"flex", 
                          flexDirection: 'column-reverse', 
                          marginLeft: 'auto', 
@@ -52,8 +54,10 @@ export const TopToursDetails = (props) =>{
                           <h2 style={{
                                 color: '#102D69',
                                 fontFamily: "Arial",
-                                fontSize: '22px',
+                                fontSize: '30px',
                                 fontWeight: 'bold',
+                                textAlign:'center',
+                                marginTop: '4vh'
                             }}>
                                 {item.contract_name}
                           </h2>

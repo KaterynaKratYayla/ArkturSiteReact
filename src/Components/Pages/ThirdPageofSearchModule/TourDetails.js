@@ -4,17 +4,19 @@ import ReactHtmlParser from 'react-html-parser'
 import {useDispatch, useSelector} from 'react-redux'
 import { useHistory , useLocation} from "react-router-dom";
 import moment from 'moment';
+import { Select } from 'antd';
 import {getContent} from '../../../Redux/actions/content'
 import {ValidateQuery} from '../Helpers/helper'
 import 'antd/dist/antd.css'
 import {PlusOutlined, MinusOutlined, CalendarOutlined} from '@ant-design/icons'
+import {RateChoiceBlock} from './RateChoiceBlock'
 
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
 import {Moon} from '../../Library/Icons/moon.js'
 import {Sun} from '../../Library/Icons/sun.js'
-import {Coach} from '../../Library/Icons/coach.js'
 
 import './TourDetailsCSS.css'
+import 'antd/dist/antd.css'
 
   export const TourDetails = (props) =>{
     let location = useLocation();
@@ -26,9 +28,9 @@ import './TourDetailsCSS.css'
   
     const [details, setDetails] = useState([{}]);
     const [rateDetails, setrateDetails] = useState([{}]);
-    const [pax, setPax] = useState('');
     const [selectionDetails, setSelection] = useState(search_data.selection)
     const [filteredDetails, setfilteredDetails] = useState([{}])
+    const { Option } = Select;
 
     useEffect ( () => {
       axios.get(`http://smartbooker.biz/interface/content?id=${search_data.tour_id}&language=en`)
@@ -101,15 +103,17 @@ import './TourDetailsCSS.css'
     //     console.log('SET PAX', pax)
     //  }
 
-     function selectedPeriod (e) {
+     function selectedPeriod (value) {
 
-        console.log('SELECTED : ' , e.target.value)
-        setSelection(e.target.value)
+        console.log('SELECTED : ' , value)
+        setSelection(value)
 }
+
+
 
       return (
           <div class='TourDetailsWrapper'>
-            <h2>{search_data.tour_name.replace(/%20/g , ' ')}</h2> 
+            <h2 style={{marginTop: '4vh'}}>{search_data.tour_name.replace(/%20/g , ' ')}</h2> 
             <div class='Icons'>           
               
                 <Sun />
@@ -160,36 +164,30 @@ import './TourDetailsCSS.css'
 
                      <div class='BookingChoiceInner'>
                        <h4>Available dates :</h4>
-                       <select 
-                          value={selectionDetails}
-                          onChange={selectedPeriod}>
+                       <Select 
+                          defaultValue={selectionDetails}
+                          onChange={selectedPeriod}
+                          bordered={true}
+                          size='medium'>
                             <>
                               {
                                 filteredDetails && filteredDetails.map((filter,index)=>{
                                   return (
-                                    <option 
+                                    <Option 
                                         value={filter.date}
                                         key={rateDetails[0].tour_id, '-' , index}>
                                           {filter.date} -- {moment(filter.date).add(rateDetails[0].duration, 'days').format('YYYY-MM-DD')} ({rateDetails[0].duration} days)  
-                                  </option>
+                                  </Option>
                                   )    
                                 })
                               }
                             </>
-                     </select>
+                     </Select>
                      </div>
                 </div>
-                <div class='BookingChoice'>
-                   {/* <input onChange={ChoosePax} value={pax} type='text'/> */}
-                   <div class='PopUp'>
-                      <MinusOutlined class='Minus'/>
-                      <PlusOutlined class='Plus'/>
-                    </div>
-                    <div style={{display: 'flex', flexDirection:"row", justifyContent:"flex-end"}}>
-                      <Coach />
-                    </div>
-                    <h4>Coach Included</h4>
-                </div>
+                  <RateChoiceBlock
+                      selectionDetails={selectionDetails}
+                      tour_id={search_data.tour_id}/>
                </div>
               </div>
             <div>
