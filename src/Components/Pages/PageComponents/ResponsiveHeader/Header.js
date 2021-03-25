@@ -6,7 +6,7 @@ import {UserOutlined} from '@ant-design/icons'
 
 import {RouteSwitcher} from '../../RoutesAndLinks/RouteSwitcher'
 import {COVID, ABOUT, CONTACTUS, SIGNIN, FORGROUPS} from '../TopMenuComponents'
-import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../MiddleMenuComponents' 
+import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../MiddleMenuComponents'
 import {HomePage} from '../HomePage'
 import {TOURS} from '../DropDownTours'
 import { PureContent } from '../MenuPageGenerator'
@@ -26,10 +26,14 @@ import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import {useLocation} from 'react-router-dom'
 import Login from "../../../Library/Authorization/Login";
 import Register from "../../../Library/Authorization/Register";
-import { logout } from "../../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
+import { logout } from "../../../../Redux/actions/auth";
+import { getLocales } from "../../../../Redux/actions/locales";
+// import { findByLabelText } from '@testing-library/react'
 import ArkturDMClogo from '../../../Library/Images/ArkturDMClogo.svg'
 
 import './header.css'
+import {getPages} from "../../../../Redux/actions";
+import Dropdown from "react-bootstrap/Dropdown";
 // import './ResponsiveCSS.css'
 
 export const TopMenu = () => {
@@ -39,14 +43,20 @@ export const TopMenu = () => {
 	const logOut = () => {
 		dispatch(logout());
 	};
+	// Получаем языки при загрузке Header
+	useEffect ( () => {
+		dispatch (getLocales());
+	},[]);
 
 	const [width, height] = useWindowWidthAndHeight();
 
 	const pages = ContentPages();
 	console.log('[PAGES HEADER]', pages)
 
+	const locales = useSelector(state => state.locales.locales)
+
 	return (
-	<header class='wrapperMain'>	
+	<header class='wrapperMain'>
 
 	   		<div className='topMenu'>
 
@@ -64,7 +74,7 @@ export const TopMenu = () => {
 				    <ul class='Upper'>
 					  {
 						pages && pages.map((page)=>{
-						  if(page.name.includes('UPPER')){	
+						  if(page.name.includes('UPPER')){
 							return (
 							<li>
 								<div>
@@ -72,7 +82,7 @@ export const TopMenu = () => {
 									                 state: {id: page.id}}}
 													 activeClassName='active'>
 														 {page.name.replace(/UPPER/g, " " ).toUpperCase()}
-									</NavLink> 
+									</NavLink>
 								</div>
 						   </li>
 						   )
@@ -86,11 +96,23 @@ export const TopMenu = () => {
 						<NavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</NavLink>
 					) : (
 						<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>
-					)}					
-				</div>	
+					)}
+				</div>
 
 				<Link exact to='/'><HomeOutlined className='HomeIcon'/></Link>
-					
+
+				<Dropdown style={{zIndex: 1040}}>
+					<Dropdown.Toggle variant="success" id="dropdown-basic">
+						Language
+					</Dropdown.Toggle>
+
+					<Dropdown.Menu>
+						<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+						<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+						<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+					</Dropdown.Menu>
+				</Dropdown>
+
 				</div>
 
 			</div>
@@ -99,27 +121,27 @@ export const TopMenu = () => {
 					{/* <div class='middleMenu_left'> */}
 			   <NavLink exact to='/' >
 					<img class='ArkturDMClogo'
-  					    src={ArkturDMClogo} 
+  					    src={ArkturDMClogo}
 					 	alt='Arktur DMC logo'/>
-			   </NavLink>	 
+			   </NavLink>
 
 			 { width > 1000 ?
-				
-                <LargeScreensNavBar 
+
+                <LargeScreensNavBar
 						pages={pages}/>
                 :
-                <SmallScreensNavBar 
+                <SmallScreensNavBar
 						navClass="nav-small"
                         linkClassName = "nav-small-link"
 						pages={pages}
 						width={width}/>
-                } 
-							    
+                }
+
 			    {/* </div>  */}
-			  </div>					
+			  </div>
 
 		   <RouteSwitcher />
-		</header> 
-		
+		</header>
+
 	)
  }

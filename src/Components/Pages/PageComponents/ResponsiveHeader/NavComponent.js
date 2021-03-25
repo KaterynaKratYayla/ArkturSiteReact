@@ -1,6 +1,7 @@
 // import { Link } from 'react-scroll';
 import {Link, NavLink} from 'react-router-dom'
 import { PureContent } from '../MenuPageGenerator'
+import { FormattedMessage } from 'react-intl';
 // import {icons} from '../../../Library/Icons/icons'
 import './header.css'
 
@@ -19,7 +20,7 @@ export const NavComponent = ({onClick, navClass, linkClassName,pages})=>{
 <ul class={linkClassName}>
 					  {
 						pages && pages.map((page)=>{
-						  if(page.name.includes('MID')){	
+						  if(page.name.includes('MID')){
 							return (
 							<li>
     							<h2>
@@ -41,9 +42,10 @@ export const NavComponent = ({onClick, navClass, linkClassName,pages})=>{
                                                          })
                                                         }
                                                         </span> */}
+                                                    {/*<FormattedMessage id = "common.name" />&nbsp;*/}
                                                     {page.name.replace(/MID/g, " " )}
-									</Link> 
-                               
+									</Link>
+
 								</h2>
 						   </li>
 						   )
@@ -55,7 +57,7 @@ export const NavComponent = ({onClick, navClass, linkClassName,pages})=>{
                {/* <Link exact to='/' className={linkClassName} onClick={onClick}>Home</Link>
                <Link exact to='/about_us_info' className={linkClassName} onClick={onClick} >About us</Link>
                <Link exact to='/hotels_in_ukraine' className={linkClassName} onClick={onClick}>Hotels</Link>
-               <Link exact to='/' className={linkClassName} onClick={onClick}>Tours</Link> 
+               <Link exact to='/' className={linkClassName} onClick={onClick}>Tours</Link>
                  <ul style={{listStyle:'none', paddingLeft:'10px'}}>
                     <li><Link exact to='/Kyiv' className={linkClassName} onClick={onClick}>Kyiv</Link></li>
                     <li><Link exact to='/Odesa' className={linkClassName} onClick={onClick}>Odesa</Link></li>
