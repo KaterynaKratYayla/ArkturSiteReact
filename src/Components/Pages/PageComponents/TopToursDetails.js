@@ -9,6 +9,7 @@ import {Container, Row, Col} from 'react-bootstrap'
 import {Search} from '../FirstPageofSearchModule/SearchFront'
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
 import {ValidateQuery} from '../Helpers/helper'
+import {HomePage} from './HomePage'
 import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
 import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
 import './TopToursCSS.css'
@@ -36,6 +37,10 @@ export const TopToursDetails = (props) =>{
    }, []);
 
    console.log('[ttDetails]', ttDetails)
+
+   if( !ttDetails ){
+    return <div> <HomePage /></div>
+}
 
     return(
         <div>

@@ -43,10 +43,17 @@ console.log('[TOURTOURS]', toptours)
   console.log('[TourTypesFiltered]', TourTypesFiltered)
 
   const GetTourDetails = (e) =>{  
-    
-    let route_query = `?tour_id=${e.target.id}`
+    let route_query;
+    if(e.target.id){
+       route_query = `/toptours/?tour_id=${e.target.id}`
+    }
+    else {
+      route_query = '/'
+      alert('Please choose another tour')
+    }
 
-    history.push(`/toptours/${route_query}`)
+    // history.push(`/toptours/${route_query}`)
+    history.push(route_query)
     // console.log('[HISTORY : ] ', history)
   }
 
@@ -129,7 +136,7 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
                                         {/* <TopToursDetails  
                                             tour_id={tour.tour_id}
                                           />  */}
-                                        <div> 
+                                        <div id={tour.tour_id}> 
                                           {
                                             tour.main_photo[0]?(
                                           <img  
@@ -144,7 +151,8 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
                                             </div>)
                                           }
                                         </div> 
-                                       <div class='TopToursTitle'>
+                                       <div class='TopToursTitle'
+                                            id={tour.tour_id}>
                                           <h4 id={tour.tour_id}> 
                                                 {tour.tour_name} 
                                           </h4> 

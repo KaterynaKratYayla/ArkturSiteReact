@@ -22,6 +22,8 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
       const [choiceDetails, setchoiceDetails] = useState([{}]);
       const [hotelChoice, sethotelChoice] = useState('Hotels Available')
       const [open, setOpen] = useState(false)
+      const [minpax, setMinPax] = useState()
+      const [maxpax, setMaxPax] = useState()
        
       const { Option } = Select;
 
@@ -37,18 +39,18 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
       useEffect (() =>{
         axios.get(`https://hotels-ua.biz/interface/sitechoice3?tour_id=${tour_id}&date=${selectionDetails}`)
         .then(res => {
-          setchoiceDetails(res.data)
+          setchoiceDetails(res.data)               
+      
         })
         .catch(error =>{
           setchoiceDetails(undefined)
           console.log('[axios error]: ', error)
         });
-      },[]);
-
-      // const pickupHotel = (e) =>{
-      //   console.log(e.target)
-      //   sethotelChoice(e.target.value)
-      // }
+      },[]);    
+            
+      // console.log('PAX_AMOUNT', paxAmount)
+   
+      const [counter, setCounter] = useState('')
 
       const MakeVisible = () =>{
         setOpen(!open)
@@ -62,11 +64,14 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
           <div class='RateChoiceBlock'>
                <PaxChoice 
                     MakeVisible = {MakeVisible}
-                    open={open}/>
+                    open={open}
+                    tour_id={tour_id}
+                    selectionDetails={selectionDetails}
+                    />
             {
               choiceDetails? (choiceDetails.map((item)=> {
                
-                if(item.hotel){
+                if(item.hotels&&item.hotels[0]!=='no attached hotels'){
                   return(
                   <div style={{display:'flex',
                                flexDirection:'column'}}
@@ -90,7 +95,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
                           onChange={handleChange}
                           bordered={true}>
                                { 
-                                item.hotel && item.hotel.map((hotel)=>{
+                                item.hotels && item.hotels.map((hotel)=>{
                                   return(
                                     <>
                                       <Option 
@@ -108,12 +113,14 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
                   )
                 }
 
+                
+
                 else if(item.inclusions){
                   return(
                   
                      <>
                         {
-                          item.inclusions.hotel? item.inclusions.hotel.map((item1)=>{
+                          item.inclusions? item.inclusions.map((item1)=>{
                             if(item1.Transfer){ 
                               return(
 
@@ -128,7 +135,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
                                 </div>
                                )
                               }
-                            else if(item1.Excursion){
+                            else if(item1.Excursion||item1.Guide){
                                return (
                                 <div style={{marginBottom: '4vh',
                                           marginTop:'0.5vh',
