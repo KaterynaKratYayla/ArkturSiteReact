@@ -16,3 +16,4 @@ const new_array = array1.filter((item,index,array) =>
 array.findIndex(t => t.date === item.date)===index)
 
 console.log('[TEST]', new_array)
+
