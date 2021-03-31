@@ -9,7 +9,7 @@ import pages from './pages';
 import auth from "./auth";
 import message from "./message";
 import toptours from './toptours';
-import locales from './locales';
+import localization from './localization';
 
 
 //{combineReducers} - это библиотека из редакса для комбинации нескольких редьюсеров
@@ -23,7 +23,7 @@ const root_reducer = combineReducers({
 	toptours,
 	auth,
 	message,
-	locales
+	localization
 });
 
 export default root_reducer;

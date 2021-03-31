@@ -10,6 +10,7 @@ import {RouteSwitcher} from './Components/Pages/PageComponents/ResponsiveHeader/
 // import AxiosDemo from './Redux/components/pages/Axios';
 import Login from "./Components/Library/Authorization/Login";
 import Register from "./Components/Library/Authorization/Register";
+import { FormattedMessage, useIntl } from 'react-intl';
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -22,6 +23,7 @@ import { history } from "./Redux/helpers/history";
 function App() {
     const { user: currentUser } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    const intl = useIntl();
 
     useEffect(() => {
         if (currentUser) {

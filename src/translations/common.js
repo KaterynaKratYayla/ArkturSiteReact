@@ -1,11 +1,17 @@
 export default {
     uk: {
-        'common.name' : 'Готелі'
+        'common.name': 'Готелі',
+        'topMenu.logout': 'Вийти',
+        'topMenu.signIn': 'Увійти',
     },
     en: {
-        'common.name' : 'Hotels'
+        'common.name': 'Hotels',
+        'topMenu.logout': 'Log Out',
+        'topMenu.signIn': 'Sign In',
     },
     ru: {
-        'common.name' : 'Гостиницы'
+        'common.name': 'Гостиницы',
+        'topMenu.logout': 'Выйти',
+        'topMenu.signIn': 'Войти',
     }
 }

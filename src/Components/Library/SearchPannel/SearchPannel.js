@@ -19,14 +19,14 @@ import '../../Pages/FirstPageofSearchModule/SwitcherFront.css'
 import './SearchPannelCSS.css'
 
 export const SearchInner = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
-   
+
 const [date, setDate] = useState('');
 const [testDate, setTestDate] = useState('');
 const [list , setList] = useState([]);
 const [value, setValue] = useState('');
 const [open, setOpen] = useState(false);
 const [isOpen, setIsOpen] = useState(false);
-const [align, setAlign] = useState('');  
+const [align, setAlign] = useState('');
 
 const history = useHistory();
 
@@ -52,7 +52,7 @@ const toggler = ( me ) => _ => {
   setAlign(me);
  }
 
-function dateFunc (e) {      
+function dateFunc (e) {
     return setDate (e.target.value)
     }
 
@@ -74,7 +74,7 @@ const optionChecker = (e) => {
 
   const addToList = () => {
 
- 
+
     const filtered = geo.filter(function(item){
         return item.name === value
     })
@@ -85,7 +85,7 @@ const optionChecker = (e) => {
       }
       else return item.city_id === filtered[0].id
     })
-    
+
     console.log('FILTERED_CITY_ID', filtered_city_id )
 
     const newList = {
@@ -109,9 +109,9 @@ const optionChecker = (e) => {
 const onSubmit = (e) =>{
   e.preventDefault();
 }
- 
+
 return(
-      <div style={{width: `${width*0,7}`,
+      <div style={{width: `${width*0.7}`,
                   marginLeft:'auto',
                   marginRight:'auto',
                   textAlign:'center',
@@ -120,13 +120,13 @@ return(
                   <Switcher className='SwitcherSearchPannel' name={'align'} changeHandler={toggler} active={align}>.
                       <SwitcherItem value='HOTELS'><Hotels/> Hotels</SwitcherItem>
                       <SwitcherItem value='TOURS'><Tours/> Tours</SwitcherItem>
-                 </Switcher> 
+                 </Switcher>
           <div class={wrapper}>
            <div class={innerWrapper}>
              <form className={formClass} onSubmit={onSubmit}>
                  {/* <input class='textInput_inner' type='text' value={inputSelect} onChange={changeHandler} placeholder={'Country or City'}/> */}
-                            
-              
+
+
                <div>
                      <Autocomplete
                  {...props}
@@ -145,23 +145,23 @@ return(
                                overflow: 'auto' ///
                              }
                             }
-                  inputProps={{style: 
+                  inputProps={{style:
                                   { width: `${width*0.8}px`,
-                                    height: '37px', 
-                                    fontFamily: 'Tahoma', 
+                                    height: '37px',
+                                    fontFamily: 'Tahoma',
                                     fontSize: '16px',
                                     border: '1px solid lightgrey',
                                     marginTop: '1vh',
                                     marginLeft: '4.4vw',
                                     marginBottom: '1vh'
-                                  }, 
-                                    
-                                placeholder: 
+                                  },
+
+                                placeholder:
                                     'Country, city or tour name' }}
                   items={geo}
-                  shouldItemRender={(item, value) => 
+                  shouldItemRender={(item, value) =>
                     value!== ""? item.name.toLowerCase().includes(value.toLowerCase()): null}
-                    
+
                   getItemValue={item => item.name}
                   open={open}
                   onMenuVisibilityChange={isOpen =>setOpen(false)}
@@ -177,26 +177,26 @@ return(
                   onChange={optionChecker}
                   onSelect={value => setValue(value) + setOpen(false)}
                   />
-               </div>              
+               </div>
 
            <div>
 
            {/* <DatePicker /> */}
 
            <Space direction="vertical">
-               <DatePicker size={'large'} 
-                           onChange={onChange} 
-                           picker="month" 
-                          //  format={dateFormat} 
+               <DatePicker size={'large'}
+                           onChange={onChange}
+                           picker="month"
+                          //  format={dateFormat}
                            placeholder='Choose month'
                            bordered={true}
                            className={datepickerClass}
                            style={{width:`${width*0.8}px`}}
                           //  dropdownClassName='dropdownDatePicker'
-                          // style={{fontFamily:'Tahoma', 
+                          // style={{fontFamily:'Tahoma',
                           //           paddingTop: '0.8vw',
                           //           marginLeft: '0.5vw',
-                          //            width: 
+                          //            width:
                           //            }}
                                     />
           </Space>
@@ -205,24 +205,24 @@ return(
           <div  class='borderInnerWrapper2_inner'>
             <button type='submit' onClick={addToList}>SEARCH</button>
           </div>
-     </form> 
- 
+     </form>
+
     </div>
     </div>
-      
-      
-      <>       
+
+
+      <>
       {list.length > 0 && (
-       <GuestItem 
+       <GuestItem
             title={value}
             list={list}
-          />	
+          />
      )
    }
 </>
-        
+
        </div>
       )
     }
 
-      
+

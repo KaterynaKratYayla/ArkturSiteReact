@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import {Provider, useDispatch, useSelector} from "react-redux";
-import {Link, Redirect, Route, Switch} from 'react-router-dom';
+import {Link, Redirect/*, Route, Switch*/} from 'react-router-dom';
+import { Route, Switch } from '../Localization';
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";

@@ -4,12 +4,19 @@ import { HomePage } from '../../../Pages/PageComponents/HomePage'
 import {PureContent} from '../../../Pages/PageComponents/MenuPageGenerator'
 import { CONTACTUS } from '../../../Pages/PageComponents/TopMenuComponents'
 import { HOTELS } from '../../../Pages/PageComponents/MiddleMenuComponents'
+import { HelmetWrapper, LocalizationRoute, LocalizationNavLink, LocalizaitonSwitch } from '../../../Library';
 
 const Helmet = () => {
 
     return(
         <div>
             <h1>Helmet</h1>
+            {/*<LocalizaitonSwitch>
+                <LocalizationRoute path='/' component={HomePage}/>
+                <LocalizationRoute path='/about' component={PureContent}/>
+                <LocalizationRoute path='/contact_us' component={CONTACTUS}/>
+                <LocalizationRoute path='/hotels_in_ukraine' component={HOTELS}/>
+            </LocalizaitonSwitch>*/}
             <Switch>
                 <Route path='/' component={HomePage}/>
                 <Route path='/about' component={PureContent}/>

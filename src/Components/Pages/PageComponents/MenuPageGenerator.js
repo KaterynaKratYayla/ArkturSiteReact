@@ -38,15 +38,15 @@ export const PureContent = ({location}) => {
 
        {
          purePage && purePage.map((page)=>{
-                              
+
           if(page.content_name === "Title"){
-             return (  
+             return (
                <>
                 <Helmet>
                     <title>{page.text}</title>
                     <link rel='shortcut icon' href={ArkturDMClogoICO} />
-                </Helmet>           
-               
+                </Helmet>
+
                <h2>{page.text}</h2>
                </>
              )
@@ -63,7 +63,7 @@ export const PureContent = ({location}) => {
        }
 
     </div>
-    ) 
+    )
   }
 
 

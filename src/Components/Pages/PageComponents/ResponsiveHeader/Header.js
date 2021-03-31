@@ -27,14 +27,22 @@ import {useLocation} from 'react-router-dom'
 import Login from "../../../Library/Authorization/Login";
 import Register from "../../../Library/Authorization/Register";
 import { logout } from "../../../../Redux/actions/auth";
-import { getLocales } from "../../../../Redux/actions/locales";
+import { getLocales, changeLang } from "../../../../Redux/actions";
 // import { findByLabelText } from '@testing-library/react'
 import ArkturDMClogo from '../../../Library/Images/ArkturDMClogo.svg'
+import { LocalizationNavLink } from '../../../Library/Localization';
 
 import './header.css'
 import {getPages} from "../../../../Redux/actions";
 import Dropdown from "react-bootstrap/Dropdown";
 // import './ResponsiveCSS.css'
+import config from '../../../../Redux/config';
+
+const defaultLocale = config.defaultLocale;
+const apiUrl = config.apiUrl;
+const supportedLangs = config.supportedLangs;
+// console.log('supportedLangs2: ', supportedLangs);
+// console.log('supportedLangs5: ', `/:locale(${supportedLangs})`);
 
 export const TopMenu = () => {
 
@@ -43,17 +51,41 @@ export const TopMenu = () => {
 	const logOut = () => {
 		dispatch(logout());
 	};
+
+	const changeLocale = ( locale ) => {
+		dispatch (changeLang(locale));
+	}
+
 	// Получаем языки при загрузке Header
 	useEffect ( () => {
 		dispatch (getLocales());
 	},[]);
+	console.log('supportedLangs2: ', supportedLangs);
 
 	const [width, height] = useWindowWidthAndHeight();
 
 	const pages = ContentPages();
-	console.log('[PAGES HEADER]', pages)
+	console.log('[PAGES HEADER]', pages);
 
-	const locales = useSelector(state => state.locales.locales)
+	const current_locale = useSelector(state => state.localization.current_locale);
+	const locales = useSelector(state => state.localization.locales);
+	const MenuItems = () => {
+		const listItems = locales.map(
+			(locale) => {
+				{/*TODO: Подправить стили и вынести их в файл css. Пока сделал как получилось, чтобы было видно выбор языков*/}
+				return (
+					<Dropdown.Item style={{backgroundColor: "#2146ce"}} href="#/action-1">
+						{locale.name}
+					</Dropdown.Item>
+				);
+			}
+		);
+		return(
+			<Dropdown.Menu style={{backgroundColor: "#007bff"}}>
+				{listItems}
+			</Dropdown.Menu>
+		);
+	}
 
 	return (
 	<header class='wrapperMain'>
@@ -91,26 +123,38 @@ export const TopMenu = () => {
 					  }
 				</ul>
 
+				{/*<div style={{marginTop:'auto',marginBottom:'auto'}}>
+					{currentUser ? (
+						<LocalizationNavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</LocalizationNavLink>
+					) : (
+						<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>
+					)}
+				</div>*/}
+
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
 					{currentUser ? (
-						<NavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</NavLink>
+						<LocalizationNavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</LocalizationNavLink>
 					) : (
 						<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>
 					)}
 				</div>
 
+				{/*<div style={{marginTop:'auto',marginBottom:'auto'}}>
+					{currentUser ? (
+						<NavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</NavLink>
+					) : (
+						<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>
+					)}
+				</div>*/}
+
 				<Link exact to='/'><HomeOutlined className='HomeIcon'/></Link>
 
-				<Dropdown style={{zIndex: 1040}}>
+				{/*TODO: Подправить стили и вынести их в файл css. Пока сделал как получилось, чтобы было видно выбор языков*/}
+				<Dropdown className='languageSelector'>
 					<Dropdown.Toggle variant="success" id="dropdown-basic">
-						Language
+						{current_locale.toUpperCase()}
 					</Dropdown.Toggle>
-
-					<Dropdown.Menu>
-						<Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-						<Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-						<Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-					</Dropdown.Menu>
+					<MenuItems />
 				</Dropdown>
 
 				</div>
