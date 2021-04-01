@@ -1,6 +1,3 @@
-const supportedLangs = "EN|UK|RU|TR";
-
-console.log('[file]');
 /*let supportedLangs = fetch('http://smartbooker.biz/interface/classifier?classifier=language')
     .then((response) => {
         return response.json();
@@ -25,5 +22,5 @@ export default {
     // apiUrl:"https://jsonplaceholder.typicode.com/"
     apiUrl: "http://smartbooker.biz/interface/",
     defaultLocale: "en",
-    supportedLangs: supportedLangs,
+    supportedLangs: ['EN', 'UK', 'TR', 'RU'],
 }

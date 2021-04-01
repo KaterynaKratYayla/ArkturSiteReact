@@ -4,9 +4,9 @@ import { IntlProvider } from 'react-intl';
 
 import App from './App';
 
-import { changeLang } from './Redux/actions';
+import { changeLang } from '../Redux/actions';
 
-import messages from './translations/common';
+import messages from '../translations/common';
 // import locales from "./Redux/reducers/locales";
 
 const LocalizationWrapper = ( props ) => {
