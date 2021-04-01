@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from'@emotion/styled'
 
-console.log('[file]');
+console.log('[file]', 'src/Components/Library/PhotoGallery/PhotosContent.js');
 const GalleryContent = styled.div`
     transform: translateX(-${props => props.translate}px); 
     height: 100%; 

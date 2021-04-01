@@ -2,6 +2,7 @@ import React from 'react'
 import {css,jsx} from '@emotion/react'
 import './SliderCss.css'
 
+console.log('[file]', 'src/Components/Library/Slider/ArrowSlider.js');
 const test = () => {
     return(
         <div>Test</div>
@@ -11,9 +12,9 @@ const test = () => {
 
 export const Arrow = ({ direction, handleClick }) => (
     // console.log('Hi Kate')
-    
+
     <div onClick={handleClick}>
-         {direction === 'right' ?  <div><a className="prev">&#10094;</a></div> : <div><a className="next">&#10095;</a></div>}    
+         {direction === 'right' ?  <div><a className="prev">&#10094;</a></div> : <div><a className="next">&#10095;</a></div>}
     </div>
     )
 

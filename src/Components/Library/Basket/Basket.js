@@ -1,6 +1,6 @@
 import React ,{useState, useEffect} from 'react'
 
-console.log('[file]');
+console.log('[file]', 'src/Components/Library/Basket/Basket.js');
 const products = [
     {
         id: 1,

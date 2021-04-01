@@ -11,7 +11,7 @@ export const contentResponse = ( res ) => ({
 
 // console.log('[CONTENTRESPONCE]' , contentResponse)
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/actions/content.js');
 export const getContent = (id) => ( dispatch, getState ) => {
 
     console.log('GET_STATE:', getState())

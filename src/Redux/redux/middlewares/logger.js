@@ -1,5 +1,5 @@
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/redux/middlewares/logger.js');
 
 export const logger = store => next => action => {
     console.log('[LOGGER]', action );

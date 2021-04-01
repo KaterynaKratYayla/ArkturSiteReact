@@ -1,7 +1,7 @@
 import React , { useEffect, useState } from 'react';
 
+console.log('[file]', 'src/Components/Pages/Helpers/WindowResizeHook.js');
 export const useWindowWidthAndHeight = ()=>{
-    console.log('[file]');
     // 1- Получаем размер окна
     let windowInnerSize = [window.innerWidth, window.innerHeight];
 

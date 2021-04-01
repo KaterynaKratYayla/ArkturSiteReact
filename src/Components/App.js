@@ -20,8 +20,8 @@ import {HomePage} from "./Pages/PageComponents/HomePage"
 
 import { history } from "../Redux/helpers/history";
 
+console.log('[file]', 'src/Components/App.js');
 function App() {
-    console.log('[file]');
     const { user: currentUser } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const intl = useIntl();

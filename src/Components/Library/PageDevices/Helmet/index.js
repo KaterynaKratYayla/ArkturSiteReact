@@ -6,8 +6,8 @@ import { CONTACTUS } from '../../../Pages/PageComponents/TopMenuComponents'
 import { HOTELS } from '../../../Pages/PageComponents/MiddleMenuComponents'
 import { HelmetWrapper, LocalizationRoute, LocalizationNavLink, LocalizaitonSwitch } from '../../../Library';
 
+console.log('[file]', 'src/Components/Library/PageDevices/Helmet/index.js');
 const Helmet = () => {
-    console.log('[file]');
 
     return(
         <div>

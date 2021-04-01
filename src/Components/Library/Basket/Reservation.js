@@ -3,8 +3,8 @@ import '../../Pages/RoutesAndLinks/header.css'
 // import {SwitcherItem} from './Switcher'
 // import {Switcher} from './Switcher'
 
+console.log('[file]', 'src/Components/Library/Basket/Reservation.js');
 const ConForm = () => {
-    console.log('[file]');
 
     const [myInput1, setMyInput1] = useState('');
     const [myInput2, setMyInput2] = useState('');

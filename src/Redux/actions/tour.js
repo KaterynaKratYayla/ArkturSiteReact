@@ -5,7 +5,7 @@ import { GET_TOUR_REQ, GET_TOUR_RES , GET_TOUR_ERR } from '../constants';
 import { GET_EN_TOUR_REQ, GET_EN_TOUR_RES , GET_EN_TOUR_ERR } from '../constants';
 import { GET_IMAGES_TOUR_REQ, GET_IMAGES_TOUR_RES , GET_IMAGES_TOUR_ERR } from '../constants';
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/actions/tour.js');
 export const tourResponse = ( res ) => ({
     type: GET_TOUR_RES,
     payload: res

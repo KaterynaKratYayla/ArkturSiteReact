@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from'@emotion/styled'
 
+console.log('[file]', 'src/Components/Library/Slider/SliderContent.js');
 
 const SliderContent = styled.div`
     transform: translateX(-${props => props.translate}px); 
@@ -8,8 +9,7 @@ const SliderContent = styled.div`
     width: ${props => props.width}px;
     display: flex;  
 `
-//transition: transform ease-out ${props => props.transition}s; 
+//transition: transform ease-out ${props => props.transition}s;
 
 console.log(SliderContent)
 export default SliderContent;
- 

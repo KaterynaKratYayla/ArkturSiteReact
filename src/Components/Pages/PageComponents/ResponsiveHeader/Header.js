@@ -44,8 +44,8 @@ const supportedLangs = config.supportedLangs;
 // console.log('supportedLangs2: ', supportedLangs);
 // console.log('supportedLangs5: ', `/:locale(${supportedLangs})`);
 
+console.log('[file]', 'src/Components/Pages/PageComponents/ResponsiveHeader/Header.js');
 export const TopMenu = () => {
-	console.log('[file]');
 
 	const { user: currentUser } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();

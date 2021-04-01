@@ -16,8 +16,8 @@ import {ValidateQuery} from '../Helpers/helper'
 
 moment.locale('uk')
 
+console.log('[file]', 'src/Components/Pages/SecondPageofSearchModule/ItemObj.js');
 export const ItemObj = ({tariff, searchResults,tour_name}) => {
-    console.log('[file]');
 
   const location = useLocation()
   const history = useHistory();

@@ -11,8 +11,8 @@ import {Autocomplete} from 'react-autocomplete'
 // import 'moment/locale/uk'
 // import ReactHtmlParser from 'react-html-parser'
 
+console.log('[file]', 'src/Components/Library/HotelsUkraineTestComponents/single_tour.js');
 export const SingleTour = ({option, selector, location, history, list}) =>{
-    console.log('[file]');
 
   const dispatch = useDispatch();
   const tourdescription = useSelector(state => state.tours.touritems)

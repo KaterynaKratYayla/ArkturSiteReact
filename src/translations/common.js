@@ -1,3 +1,5 @@
+
+console.log('[file]', 'src/translations/common.js');
 export default {
     uk: {
         'common.name': 'Готелі',

@@ -4,9 +4,9 @@ import { NavComponent } from './NavComponent';
 import {MenuBar} from '../../../Library/Icons/menubar'
 import {MenuClose} from '../../../Library/Icons/menuclose'
 
+console.log('[file]', 'src/Components/Pages/PageComponents/ResponsiveHeader/SmallScreensNavBar.js');
 const SmallScreensNavBar = ({pages,width}) =>{
     // declare 'translate' as a state variable
-    console.log('[file]');
     console.log('PAGES', pages)
     let [translate, setTranslate ] = useState(false);
     return(

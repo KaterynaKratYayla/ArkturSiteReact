@@ -6,8 +6,8 @@ import '../PageComponents/ResponsiveHeader/header.css'
 import {Helmet} from 'react-helmet'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 
+console.log('[file]', 'src/Components/Pages/PageComponents/MiddleMenuComponents.js');
 export const HOTELS = () => {
-    console.log('[file]');
 	 return (
         <div>
          <Helmet>

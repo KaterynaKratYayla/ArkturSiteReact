@@ -6,7 +6,7 @@ import { GET_EN_DESC_REQ, GET_EN_DESC_RES , GET_EN_DESC_ERR } from '../constants
 import { GET_IMAGES_REQ, GET_IMAGES_RES , GET_IMAGES_ERR } from '../constants';
 // import { GET_TOUR_REQ, GET_TOUR_RES , GET_TOUR_ERR } from '../constants';
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/actions/list.js');
 export const postsRepsonse = ( res ) => ({
     type: GET_POSTS_RES,
     payload: res

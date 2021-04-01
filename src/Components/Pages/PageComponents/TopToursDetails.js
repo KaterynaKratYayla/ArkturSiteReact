@@ -13,8 +13,8 @@ import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
 import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
 import './TopToursCSS.css'
 
+console.log('[file]', 'src/Components/Pages/PageComponents/TopToursDetails.js');
 export const TopToursDetails = (props) =>{
-    console.log('[file]');
 
     const [ttDetails, setTTDetails] = useState()
     let location = useLocation();

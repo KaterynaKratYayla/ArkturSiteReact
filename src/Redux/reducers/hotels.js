@@ -1,7 +1,7 @@
 import { GET_DESC_REQ, GET_DESC_RES , GET_DESC_ERR,GET_EN_DESC_REQ, GET_EN_DESC_RES , GET_EN_DESC_ERR} from '../constants';
 import { GET_IMAGES_REQ, GET_IMAGES_RES , GET_IMAGES_ERR} from '../constants'
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/reducers/hotels.js');
 const initState = {
 	parts: [],
 	loaded: false,

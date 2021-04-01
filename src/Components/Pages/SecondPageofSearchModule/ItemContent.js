@@ -11,8 +11,8 @@ import 'moment/locale/uk'
 
 moment.locale('uk')
 
+console.log('[file]', 'src/Components/Pages/SecondPageofSearchModule/ItemContent.js');
 export const ItemContent = ({tour})=>{
-    console.log('[file]');
   console.log('[TOUR]' , tour)
   const [result, setResult] = useState('')
   // const [id, setId] = useState([])

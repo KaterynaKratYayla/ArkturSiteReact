@@ -17,8 +17,8 @@ import {Hotels} from '../../Library/Icons/hotels.js'
 
 import './TourDetailsCSS.css'
 
+console.log('[file]', 'src/Components/Pages/ThirdPageofSearchModule/RateChoiceBlock.js');
 export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
-    console.log('[file]');
 
       const [choiceDetails, setchoiceDetails] = useState([{}]);
       const [hotelChoice, sethotelChoice] = useState('Hotels Available')

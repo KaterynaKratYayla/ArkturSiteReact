@@ -6,8 +6,8 @@ import './PhotoGalleryCSS.css'
 import {ArrowGallery} from './Arrow'
 // import Dots from './dots'
 
+console.log('[file]', 'src/Components/Library/PhotoGallery/PhotoGallery.js');
 export const Gallery = ({galleryImages}) => {
-  console.log('[file]');
 
   const getWidth = () => window.innerWidth
   console.log('[GALLERY IMAGES] : ' , galleryImages)

@@ -11,7 +11,7 @@ const initState = {
     errors: []
 }
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/reducers/pages.js');
 
 const reducer = ( state = initState, action ) => {
 	switch( action.type ){

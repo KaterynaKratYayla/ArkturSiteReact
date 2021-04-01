@@ -2,8 +2,8 @@ import React from 'react'
 import {css, jsx} from '@emotion/react'
 import ArkturDMClogo from '../Images/ArkturDMClogo.svg'
 
+console.log('[file]', 'src/Components/Library/PhotoGallery/Photo.js');
 const Photo = ({content}) => {
-    console.log('[file]');
 return (
 
  <div

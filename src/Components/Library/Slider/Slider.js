@@ -6,6 +6,7 @@ import './SliderCss.css'
 import {Arrow} from './ArrowSlider'
 // import Dots from './dots'
 
+console.log('[file]', 'src/Components/Library/Slider/Slider.js');
 
 const Slider = props => {
 
@@ -18,7 +19,7 @@ const Slider = props => {
   })
 
   const { translate, transition, activeIndex } = state;
-  
+
   const nextSlide = () => {
     if (activeIndex === props.slides.length - 1) {
       return setState({
@@ -65,8 +66,8 @@ useEffect (() => {
   // console.log(props.slides)
 
   return(
-   <div>   
-        <div className='SliderCSS'> 
+   <div>
+        <div className='SliderCSS'>
         {/* <div css={SliderCSS}>  */}
             <SliderContent
                 translate={translate}
@@ -75,19 +76,19 @@ useEffect (() => {
                   >
                     {props.slides.map((slide,index) => (
                         <Slide key={index} content={slide} />  //was slide+index
-                        ))} 
- 
-             </SliderContent> 
+                        ))}
+
+             </SliderContent>
 
            <div class='Arrows'>
-            
-               <Arrow direction="left" handleClick={prevSlide}/>   
 
-               <Arrow direction="right" handleClick={nextSlide}/> 
-        
+               <Arrow direction="left" handleClick={prevSlide}/>
+
+               <Arrow direction="right" handleClick={nextSlide}/>
+
            {/* <Dots slides={props.slides} activeIndex={activeIndex} /> */}
          </div>
-      </div>        
+      </div>
   </div>
   )
 }

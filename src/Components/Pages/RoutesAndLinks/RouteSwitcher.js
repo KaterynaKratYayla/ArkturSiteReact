@@ -21,8 +21,8 @@ import Register from "../../Library/Authorization/Register";
 import { logout } from "../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
 import { HelmetWrapper, LocalizationRoute, LocalizationNavLink, LocalizaitonSwitch } from '../../Library';
 
+console.log('[file]', 'src/Components/Pages/RoutesAndLinks/RouteSwitcher.js');
 export const RouteSwitcher = () =>{
-	console.log('[file]');
 	return(
 		/*<LocalizaitonSwitch>
 

@@ -10,8 +10,8 @@ import config from '../Redux/config';
 
 const supportedLangs = config.supportedLangs.join('|');
 
+console.log('[file]', 'src/Components/index.js');
 const Wrappers = () => {
-    console.log('[file]');
 
   return(
     <Provider store={store}>

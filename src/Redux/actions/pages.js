@@ -3,7 +3,7 @@ import axios from '../helpers/public.axios';
 import { GET_PAGES_REQ, GET_PAGES_RES, GET_PAGES_ERR} from '../constants';
 import { GET_PurePage_REQ, GET_PurePage_RES, GET_PurePage_ERR} from '../constants';
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/actions/pages.js');
 
 export const pagesResponse = ( res ) => ({
     type: GET_PAGES_RES,

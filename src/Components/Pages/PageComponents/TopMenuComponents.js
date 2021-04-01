@@ -8,8 +8,8 @@ import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 
 ///CITY HOTELS/ RESORT & HOTELIDAY DESTINATIONS / INFORMATION
 
+console.log('[file]', 'src/Components/Pages/PageComponents/TopMenuComponents.js');
 export const CONTACTUS = () => {
-    console.log('[file]');
 
     return (
         <div>

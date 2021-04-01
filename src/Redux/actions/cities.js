@@ -10,7 +10,7 @@ export const geoResponse = ( res ) => ({
     payload: res
 });
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/actions/cities.js');
 export const getGeo = () => ( dispatch) => {
 
     dispatch({ type: GET_GEO_REQ });

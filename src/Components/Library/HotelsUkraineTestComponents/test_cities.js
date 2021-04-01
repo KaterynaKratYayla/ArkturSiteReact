@@ -7,8 +7,8 @@ import axios from "axios"
 import {SingleTour} from './single_tour'
 import Autocomplete from 'react-autocomplete'
 
+console.log('[file]', 'src/Components/Library/HotelsUkraineTestComponents/test_cities.js');
 export const TestCities = (props) =>{
-    console.log('[file]');
 
 //   const dispatch = useDispatch();
 //   const descrip = useSelector(state => state.hotels.parts)

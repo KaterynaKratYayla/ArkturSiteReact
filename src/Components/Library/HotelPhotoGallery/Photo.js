@@ -1,9 +1,9 @@
 import React from 'react'
 import {css, jsx} from '@emotion/react'
 
+console.log('[file]', 'src/Components/Library/HotelPhotoGallery/Photo.js');
 const Photo = ({content}) => {
 
-    console.log('[file]');
 
   console.log('[PHOTO] : ', content)
 return (

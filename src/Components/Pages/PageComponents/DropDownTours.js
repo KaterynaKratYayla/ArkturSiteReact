@@ -3,8 +3,8 @@ import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 import '../PageComponents/ResponsiveHeader/header.css'
 import {NotFound} from './MenuPageGenerator'
 
+console.log('[file]', 'src/Components/Pages/PageComponents/DropDownTours.js');
 export const TOURS = (props) => {
-    console.log('[file]');
 
   console.log('[TOURS PROPS] : ' , props)
 

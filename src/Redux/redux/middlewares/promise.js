@@ -1,6 +1,6 @@
 
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/redux/middlewares/promise.js');
 
 
 export const promise = ({ dispatch, getState }) => next => action => {

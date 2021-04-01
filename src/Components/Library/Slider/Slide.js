@@ -2,8 +2,9 @@ import React from 'react'
 import {css, jsx} from '@emotion/react'
 import './SliderCss.css'
 
+console.log('[file]', 'src/Components/Library/Slider/Slide.js');
 
-// const Slide = (props) => { 
+// const Slide = (props) => {
 //     const {name} = props;
 //       return(
 //      <div>{name}</div>
@@ -14,17 +15,17 @@ const Slide = ({content}) => {
 // console.log(content)
 return (
 
-    <div    
- 
+    <div
+
     style={{
             width: '100%',
             backgroundSize: 'cover',
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'center'}}
 
-    ><img 
+    ><img
          style={{width: '100%',
-                 margin: '-100px 0 -20px 0'}} 
+                 margin: '-100px 0 -20px 0'}}
          src={content}/> </div>
  )
 }

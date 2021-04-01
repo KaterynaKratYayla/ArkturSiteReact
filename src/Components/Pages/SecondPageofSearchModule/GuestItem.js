@@ -22,8 +22,8 @@ moment.locale('uk')
 
 // import 'moment-timezone';
 
+console.log('[file]', 'src/Components/Pages/SecondPageofSearchModule/GuestItem.js');
 export const GuestItem = ({tour, selector, list}) =>{
-    console.log('[file]');
 
 ///получаю с помощью своиства истории (history) из компонента search результаты поиска - массив с одним объектом.
 let location = useLocation();

@@ -6,8 +6,8 @@ import {Pax} from '../../Library/Icons/pax.js'
 import './TourDetailsCSS.css'
 import 'antd/dist/antd.css'
 
+console.log('[file]', 'src/Components/Pages/ThirdPageofSearchModule/PaxChoice.js');
 export const PaxChoice =({MakeVisible, open}) =>{
-    console.log('[file]');
     return(
         <div class='first'>
                  <div class='PaxChoice'>

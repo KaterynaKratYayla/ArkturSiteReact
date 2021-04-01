@@ -6,4 +6,4 @@ export * from './pages';
 export * from './toptours';
 export * from './localization';
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/actions/index.js');

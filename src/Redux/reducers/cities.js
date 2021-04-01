@@ -1,7 +1,7 @@
 import { GET_GEO_REQ, GET_GEO_RES , GET_GEO_ERR} from '../constants'
 import { GET_GENERAL_GEO_REQ, GET_GENERAL_GEO_RES , GET_GENERAL_GEO_ERR } from '../constants';
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/reducers/cities.js');
 const initState = {
 	locs: [],
 	loc_loaded: false,

@@ -2,7 +2,7 @@ import { SET_MESSAGE, CLEAR_MESSAGE } from "../actions/types";
 
 const initialState = {};
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/reducers/message.js');
 export default function (state = initialState, action) {
   const { type, payload } = action;
 

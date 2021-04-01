@@ -1,6 +1,6 @@
 import { GET_CONTENT_REQ ,GET_CONTENT_RES, GET_CONTENT_ERR} from '../constants'
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/reducers/content.js');
 const initState = {
 	content: [],
     content_loaded: false,

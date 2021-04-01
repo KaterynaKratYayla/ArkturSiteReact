@@ -12,8 +12,8 @@ import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
 import {SyncOutlined,SmileTwoTone,LoadingOutlined} from '@ant-design/icons'
 import './TopToursCSS.css'
 
+console.log('[file]', 'src/Components/Pages/PageComponents/TopTours.js');
 export const TopTours = () => {
-    console.log('[file]');
 
     const dispatch = useDispatch();
     const toptours = useSelector(state => state.cities.gen_locs)

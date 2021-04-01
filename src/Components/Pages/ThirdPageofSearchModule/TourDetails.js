@@ -18,8 +18,8 @@ import {Sun} from '../../Library/Icons/sun.js'
 import './TourDetailsCSS.css'
 import 'antd/dist/antd.css'
 
+console.log('[file]', 'src/Components/Pages/ThirdPageofSearchModule/TourDetails.js');
   export const TourDetails = (props) =>{
-      console.log('[file]');
     let location = useLocation();
     let history = useHistory();
 

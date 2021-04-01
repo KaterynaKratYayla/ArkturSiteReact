@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getPages} from '../../../Redux/actions/pages'
 
+console.log('[file]', 'src/Components/Pages/PageComponents/ContentPages.js');
 export const ContentPages = () =>{
-    console.log('[file]');
 const pages = useSelector(state => state.pages.pages)
 const dispatch = useDispatch();
    useEffect ( () => {

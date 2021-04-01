@@ -5,8 +5,8 @@ import { FormattedMessage } from 'react-intl';
 // import {icons} from '../../../Library/Icons/icons'
 import './header.css'
 
+console.log('[file]', 'src/Components/Pages/PageComponents/ResponsiveHeader/NavComponent.js');
 export const NavComponent = ({onClick, navClass, linkClassName,pages})=>{
-    console.log('[file]');
     return(
     <nav className={navClass}>
         {/* {["Projects", "About", "Contact", "Footer"].map(section=>

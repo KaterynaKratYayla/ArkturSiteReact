@@ -21,8 +21,8 @@ import '../../Library/SearchPannel/SearchPannelCSS.css'
 
 moment.locale('uk')
 
+console.log('[file]', 'src/Components/Pages/FirstPageofSearchModule/SearchFront.js');
 export const Search = (props) => {
-  console.log('[file]');
       // console.log('[PROPS] : ', props)
       const genProps = props
 

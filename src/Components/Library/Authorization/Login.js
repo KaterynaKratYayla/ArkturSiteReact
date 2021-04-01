@@ -10,6 +10,7 @@ import CheckButton from "react-validation/build/button";
 import { login } from "../../../Redux/actions/auth";
 import Register from "./Register";
 
+console.log('[file]', 'src/Components/Library/Authorization/Login.js');
 const required = (value) => {
   if (!value) {
     return (
@@ -21,7 +22,6 @@ const required = (value) => {
 };
 
 const Login = (props) => {
-  console.log('[file]');
   const form = useRef();
   const checkBtn = useRef();
 

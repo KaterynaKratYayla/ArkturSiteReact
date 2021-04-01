@@ -42,3 +42,4 @@ export const GET_LOCALES_REQ = "GET_LOCALES_REQ";
 export const GET_LOCALES_RES = "GET_LOCALES_RES";
 export const GET_LOCALES_ERR = "GET_LOCALES_ERR";
 export const CHANGE_LOCALE = "CHANGE_LOCALE";
+console.log('[file]', 'src/Redux/constants/index.js');

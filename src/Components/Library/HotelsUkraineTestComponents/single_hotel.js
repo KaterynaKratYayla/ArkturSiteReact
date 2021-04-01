@@ -4,8 +4,8 @@ import {getDescription, getENdescription , getImages} from "../../../Redux/actio
 import './hotels.css'
 import {HotelGallery} from '../HotelPhotoGallery/HotelPhotoGallery'
 
+console.log('[file]', 'src/Components/Library/HotelsUkraineTestComponents/single_hotel.js');
 export const SingleHotel = ({option, selector, location, history, list}) =>{
-    console.log('[file]');
 
   const dispatch = useDispatch();
   const descrip = useSelector(state => state.hotels.parts)

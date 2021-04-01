@@ -8,9 +8,9 @@ import {TopTours} from './TopTours'
 
 import ArkturDMClogo from '../../Library/Images/ArkturDMClogo.svg'
 
+console.log('[file]', 'src/Components/Pages/PageComponents/HomePage.js');
 
 export const HomePage = () => {
-    console.log('[file]');
 
     const images = [
         "https://arktur.ua/sites/default/files/public/image/slider/Lavra_shutterstock_1545799133_small.jpg",

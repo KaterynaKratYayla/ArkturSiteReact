@@ -6,9 +6,9 @@ import './GalleryCss.css'
 import {ArrowGallery} from './Arrow'
 // import Dots from './dots'
 
+console.log('[file]', 'src/Components/Library/HotelPhotoGallery/HotelPhotoGallery.js');
 export const HotelGallery = ({galleryImages}) => {
 
-  console.log('[file]');
   const getWidth = () => window.innerWidth
   console.log('[GALLERY IMAGES] : ' , galleryImages)
 

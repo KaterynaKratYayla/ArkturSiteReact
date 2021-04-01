@@ -3,7 +3,7 @@ import { GET_EN_TOUR_REQ, GET_EN_TOUR_RES , GET_EN_TOUR_ERR} from '../constants'
 import { GET_IMAGES_TOUR_REQ, GET_IMAGES_TOUR_RES , GET_IMAGES_TOUR_ERR} from '../constants'
 import { GET_CONTENT_REQ ,GET_CONTENT_RES, GET_CONTENT_ERR} from '../constants'
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/reducers/tours.js');
 const initState = {
 	touritems: [],
 	touritems_loaded: false,

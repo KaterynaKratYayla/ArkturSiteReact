@@ -20,8 +20,8 @@ import 'antd/dist/antd.css';
 
 moment.locale('uk')
 
+console.log('[file]', 'src/Components/Pages/FirstPageofSearchModule/LargeScreenSearch.js');
 export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
-    console.log('[file]');
       // console.log('[PROPS] : ', props)
 
 

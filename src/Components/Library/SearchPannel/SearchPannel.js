@@ -18,8 +18,8 @@ import 'antd/dist/antd.css'
 import '../../Pages/FirstPageofSearchModule/SwitcherFront.css'
 import './SearchPannelCSS.css'
 
+console.log('[file]', 'src/Components/Library/SearchPannel/SearchPannel.js');
 export const SearchInner = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
-    console.log('[file]');
 
 const [date, setDate] = useState('');
 const [testDate, setTestDate] = useState('');

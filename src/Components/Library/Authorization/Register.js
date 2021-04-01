@@ -10,7 +10,7 @@ import { register } from "../../../Redux/actions/auth";
 import {Link} from "react-router-dom";
 import Login from "./Login";
 
-console.log('[file]');
+console.log('[file]', 'src/Components/Library/Authorization/Register.js');
 const required = (value) => {
   if (!value) {
     return (

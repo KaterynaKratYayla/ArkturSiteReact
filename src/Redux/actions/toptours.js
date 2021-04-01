@@ -2,7 +2,7 @@ import axios from '../helpers/public.axios';
 
 import { GET_TOPTOURS_REQ, GET_TOPTOURS_RES, GET_TOPTOURS_ERR} from '../constants';
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/actions/toptours.js');
 export const toptoursResponse = ( res ) => ({
     type: GET_TOPTOURS_RES,
     payload: res

@@ -10,9 +10,9 @@ import {getPages} from '../../../Redux/actions/pages'
 import './footer.css'
 import { PureContent } from '../PageComponents/MenuPageGenerator'
 
+console.log('[file]', 'src/Components/Pages/RoutesAndLinks/Footer.js');
 
 export const Footer = () => {
-	console.log('[file]');
 
 const pages = ContentPages();
 

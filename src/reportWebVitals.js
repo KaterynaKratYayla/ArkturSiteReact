@@ -10,4 +10,5 @@ const reportWebVitals = onPerfEntry => {
   }
 };
 
+console.log('[file]', 'src/reportWebVitals.js');
 export default reportWebVitals;

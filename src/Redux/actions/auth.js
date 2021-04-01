@@ -9,7 +9,7 @@ import {
 
 import AuthService from "../services/auth.service";
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/actions/auth.js');
 export const register = (firstName, lastName, username, email, password) => (dispatch) => {
   return AuthService.register(firstName, lastName, username, email, password).then(
     (response) => {

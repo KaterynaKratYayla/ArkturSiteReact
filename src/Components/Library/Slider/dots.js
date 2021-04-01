@@ -1,6 +1,7 @@
 import React from 'react'
 import {css,jsx} from '@emotion/react'
 
+console.log('[file]', 'src/Components/Library/Slider/dots.js');
 
 const Dot = ({ active }) => (
     <span
@@ -13,7 +14,7 @@ const Dot = ({ active }) => (
       `}
     />
   )
-  
+
   const Dots = ({ slides, activeIndex }) => (
     <div
       css={css`

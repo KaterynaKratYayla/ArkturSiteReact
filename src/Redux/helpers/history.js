@@ -1,4 +1,4 @@
 import { createBrowserHistory } from "history";
 
-console.log('[file]');
+console.log('[file]', 'src/Redux/helpers/history.js');
 export const history = createBrowserHistory();
