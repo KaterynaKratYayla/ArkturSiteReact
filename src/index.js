@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from "react-redux";
 // import './index.css';
-import App from './App';
+import App from './Components';
 import reportWebVitals from './reportWebVitals';
 import store from "./Redux/redux/store";
 import { IntlProvider } from 'react-intl';
@@ -11,14 +11,14 @@ import messages from './translations/common';
 
 ReactDOM.render(
   <React.StrictMode>
-      <Provider store={store}>
+      {/*<Provider store={store}>
         <IntlProvider
           locale = "uk"
           messages = {messages['uk']}
         >
-          <App />
         </IntlProvider>
-      </Provider>
+      </Provider>*/}
+      <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
