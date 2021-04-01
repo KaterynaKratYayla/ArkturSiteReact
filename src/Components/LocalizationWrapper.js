@@ -10,6 +10,7 @@ import messages from '../translations/common';
 // import locales from "./Redux/reducers/locales";
 
 const LocalizationWrapper = ( props ) => {
+    console.log('[file]');
 
     const { locale } = props.match.params;
 

@@ -21,6 +21,7 @@ import {HomePage} from "./Pages/PageComponents/HomePage"
 import { history } from "../Redux/helpers/history";
 
 function App() {
+    console.log('[file]');
     const { user: currentUser } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
     const intl = useIntl();
