@@ -8,6 +8,7 @@ import {ArrowGallery} from './Arrow'
 
 export const HotelGallery = ({galleryImages}) => {
 
+  console.log('[file]');
   const getWidth = () => window.innerWidth
   console.log('[GALLERY IMAGES] : ' , galleryImages)
 
@@ -16,9 +17,9 @@ export const HotelGallery = ({galleryImages}) => {
     translate: 0,
     transition: 0.45
   })
-  
+
   const { translate, transition, activeIndex } = state;
-  
+
   const nextPhoto = () => {
     if (activeIndex === galleryImages.length - 1) {
       return setState({
@@ -55,29 +56,29 @@ export const HotelGallery = ({galleryImages}) => {
   }
 
   return(
-   <div>   
-        <div className='galleryCSS'> 
+   <div>
+        <div className='galleryCSS'>
             <GalleryContent
                 translate={translate}
                 transition={transition}
                 width={getWidth() * galleryImages.length}
                   >
                     {galleryImages.map((slide,index) => (
-                       
-                        <Photo key={index} content={'https://hotelsukraine.travel/upload/' + slide.subdir+'/'+slide.file_name} />  
-                        ))} 
- 
-             </GalleryContent> 
+
+                        <Photo key={index} content={'https://hotelsukraine.travel/upload/' + slide.subdir+'/'+slide.file_name} />
+                        ))}
+
+             </GalleryContent>
 
              <div>
-            
-                <ArrowGallery direction="left" photoClick={nextPhoto}/>   
 
-                <ArrowGallery direction="right" photoClick={prevPhoto}/> 
+                <ArrowGallery direction="left" photoClick={nextPhoto}/>
+
+                <ArrowGallery direction="right" photoClick={prevPhoto}/>
 
         </div>
 
-        </div>        
+        </div>
 
   </div>
   )

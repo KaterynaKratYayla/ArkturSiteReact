@@ -6,13 +6,14 @@ import {MenuClose} from '../../../Library/Icons/menuclose'
 
 const SmallScreensNavBar = ({pages,width}) =>{
     // declare 'translate' as a state variable
+    console.log('[file]');
     console.log('PAGES', pages)
     let [translate, setTranslate ] = useState(false);
     return(
-        <div> 
+        <div>
              <button className="hamburger-btn"
                      onClick= {()=> setTranslate(!translate)}>  {/* toggle translate */}
-                  {/* change the btn text based on whether translate is true or false */} 
+                  {/* change the btn text based on whether translate is true or false */}
                  {/* {translate?<CloseOutlined className='MenuButtonIcon'/>:<UnorderedListOutlined className='MenuButtonIcon'/>} */}
                  {translate?
                     <span class='CloseMenuIcon'>
@@ -24,7 +25,7 @@ const SmallScreensNavBar = ({pages,width}) =>{
                     </span>}
              </button>
              {/* /*hide and show the sidebar list based on whether translate is true or false*/ }
-             <div id="sidebar-list" 
+             <div id="sidebar-list"
                 //   style={{width:width*0.8}}
                   className={`${translate? "addTransition": "removeTransition"}`}>
                 <NavComponent

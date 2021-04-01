@@ -12,6 +12,7 @@ import {Autocomplete} from 'react-autocomplete'
 // import ReactHtmlParser from 'react-html-parser'
 
 export const SingleTour = ({option, selector, location, history, list}) =>{
+    console.log('[file]');
 
   const dispatch = useDispatch();
   const tourdescription = useSelector(state => state.tours.touritems)
@@ -41,13 +42,13 @@ console.log('[IMGgetTour] : ' , images_tourdescription)
 
 
 return(
-  
-  
+
+
  <div class='hotelWrapper'>
          {/* <TestingContent/> */}
    <h2>{en_tourdescription.name} hotel in {en_tourdescription.name}</h2>
 
-         { 
+         {
             images_tourdescription && (
                  <HotelGallery galleryImages={images_tourdescription}/>
                   )
@@ -190,12 +191,12 @@ return(
 
 
 
- 
+
     //    useEffect ( () => {
     //       dispatch (getPosts ());
     // }, []);
-            
-// useEffect (() => {          
+
+// useEffect (() => {
 //   axios.get('https://hotelsukraine.travel/ua/my_list_hotels',{
 
 //                 params: { type: 'full', hotels: 1401858, json: 1 },
@@ -215,9 +216,9 @@ return(
     //         })
     //     .then( res => {
     //       console.log(res)
- 
+
     //       // setRate([...newArray])
-          
+
     //   })
     // .catch( error => {
     //    console.log( '[axios error] : ' , error)
@@ -231,7 +232,7 @@ return(
     //       console.log(res)
     //       console.log(res.data)
     //       // setRate([...newArray])
-          
+
     //   })
     // .catch( error => {
     //    console.log( '[axios error] : ' , error)
@@ -240,7 +241,7 @@ return(
     // }, []);
     // console.log(data);
 
- 
+
 
     // useEffect ( () => {
     //   fetch("https://hotelsukraine/ua/my_list_hotels", {
@@ -257,7 +258,7 @@ return(
     // .then( res => {
     //       console.log(res)
     //       // setRate([...newArray])
-          
+
     //   })
     // .catch( error => {
     //    console.log( '[axios error] : ' , error)
@@ -265,18 +266,18 @@ return(
     //     });
     // }, []);
 
-    
-//     export const TestingContent = ({tour})=>{    
+
+//     export const TestingContent = ({tour})=>{
 //     const dispatch = useDispatch();
-    
+
 //     const contents = useSelector(state => state.content.content)
 //     console.log('[CONTENTS] : ', contents)
-    
+
 //         useEffect ( () => {
 //           dispatch (getContent (tour.tour_id));
 //         },[]);
-    
-    
+
+
 //        return(
 
 // <div style={{paddingRight: '2vw'}}>
@@ -291,28 +292,28 @@ return(
 //            </li>
 //          )
 //        }
-      
+
 //        else if(trip.content_name === 'Image'){
 //          return (
 //          <li
 //         style={{listStyleType:'none',
 //         textAlign: 'left'}}
 //         >
-//               <img 
+//               <img
 //                   // class='imageSearchrender'
 //                  style = {{
 //                   width: '18vw',
 //                   height: '14vw',
-//                   borderRadius: '5px'  
+//                   borderRadius: '5px'
 //                   }}
-//                   src={'http://' + trip.text[2]}/> 
+//                   src={'http://' + trip.text[2]}/>
 //           </li>
 //         )
 //       }
-      
+
 //      }
 //    )) : (
-//     <div>HI CONTENT</div> 
+//     <div>HI CONTENT</div>
 //    )
 //  }
 //   </>
@@ -321,5 +322,4 @@ return(
 
       //  )
     // }
-      
-      
+

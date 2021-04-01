@@ -21,6 +21,7 @@ const required = (value) => {
 };
 
 const Login = (props) => {
+  console.log('[file]');
   const form = useRef();
   const checkBtn = useRef();
 

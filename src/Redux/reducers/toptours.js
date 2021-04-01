@@ -1,5 +1,6 @@
 import { GET_TOPTOURS_REQ, GET_TOPTOURS_RES, GET_TOPTOURS_ERR } from '../constants';
 
+console.log('[file]');
 const initState = {
 	toptours: [],
 	toptours_loaded: false,

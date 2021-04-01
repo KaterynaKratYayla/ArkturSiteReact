@@ -17,6 +17,7 @@ import {ValidateQuery} from '../Helpers/helper'
 moment.locale('uk')
 
 export const ItemObj = ({tariff, searchResults,tour_name}) => {
+    console.log('[file]');
 
   const location = useLocation()
   const history = useHistory();
@@ -66,10 +67,10 @@ setDetailsList([outline]);
 
   return (
     <div class='div_ItemObj'>
-    
+
       <div className='availablePeriods'>
        <div style={{fontSize: '12px',fontWeight: 'bold'}}>Available dates : </div>
-        <select 
+        <select
             value={selection}
             onChange={selectedPeriod}
             style={{fontSize: '12px',color:'#001959'}}>
@@ -77,34 +78,34 @@ setDetailsList([outline]);
             {
               filtered_tour_dates && filtered_tour_dates.map((filter,index)=>{
                 return (
-                  <option 
+                  <option
                    value={filter.date}
                     key={tariff.tour_id, '-' , index}>
-                      {filter.date} -- {moment(filter.date).add(tariff.duration, 'days').format('YYYY-MM-DD')} ({tariff.duration} days)  
+                      {filter.date} -- {moment(filter.date).add(tariff.duration, 'days').format('YYYY-MM-DD')} ({tariff.duration} days)
                     </option>
-                )    
+                )
               })
             }
           </>
         </select>
     </div>
 
-    <div className='minimumRate'>   
+    <div className='minimumRate'>
        <div style={{fontSize: '10px', color:"grey", fontStyle:'italic'}}>{selection}</div>
-       <MinRate 
+       <MinRate
           selection={selection}
           datesArray={tariff.rate}
         />
-      <button 
+      <button
           type='submmit'
           className='availableButton'
           onClick={addToDetails}
           >VIEW DETAILS
-      </button> 
-      <div style={{fontSize: '10px', color:"grey", fontStyle:'italic'}}>{tariff.tour_id}</div> 
+      </button>
+      <div style={{fontSize: '10px', color:"grey", fontStyle:'italic'}}>{tariff.tour_id}</div>
     </div>
 
-          <>       
+          <>
               {/* {detailsList.length > 0 && ( */}
         {/* <TourDetails  */}
           {/* selection={selection}/> */}
@@ -112,7 +113,6 @@ setDetailsList([outline]);
            {/* } */}
         </>
 
-  </div> 
+  </div>
    )
   }
-  

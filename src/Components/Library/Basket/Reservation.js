@@ -4,31 +4,32 @@ import '../../Pages/RoutesAndLinks/header.css'
 // import {Switcher} from './Switcher'
 
 const ConForm = () => {
+    console.log('[file]');
 
     const [myInput1, setMyInput1] = useState('');
     const [myInput2, setMyInput2] = useState('');
-    const [options, setMyOption] = useState(''); 
-    const [align, setAlign] = useState('');   
-    
+    const [options, setMyOption] = useState('');
+    const [align, setAlign] = useState('');
+
     const [list , setList] = useState([]);
 
     const changeHandler = ( me ) => _ => {
          setAlign(me);
         }
 
-    function myInputFunc1 (e) {     
-        console.log(e.target.value) 
+    function myInputFunc1 (e) {
+        console.log(e.target.value)
         return setMyInput1 (e.target.value)
         }
 
-    function myInputFunc2 (e) {     
-        console.log(e.target.value) 
+    function myInputFunc2 (e) {
+        console.log(e.target.value)
         return setMyInput2 (e.target.value)
         }
 
     function changeOption(e){
       console.log(e.target.value)
-      return setMyOption(e.target.value)  
+      return setMyOption(e.target.value)
     }
 
     const addToList = () => {
@@ -37,7 +38,7 @@ const ConForm = () => {
             name: myInput1,
             item2: myInput2,
             item3: align,
-            item4: options 
+            item4: options
         }
 
     setList([...list, newList]);
@@ -69,8 +70,8 @@ const ConForm = () => {
         <form className='myForm' onSubmit={onSubmit}>
             <div>
             <label>{'UserName'}</label>
-            <input 
-        
+            <input
+
               type={'text'}
               value={myInput1}
               onChange={myInputFunc1}
@@ -79,8 +80,8 @@ const ConForm = () => {
             </div>
             <div>
             <label>{'Email Address'}</label>
-            <input 
-            
+            <input
+
               type={'email'}
               value={myInput2}
               onChange={myInputFunc2}
@@ -92,26 +93,26 @@ const ConForm = () => {
                 <option value='Lviv'>Lviv</option>
                 <option value='Kharkiv'>Kharkiv</option>
                 <option value='Odesa'>Odesa</option>
-            </select>    
-{/* 
+            </select>
+{/*
              <Switcher name={'align'} changeHandler={changeHandler} active={align}>
                 <SwitcherItem value='student'>Student</SwitcherItem>
                 <SwitcherItem value='employeer'>Employeer</SwitcherItem>
                 <SwitcherItem value='job Applicant'>Job Applicant</SwitcherItem>
               </Switcher> */}
-            
+
            <button type='submit' onClick={addToList}>Submit</button>
-        
+
             <ul>
                 {
                     list.map (function(listitem,index){
-                        return <li 
-                                      key={index} 
+                        return <li
+                                      key={index}
                                       className={listitem.done ? 'list__green' : 'list__red'}
                                       onClick={setDone(listitem.name)}>
                                   {listitem.name} / {listitem.item2} / {listitem.item3} / {listitem.item4}
                                </li>
-                        
+
                     })
                 }
                 </ul>

@@ -9,8 +9,9 @@ import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 ///CITY HOTELS/ RESORT & HOTELIDAY DESTINATIONS / INFORMATION
 
 export const CONTACTUS = () => {
+    console.log('[file]');
 
-    return ( 
+    return (
         <div>
            <Helmet>
                <title>Contact Arktur DMC</title>

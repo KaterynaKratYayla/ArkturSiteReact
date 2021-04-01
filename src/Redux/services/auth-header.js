@@ -1,4 +1,5 @@
 export default function authHeader() {
+  console.log('[file]');
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (user && user.accessToken) {

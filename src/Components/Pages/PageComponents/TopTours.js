@@ -13,6 +13,7 @@ import {SyncOutlined,SmileTwoTone,LoadingOutlined} from '@ant-design/icons'
 import './TopToursCSS.css'
 
 export const TopTours = () => {
+    console.log('[file]');
 
     const dispatch = useDispatch();
     const toptours = useSelector(state => state.cities.gen_locs)
@@ -23,7 +24,7 @@ export const TopTours = () => {
     const [toptourdetails, setTopTourDetails] = useState('')
     const [width, height] = useWindowWidthAndHeight();
 console.log('[TOURTOURS]', toptours)
- 
+
   ///получаю из смарта тур имя, тур айди, сити имя, сити айди
   useEffect ( () => {
     dispatch (getGeneralGeo ());
@@ -42,8 +43,8 @@ console.log('[TOURTOURS]', toptours)
 
   console.log('[TourTypesFiltered]', TourTypesFiltered)
 
-  const GetTourDetails = (e) =>{  
-    
+  const GetTourDetails = (e) =>{
+
     let route_query = `?tour_id=${e.target.id}`
 
     history.push(`/toptours/${route_query}`)
@@ -55,16 +56,16 @@ console.log('[TOURTOURS]', toptours)
 
     return (
        <div>
- 
-        { width > 1000 ?(    
-          <LargeScreenTopTours 
+
+        { width > 1000 ?(
+          <LargeScreenTopTours
            TopToursContents = {TopToursContents}
            TourTypes = {TourTypesFiltered}
            GetTourDetails={GetTourDetails}
            width={width}/>)
         :
         width > 768?(
-          <MediumScreenTopTours 
+          <MediumScreenTopTours
           TopToursContents = {TopToursContents}
           TourTypes = {TourTypesFiltered}
           GetTourDetails={GetTourDetails}
@@ -72,16 +73,16 @@ console.log('[TOURTOURS]', toptours)
         )
          :
         (
-          <SmallScreenTopTours 
+          <SmallScreenTopTours
             TopToursContents = {TopToursContents}
             TourTypes = {TourTypesFiltered}
             GetTourDetails={GetTourDetails}
             width={width}/>
         )
         }
-  
+
     </div>
-        
+
     )
 }
 
@@ -93,13 +94,13 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
     <div>
       <div style={{textAlign: 'center'}}><img src={ArkturCollection}/>
       </div>
-      
+
       <div>
         <ul>
           { TourTypes.length > 0 ? (TourTypes.map((type)=>{
 
            return(
-            <div class="TopToursWrapper"> 
+            <div class="TopToursWrapper">
               <h3 style={{
                           fontFamily:'Arial Narrow',
                           fontSize:'24px',
@@ -113,7 +114,7 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
                                                 {type}
               </h3>
                 <ul style={{
-                       display: 'grid', 
+                       display: 'grid',
                        gridTemplateColumns: 'repeat(3, 20vw)',
                        listStyle: 'none',
                        paddingLeft: '0'}}>
@@ -122,17 +123,17 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
                     TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => {
 
                         if(index < 12 && type === tour.subservices.name){
-                            return( 
-                              <li 
+                            return(
+                              <li
                                  key={tour.tour_id}
                                  onClick={GetTourDetails}>
-                                        {/* <TopToursDetails  
+                                        {/* <TopToursDetails
                                             tour_id={tour.tour_id}
                                           />  */}
-                                        <div> 
+                                        <div>
                                           {
                                             tour.main_photo[0]?(
-                                          <img  
+                                          <img
                                             id={tour.tour_id}
                                             class="TopToursImage"
                                             src={'http://' + tour.main_photo[0]}/>
@@ -140,27 +141,27 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
                                                 <div style={{color:'grey',
                                                              fontSize:'15px',
                                                              fontFamily:'Arial'}}>The content is being loaded. Please wait</div>
-                                            
+
                                             </div>)
                                           }
-                                        </div> 
+                                        </div>
                                        <div class='TopToursTitle'>
-                                          <h4 id={tour.tour_id}> 
-                                                {tour.tour_name} 
-                                          </h4> 
-                                      </div> 
-                                </li> 
-                            ) 
-                          } 
-                      })) 
-                     : 
-                      (<div>{null}</div>) 
-                    } 
-                  
-                </ul> 
-           </div> 
+                                          <h4 id={tour.tour_id}>
+                                                {tour.tour_name}
+                                          </h4>
+                                      </div>
+                                </li>
+                            )
+                          }
+                      }))
+                     :
+                      (<div>{null}</div>)
+                    }
+
+                </ul>
+           </div>
            )
-          })):(<div>{null}</div>) 
+          })):(<div>{null}</div>)
         }
        </ul>
       </div>
@@ -175,11 +176,11 @@ const MediumScreenTopTours = ({TopToursContents,GetTourDetails,width}) =>{
     <div>
       <div style={{textAlign: 'center'}}><img src={ArkturCollection}/>
       </div>
-      
-      <div class="TopToursWrapper"> 
+
+      <div class="TopToursWrapper">
 
            <ul style={{
-                       display: 'grid', 
+                       display: 'grid',
                        gridTemplateColumns: `repeat(2, ${width/3}px)`,
                        listStyle: 'none',
                        marginLeft:'auto',
@@ -189,33 +190,33 @@ const MediumScreenTopTours = ({TopToursContents,GetTourDetails,width}) =>{
                 {
                     TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => {
                         if(index < 12){
-                            return( 
-                              <li 
+                            return(
+                              <li
                                  key={tour.tour_id}
                                  onClick={GetTourDetails}>
-                                        {/* <TopToursDetails  
+                                        {/* <TopToursDetails
                                             tour_id={tour.tour_id}
                                           />  */}
-                                        <div> 
-                                          <img  
+                                        <div>
+                                          <img
                                             id={tour.tour_id}
                                             class="TopToursImage"
                                             src={'http://' + tour.main_photo[0]}/>
-                                        </div> 
+                                        </div>
                                        <div class='TopToursTitle'>
-                                          <h4 id={tour.tour_id}> 
-                                                {tour.tour_name} 
-                                          </h4> 
-                                      </div> 
-                                </li> 
-                            ) 
-                          } 
-                      })) 
-                     : 
-                      (<div>{null}</div>) 
-                    } 
-                </ul> 
-      </div> 
+                                          <h4 id={tour.tour_id}>
+                                                {tour.tour_name}
+                                          </h4>
+                                      </div>
+                                </li>
+                            )
+                          }
+                      }))
+                     :
+                      (<div>{null}</div>)
+                    }
+                </ul>
+      </div>
     </div>
   )
 }
@@ -236,14 +237,14 @@ const SmallScreenTopTours = ({width,TopToursContents,GetTourDetails}) =>{
                 paddingLeft: '0'
                 }}>
                 {
-                    TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => { 
+                    TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => {
                         if(index < 12){
                           return(
-                             <li 
+                             <li
                                 key={tour.tour_id}
                                 onClick={GetTourDetails}>
                                     <div>
-                                       <img 
+                                       <img
                                             id={tour.tour_id}
                                             class="SmallerTopToursImage"
                                             style={{width:width}}

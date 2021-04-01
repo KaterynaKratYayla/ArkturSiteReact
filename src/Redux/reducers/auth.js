@@ -6,6 +6,7 @@ import {
   LOGOUT,
 } from "../actions/types";
 
+console.log('[file]');
 console.log("user: ", localStorage.getItem("user"));
 const user = JSON.parse(localStorage.getItem("user"));
 

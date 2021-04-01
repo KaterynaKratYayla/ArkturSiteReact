@@ -1,5 +1,6 @@
 const supportedLangs = "EN|UK|RU|TR";
 
+console.log('[file]');
 /*let supportedLangs = fetch('http://smartbooker.biz/interface/classifier?classifier=language')
     .then((response) => {
         return response.json();

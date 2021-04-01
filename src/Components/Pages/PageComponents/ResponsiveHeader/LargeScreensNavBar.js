@@ -10,17 +10,18 @@ import {PureContent} from '../MenuPageGenerator'
 import './header.css'
 
 export const LargeScreensNavBar = ({pages}) =>{
+    console.log('[file]');
 
     console.log('ICONS', Icons)
 
     return(
         <div class='nav_big'>
-            <NavComponent 
+            <NavComponent
                 linkClassName='nav_big_link'
                 pages={pages}
                 />
-				   
-            
+
+
             {/* <h2>
                 <NavLink exact to='/about_us_info' activeClassName='active' >About us</NavLink>
             </h2>
@@ -29,9 +30,9 @@ export const LargeScreensNavBar = ({pages}) =>{
             </h2>
 
             <div class ='dropdown'>
-                <h2> 
-                    <NavLink exact to='/' activeClassName='active'>Tours</NavLink> 
-   
+                <h2>
+                    <NavLink exact to='/' activeClassName='active'>Tours</NavLink>
+
                     <ul class = 'dropdown_list'>
                         <li>
                             <NavLink exact to='/Kyiv' activeClassName='active'>Kyiv</NavLink>
@@ -62,11 +63,11 @@ export const LargeScreensNavBar = ({pages}) =>{
         </h2> */}
 
     </div>
-          
-//     <div class="middleMenu_right"> 
+
+//     <div class="middleMenu_right">
 //     </div>
 // </div>
-    
+
     // <NavComponent navClass={navClass}
     //               linkClassName = {linkClassName}
     // />

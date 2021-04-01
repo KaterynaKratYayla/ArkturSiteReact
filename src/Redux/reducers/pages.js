@@ -11,6 +11,7 @@ const initState = {
     errors: []
 }
 
+console.log('[file]');
 
 const reducer = ( state = initState, action ) => {
 	switch( action.type ){
@@ -39,20 +40,20 @@ const reducer = ( state = initState, action ) => {
                     ...state,
                     purepage_loaded: false
                 })
-    
+
             case GET_PurePage_RES:
                 return({
                     ...state,
                     purepage_loaded: true,
                     purepage: action.payload
                 })
-    
+
             case GET_PurePage_ERR:
                 return({
                     ...state,
                     errors: [...state.errors, action.error ]
                 })
-            
+
         default:
 			return state;
     }

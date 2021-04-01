@@ -11,6 +11,7 @@ export const contentResponse = ( res ) => ({
 
 // console.log('[CONTENTRESPONCE]' , contentResponse)
 
+console.log('[file]');
 export const getContent = (id) => ( dispatch, getState ) => {
 
     console.log('GET_STATE:', getState())
@@ -22,7 +23,7 @@ export const getContent = (id) => ( dispatch, getState ) => {
         dispatch(contentResponse(res.data))
         console.log('[GET_CONTENT]:' , res.data)
         })
-      
+
     .catch( err => {
         dispatch({ type: GET_CONTENT_ERR, error: err });
        });

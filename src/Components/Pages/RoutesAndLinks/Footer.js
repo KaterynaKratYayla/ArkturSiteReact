@@ -12,6 +12,7 @@ import { PureContent } from '../PageComponents/MenuPageGenerator'
 
 
 export const Footer = () => {
+	console.log('[file]');
 
 const pages = ContentPages();
 
@@ -37,43 +38,43 @@ const pages = ContentPages();
 		 <Container fluid='xs,sm,md,lg,xl'>
           <Row xs={1} sm={1} md={2} lg={3}>
 		   <Col Col lg={true}>
-		    <div class='Hotels'>	
-		   	
+		    <div class='Hotels'>
+
 		  	 <h3>CITY HOTELS</h3>
 			    <ul>
-				
+
 					  {
 						pages && pages.map((page)=>{
-						  if(page.name.includes('Hotels')){	
+						  if(page.name.includes('Hotels')){
 							return (
 							 <li>
 								<div>
 									<Link exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
-									                 state: {id: page.id}}}>{page.name}</Link> 
+									                 state: {id: page.id}}}>{page.name}</Link>
 								</div>
 						    </li>
-						   
+
 						   )
 						  }
 						})
 					  }
 				</ul>
-			  
+
 			 </div>
 			 </Col>
-			 <Col lg={true}> 
+			 <Col lg={true}>
 			<div class='SPA'>
 			  <h3>RESORTS AND MEDICAL SPA DESTINATIONS</h3>
 			    <ul>
 					  {
 						pages && pages.map((page)=>{
-						  if(page.name.includes('SPA')){	
+						  if(page.name.includes('SPA')){
 							return (
 							<li>
 								<div>
 									<Link exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
 									                 state: {id: page.id}}}>{page.name.replace(/SPA/g, " " )}
-									</Link> 
+									</Link>
 								</div>
 						   </li>
 						   )
@@ -82,20 +83,20 @@ const pages = ContentPages();
 					  }
 				</ul>
 			  </div>
-			  </Col> 
-			  <Col lg={true}> 
+			  </Col>
+			  <Col lg={true}>
 			 <div class='INFO'>
 			   <h3>INFORMATION</h3>
 			    <ul>
 					  {
 						pages && pages.map((page)=>{
-						  if(page.name.includes('INFO')){	
+						  if(page.name.includes('INFO')){
 							return (
 							<li key={page.id}>
 								<div>
 									<Link exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
 									                 state: {id: page.id}}}>{page.name.replace(/INFO/g, " " )}
-									</Link> 
+									</Link>
 								</div>
 						   </li>
 						   )
@@ -104,8 +105,8 @@ const pages = ContentPages();
 					  }
 					</ul>
 			  	  </div>
-			  	 </Col> 
-			    </Row> 
+			  	 </Col>
+			    </Row>
 			  </Container>
 			 </div>
 			 {/* </Container> */}
@@ -113,13 +114,13 @@ const pages = ContentPages();
 				  <Route path='/helmet' component={Helmet} />
 					{
 						pages && pages.map((page) => {
-							<Route exact path={`/${page.name.replace(/ /g, "_").toLowerCase()}`}							 
+							<Route exact path={`/${page.name.replace(/ /g, "_").toLowerCase()}`}
 							component={PureContent} />
 								{/* <PureContent id={page.id}/> */}
 							// </Route>
 						})
 					}
-			 </Switch>		
+			 </Switch>
 		 </footer>
 	//   </Container>
    )

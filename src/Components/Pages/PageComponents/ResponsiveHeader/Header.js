@@ -45,6 +45,7 @@ const supportedLangs = config.supportedLangs;
 // console.log('supportedLangs5: ', `/:locale(${supportedLangs})`);
 
 export const TopMenu = () => {
+	console.log('[file]');
 
 	const { user: currentUser } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();

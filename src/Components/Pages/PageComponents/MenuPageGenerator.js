@@ -12,6 +12,7 @@ import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 // import Arktur_DMC_logo from '../Library/images/Arktur_DMC_logo.ico'
 
 export const PureContent = ({location}) => {
+    console.log('[file]');
 
     // contentPages.forEach(function(item){
         // console.log('[CONTENT_PAGES] : ' , location)

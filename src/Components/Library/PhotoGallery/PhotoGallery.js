@@ -7,6 +7,7 @@ import {ArrowGallery} from './Arrow'
 // import Dots from './dots'
 
 export const Gallery = ({galleryImages}) => {
+  console.log('[file]');
 
   const getWidth = () => window.innerWidth
   console.log('[GALLERY IMAGES] : ' , galleryImages)
@@ -16,9 +17,9 @@ export const Gallery = ({galleryImages}) => {
     translate: 0,
     transition: 0.45
   })
-  
+
   const { translate, transition, activeIndex } = state;
-  
+
   const nextPhoto = () => {
     if (activeIndex === galleryImages.length - 1) {
       return setState({
@@ -55,28 +56,28 @@ export const Gallery = ({galleryImages}) => {
   }
 
   return(
-   <div>   
-        <div className='galleryCSS'> 
+   <div>
+        <div className='galleryCSS'>
             <GalleryContent
                 translate={translate}
                 transition={transition}
                 width={getWidth() * galleryImages.length}
                   >
                     {galleryImages.map((slide,index,array) => (
-                        <Photo key={index} content={slide}/>  
-                        ))} 
- 
-             </GalleryContent> 
+                        <Photo key={index} content={slide}/>
+                        ))}
+
+             </GalleryContent>
 
              <div>
-            
-                <ArrowGallery direction="left" photoClick={nextPhoto}/>   
 
-                <ArrowGallery direction="right" photoClick={prevPhoto}/> 
+                <ArrowGallery direction="left" photoClick={nextPhoto}/>
+
+                <ArrowGallery direction="right" photoClick={prevPhoto}/>
 
         </div>
 
-        </div>        
+        </div>
 
   </div>
   )

@@ -1,6 +1,7 @@
 
 import { GET_POSTS_REQ, GET_POSTS_RES, GET_POSTS_ERR} from '../constants';
 
+console.log('[file]');
 
 const initState = {
 	items: [],

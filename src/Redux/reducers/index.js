@@ -11,6 +11,7 @@ import message from "./message";
 import toptours from './toptours';
 import localization from './localization';
 
+console.log('[file]');
 
 //{combineReducers} - это библиотека из редакса для комбинации нескольких редьюсеров
 const root_reducer = combineReducers({

@@ -3,6 +3,7 @@ import { GET_EN_TOUR_REQ, GET_EN_TOUR_RES , GET_EN_TOUR_ERR} from '../constants'
 import { GET_IMAGES_TOUR_REQ, GET_IMAGES_TOUR_RES , GET_IMAGES_TOUR_ERR} from '../constants'
 import { GET_CONTENT_REQ ,GET_CONTENT_RES, GET_CONTENT_ERR} from '../constants'
 
+console.log('[file]');
 const initState = {
 	touritems: [],
 	touritems_loaded: false,
@@ -50,15 +51,15 @@ const reducer = ( state = initState, action ) => {
                     ...state,
                     en_touritems_loaded: false
                 })
-    
+
             case GET_EN_TOUR_RES:
                 return({
                     ...state,
                     en_touritems_loaded: true,
                     en_touritems: action.payload
                 })
-    
-    
+
+
             case GET_EN_TOUR_ERR:
                 return({
                     ...state,
@@ -78,7 +79,7 @@ const reducer = ( state = initState, action ) => {
 				images_loaded: true,
 				images: action.payload
             })
-            
+
             case GET_IMAGES_TOUR_ERR:
                 return({
                     ...state,
@@ -90,15 +91,15 @@ const reducer = ( state = initState, action ) => {
                 ...state,
                 content_loaded: false
                 })
-        
+
         case GET_CONTENT_RES:
               return({
                  ...state,
                  content_loaded: true,
                  content: action.payload
                 })
-        
-        
+
+
         case GET_CONTENT_ERR:
               return({
                    ...state,

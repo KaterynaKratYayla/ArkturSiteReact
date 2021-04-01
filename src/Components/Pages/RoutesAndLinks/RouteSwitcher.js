@@ -22,6 +22,7 @@ import { logout } from "../../../Redux/actions/auth";// import { findByLabelText
 import { HelmetWrapper, LocalizationRoute, LocalizationNavLink, LocalizaitonSwitch } from '../../Library';
 
 export const RouteSwitcher = () =>{
+	console.log('[file]');
 	return(
 		/*<LocalizaitonSwitch>
 

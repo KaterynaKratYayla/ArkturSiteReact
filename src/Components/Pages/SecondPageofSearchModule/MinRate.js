@@ -12,11 +12,12 @@ import ReactHtmlParser from 'react-html-parser'
 // import 'moment/locale/uk'
 
 moment.locale('uk')
-  
+
   export const MinRate = ({selection, datesArray}) =>{
+      console.log('[file]');
 
     console.log('[SELECTION]' , selection, datesArray)
-   
+
                     const minRateValue = datesArray.filter(function(item){
                         if(selection === item.date){
                           return true;
@@ -25,13 +26,12 @@ moment.locale('uk')
                         }).sort(function(a,b){
                           // if(a.n_available > 0 || b.n_available > 0){
                             return (a.n_value - b.n_value)
-                          // }                          
+                          // }
                         })
-                      
+
                       console.log('[SORTED ARRAY] : ' , minRateValue[0])
 
     return(
       <div className='minimumRate_details'>Rates from {minRateValue[0].price} UAH</div>
     )
   }
-  

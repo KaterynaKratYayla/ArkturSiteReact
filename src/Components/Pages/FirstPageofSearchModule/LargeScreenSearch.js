@@ -21,6 +21,7 @@ import 'antd/dist/antd.css';
 moment.locale('uk')
 
 export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
+    console.log('[file]');
       // console.log('[PROPS] : ', props)
 
 
@@ -30,10 +31,10 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
   const [value, setValue] = useState('');
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [align, setAlign] = useState('');  
+  const [align, setAlign] = useState('');
   const [myID, setmyID] = useState('');
   const [loading,setLoading]=useState(false)
- 
+
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
     setAlign(me);
    }
 
-  function dateFunc (e) {      
+  function dateFunc (e) {
       return setDate (e.target.value)
       }
 
@@ -83,11 +84,11 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
         setOpen(true)
       }
       // else if (value === ''){
-        // setOpen(false) 
+        // setOpen(false)
       // }
     }
 
-    
+
     // function renderItems(items) {
     //   return items.map((item, index) => {
     //     const text = item.props.children
@@ -102,7 +103,7 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
 
   const addToList = () => {
 
- 
+
     const filtered = geo.filter(function(item){
         return item.name === value
     })
@@ -113,7 +114,7 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
       }
       else return item.city_id === filtered[0].id
     })
-    
+
     console.log('FILTERED_CITY_ID', filtered_city_id )
 
     const newList = {
@@ -135,50 +136,50 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
 }
 
   const onSubmit = (e) =>{
-    // console.log('[event]:', e, '[e.target]:', e.target, '[e.target.value] :', e.target.value) 
+    // console.log('[event]:', e, '[e.target]:', e.target, '[e.target.value] :', e.target.value)
     e.preventDefault();
 }
-   
+
   return(
         <div>
         <div class='switcher'>
              <Switcher name={'align'} changeHandler={toggler} active={align}>
                   <SwitcherItem value='HOTELS'><Hotels/> Hotels</SwitcherItem>
                   <SwitcherItem value='TOURS'><Tours/> Tours</SwitcherItem>
-              </Switcher>  
+              </Switcher>
          </div>
          {/* <Container> */}
          {/* <div class={wrapper}> */}
            {/* <div class={innerWrapper}> */}
-            <form className={formClass} onSubmit={onSubmit}> 
-           
+            <form className={formClass} onSubmit={onSubmit}>
+
               {/* <Row lg={3}> */}
                 {/* <Col md={1}> */}
                  {/* <div class={autocompleteClass}> */}
             <div>
-                 
+
                    <Autocomplete
                      {...props}
-                     
-                       value={value} 
+
+                       value={value}
 
                        inputProps={{
-                         style: 
+                         style:
                         { width: '30vw',
-                          height: '45px', 
-                          fontFamily: 'Tahoma', 
+                          height: '45px',
+                          fontFamily: 'Tahoma',
                           fontSize: '16px',
                           borderTop: 'none',
                           borderBottom: 'none',
                           borderLeft: 'none',
                           marginTop: '0.2vw',
                           marginLeft: '2vw',
-                          
-                        }, 
-                          
-                      placeholder: 
+
+                        },
+
+                      placeholder:
                           'Please input country, city or tour name' ,
-                    
+
                       }}
                       // wrapperStyle={{
                       //    position:'relative',
@@ -199,14 +200,14 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
                                 border:'2px solid grey'
                                }
                               }
-                      
+
                     items={geo}
-                    
+
                     getItemValue={item => item.name}
-                    
+
                     onChange={optionChecker}
-                    
-                    onSelect={value => setValue(value) 
+
+                    onSelect={value => setValue(value)
                       + setOpen(false)
                     }
 
@@ -220,37 +221,37 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
                         }
 
 
-                    shouldItemRender={(item, value) => 
+                    shouldItemRender={(item, value) =>
                       value!== ""? item.name.toLowerCase().includes(value.toLowerCase()): null}
 
                     open={open}
                     onMenuVisibilityChange={isOpen =>setOpen(false)}
-                    
+
                     />
-        </div>  
+        </div>
                  {/* </Col>             */}
-              
+
               {/* <Col md={1}> */}
         <div>
 
              {/* <DatePicker /> */}
-             
+
              <Space direction="vertical">
-                 <DatePicker size={'large'} 
-                             onChange={onChange} 
-                             picker="month" 
-                            //  format={dateFormat} 
+                 <DatePicker size={'large'}
+                             onChange={onChange}
+                             picker="month"
+                            //  format={dateFormat}
                              placeholder='Choose month'
                              bordered={false}
                              className={datepickerClass}
                             //  dropdownClassName='dropdownDatePicker'
                             //  style={{
-                            //    fontFamily:'Tahoma', 
+                            //    fontFamily:'Tahoma',
                             //    paddingTop: '0.8vw'}}
                                />
                </Space>
-          
-        </div> 
+
+        </div>
              {/* </Col>      */}
              {/* <Col md={1}>     */}
         <div class='borderInnerWrapper2'>
@@ -258,18 +259,18 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
         </div>
           {/* </Col> */}
         {/* </Row> */}
-       </form> 
+       </form>
       {/* </div> */}
      {/* </div> */}
     {/* // </Container> */}
-      
-        
-            <>       
+
+
+            <>
               {list.length > 0 && (
-               <GuestItem 
+               <GuestItem
                     title={value}
                     list={list}
-                  />	
+                  />
              )
            }
         </>
@@ -279,4 +280,3 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
     }
 
 
-    

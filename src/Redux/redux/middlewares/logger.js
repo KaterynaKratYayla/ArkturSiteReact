@@ -1,4 +1,5 @@
 
+console.log('[file]');
 
 export const logger = store => next => action => {
     console.log('[LOGGER]', action );
@@ -12,4 +13,4 @@ export function loggerFn( store ){
             return next( action );
         }
     }
-} 
+}

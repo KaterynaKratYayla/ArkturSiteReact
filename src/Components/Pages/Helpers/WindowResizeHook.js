@@ -1,6 +1,7 @@
 import React , { useEffect, useState } from 'react';
 
 export const useWindowWidthAndHeight = ()=>{
+    console.log('[file]');
     // 1- Получаем размер окна
     let windowInnerSize = [window.innerWidth, window.innerHeight];
 
@@ -11,7 +12,7 @@ export const useWindowWidthAndHeight = ()=>{
         const changeWindowSize = ()=>{
             setWidowSize([window.innerWidth, window.innerHeight]);
         }
-        /* 3- add a 'resize' eventListener to window so that whenever 
+        /* 3- add a 'resize' eventListener to window so that whenever
         the size of window changes the state variable windowSize changes and the component re-renders */
         window.addEventListener("resize", changeWindowSize);
 

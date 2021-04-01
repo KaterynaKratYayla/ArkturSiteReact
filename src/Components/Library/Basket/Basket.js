@@ -1,5 +1,6 @@
 import React ,{useState, useEffect} from 'react'
 
+console.log('[file]');
 const products = [
     {
         id: 1,
@@ -55,7 +56,7 @@ const saveToStorage = (key, store) => {
 
 const getDataFromStorage = (key) => {
     try {
-        return JSON.parse(localStorage.getItem (key)) ;  
+        return JSON.parse(localStorage.getItem (key)) ;
      } catch (error) {
          return [];
      }
@@ -83,7 +84,7 @@ export const CartDemo = () =>{
         setCart(data);
         saveToStorage('cart', data)
     }
-    
+
     const removeFromCart = (product) =>_=> {
 
         let data = cart.filter (item => item.id !== product.id)
@@ -108,8 +109,8 @@ export const CartDemo = () =>{
                                             <button onClick={addToCart(product)}> Book Now! </button>
                                         )
                                     }
-                               
-                            </li> 
+
+                            </li>
                        )
                    })
                }

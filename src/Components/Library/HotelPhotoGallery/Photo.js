@@ -3,11 +3,12 @@ import {css, jsx} from '@emotion/react'
 
 const Photo = ({content}) => {
 
-  
+    console.log('[file]');
+
   console.log('[PHOTO] : ', content)
 return (
 
- <div    
+ <div
     style={{
             width: '100%',
             paddingTop: '2vw',
@@ -17,9 +18,9 @@ return (
             backgroundPosition: 'center'}}
 
     >
-      <img 
-        style={{width: '50%'}} 
-        src={content}/> 
+      <img
+        style={{width: '50%'}}
+        src={content}/>
  </div>
  )
 }

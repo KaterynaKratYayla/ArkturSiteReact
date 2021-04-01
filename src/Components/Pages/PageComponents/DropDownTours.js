@@ -4,6 +4,7 @@ import '../PageComponents/ResponsiveHeader/header.css'
 import {NotFound} from './MenuPageGenerator'
 
 export const TOURS = (props) => {
+    console.log('[file]');
 
   console.log('[TOURS PROPS] : ' , props)
 
@@ -12,7 +13,7 @@ export const TOURS = (props) => {
     useEffect ( () => {
         fetch('https://jsonplaceholder.typicode.com/users/')
           .then(res => {
-            
+
             if (res.status === 404) {
                 throw 'Page error'
             }
@@ -20,7 +21,7 @@ export const TOURS = (props) => {
         })
         .then(user => {
                     console.log(user)
-                    setUser(user)												
+                    setUser(user)
                 })
         .catch(error => {
             console.log('error',error);
@@ -43,13 +44,13 @@ export const TOURS = (props) => {
     // const unMount = () => {
     // 	return setUser(null);
     // }
-                
+
     return (
     <BrowserRouter>
       {/* <div className='toursList' > */}
       <div
           // style={
-          //          {marginLeft: `${Kate - 15 + 'px'}`, 
+          //          {marginLeft: `${Kate - 15 + 'px'}`,
           //           marginTop: `${Yild - 110 + 'px'}`,
           //           // width: '20px'
           //          }
@@ -57,34 +58,34 @@ export const TOURS = (props) => {
            >
         {/* <h2> Welcome to my List</h2>		 */}
                   <ul className='list'>
-            
+
                    {
                     user && (user.map(pax => (
-                    
+
                            <li className='toursListLi' key={pax.id}>
                               <Switch>
-                                <Route 
-                                    exact path={`/list/:${pax.id}`} 
-                                    render={ (props) => 
+                                <Route
+                                    exact path={`/list/:${pax.id}`}
+                                    render={ (props) =>
                                        {
                                             return (
-                                                         <ListItem 
-                                                         oneuser={pax} 
+                                                         <ListItem
+                                                         oneuser={pax}
                                                          location={props.location}/>
                                                     )
                                         }
                                     }
                                   />
                                 <Link to={`/list/:${pax.id}`}>
-                                     {pax.name} 
+                                     {pax.name}
                                 </Link>
                               </Switch>
                            </li>
-                    )))		   
+                    )))
                    }
-             </ul>		
+             </ul>
         </div>
-        
+
       </BrowserRouter>
     )
 }
@@ -101,11 +102,11 @@ export const ListItem = (props) => {
         <p>{oneuser.id} </p>
         <p>{oneuser.name}</p>
         <p>{oneuser.username}</p>
-        
+
         <>
           {
-           Object.keys(oneuser.company).map(key => 
-           <p key={key}>{oneuser.company[key]}</p>) 
+           Object.keys(oneuser.company).map(key =>
+           <p key={key}>{oneuser.company[key]}</p>)
           }
         </>
        </div>

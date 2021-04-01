@@ -1,6 +1,7 @@
 import { GET_DESC_REQ, GET_DESC_RES , GET_DESC_ERR,GET_EN_DESC_REQ, GET_EN_DESC_RES , GET_EN_DESC_ERR} from '../constants';
 import { GET_IMAGES_REQ, GET_IMAGES_RES , GET_IMAGES_ERR} from '../constants'
 
+console.log('[file]');
 const initState = {
 	parts: [],
 	loaded: false,
@@ -58,7 +59,7 @@ const reducer = ( state = initState, action ) => {
 				en_parts_loaded: true,
 				en_parts: action.payload
             })
-            
+
             case GET_EN_DESC_ERR:
                 return({
                     ...state,
@@ -83,7 +84,7 @@ const reducer = ( state = initState, action ) => {
 				images_loaded: true,
 				images: action.payload
             })
-            
+
             case GET_IMAGES_ERR:
                 return({
                     ...state,

@@ -1,5 +1,6 @@
 
 
+console.log('[file]');
 
 
 export const promise = ({ dispatch, getState }) => next => action => {

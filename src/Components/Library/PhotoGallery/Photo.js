@@ -3,9 +3,10 @@ import {css, jsx} from '@emotion/react'
 import ArkturDMClogo from '../Images/ArkturDMClogo.svg'
 
 const Photo = ({content}) => {
+    console.log('[file]');
 return (
 
- <div    
+ <div
     style={{
             width: '100%',
             paddingTop: '2vw',
@@ -16,9 +17,9 @@ return (
             backgroundPosition: 'center'}}
 
     >
-      <img 
-        style={{width: '50%', height: '60vh' }} 
-        src={content.includes('jpg') ? 'http://' + content : ArkturDMClogo}/> 
+      <img
+        style={{width: '50%', height: '60vh' }}
+        src={content.includes('jpg') ? 'http://' + content : ArkturDMClogo}/>
  </div>
  )
 }

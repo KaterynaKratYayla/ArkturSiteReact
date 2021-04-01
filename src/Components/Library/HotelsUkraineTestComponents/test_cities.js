@@ -8,6 +8,7 @@ import {SingleTour} from './single_tour'
 import Autocomplete from 'react-autocomplete'
 
 export const TestCities = (props) =>{
+    console.log('[file]');
 
 //   const dispatch = useDispatch();
 //   const descrip = useSelector(state => state.hotels.parts)
@@ -161,7 +162,7 @@ const [city, setCity] = useState([])
       }, []);
 
 
-      
+
       useEffect ( () => {
         axios.get('http://smartbooker.biz/interface/classifier?classifier=contract'
           )
@@ -172,7 +173,7 @@ const [city, setCity] = useState([])
          console.log( '[axios error] : ' , error)
            });
          }, []);
-    
+
     return(
         <div>
             <h2>HI CITIES</h2>
@@ -211,7 +212,7 @@ const [city, setCity] = useState([])
     //         return {
     //           id: item.tour_id,
     //           name: item.tour_name
-    //         } 
+    //         }
     //       })
     //        setTour(newArray)
     //   })
@@ -220,7 +221,7 @@ const [city, setCity] = useState([])
     //    setTour (undefined)
     //     });
     // }, []);
-  
+
 
     // console.log('[TOUR] : ' , tour)
 

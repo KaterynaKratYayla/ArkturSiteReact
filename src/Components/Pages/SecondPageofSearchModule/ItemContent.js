@@ -12,6 +12,7 @@ import 'moment/locale/uk'
 moment.locale('uk')
 
 export const ItemContent = ({tour})=>{
+    console.log('[file]');
   console.log('[TOUR]' , tour)
   const [result, setResult] = useState('')
   // const [id, setId] = useState([])
@@ -26,7 +27,7 @@ console.log('[CONTENTS]', contents )
       .then( res => {
         setResult(res.data)
         })
-      
+
     .catch( error => {
       setResult(undefined)
       console.log( '[axios error] : ' , error)
@@ -44,7 +45,7 @@ console.log('[CONTENTS]', contents )
   // }
 
    return(
-     
+
     <div style={{paddingRight: '2vw'}}>
       <ul class='Ul_ItemContent'>
         <>
@@ -57,29 +58,29 @@ console.log('[CONTENTS]', contents )
               </li>
             )
           }
-          
+
           else if(trip.content_name === 'Image'){
             return (
             <li
             style={{listStyleType:'none',
             textAlign: 'left'}}
             >
-                  <img 
+                  <img
                       // class='imageSearchrender'
                      style = {{
                       width: '18vw',
                       height: '14vw',
-                      borderRadius: '5px'  
+                      borderRadius: '5px'
                       }}
-                      src={'http://' + trip.text[2]}/> 
+                      src={'http://' + trip.text[2]}/>
               </li>
             )
           }
-          
+
          }
        )) : (
-        // <div>{tour.name}{tour.duration}</div> 
-        <div>HELLO</div> 
+        // <div>{tour.name}{tour.duration}</div>
+        <div>HELLO</div>
        )
      }
       </>
@@ -89,7 +90,7 @@ console.log('[CONTENTS]', contents )
     </div>
    )
 }
-  
+
 // const mapStateToProps = (state, ownProps) => {
 //   const {content,loaded,errors} = state.content;
 

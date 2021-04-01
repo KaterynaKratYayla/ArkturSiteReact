@@ -14,21 +14,22 @@ import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
 import './TopToursCSS.css'
 
 export const TopToursDetails = (props) =>{
+    console.log('[file]');
 
-    const [ttDetails, setTTDetails] = useState()  
+    const [ttDetails, setTTDetails] = useState()
     let location = useLocation();
     let history = useHistory();
 
     let search_data = ValidateQuery(location)
     console.log('Tour Details', location)
     console.log('Seach Details', search_data)
-    
+
     useEffect ( () => {
     axios.get(`http://smartbooker.biz/interface/content?id=${search_data.tour_id}&language=en`)
       .then( res => {
         setTTDetails(res.data)
         })
-      
+
     .catch( error => {
         setTTDetails(undefined)
       console.log( '[axios error] : ' , error)
@@ -40,14 +41,14 @@ export const TopToursDetails = (props) =>{
     return(
         <div>
           <Search />
-            <div style={{display:"flex", 
-                         flexDirection: 'column-reverse', 
-                         marginLeft: 'auto', 
+            <div style={{display:"flex",
+                         flexDirection: 'column-reverse',
+                         marginLeft: 'auto',
                          marginRight: 'auto',
                          minWidth: '100vw'}}>
                 {
                    ttDetails && ttDetails.map((item) =>{
-                    
+
                     if(item.content_name === "Image"){
                       return (
                         <div style={{display:'flex', flexDirection:'column'}}>
@@ -61,14 +62,14 @@ export const TopToursDetails = (props) =>{
                             }}>
                                 {item.contract_name}
                           </h2>
-                          
+
                           <div>
                              <Gallery galleryImages={item.text}/>
                           </div>
                         </div>
                         )
-                      }  
-                      
+                      }
+
                     else if(item.content_name === 'Body'){
                         return (
                             <div>
@@ -80,7 +81,7 @@ export const TopToursDetails = (props) =>{
                   )
                 }
               </div>
-             
+
         </div>
     )
 }

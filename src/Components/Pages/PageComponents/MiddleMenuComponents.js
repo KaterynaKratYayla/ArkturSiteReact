@@ -7,6 +7,7 @@ import {Helmet} from 'react-helmet'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 
 export const HOTELS = () => {
+    console.log('[file]');
 	 return (
         <div>
          <Helmet>
@@ -19,14 +20,14 @@ export const HOTELS = () => {
 }
 
 export const SOCIAL = () => {
-	
+
     return (
            <h2> My Home Page</h2>
     )
 }
 
 export const LOGO = () => {
-	
+
     return (
          <h2> My Home Page</h2>
     )

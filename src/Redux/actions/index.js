@@ -5,3 +5,5 @@ export * from './content';
 export * from './pages';
 export * from './toptours';
 export * from './localization';
+
+console.log('[file]');

@@ -1,5 +1,6 @@
 import { GET_CONTENT_REQ ,GET_CONTENT_RES, GET_CONTENT_ERR} from '../constants'
 
+console.log('[file]');
 const initState = {
 	content: [],
     content_loaded: false,
@@ -15,14 +16,14 @@ const reducer = ( state = initState, action ) => {
                 ...state,
                 content_loaded: false
                 })
-        
+
         case GET_CONTENT_RES:
               return({
                  ...state,
                  content_loaded: true,
                  content: action.payload
                 })
-        
+
         case GET_CONTENT_ERR:
               return({
                    ...state,

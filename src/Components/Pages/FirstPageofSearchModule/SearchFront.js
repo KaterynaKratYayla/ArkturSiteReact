@@ -22,6 +22,7 @@ import '../../Library/SearchPannel/SearchPannelCSS.css'
 moment.locale('uk')
 
 export const Search = (props) => {
+  console.log('[file]');
       // console.log('[PROPS] : ', props)
       const genProps = props
 
@@ -32,9 +33,9 @@ export const Search = (props) => {
   const [value, setValue] = useState('');
   const [open, setOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [align, setAlign] = useState('');  
+  const [align, setAlign] = useState('');
   const [myID, setmyID] = useState('');
- 
+
   const history = useHistory();
 
   const dispatch = useDispatch();
@@ -64,7 +65,7 @@ export const Search = (props) => {
   //   setAlign(me);
   //  }
 
-  // function dateFunc (e) {      
+  // function dateFunc (e) {
   //     return setDate (e.target.value)
   //     }
 
@@ -88,7 +89,7 @@ export const Search = (props) => {
 
   const addToList = () => {
 
- 
+
     const filtered = geo.filter(function(item){
         return item.name === value
     })
@@ -99,7 +100,7 @@ export const Search = (props) => {
       }
       else return item.city_id === filtered[0].id
     })
-    
+
     console.log('FILTERED_CITY_ID', filtered_city_id )
 
     const newList = {
@@ -121,14 +122,14 @@ export const Search = (props) => {
 }
 
   const onSubmit = (e) =>{
-    // console.log('[event]:', e, '[e.target]:', e.target, '[e.target.value] :', e.target.value) 
+    // console.log('[event]:', e, '[e.target]:', e.target, '[e.target.value] :', e.target.value)
     e.preventDefault();
 }
-   
+
   return(
         <div>
              { width > 1000 ?
-				
+
         <LargeScreenSearch
             wrapper='formOuterWrapper'
             innerWrapper='formInnerWrapper'
@@ -148,14 +149,14 @@ export const Search = (props) => {
            props={genProps}
            width={width}
            />
-          }                                   
-        
-            <>       
+          }
+
+            <>
               {list.length > 0 && (
-               <GuestItem 
+               <GuestItem
                     title={value}
                     list={list}
-                  />	
+                  />
              )
            }
         </>
@@ -165,4 +166,3 @@ export const Search = (props) => {
     }
 
 
-    

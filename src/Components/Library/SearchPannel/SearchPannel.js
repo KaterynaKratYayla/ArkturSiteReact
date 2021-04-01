@@ -19,6 +19,7 @@ import '../../Pages/FirstPageofSearchModule/SwitcherFront.css'
 import './SearchPannelCSS.css'
 
 export const SearchInner = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
+    console.log('[file]');
 
 const [date, setDate] = useState('');
 const [testDate, setTestDate] = useState('');

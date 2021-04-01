@@ -18,19 +18,20 @@ import {Hotels} from '../../Library/Icons/hotels.js'
 import './TourDetailsCSS.css'
 
 export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
+    console.log('[file]');
 
       const [choiceDetails, setchoiceDetails] = useState([{}]);
       const [hotelChoice, sethotelChoice] = useState('Hotels Available')
       const [open, setOpen] = useState(false)
-       
+
       const { Option } = Select;
 
       console.log('tour_id', tour_id)
- 
+
       function handleChange(value) {
         // console.log(`selected ${value}`);
         sethotelChoice(value)
-     
+
         // console.log('[hotelChoice]', hotelChoice)
       }
 
@@ -58,20 +59,20 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
 
       return(
         <div>
-            
+
           <div class='RateChoiceBlock'>
-               <PaxChoice 
+               <PaxChoice
                     MakeVisible = {MakeVisible}
                     open={open}/>
             {
               choiceDetails? (choiceDetails.map((item)=> {
-               
+
                 if(item.hotel){
                   return(
                   <div style={{display:'flex',
                                flexDirection:'column'}}
                        class='second'>
-                     <div style={{display:'flex', 
+                     <div style={{display:'flex',
                              flexDirection:'row',
                             //  justifyContent:'space-around',
                              maxWidth:'15vw',
@@ -80,29 +81,29 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
                         <h4 style={{marginLeft:'0.5vw'}}>Accommodation</h4>
                      </div>
 
-                     <Select 
+                     <Select
                           defaultValue={hotelChoice}
                           style={{ maxWidth: '15vw',
                                    color:'#102D69',
                                    fontWeight:'bold',
-                                   }} 
+                                   }}
                           size='medium'
                           onChange={handleChange}
                           bordered={true}>
-                               { 
+                               {
                                 item.hotel && item.hotel.map((hotel)=>{
                                   return(
                                     <>
-                                      <Option 
+                                      <Option
                                             value={hotel[0].hotel_name}>
-                                                  {hotel[0].hotel_name} {hotel[0].hotel_rating} 
+                                                  {hotel[0].hotel_name} {hotel[0].hotel_rating}
                                       </Option>
                                     </>
                                   )
-                        })        
+                        })
                       }
                     </Select>
-                    
+
                       {/* <div>{hotelChoice}</div> */}
                    </div>
                   )
@@ -110,17 +111,17 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
 
                 else if(item.inclusions){
                   return(
-                  
+
                      <>
                         {
                           item.inclusions.hotel? item.inclusions.hotel.map((item1)=>{
-                            if(item1.Transfer){ 
+                            if(item1.Transfer){
                               return(
 
-                                <div style={{display:'flex', 
+                                <div style={{display:'flex',
                                          flexDirection:'column',
                                         //  marginBottom:'0.5vh'
-                                      
+
                                          }}
                                          class='third'>
                                   <Coach />
@@ -132,7 +133,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
                                return (
                                 <div style={{marginBottom: '4vh',
                                           marginTop:'0.5vh',
-                                          display:'flex', 
+                                          display:'flex',
                                           flexDirection:'column'
                                           }}
                                           class='forth'>
@@ -141,15 +142,15 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
                                 </div>
                               )
                              }
-                                          
+
                          })
                         :(null)
                       }
                     </>
-                  
+
                  )
                 }
-                 
+
               })) : (<div>Please click here to send your request</div>)
             }
         </div>

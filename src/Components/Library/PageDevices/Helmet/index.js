@@ -7,6 +7,7 @@ import { HOTELS } from '../../../Pages/PageComponents/MiddleMenuComponents'
 import { HelmetWrapper, LocalizationRoute, LocalizationNavLink, LocalizaitonSwitch } from '../../../Library';
 
 const Helmet = () => {
+    console.log('[file]');
 
     return(
         <div>

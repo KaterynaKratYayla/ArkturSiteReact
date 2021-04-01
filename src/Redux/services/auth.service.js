@@ -1,5 +1,6 @@
 import axios from "axios";
 
+console.log('[file]');
 /* My new server */
 // const API_URL = "http://authentication-jwt/api/";
 // const API_URL = "http://content-server/interface/remote/";

@@ -5,6 +5,7 @@ import './hotels.css'
 import {HotelGallery} from '../HotelPhotoGallery/HotelPhotoGallery'
 
 export const SingleHotel = ({option, selector, location, history, list}) =>{
+    console.log('[file]');
 
   const dispatch = useDispatch();
   const descrip = useSelector(state => state.hotels.parts)
@@ -34,7 +35,7 @@ return(
  <div class='hotelWrapper'>
    <h2>{enDescrip.name} hotel in {enDescrip.city}</h2>
 
-        { 
+        {
             images && (
                  <HotelGallery galleryImages={images}/>
                   )
@@ -175,12 +176,12 @@ return(
 
 
 
- 
+
     //    useEffect ( () => {
     //       dispatch (getPosts ());
     // }, []);
-            
-// useEffect (() => {          
+
+// useEffect (() => {
 //   axios.get('https://hotelsukraine.travel/ua/my_list_hotels',{
 
 //                 params: { type: 'full', hotels: 1401858, json: 1 },
@@ -200,9 +201,9 @@ return(
     //         })
     //     .then( res => {
     //       console.log(res)
- 
+
     //       // setRate([...newArray])
-          
+
     //   })
     // .catch( error => {
     //    console.log( '[axios error] : ' , error)
@@ -216,7 +217,7 @@ return(
     //       console.log(res)
     //       console.log(res.data)
     //       // setRate([...newArray])
-          
+
     //   })
     // .catch( error => {
     //    console.log( '[axios error] : ' , error)
@@ -225,7 +226,7 @@ return(
     // }, []);
     // console.log(data);
 
- 
+
 
     // useEffect ( () => {
     //   fetch("https://hotelsukraine/ua/my_list_hotels", {
@@ -242,7 +243,7 @@ return(
     // .then( res => {
     //       console.log(res)
     //       // setRate([...newArray])
-          
+
     //   })
     // .catch( error => {
     //    console.log( '[axios error] : ' , error)
@@ -251,4 +252,3 @@ return(
     // }, []);
 
 
-  

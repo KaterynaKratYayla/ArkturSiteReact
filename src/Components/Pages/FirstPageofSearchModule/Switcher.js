@@ -2,13 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types';
 
 export const Switcher = (props) =>{
+    console.log('[file]');
     const {children, active, name, changeHandler} = props;
-     
+
     console.log(props)
 
     return (
     // <div className='switcher'> {name} : {
-      <div className='switcher'>  {  
+      <div className='switcher'>  {
         React.Children.count(children) > 0 && (
           <>
           {
@@ -18,33 +19,33 @@ export const Switcher = (props) =>{
                   child,
                     {
                     active:  child.props.value === active,
-                    changeHandler: changeHandler(child.props.value), 
+                    changeHandler: changeHandler(child.props.value),
                     }
                    )
                  }
-                       
+
             })
            }
           </>
          )
-        } 
+        }
         </div>
        )
       }
-    
-  
+
+
   export const SwitcherItem = (props) =>{
   const {children,active,changeHandler, value} = props;
   console.log(props);
-  
+
     return (
       <button className={
         active ? 'switcher__item active' : "switcher__item"
-        } 
+        }
         onClick={changeHandler}
          >
         {children}
         </button>
     )
-  
+
   }

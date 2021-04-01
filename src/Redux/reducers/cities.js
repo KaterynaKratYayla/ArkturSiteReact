@@ -1,11 +1,12 @@
 import { GET_GEO_REQ, GET_GEO_RES , GET_GEO_ERR} from '../constants'
 import { GET_GENERAL_GEO_REQ, GET_GENERAL_GEO_RES , GET_GENERAL_GEO_ERR } from '../constants';
 
+console.log('[file]');
 const initState = {
 	locs: [],
 	loc_loaded: false,
     errors: [],
-    
+
     gen_locs: [],
 	gen_loc_loaded: false,
 	errors: [],
@@ -41,7 +42,7 @@ const reducer = ( state = initState, action ) => {
 				...state,
 				errors: [...state.errors, action.error ]
             })
-            
+
             case GET_GENERAL_GEO_REQ:
 			return({
 				...state,
