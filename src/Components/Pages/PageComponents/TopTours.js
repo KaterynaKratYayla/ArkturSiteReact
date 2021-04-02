@@ -174,6 +174,7 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
 }
 
 const MediumScreenTopTours = ({TopToursContents,GetTourDetails,width}) =>{
+    console.log('[file]:const MediumScreenTopTours', 'src/Components/Pages/PageComponents/TopTours.js');
   // const [width, height] = useWindowWidthAndHeight();
 
   return(
@@ -226,6 +227,7 @@ const MediumScreenTopTours = ({TopToursContents,GetTourDetails,width}) =>{
 }
 
 const SmallScreenTopTours = ({width,TopToursContents,GetTourDetails}) =>{
+    console.log('[file]:const SmallScreenTopTours', 'src/Components/Pages/PageComponents/TopTours.js');
   // const [width, height] = useWindowWidthAndHeight();
 
   return(
