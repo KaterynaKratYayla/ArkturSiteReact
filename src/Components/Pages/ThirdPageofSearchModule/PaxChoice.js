@@ -8,6 +8,7 @@ import 'antd/dist/antd.css'
 
 console.log('[file]', 'src/Components/Pages/ThirdPageofSearchModule/PaxChoice.js');
 export const PaxChoice =({MakeVisible, open}) =>{
+    console.log('[file]:export const PaxChoice', 'src/Components/Pages/ThirdPageofSearchModule/PaxChoice.js');
     return(
         <div class='first'>
                  <div class='PaxChoice'>

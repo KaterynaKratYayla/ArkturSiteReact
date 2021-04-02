@@ -2,22 +2,24 @@ import { GET_DESC_REQ, GET_DESC_RES , GET_DESC_ERR,GET_EN_DESC_REQ, GET_EN_DESC_
 import { GET_IMAGES_REQ, GET_IMAGES_RES , GET_IMAGES_ERR} from '../constants'
 
 console.log('[file]', 'src/Redux/reducers/hotels.js');
+console.log('[file]:const initState', 'src/Redux/reducers/hotels.js');
 const initState = {
 	parts: [],
 	loaded: false,
-	errors: [],
+	parts_errors: [],
 
     en_parts: [],
     en_parts_loaded: false,
-    errors: [],
+	en_parts_errors: [],
 
     images: [],
     images_loaded: false,
-    errors: []
+	images_errors: []
 }
 
 
 const reducer = ( state = initState, action ) => {
+	console.log('[file]:const reducer', 'src/Redux/reducers/hotels.js');
 	switch( action.type ){
 
 		case GET_DESC_REQ:
@@ -44,7 +46,7 @@ const reducer = ( state = initState, action ) => {
 		case GET_DESC_ERR:
 			return({
 				...state,
-				errors: [...state.errors, action.error ]
+				parts_errors: [...state.errors, action.error ]
 			})
 
             case GET_EN_DESC_REQ:
@@ -63,7 +65,7 @@ const reducer = ( state = initState, action ) => {
             case GET_EN_DESC_ERR:
                 return({
                     ...state,
-                    errors: [...state.errors, action.error ]
+					en_parts_errors: [...state.errors, action.error ]
                 })
 
                 case GET_DESC_ERR:
@@ -88,7 +90,7 @@ const reducer = ( state = initState, action ) => {
             case GET_IMAGES_ERR:
                 return({
                     ...state,
-                    errors: [...state.errors, action.error ]
+					images_errors: [...state.errors, action.error ]
                 })
 
         default:

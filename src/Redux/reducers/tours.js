@@ -4,26 +4,28 @@ import { GET_IMAGES_TOUR_REQ, GET_IMAGES_TOUR_RES , GET_IMAGES_TOUR_ERR} from '.
 import { GET_CONTENT_REQ ,GET_CONTENT_RES, GET_CONTENT_ERR} from '../constants'
 
 console.log('[file]', 'src/Redux/reducers/tours.js');
+console.log('[file]:const initState', 'src/Redux/reducers/tours.js');
 const initState = {
 	touritems: [],
 	touritems_loaded: false,
-	errors: [],
+    touritems_errors: [],
 
     en_touritems: [],
     en_touritems_loaded: false,
-    errors: [],
+    en_touritems_errors: [],
 
     images: [],
     images_loaded: false,
-    errors: [],
+    images_errors: [],
 
     content: [],
     content_loaded: false,
-    errors: []
+    content_errors: []
 }
 
 
 const reducer = ( state = initState, action ) => {
+    console.log('[file]:const reducer', 'src/Redux/reducers/tours.js');
 	switch( action.type ){
 
 		case GET_TOUR_REQ:
@@ -43,7 +45,7 @@ const reducer = ( state = initState, action ) => {
 		case GET_TOUR_ERR:
 			return({
 				...state,
-				errors: [...state.errors, action.error ]
+                touritems_errors: [...state.errors, action.error ]
 			})
 
             case GET_EN_TOUR_REQ:
@@ -63,7 +65,7 @@ const reducer = ( state = initState, action ) => {
             case GET_EN_TOUR_ERR:
                 return({
                     ...state,
-                    errors: [...state.errors, action.error ]
+                    en_touritems_errors: [...state.errors, action.error ]
                 })
 
 
@@ -83,7 +85,7 @@ const reducer = ( state = initState, action ) => {
             case GET_IMAGES_TOUR_ERR:
                 return({
                     ...state,
-                    errors: [...state.errors, action.error ]
+                    images_errors: [...state.errors, action.error ]
                 })
 
         case GET_CONTENT_REQ:
@@ -103,7 +105,7 @@ const reducer = ( state = initState, action ) => {
         case GET_CONTENT_ERR:
               return({
                    ...state,
-                   errors: [...state.errors, action.error ]
+                  content_errors: [...state.errors, action.error ]
                })
 
         default:

@@ -21,8 +21,15 @@ import '../../Library/SearchPannel/SearchPannelCSS.css'
 
 moment.locale('uk')
 
+console.log('[file]:import', 'import {GuestItem} from \'../SecondPageofSearchModule/GuestItem\';');
+console.log('[file]:import', 'import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"');
+console.log('[file]:import', 'import {getTopTours} from "../../../Redux/actions/toptours"');
+console.log('[file]:import', 'import {useWindowWidthAndHeight} from \'../Helpers/WindowResizeHook\'');
+console.log('[file]:import', 'import {LargeScreenSearch} from \'./LargeScreenSearch\'');
+console.log('[file]:import', 'import {SearchInner} from \'../../Library/SearchPannel/SearchPannel\'');
 console.log('[file]', 'src/Components/Pages/FirstPageofSearchModule/SearchFront.js');
 export const Search = (props) => {
+  console.log('[file]:export const Search', 'src/Components/Pages/FirstPageofSearchModule/SearchFront.js');
       // console.log('[PROPS] : ', props)
       const genProps = props
 

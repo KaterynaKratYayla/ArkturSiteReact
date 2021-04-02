@@ -12,6 +12,7 @@ console.log('[file]', 'src/Components/Library/Slider/Slide.js');
 // }
 
 const Slide = ({content}) => {
+    console.log('[file]:const Slide', 'src/Components/Library/Slider/Slide.js');
 // console.log(content)
 return (
 

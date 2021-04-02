@@ -4,6 +4,7 @@ import ArkturDMClogo from '../Images/ArkturDMClogo.svg'
 
 console.log('[file]', 'src/Components/Library/PhotoGallery/Photo.js');
 const Photo = ({content}) => {
+    console.log('[file]:const Photo', 'src/Components/Library/PhotoGallery/Photo.js');
 return (
 
  <div

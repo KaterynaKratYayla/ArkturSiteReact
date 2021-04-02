@@ -6,9 +6,9 @@ import { useHistory , useLocation} from "react-router-dom";
 import moment from 'moment';
 import { Select } from 'antd';
 import {getContent} from '../../../Redux/actions/content'
+import {PlusOutlined, MinusOutlined, CalendarOutlined} from '@ant-design/icons'
 import {ValidateQuery} from '../Helpers/helper'
 import 'antd/dist/antd.css'
-import {PlusOutlined, MinusOutlined, CalendarOutlined} from '@ant-design/icons'
 import {RateChoiceBlock} from './RateChoiceBlock'
 
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
@@ -18,8 +18,12 @@ import {Sun} from '../../Library/Icons/sun.js'
 import './TourDetailsCSS.css'
 import 'antd/dist/antd.css'
 
+console.log('[file]:import', 'import {ValidateQuery} from \'../Helpers/helper\'');
+console.log('[file]:import', 'import {RateChoiceBlock} from \'./RateChoiceBlock\'');
+console.log('[file]:import', 'import {Gallery} from \'../../Library/PhotoGallery/PhotoGallery\'');
 console.log('[file]', 'src/Components/Pages/ThirdPageofSearchModule/TourDetails.js');
   export const TourDetails = (props) =>{
+      console.log('[file]:export const TourDetails', 'src/Components/Pages/ThirdPageofSearchModule/TourDetails.js');
     let location = useLocation();
     let history = useHistory();
 
@@ -176,7 +180,7 @@ console.log('[file]', 'src/Components/Pages/ThirdPageofSearchModule/TourDetails.
                                   return (
                                     <Option
                                         value={filter.date}
-                                        key={rateDetails[0].tour_id, '-' , index}>
+                                        key={rateDetails[0].tour_id + '-' + index}>
                                           {filter.date} -- {moment(filter.date).add(rateDetails[0].duration, 'days').format('YYYY-MM-DD')} ({rateDetails[0].duration} days)
                                   </Option>
                                   )

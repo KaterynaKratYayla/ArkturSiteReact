@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {Link} from "react-router-dom";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -7,9 +8,9 @@ import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
 import { register } from "../../../Redux/actions/auth";
-import {Link} from "react-router-dom";
 import Login from "./Login";
 
+console.log('[file]:import', 'import { register } from "../../../Redux/actions/auth";');
 console.log('[file]', 'src/Components/Library/Authorization/Register.js');
 const required = (value) => {
   if (!value) {
@@ -72,6 +73,7 @@ const vpassword = (value) => {
 };
 
 const Register = () => {
+  console.log('[file]:const Register', 'src/Components/Library/Authorization/Register.js');
   const form = useRef();
   const checkBtn = useRef();
 

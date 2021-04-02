@@ -10,6 +10,7 @@ import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 
 console.log('[file]', 'src/Components/Pages/PageComponents/TopMenuComponents.js');
 export const CONTACTUS = () => {
+    console.log('[file]:export const CONTACTUS', 'src/Components/Pages/PageComponents/TopMenuComponents.js');
 
     return (
         <div>
@@ -23,6 +24,7 @@ export const CONTACTUS = () => {
 }
 
 export const SIGNIN = () => {
+    console.log('[file]:export const SIGNIN', 'src/Components/Pages/PageComponents/TopMenuComponents.js');
 
     return (
       <div>
@@ -36,6 +38,7 @@ export const SIGNIN = () => {
 }
 
 export const FORGROUPS = () => {
+    console.log('[file]:export const FORGROUPS', 'src/Components/Pages/PageComponents/TopMenuComponents.js');
 
     return (
       <div>

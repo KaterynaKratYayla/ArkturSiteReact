@@ -21,8 +21,18 @@ import Register from "../../Library/Authorization/Register";
 import { logout } from "../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
 import { HelmetWrapper, LocalizationRoute, LocalizationNavLink, LocalizaitonSwitch } from '../../Library';
 
+console.log('[file]:import', 'import {COVID, ABOUT, CONTACTUS, SIGNIN, FORGROUPS} from \'../PageComponents/TopMenuComponents\'');
+console.log('[file]:import', 'import {HomePage} from \'../PageComponents/HomePage\'');
+console.log('[file]:import', 'import { PureContent } from \'../PageComponents/MenuPageGenerator\'');
+console.log('[file]:import', 'import { GuestItem } from \'../SecondPageofSearchModule/GuestItem\'');
+console.log('[file]:import', 'import { TourDetails } from \'../ThirdPageofSearchModule/TourDetails\'');
+console.log('[file]:import', 'import {SingleHotel} from \'../../Library/HotelsUkraineTestComponents/single_hotel\'');
+console.log('[file]:import', 'import { TestCities } from \'../../Library/HotelsUkraineTestComponents/test_cities\'');
+console.log('[file]:import', 'import Login from "../../Library/Authorization/Login";');
+console.log('[file]:import', 'import Register from "../../Library/Authorization/Register";');
 console.log('[file]', 'src/Components/Pages/RoutesAndLinks/RouteSwitcher.js');
 export const RouteSwitcher = () =>{
+	console.log('[file]:export const RouteSwitcher', 'src/Components/Pages/RoutesAndLinks/RouteSwitcher.js');
 	return(
 		/*<LocalizaitonSwitch>
 

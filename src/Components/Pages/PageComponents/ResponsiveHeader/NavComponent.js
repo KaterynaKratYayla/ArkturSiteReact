@@ -7,6 +7,7 @@ import './header.css'
 
 console.log('[file]', 'src/Components/Pages/PageComponents/ResponsiveHeader/NavComponent.js');
 export const NavComponent = ({onClick, navClass, linkClassName,pages})=>{
+    console.log('[file]:export const NavComponent', 'src/Components/Pages/PageComponents/ResponsiveHeader/NavComponent.js');
     return(
     <nav className={navClass}>
         {/* {["Projects", "About", "Contact", "Footer"].map(section=>

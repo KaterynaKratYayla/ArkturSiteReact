@@ -12,4 +12,5 @@ const SliderContent = styled.div`
 //transition: transform ease-out ${props => props.transition}s;
 
 console.log(SliderContent)
+console.log('[file]:export default SliderContent', 'src/Components/Library/Slider/SliderContent.js');
 export default SliderContent;

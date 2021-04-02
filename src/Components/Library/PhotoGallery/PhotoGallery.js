@@ -8,6 +8,7 @@ import {ArrowGallery} from './Arrow'
 
 console.log('[file]', 'src/Components/Library/PhotoGallery/PhotoGallery.js');
 export const Gallery = ({galleryImages}) => {
+  console.log('[file]:export const Gallery', 'src/Components/Library/PhotoGallery/PhotoGallery.js');
 
   const getWidth = () => window.innerWidth
   console.log('[GALLERY IMAGES] : ' , galleryImages)

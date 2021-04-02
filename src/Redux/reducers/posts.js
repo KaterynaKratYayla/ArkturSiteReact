@@ -3,6 +3,7 @@ import { GET_POSTS_REQ, GET_POSTS_RES, GET_POSTS_ERR} from '../constants';
 
 console.log('[file]', 'src/Redux/reducers/posts.js');
 
+console.log('[file]:const initState', 'src/Redux/reducers/posts.js');
 const initState = {
 	items: [],
 	loaded: false,
@@ -14,6 +15,7 @@ const initState = {
 
 
 const reducer = ( state = initState, action ) => {
+	console.log('[file]:const reducer', 'src/Redux/reducers/posts.js');
 	switch( action.type ){
 
 		case GET_POSTS_REQ:

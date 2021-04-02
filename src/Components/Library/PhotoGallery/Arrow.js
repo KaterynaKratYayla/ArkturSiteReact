@@ -2,6 +2,7 @@ import React from 'react'
 import './PhotoGalleryCSS.css'
 
 console.log('[file]', 'src/Components/Library/PhotoGallery/Arrow.js');
+console.log('[file]:export const ArrowGallery', 'src/Components/Library/PhotoGallery/Arrow.js');
 export const ArrowGallery = ({ direction, photoClick }) => (
     // console.log(direction),
 

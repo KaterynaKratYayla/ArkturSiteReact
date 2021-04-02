@@ -1,5 +1,4 @@
 import React from 'react'
-
 import { Provider } from 'react-redux';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
@@ -10,8 +9,10 @@ import config from '../Redux/config';
 
 const supportedLangs = config.supportedLangs.join('|');
 
+console.log('[file]:import', 'import LocalizationWrapper from \'./LocalizationWrapper\';');
 console.log('[file]', 'src/Components/index.js');
 const Wrappers = () => {
+    console.log('[file]:const Wrappers', 'src/Components/index.js');
 
   return(
     <Provider store={store}>

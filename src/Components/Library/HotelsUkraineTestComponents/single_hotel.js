@@ -4,8 +4,11 @@ import {getDescription, getENdescription , getImages} from "../../../Redux/actio
 import './hotels.css'
 import {HotelGallery} from '../HotelPhotoGallery/HotelPhotoGallery'
 
+console.log('[file]:import', 'import {getDescription, getENdescription , getImages} from "../../../Redux/actions/list"');
+console.log('[file]:import', 'import {HotelGallery} from \'../HotelPhotoGallery/HotelPhotoGallery\'');
 console.log('[file]', 'src/Components/Library/HotelsUkraineTestComponents/single_hotel.js');
 export const SingleHotel = ({option, selector, location, history, list}) =>{
+    console.log('[file]:export const SingleHotel', 'src/Components/Library/HotelsUkraineTestComponents/single_hotel.js');
 
   const dispatch = useDispatch();
   const descrip = useSelector(state => state.hotels.parts)

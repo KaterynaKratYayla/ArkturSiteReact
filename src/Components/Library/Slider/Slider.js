@@ -6,6 +6,9 @@ import './SliderCss.css'
 import {Arrow} from './ArrowSlider'
 // import Dots from './dots'
 
+console.log('[file]:import', 'import SliderContent from \'./SliderContent\'');
+console.log('[file]:import', 'import Slide from \'./Slide\'');
+console.log('[file]:import', 'import {Arrow} from \'./ArrowSlider\'');
 console.log('[file]', 'src/Components/Library/Slider/Slider.js');
 
 const Slider = props => {
@@ -93,5 +96,5 @@ useEffect (() => {
   )
 }
 
-
+console.log('[file]:export', 'export default Slider');
 export default Slider;

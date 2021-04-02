@@ -1,13 +1,19 @@
 import React from 'react'
 import { Switch, Route } from 'react-router-dom'
+
 import { HomePage } from '../../../Pages/PageComponents/HomePage'
 import {PureContent} from '../../../Pages/PageComponents/MenuPageGenerator'
 import { CONTACTUS } from '../../../Pages/PageComponents/TopMenuComponents'
 import { HOTELS } from '../../../Pages/PageComponents/MiddleMenuComponents'
 import { HelmetWrapper, LocalizationRoute, LocalizationNavLink, LocalizaitonSwitch } from '../../../Library';
 
+console.log('[file]:import', 'import { HomePage } from \'../../../Pages/PageComponents/HomePage\'');
+console.log('[file]:import', 'import {PureContent} from \'../../../Pages/PageComponents/MenuPageGenerator\'');
+console.log('[file]:import', 'import { CONTACTUS } from \'../../../Pages/PageComponents/TopMenuComponents\'');
+console.log('[file]:import', 'import { HOTELS } from \'../../../Pages/PageComponents/MiddleMenuComponents\'');
 console.log('[file]', 'src/Components/Library/PageDevices/Helmet/index.js');
 const Helmet = () => {
+    console.log('[file]:const Helmet', 'src/Components/Library/PageDevices/Helmet/index.js');
 
     return(
         <div>

@@ -1,19 +1,21 @@
 import { GET_PAGES_REQ, GET_PAGES_RES , GET_PAGES_ERR } from '../constants';
 import { GET_PurePage_REQ, GET_PurePage_RES , GET_PurePage_ERR } from '../constants';
 
+console.log('[file]:const initState', 'src/Redux/reducers/pages.js');
 const initState = {
 	pages: [],
 	pages_loaded: false,
-    errors: [],
+    pages_errors: [],
 
     purepage: [],
     purepage_loaded: false,
-    errors: []
+    purepage_errors: []
 }
 
 console.log('[file]', 'src/Redux/reducers/pages.js');
 
 const reducer = ( state = initState, action ) => {
+    console.log('[file]:const reducer', 'src/Redux/reducers/pages.js');
 	switch( action.type ){
 
 		case GET_PAGES_REQ:
@@ -32,7 +34,7 @@ const reducer = ( state = initState, action ) => {
 		case GET_PAGES_ERR:
 			return({
 				...state,
-				errors: [...state.errors, action.error ]
+                pages_errors: [...state.errors, action.error ]
             })
 
             case GET_PurePage_REQ:
@@ -51,7 +53,7 @@ const reducer = ( state = initState, action ) => {
             case GET_PurePage_ERR:
                 return({
                     ...state,
-                    errors: [...state.errors, action.error ]
+                    purepage_errors: [...state.errors, action.error ]
                 })
 
         default:

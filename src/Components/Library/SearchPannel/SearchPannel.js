@@ -1,14 +1,15 @@
 import React, {useState,useEffect} from 'react'
-import './SearchPannelCSS.css';
-import {GuestItem} from '../../Pages/SecondPageofSearchModule/GuestItem';
-import {Switcher, SwitcherItem} from '../../Pages/FirstPageofSearchModule/Switcher'
-import '../../Pages/FirstPageofSearchModule/SwitcherFront.css';
 import moment from 'moment';
 import Autocomplete from 'react-autocomplete'
 import { useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
-import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
 import { DatePicker ,Space } from 'antd'
+
+import './SearchPannelCSS.css';
+import {GuestItem} from '../../Pages/SecondPageofSearchModule/GuestItem';
+import {Switcher, SwitcherItem} from '../../Pages/FirstPageofSearchModule/Switcher'
+import '../../Pages/FirstPageofSearchModule/SwitcherFront.css';
+import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
 
 import {Hotels} from '../Icons/hotels'
 import {Tours} from '../Icons/tours'
@@ -18,8 +19,15 @@ import 'antd/dist/antd.css'
 import '../../Pages/FirstPageofSearchModule/SwitcherFront.css'
 import './SearchPannelCSS.css'
 
+console.log('[file]:import', 'import {GuestItem} from \'../../Pages/SecondPageofSearchModule/GuestItem\';');
+console.log('[file]:import', 'import {Switcher, SwitcherItem} from \'../../Pages/FirstPageofSearchModule/Switcher\'');
+console.log('[file]:import', 'import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"');
+console.log('[file]:import', 'import {Hotels} from \'../Icons/hotels\'');
+console.log('[file]:import', 'import {Tours} from \'../Icons/tours\'');
+console.log('[file]:import', 'import {useWindowWidthAndHeight} from \'../../Pages/Helpers/WindowResizeHook\'');
 console.log('[file]', 'src/Components/Library/SearchPannel/SearchPannel.js');
 export const SearchInner = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
+    console.log('[file]:export const SearchInner', 'src/Components/Library/SearchPannel/SearchPannel.js');
 
 const [date, setDate] = useState('');
 const [testDate, setTestDate] = useState('');

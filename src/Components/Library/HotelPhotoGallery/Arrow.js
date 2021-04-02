@@ -2,6 +2,7 @@ import React from 'react'
 import './GalleryCss.css'
 
 console.log('[file]', 'src/Components/Library/HotelPhotoGallery/Arrow.js');
+console.log('[file]:export const ArrowGallery', 'src/Components/Library/Basket/Reservation.js');
 export const ArrowGallery = ({ direction, photoClick }) => (
     // console.log(direction),
 

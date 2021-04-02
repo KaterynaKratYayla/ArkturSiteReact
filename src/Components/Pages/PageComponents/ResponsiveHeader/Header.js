@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 import {Router} from 'react-router'
 import {UserOutlined} from '@ant-design/icons'
+import Dropdown from "react-bootstrap/Dropdown";
 
 import {RouteSwitcher} from '../../RoutesAndLinks/RouteSwitcher'
 import {COVID, ABOUT, CONTACTUS, SIGNIN, FORGROUPS} from '../TopMenuComponents'
@@ -34,7 +35,6 @@ import { LocalizationNavLink } from '../../../Library/Localization';
 
 import './header.css'
 import {getPages} from "../../../../Redux/actions";
-import Dropdown from "react-bootstrap/Dropdown";
 // import './ResponsiveCSS.css'
 import config from '../../../../Redux/config';
 
@@ -44,8 +44,16 @@ const supportedLangs = config.supportedLangs;
 // console.log('supportedLangs2: ', supportedLangs);
 // console.log('supportedLangs5: ', `/:locale(${supportedLangs})`);
 
+console.log('[file]:import', 'import {ContentPages} from \'../ContentPages\'');
+console.log('[file]:import', 'import {LargeScreensNavBar} from \'./LargeScreensNavBar\'');
+console.log('[file]:import', 'import SmallScreensNavBar from \'./SmallScreensNavBar\'');
+console.log('[file]:import', 'import {useWindowWidthAndHeight} from \'../../Helpers/WindowResizeHook\'');
+console.log('[file]:import', 'import { logout } from "../../../../Redux/actions/auth";');
+console.log('[file]:import', 'import { getLocales, changeLang } from "../../../../Redux/actions";');
+console.log('[file]:import', 'import { LocalizationNavLink } from \'../../../Library/Localization\';');
 console.log('[file]', 'src/Components/Pages/PageComponents/ResponsiveHeader/Header.js');
 export const TopMenu = () => {
+	console.log('[file]:export const TopMenu', 'src/Components/Pages/PageComponents/ResponsiveHeader/Header.js');
 
 	const { user: currentUser } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();

@@ -4,11 +4,11 @@ import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 import { connect } from 'react-redux';
 import { Route, Switch, BrowserRouter, useHistory , useLocation} from "react-router-dom";
+import moment from 'moment';
+import ReactHtmlParser from 'react-html-parser'
 // import {TourDetails} from './tourDetails';
 import './SearchItems.css'
 import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
-import moment from 'moment';
-import ReactHtmlParser from 'react-html-parser'
 import {MinRate} from './MinRate'
 import {TourDetails} from '../ThirdPageofSearchModule/TourDetails'
 import {ValidateQuery} from '../Helpers/helper'
@@ -16,8 +16,11 @@ import {ValidateQuery} from '../Helpers/helper'
 
 moment.locale('uk')
 
+console.log('[file]:import', 'import {MinRate} from \'./MinRate\'');
+console.log('[file]:import', 'import {ValidateQuery} from \'../Helpers/helper\'');
 console.log('[file]', 'src/Components/Pages/SecondPageofSearchModule/ItemObj.js');
 export const ItemObj = ({tariff, searchResults,tour_name}) => {
+    console.log('[file]:export const ItemObj', 'src/Components/Pages/SecondPageofSearchModule/ItemObj.js');
 
   const location = useLocation()
   const history = useHistory();
@@ -80,7 +83,7 @@ setDetailsList([outline]);
                 return (
                   <option
                    value={filter.date}
-                    key={tariff.tour_id, '-' , index}>
+                    key={tariff.tour_id + '-' + index}>
                       {filter.date} -- {moment(filter.date).add(tariff.duration, 'days').format('YYYY-MM-DD')} ({tariff.duration} days)
                     </option>
                 )

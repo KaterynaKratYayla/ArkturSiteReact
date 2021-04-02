@@ -3,16 +3,17 @@ import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 import {getContent} from "../../../Redux/actions/content"
 import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
-import './SearchItems.css'
-import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
+import './SearchItems.css'
+import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
 import 'moment/locale/uk'
 
 moment.locale('uk')
 
 console.log('[file]', 'src/Components/Pages/SecondPageofSearchModule/ItemContent.js');
 export const ItemContent = ({tour})=>{
+    console.log('[file]:export const ItemContent', 'src/Components/Pages/SecondPageofSearchModule/ItemContent.js');
   console.log('[TOUR]' , tour)
   const [result, setResult] = useState('')
   // const [id, setId] = useState([])

@@ -4,6 +4,7 @@ const initialState = {};
 
 console.log('[file]', 'src/Redux/reducers/message.js');
 export default function (state = initialState, action) {
+  console.log('[file]:export default function', 'src/Redux/reducers/message.js');
   const { type, payload } = action;
 
   switch (type) {

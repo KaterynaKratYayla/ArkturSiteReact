@@ -11,4 +11,5 @@ const GalleryContent = styled.div`
 //transition: transform ease-out ${props => props.transition}s;
 
 console.log(GalleryContent)
+console.log('[file]:export default GalleryContent', 'src/Components/Library/HotelPhotoGallery/HotelPhotosContent.js');
 export default GalleryContent;

@@ -32,4 +32,5 @@ const Dot = ({ active }) => (
     </div>
   )
 
+console.log('[file]:export default Dots', 'src/Components/Library/Slider/dots.js');
   export default Dots;

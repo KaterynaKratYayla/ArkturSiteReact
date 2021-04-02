@@ -5,6 +5,9 @@ import reducer from '../reducers';
 import { logger, loggerFn } from './middlewares/logger';
 import { promise } from './middlewares/promise';
 
+console.log('[file]:import', 'import reducer from \'../reducers\';');
+console.log('[file]:import', 'import { logger, loggerFn } from \'./middlewares/logger\';');
+console.log('[file]:import', 'import { promise } from \'./middlewares/promise\';');
 console.log('[file]', 'src/Redux/redux/store.js');
 const composeEnhancers = process.env.NODE_ENV !== 'production' && typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 

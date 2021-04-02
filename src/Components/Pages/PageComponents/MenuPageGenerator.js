@@ -13,6 +13,7 @@ import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 
 console.log('[file]', 'src/Components/Pages/PageComponents/MenuPageGenerator.js');
 export const PureContent = ({location}) => {
+    console.log('[file]:export const PureContent', 'src/Components/Pages/PageComponents/MenuPageGenerator.js');
 
     // contentPages.forEach(function(item){
         // console.log('[CONTENT_PAGES] : ' , location)
@@ -67,5 +68,5 @@ export const PureContent = ({location}) => {
     )
   }
 
-
+console.log('[file]:export const NotFound', 'src/Components/Pages/PageComponents/MenuPageGenerator.js');
 export const NotFound = () => <h2>Not Found</h2>

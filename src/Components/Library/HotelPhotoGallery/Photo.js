@@ -3,6 +3,7 @@ import {css, jsx} from '@emotion/react'
 
 console.log('[file]', 'src/Components/Library/HotelPhotoGallery/Photo.js');
 const Photo = ({content}) => {
+    console.log('[file]:const Photo', 'src/Components/Library/HotelPhotoGallery/Photo.js');
 
 
   console.log('[PHOTO] : ', content)

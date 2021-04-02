@@ -1,14 +1,17 @@
 import React, {useState, useEffect} from 'react'
+import Autocomplete from 'react-autocomplete'
+import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 // import {getDescription, getENdescription , getImages} from "../../Redux/actions/list"
 import './hotels.css'
-import axios from "axios"
 // import {HotelGallery} from '../Library/Hotel Photo Gallery/photoGallery'
 import {SingleTour} from './single_tour'
-import Autocomplete from 'react-autocomplete'
 
+console.log('[file]:import', '');
+console.log('[file]:import', 'import {SingleTour} from \'./single_tour\'');
 console.log('[file]', 'src/Components/Library/HotelsUkraineTestComponents/test_cities.js');
 export const TestCities = (props) =>{
+    console.log('[file]:export const TestCities', 'src/Components/Library/HotelsUkraineTestComponents/test_cities.js');
 
 //   const dispatch = useDispatch();
 //   const descrip = useSelector(state => state.hotels.parts)
@@ -184,6 +187,7 @@ const [city, setCity] = useState([])
   }
 
   export const MyInput = ({array}) =>{
+      console.log('[file]:export const MyInput', 'src/Components/Library/HotelsUkraineTestComponents/test_cities.js');
 
     console.log('[ARRAY] :' , array)
 

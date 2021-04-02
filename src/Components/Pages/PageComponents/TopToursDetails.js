@@ -13,8 +13,12 @@ import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
 import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
 import './TopToursCSS.css'
 
+console.log('[file]:import', 'import {Search} from \'../FirstPageofSearchModule/SearchFront\'');
+console.log('[file]:import', 'import {Gallery} from \'../../Library/PhotoGallery/PhotoGallery\'');
+console.log('[file]:import', 'import {ValidateQuery} from \'../Helpers/helper\'');
 console.log('[file]', 'src/Components/Pages/PageComponents/TopToursDetails.js');
 export const TopToursDetails = (props) =>{
+    console.log('[file]:export const TopToursDetails', 'src/Components/Pages/PageComponents/TopToursDetails.js');
 
     const [ttDetails, setTTDetails] = useState()
     let location = useLocation();

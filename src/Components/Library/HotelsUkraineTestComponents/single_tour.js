@@ -11,8 +11,11 @@ import {Autocomplete} from 'react-autocomplete'
 // import 'moment/locale/uk'
 // import ReactHtmlParser from 'react-html-parser'
 
+console.log('[file]:import', 'import {getTour, ENgetTour, IMGgetTour} from "../../../Redux/actions/tour"');
+console.log('[file]:import', 'import {HotelGallery} from \'../HotelPhotoGallery/HotelPhotoGallery\'');
 console.log('[file]', 'src/Components/Library/HotelsUkraineTestComponents/single_tour.js');
 export const SingleTour = ({option, selector, location, history, list}) =>{
+    console.log('[file]:export const SingleTour', 'src/Components/Library/HotelsUkraineTestComponents/single_tour.js');
 
   const dispatch = useDispatch();
   const tourdescription = useSelector(state => state.tours.touritems)

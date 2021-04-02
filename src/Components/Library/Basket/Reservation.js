@@ -5,6 +5,7 @@ import '../../Pages/RoutesAndLinks/header.css'
 
 console.log('[file]', 'src/Components/Library/Basket/Reservation.js');
 const ConForm = () => {
+    console.log('[file]:const ConForm', 'src/Components/Library/Basket/Reservation.js');
 
     const [myInput1, setMyInput1] = useState('');
     const [myInput2, setMyInput2] = useState('');

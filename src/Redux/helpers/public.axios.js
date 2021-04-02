@@ -8,4 +8,5 @@ const publicAxios = axios.create({
 });
 
 
+console.log('[file]:export default publicAxios', 'src/Redux/helpers/public.axios.js');
 export default publicAxios;

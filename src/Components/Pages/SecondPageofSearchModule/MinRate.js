@@ -15,6 +15,7 @@ moment.locale('uk')
 
 console.log('[file]', 'src/Components/Pages/SecondPageofSearchModule/MinRate.js');
   export const MinRate = ({selection, datesArray}) =>{
+      console.log('[file]:export const MinRate', 'src/Components/Pages/SecondPageofSearchModule/MinRate.js');
 
     console.log('[SELECTION]' , selection, datesArray)
 

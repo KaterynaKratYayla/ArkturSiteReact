@@ -1,6 +1,7 @@
 import { GET_TOPTOURS_REQ, GET_TOPTOURS_RES, GET_TOPTOURS_ERR } from '../constants';
 
 console.log('[file]', 'src/Redux/reducers/toptours.js');
+console.log('[file]:const initState', 'src/Redux/reducers/toptours.js');
 const initState = {
 	toptours: [],
 	toptours_loaded: false,
@@ -10,6 +11,7 @@ const initState = {
 
 
 const reducer = ( state = initState, action ) => {
+	console.log('[file]:const reducer', 'src/Redux/reducers/toptours.js');
 	switch( action.type ){
 
 		case GET_TOPTOURS_REQ:

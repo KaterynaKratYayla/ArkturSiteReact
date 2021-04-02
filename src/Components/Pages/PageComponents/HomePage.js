@@ -1,16 +1,20 @@
 import React from 'react'
+import {Helmet} from 'react-helmet'
 import '../PageComponents/ResponsiveHeader/header.css'
 import Slider from '../../Library/Slider/Slider'
 import {Search} from '../FirstPageofSearchModule/SearchFront'
-import {Helmet} from 'react-helmet'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {TopTours} from './TopTours'
 
 import ArkturDMClogo from '../../Library/Images/ArkturDMClogo.svg'
 
+console.log('[file]:import', 'import Slider from \'../../Library/Slider/Slider\'');
+console.log('[file]:import', 'import {Search} from \'../FirstPageofSearchModule/SearchFront\'');
+console.log('[file]:import', 'import {TopTours} from \'./TopTours\'');
 console.log('[file]', 'src/Components/Pages/PageComponents/HomePage.js');
 
 export const HomePage = () => {
+    console.log('[file]:export const HomePage', 'src/Components/Pages/PageComponents/HomePage.js');
 
     const images = [
         "https://arktur.ua/sites/default/files/public/image/slider/Lavra_shutterstock_1545799133_small.jpg",

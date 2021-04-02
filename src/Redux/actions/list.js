@@ -6,7 +6,9 @@ import { GET_EN_DESC_REQ, GET_EN_DESC_RES , GET_EN_DESC_ERR } from '../constants
 import { GET_IMAGES_REQ, GET_IMAGES_RES , GET_IMAGES_ERR } from '../constants';
 // import { GET_TOUR_REQ, GET_TOUR_RES , GET_TOUR_ERR } from '../constants';
 
+console.log('[file]:import', 'import axios from \'../helpers/public.axios\';');
 console.log('[file]', 'src/Redux/actions/list.js');
+console.log('[file]:export const postsRepsonse', 'src/Redux/actions/list.js');
 export const postsRepsonse = ( res ) => ({
     type: GET_POSTS_RES,
     payload: res
@@ -14,6 +16,7 @@ export const postsRepsonse = ( res ) => ({
 
 
 export const getPosts = ( id ) => ( dispatch, getState ) => {
+    console.log('[file]:export const getPosts', 'src/Redux/actions/list.js');
 
     dispatch({ type: GET_POSTS_REQ });
 
@@ -34,12 +37,14 @@ export const getPosts = ( id ) => ( dispatch, getState ) => {
 
 }
 
+console.log('[file]:export const descResponse', 'src/Redux/actions/list.js');
 export const descResponse = ( res ) => ({
     type: GET_DESC_RES,
     payload: res
 });
 
 export const getDescription = () => ( dispatch, getState ) => {
+    console.log('[file]:export const getDescription', 'src/Redux/actions/list.js');
 
     dispatch({ type: GET_DESC_REQ });
 
@@ -56,12 +61,14 @@ export const getDescription = () => ( dispatch, getState ) => {
 
 }
 
+console.log('[file]:export const en_descResponse', 'src/Redux/actions/list.js');
 export const en_descResponse = ( res ) => ({
     type: GET_EN_DESC_RES,
     payload: res
 });
 
 export const getENdescription = () => ( dispatch, getState ) => {
+    console.log('[file]:export const getENdescription', 'src/Redux/actions/list.js');
 
     dispatch({ type: GET_EN_DESC_REQ });
 
@@ -84,12 +91,14 @@ export const getENdescription = () => ( dispatch, getState ) => {
 
 }
 
+console.log('[file]:export const imagesResponse', 'src/Redux/actions/list.js');
 export const imagesResponse = ( res ) => ({
     type: GET_IMAGES_RES,
     payload: res
 });
 
 export const getImages = () => ( dispatch, getState ) => {
+    console.log('[file]:export const getImages', 'src/Redux/actions/list.js');
 
     dispatch({ type: GET_IMAGES_REQ });
 

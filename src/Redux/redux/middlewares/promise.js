@@ -4,6 +4,7 @@ console.log('[file]', 'src/Redux/redux/middlewares/promise.js');
 
 
 export const promise = ({ dispatch, getState }) => next => action => {
+    console.log('[file]:export const promise', 'src/Redux/redux/middlewares/promise.js');
 
     if( action.type === "PROMISE" ){
         const [ startAction, successAction, failureAction ] = action.actions;

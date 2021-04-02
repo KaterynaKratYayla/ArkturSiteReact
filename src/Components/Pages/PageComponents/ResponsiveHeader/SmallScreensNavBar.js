@@ -6,6 +6,7 @@ import {MenuClose} from '../../../Library/Icons/menuclose'
 
 console.log('[file]', 'src/Components/Pages/PageComponents/ResponsiveHeader/SmallScreensNavBar.js');
 const SmallScreensNavBar = ({pages,width}) =>{
+    console.log('[file]:const SmallScreensNavBar', 'src/Components/Pages/PageComponents/ResponsiveHeader/SmallScreensNavBar.js');
     // declare 'translate' as a state variable
     console.log('PAGES', pages)
     let [translate, setTranslate ] = useState(false);

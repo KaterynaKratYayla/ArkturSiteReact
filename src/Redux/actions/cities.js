@@ -5,13 +5,16 @@ import { GET_GEO_REQ, GET_GEO_RES , GET_GEO_ERR } from '../constants';
 import { GET_GENERAL_GEO_REQ, GET_GENERAL_GEO_RES , GET_GENERAL_GEO_ERR } from '../constants';
 
 
+console.log('[file]:export const geoResponse', 'src/Redux/actions/cities.js');
 export const geoResponse = ( res ) => ({
     type: GET_GEO_RES,
     payload: res
 });
 
+console.log('[file]:import', 'import axios from \'../helpers/public.axios\';');
 console.log('[file]', 'src/Redux/actions/cities.js');
 export const getGeo = () => ( dispatch) => {
+    console.log('[file]:export const getGeo', 'src/Redux/actions/cities.js');
 
     dispatch({ type: GET_GEO_REQ });
 
@@ -44,12 +47,14 @@ export const getGeo = () => ( dispatch) => {
     }
 
 
+console.log('[file]:export const generalGeoResponse', 'src/Redux/actions/cities.js');
     export const generalGeoResponse = ( res ) => ({
         type: GET_GENERAL_GEO_RES,
         payload: res
     });
 
     export const getGeneralGeo = () => ( dispatch, getState ) => {
+        console.log('[file]:export const getGeneralGeo', 'src/Redux/actions/cities.js');
 
         dispatch({ type: GET_GENERAL_GEO_REQ });
 

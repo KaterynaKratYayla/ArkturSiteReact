@@ -7,6 +7,7 @@ console.log('[file]', 'src/Redux/services/auth.service.js');
 const API_URL = "http://smartbooker.biz/interface/remote/";
 
 const register = (firstName, lastName, username, email, password) => {
+  console.log('[file]:const register', 'src/Redux/services/auth.service.js');
   return axios.post(API_URL + "create_user", JSON.stringify({
     "firstname": firstName,
     "lastname": lastName,
@@ -17,6 +18,7 @@ const register = (firstName, lastName, username, email, password) => {
 };
 
 const login = (username, password) => {
+  console.log('[file]:const login', 'src/Redux/services/auth.service.js');
   return axios
     .post(API_URL + "login", JSON.stringify({
       "username": username,
@@ -57,6 +59,7 @@ const login = (username, password) => {
 };*/
 
 const logout = () => {
+  console.log('[file]:const logout', 'src/Redux/services/auth.service.js');
   localStorage.removeItem("user");
 };
 

@@ -1,6 +1,7 @@
 
 console.log('[file]', 'src/Components/Pages/Helpers/helper.js');
 export const ValidateQuery = (location) => {
+    console.log('[file]:export const ValidateQuery', 'src/Components/Pages/Helpers/helper.js');
     let data = location.search.replace('?','').split(',')
     console.log('DATA' , data);
 

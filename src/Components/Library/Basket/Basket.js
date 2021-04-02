@@ -20,6 +20,7 @@ const products = [
 ]
 
 export const Cart = ({cart}) => {
+    console.log('[file]:export const Cart', 'src/Components/Library/Basket/Basket.js');
 
   const sum = cart.reduce((sum, prev) => {
       return sum + prev.price

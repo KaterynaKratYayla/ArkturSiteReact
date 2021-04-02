@@ -17,6 +17,7 @@ import {Hotels} from '../../Library/Icons/hotels.js'
 
 import './TourDetailsCSS.css'
 
+console.log('[file]:import', 'import {PaxChoice} from \'./PaxChoice\'');
 console.log('[file]', 'src/Components/Pages/ThirdPageofSearchModule/RateChoiceBlock.js');
 export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
 

@@ -9,7 +9,10 @@ import { IntlProvider } from 'react-intl';
 
 import messages from './translations/common';
 
+console.log('[file]:import', 'import App from \'./Components\';');
+console.log('[file]:import', 'import reportWebVitals from \'./reportWebVitals\';');
 console.log('[file]', 'src/index.js');
+console.log('[file]:ReactDOM.render', 'src/index.js');
 ReactDOM.render(
   <React.StrictMode>
       {/*<Provider store={store}>

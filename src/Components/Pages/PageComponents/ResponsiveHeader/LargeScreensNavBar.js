@@ -11,6 +11,7 @@ import './header.css'
 
 console.log('[file]', 'src/Components/Pages/PageComponents/ResponsiveHeader/LargeScreensNavBar.js');
 export const LargeScreensNavBar = ({pages}) =>{
+    console.log('[file]:export const LargeScreensNavBar', 'src/Components/Pages/PageComponents/ResponsiveHeader/LargeScreensNavBar.js');
 
     console.log('ICONS', Icons)
 

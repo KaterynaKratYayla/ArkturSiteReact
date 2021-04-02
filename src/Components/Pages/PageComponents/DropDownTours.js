@@ -3,8 +3,10 @@ import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 import '../PageComponents/ResponsiveHeader/header.css'
 import {NotFound} from './MenuPageGenerator'
 
+console.log('[file]:import', 'import {NotFound} from \'./MenuPageGenerator\'');
 console.log('[file]', 'src/Components/Pages/PageComponents/DropDownTours.js');
 export const TOURS = (props) => {
+    console.log('[file]:export const TOURS', 'src/Components/Pages/PageComponents/DropDownTours.js');
 
   console.log('[TOURS PROPS] : ' , props)
 
@@ -91,6 +93,7 @@ export const TOURS = (props) => {
 }
 
 export const ListItem = (props) => {
+    console.log('[file]:export const ListItem', 'src/Components/Pages/PageComponents/DropDownTours.js');
   const {oneuser, location, match} = props;
 
     console.log(props, `/list/:${oneuser.id}` === location.pathname, match, location)

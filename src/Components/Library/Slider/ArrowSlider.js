@@ -4,11 +4,13 @@ import './SliderCss.css'
 
 console.log('[file]', 'src/Components/Library/Slider/ArrowSlider.js');
 const test = () => {
+    console.log('[file]:const test', 'src/Components/Library/Slider/ArrowSlider.js');
     return(
         <div>Test</div>
     )
 }
 
+console.log('[file]:export const Arrow', 'src/Components/Library/Slider/ArrowSlider.js');
 
 export const Arrow = ({ direction, handleClick }) => (
     // console.log('Hi Kate')

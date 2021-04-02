@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 console.log('[file]', 'src/Components/Pages/FirstPageofSearchModule/Switcher.js');
 export const Switcher = (props) =>{
+    console.log('[file]:export const Switcher', 'src/Components/Pages/FirstPageofSearchModule/Switcher.js');
     const {children, active, name, changeHandler} = props;
 
     console.log(props)

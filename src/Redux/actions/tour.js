@@ -5,13 +5,16 @@ import { GET_TOUR_REQ, GET_TOUR_RES , GET_TOUR_ERR } from '../constants';
 import { GET_EN_TOUR_REQ, GET_EN_TOUR_RES , GET_EN_TOUR_ERR } from '../constants';
 import { GET_IMAGES_TOUR_REQ, GET_IMAGES_TOUR_RES , GET_IMAGES_TOUR_ERR } from '../constants';
 
+console.log('[file]:import', 'import axios from \'../helpers/public.axios\';');
 console.log('[file]', 'src/Redux/actions/tour.js');
+console.log('[file]:export const tourResponse', 'src/Redux/actions/tour.js');
 export const tourResponse = ( res ) => ({
     type: GET_TOUR_RES,
     payload: res
 });
 
 export const getTour = () => ( dispatch, getState ) => {
+    console.log('[file]:export const getTour', 'src/Redux/actions/tour.js');
 
     dispatch({ type: GET_TOUR_REQ });
 
@@ -28,12 +31,14 @@ export const getTour = () => ( dispatch, getState ) => {
 
 }
 
+console.log('[file]:export const ENtourResponse', 'src/Redux/actions/tour.js');
 export const ENtourResponse = ( res ) => ({
     type: GET_EN_TOUR_RES,
     payload: res
 });
 
 export const ENgetTour = () => ( dispatch, getState ) => {
+    console.log('[file]:export const ENgetTour', 'src/Redux/actions/tour.js');
 
     dispatch({ type: GET_EN_TOUR_REQ });
 
@@ -56,12 +61,14 @@ export const ENgetTour = () => ( dispatch, getState ) => {
 
 }
 
+console.log('[file]:export const IMGtourResponse', 'src/Redux/actions/tour.js');
 export const IMGtourResponse = ( res ) => ({
     type: GET_IMAGES_TOUR_RES,
     payload: res
 });
 
 export const IMGgetTour = () => ( dispatch, getState ) => {
+    console.log('[file]:export const IMGgetTour', 'src/Redux/actions/tour.js');
 
     dispatch({ type: GET_IMAGES_TOUR_REQ });
 

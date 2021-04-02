@@ -5,11 +5,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getPosts} from "../../../Redux/actions/list"
 import { connect } from 'react-redux';
 import { useLocation, Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
+import moment from 'moment';
 // import {TourDetails} from './tourDetails';
 import './SearchItems.css'
 import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
 import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
-import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import {ItemContent} from './ItemContent'
 import {ItemObj} from './ItemObj'
@@ -22,8 +22,14 @@ moment.locale('uk')
 
 // import 'moment-timezone';
 
+console.log('[file]:import', 'import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"');
+console.log('[file]:import', 'import {ItemContent} from \'./ItemContent\'');
+console.log('[file]:import', 'import {ItemObj} from \'./ItemObj\'');
+console.log('[file]:import', 'import {ValidateQuery} from \'../Helpers/helper\'');
+console.log('[file]:import', 'import {Search} from \'../FirstPageofSearchModule/SearchFront\'');
 console.log('[file]', 'src/Components/Pages/SecondPageofSearchModule/GuestItem.js');
 export const GuestItem = ({tour, selector, list}) =>{
+    console.log('[file]:export const GuestItem', 'src/Components/Pages/SecondPageofSearchModule/GuestItem.js');
 
 ///получаю с помощью своиства истории (history) из компонента search результаты поиска - массив с одним объектом.
 let location = useLocation();

@@ -6,8 +6,12 @@ import './GalleryCss.css'
 import {ArrowGallery} from './Arrow'
 // import Dots from './dots'
 
+console.log('[file]:import', 'import GalleryContent from \'./HotelPhotosContent\'');
+console.log('[file]:import', 'import Photo from \'./Photo\'');
+console.log('[file]:import', 'import {ArrowGallery} from \'./Arrow\'');
 console.log('[file]', 'src/Components/Library/HotelPhotoGallery/HotelPhotoGallery.js');
 export const HotelGallery = ({galleryImages}) => {
+  console.log('[file]:export const HotelGallery', 'src/Components/Library/HotelPhotoGallery/HotelPhotoGallery.js');
 
   const getWidth = () => window.innerWidth
   console.log('[GALLERY IMAGES] : ' , galleryImages)

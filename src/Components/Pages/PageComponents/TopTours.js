@@ -12,8 +12,11 @@ import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
 import {SyncOutlined,SmileTwoTone,LoadingOutlined} from '@ant-design/icons'
 import './TopToursCSS.css'
 
+console.log('[file]:import', 'import {useWindowWidthAndHeight} from \'../Helpers/WindowResizeHook\'');
+console.log('[file]:import', 'import {getGeneralGeo, getTopTours} from \'../../../Redux/actions\'');
 console.log('[file]', 'src/Components/Pages/PageComponents/TopTours.js');
 export const TopTours = () => {
+    console.log('[file]:export const TopTours', 'src/Components/Pages/PageComponents/TopTours.js');
 
     const dispatch = useDispatch();
     const toptours = useSelector(state => state.cities.gen_locs)
@@ -88,6 +91,7 @@ console.log('[TOURTOURS]', toptours)
 
 
 const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) =>{
+    console.log('[file]:const LargeScreenTopTours', 'src/Components/Pages/PageComponents/TopTours.js');
   // const [width, height] = useWindowWidthAndHeight();
 
   return(

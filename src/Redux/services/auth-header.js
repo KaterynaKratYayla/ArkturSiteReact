@@ -1,6 +1,7 @@
 
 console.log('[file]', 'src/Redux/services/auth-header.js');
 export default function authHeader() {
+  console.log('[file]:export default function authHeader', 'src/Redux/services/auth-header.js');
   const user = JSON.parse(localStorage.getItem("user"));
 
   if (user && user.accessToken) {

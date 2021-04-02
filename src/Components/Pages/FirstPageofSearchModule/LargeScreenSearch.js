@@ -20,8 +20,16 @@ import 'antd/dist/antd.css';
 
 moment.locale('uk')
 
+console.log('[file]:import', 'import {GuestItem} from \'../SecondPageofSearchModule/GuestItem\';');
+console.log('[file]:import', 'import {Switcher, SwitcherItem} from \'./Switcher\'');
+console.log('[file]:import', 'import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"');
+console.log('[file]:import', 'import {getTopTours} from "../../../Redux/actions/toptours"');
+console.log('[file]:import', 'import {useWindowWidthAndHeight} from \'../Helpers/WindowResizeHook\'');
+console.log('[file]:import', 'import {Hotels} from \'../../Library/Icons/hotels\'');
+console.log('[file]:import', 'import {Tours} from \'../../Library/Icons/tours\'');
 console.log('[file]', 'src/Components/Pages/FirstPageofSearchModule/LargeScreenSearch.js');
 export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
+    console.log('[file]:export const LargeScreenSearch', 'src/Components/Pages/FirstPageofSearchModule/LargeScreenSearch.js');
       // console.log('[PROPS] : ', props)
 
 

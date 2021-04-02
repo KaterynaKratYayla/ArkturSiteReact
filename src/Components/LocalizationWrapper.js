@@ -9,8 +9,11 @@ import { changeLang } from '../Redux/actions';
 import messages from '../translations/common';
 // import locales from "./Redux/reducers/locales";
 
+console.log('[file]:import', 'import App from \'./App\';');
+console.log('[file]:import', 'import { changeLang } from \'../Redux/actions\';');
 console.log('[file]', 'src/Components/LocalizationWrapper.js');
 const LocalizationWrapper = ( props ) => {
+    console.log('[file]:const LocalizationWrapper', 'src/Components/LocalizationWrapper.js');
 
     const { locale } = props.match.params;
 

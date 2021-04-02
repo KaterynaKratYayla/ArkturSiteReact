@@ -8,6 +8,7 @@ import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 
 console.log('[file]', 'src/Components/Pages/PageComponents/MiddleMenuComponents.js');
 export const HOTELS = () => {
+    console.log('[file]:export const HOTELS', 'src/Components/Pages/PageComponents/MiddleMenuComponents.js');
 	 return (
         <div>
          <Helmet>
@@ -20,6 +21,7 @@ export const HOTELS = () => {
 }
 
 export const SOCIAL = () => {
+    console.log('[file]:export const SOCIAL', 'src/Components/Pages/PageComponents/MiddleMenuComponents.js');
 
     return (
            <h2> My Home Page</h2>
@@ -27,6 +29,7 @@ export const SOCIAL = () => {
 }
 
 export const LOGO = () => {
+    console.log('[file]:export const LOGO', 'src/Components/Pages/PageComponents/MiddleMenuComponents.js');
 
     return (
          <h2> My Home Page</h2>
