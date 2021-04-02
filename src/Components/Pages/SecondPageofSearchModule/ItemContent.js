@@ -16,13 +16,13 @@ export const ItemContent = ({tour})=>{
   const [result, setResult] = useState('')
   // const [id, setId] = useState([])
 
-const contents = useSelector(state => state.content.content)
-const dispatch = useDispatch();
+// const contents = useSelector(state => state.content.content)
+// const dispatch = useDispatch();
 
-console.log('[CONTENTS]', contents )
+// console.log('[CONTENTS]', contents )
 
   useEffect ( () => {
-    axios.get(`http://smartbooker.biz/interface/content?id=${tour.tour_id}&language=en`)
+    axios.get(`https://hotels-ua.biz/interface/content?id=${tour.tour_id}&language=en`)
       .then( res => {
         setResult(res.data)
         })

@@ -33,7 +33,7 @@ import 'antd/dist/antd.css'
     const { Option } = Select;
 
     useEffect ( () => {
-      axios.get(`http://smartbooker.biz/interface/content?id=${search_data.tour_id}&language=en`)
+      axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=en`)
         .then( res => {
           setDetails(res.data)
           })
@@ -48,7 +48,7 @@ import 'antd/dist/antd.css'
 
 
     useEffect ( () => {
-      axios.get('http://smartbooker.biz/interface/price'
+      axios.get('https://hotels-ua.biz/interface/price'
       , {
       params:{ 
         city_id: search_data.city_id,
@@ -73,7 +73,7 @@ import 'antd/dist/antd.css'
     
      
         useEffect ( () => {         
-            axios.get('http://smartbooker.biz/interface/price'
+            axios.get('https://hotels-ua.biz/interface/price'
             , {
           
             params:{ 

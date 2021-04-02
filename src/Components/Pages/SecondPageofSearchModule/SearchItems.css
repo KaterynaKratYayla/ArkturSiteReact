@@ -64,17 +64,17 @@
   }
 
 
-  /* .onrequestButton{
-    padding: 1vw;
-    width: 13vw;
-    font-size: 15px;
+   .onrequestButton{
+    padding: 0.5vw 1vw;
+    width: 10vw;
+    font-size: 13px;
     font-weight: bold;
-    background-color: orangered;
     color: white;
     border-radius: 0.5vw;
+    background-color: rgb(117, 111, 107);
   }
 
-  .onrequestButton:hover{
+  /* .onrequestButton:hover{
     cursor:pointer;
     background-color: rgb(170,15,15);
     color:rgb(250, 250, 141)

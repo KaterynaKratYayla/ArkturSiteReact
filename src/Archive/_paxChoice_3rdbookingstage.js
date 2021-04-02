@@ -9,68 +9,77 @@ import 'antd/dist/antd.css'
 
 export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
 
-  const [paxAmountNew, setPaxAmountNew] = useState([])
+  const [paxAmount, setPaxAmount] = useState([])
+//   const [paxAmountNew, setPaxAmountNew] = useState([])
   const [counterAdults, setCounterAdults] = useState(1)
   const [counterChild, setCounterChild] = useState(0)
   const [counterInfant, setCounterInfant] = useState(0)
-  // const [hotelMapped, sethotelMapped] = useState([{}])
+
+//   useEffect (() =>{
+//     axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
+//     .then(res => {
+//       let tour_capacity
+//       res.data[0].tariff.forEach((item)=>{
+//              item.rooms.forEach((item1)=>{
+//               tour_capacity = item1.rates.map((item2)=>{
+//                     let min = item2.rate_details.sort((a,b)=>(a.min_adult-b.min_adult))[0].min_adult
+//                     let max = item2.rate_details[0].max_adult
+//                            for(let i=0;i<item2.rate_details.length; i++){
+//                             if(item2.rate_details[i].max_adult>max){
+//                              max=item2.rate_details[i].max_adult
+//                            }
+//                          }
+//                          return (min+max)
+//               }).join('').split('').sort((a,b)=>(a-b))
+//              })       
+//        })
+
+//          setPaxAmountNew(tour_capacity)              
+  
+//     })
+//     .catch(error =>{
+//       setPaxAmountNew(undefined)
+//       console.log('[axios error]: ', error)
+//     });
+//   },[]); 
+
+//   console.log('PAX AMOUNT NEW', paxAmountNew[0], paxAmountNew[paxAmountNew.length-1])
 
   useEffect (() =>{
-    axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
-    .then(res => {
-      let tour_capacity
-      res.data[0].tariff.forEach((item)=>{
-             item.rooms.forEach((item1)=>{
-              tour_capacity = item1.rates.map((item2)=>{
-                    let min = item2.rate_details.sort((a,b)=>(a.min_adult-b.min_adult))[0].min_adult
-                    let max = item2.rate_details[0].max_adult
-                           for(let i=0;i<item2.rate_details.length; i++){
-                            if(item2.rate_details[i].max_adult>max){
-                             max=item2.rate_details[i].max_adult
-                           }
-                         }
-                         return (min+max)
+      axios.get(`https://hotels-ua.biz/interface/sitechoice3?tour_id=${tour_id}&date=${selectionDetails}`)
+      .then(res => {
+  
+       let tour_capacity ;
+       res.data.forEach((item)=>{
+          for(let key in item){
+            if(key === 'tariff'){
+              tour_capacity = item[key].map((item1)=>{
+                let min=item1[0].rate_details[0].sort((a,b)=>(a.min_adult-b.min_adult))[0].min_adult
+                let max = item1[0].rate_details[0][0].max_adult
+                    for(let i=0;i<item1[0].rate_details[0].length; i++){
+                     if(item1[0].rate_details[0][i].max_adult>max){
+                      max=item1[0].rate_details[0][i].max_adult
+                    }
+                  }
+                return (min+max)
               }).join('').split('').sort((a,b)=>(a-b))
-             })       
-       })
+            }
+          }          
+        })
 
-         setPaxAmountNew(tour_capacity)              
-  
-    })
-    .catch(error =>{
-      setPaxAmountNew(undefined)
-      console.log('[axios error]: ', error)
-    });
-  },[]); 
+          setPaxAmount(tour_capacity)
+      })
+      .catch(error =>{
+        setPaxAmount(undefined)
+        console.log('[axios error]: ', error)
+      });
+    },[]); 
 
-  console.log('PAX AMOUNT NEW', paxAmountNew[0], paxAmountNew[paxAmountNew.length-1])
-
-  // useEffect (() =>{
-  //   axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
-  //   .then(res => {
-
-  //     let hotelsData
-  //     res.data[0].tariff.forEach((item)=>{
-  //         item.rooms.forEach((item1)=>{
-  //           hotelsData = item1.rates
-  //         })
-  //     })
-
-  //     sethotelMapped(hotelsData)               
-  
-  //   })
-  //   .catch(error =>{
-  //     sethotelMapped(undefined)
-  //     console.log('[axios error]: ', error)
-  //   });
-  // },[]);     
-
-  // console.log('HOTEL_MAPPED', hotelMapped)
-
-
+  console.log('PAX AMOUNT', paxAmount[0], paxAmount[paxAmount.length-1])
+    
   const add = () =>{
-    counterAdults<paxAmountNew[paxAmountNew.length-1]? setCounterAdults(counterAdults+1)
-      : alert(`This tour allows upto ${paxAmountNew[paxAmountNew.length-1]} Adults`)
+    counterAdults<paxAmount[paxAmount.length-1]? setCounterAdults(counterAdults+1)
+      : alert(`This tour allows upto ${paxAmount[paxAmount.length-1]} Adults`)
   }
   const deduct = () =>{
     counterAdults>0?setCounterAdults(counterAdults-1) : setCounterAdults(0) 

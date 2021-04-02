@@ -81,7 +81,7 @@ console.log('[TEST]', test)
   console.log('[TODAY MONTH]' , currentMonth, '[TODAY DATE]', today, '[TEST_DATE] : ' , search_data.date + '-01')
 
 useEffect ( () => {
-  axios.get('http://smartbooker.biz/interface/price'
+  axios.get('https://hotels-ua.biz/interface/price'
   , {
 
   params:{ 
@@ -125,7 +125,7 @@ useEffect ( () => {
                   <ul className='descriptionUl'>
                     <>
                       {
-                        filtered.length > 0  && filtered ? (filtered.map((tour) => {
+                        filtered.length > 0  && filtered? (filtered.map((tour) => {
                           return (
                             <li key={tour.tour_id} className='descriptionLi'>
                                 <h3 style={{fontSize:'27px',
@@ -141,7 +141,7 @@ useEffect ( () => {
                                  }
                                 
                                  {
-                                  rate && (rate.map((tariff) => {
+                                  rate? (rate.map((tariff) => {
                                    if(tour.tour_id === tariff.tour_id){
                                     return (
                                     <ItemObj
@@ -154,7 +154,9 @@ useEffect ( () => {
                                     )
                                   }
                                  }
-                                ))
+                                  )
+                                ):
+                                (<button className="onrequestButton">Sold out</button>)
                               }
                               </div>
                               </li>
