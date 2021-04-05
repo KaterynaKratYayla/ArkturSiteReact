@@ -7,16 +7,14 @@ import moment from 'moment';
 import { Select } from 'antd';
 import {getContent} from '../../../Redux/actions/content'
 import {ValidateQuery} from '../Helpers/helper'
-import 'antd/dist/antd.css'
-import {PlusOutlined, MinusOutlined, CalendarOutlined} from '@ant-design/icons'
+import 'antd/dist/antd.css';
 import {RateChoiceBlock} from './RateChoiceBlock'
-
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
 import {Moon} from '../../Library/Icons/moon.js'
 import {Sun} from '../../Library/Icons/sun.js'
+import {CalendarOutlined} from '@ant-design/icons'
 
 import './TourDetailsCSS.css'
-import 'antd/dist/antd.css'
 
   export const TourDetails = (props) =>{
     let location = useLocation();

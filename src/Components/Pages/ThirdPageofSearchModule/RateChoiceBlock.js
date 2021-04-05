@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import axios from "axios"
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.css';
+import {useDispatch, useSelector} from 'react-redux'
+import {getPax} from "../../../Redux/actions/paxchoice"
 // import PropTypes from 'prop-types';
 
 // import DropdownButton from 'react-bootstrap/DropdownButton'
@@ -25,18 +27,25 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
       const [open, setOpen] = useState(false)
       const [occupancy, setOccupancy] = useState(false)
       const [choiceDetailsNew, setChoiceDetailsNew] = useState([{}]);
+
+      const AmountPax = useSelector(state => state.paxchoice.pax)
+      const dispatch = useDispatch();
        
       const { Option } = Select;
 
       console.log('tour_id', tour_id)
  
+      // useEffect ( () => {
+      //   dispatch (getPax ());
+      //   },[]);
+
       function handleChange(value) {
         sethotelChoice(value)
       }
 
-      const handleSelected = (value) =>{
-        setOccupancy(!occupancy)
-      }
+      // const handleSelected = (value) =>{
+      //   setOccupancy(!occupancy)
+      // }
  
 
       useEffect (() =>{
@@ -50,6 +59,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
           console.log('[axios error]: ', error)
         });
       },[]);  
+
            
      console.log('CHOICE_DETAILS_NEW', choiceDetailsNew)
 
@@ -96,7 +106,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
                                               }} 
                                       size='medium'
                                       onChange={handleChange}
-                                      onSelect={handleSelected}
+                                      // onSelect={()=>dispatch (getPax ())}
                                       bordered={true}>
                                           { 
                                             choiceDetailsNew[0].hotels && choiceDetailsNew[0].hotels.map((hotel,index)=>{
@@ -118,6 +128,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
                                 hotelChoice={hotelChoice}
                                 selectionDetails={selectionDetails}
                                 tour_id={tour_id}
+                                // AmountPax={AmountPax}
                               /> 
                              
                             

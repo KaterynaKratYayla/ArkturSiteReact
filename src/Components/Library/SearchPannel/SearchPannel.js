@@ -14,7 +14,6 @@ import {Hotels} from '../Icons/hotels'
 import {Tours} from '../Icons/tours'
 
 import {useWindowWidthAndHeight} from '../../Pages/Helpers/WindowResizeHook'
-import 'antd/dist/antd.css'
 import '../../Pages/FirstPageofSearchModule/SwitcherFront.css'
 import './SearchPannelCSS.css'
 
