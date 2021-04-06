@@ -77,6 +77,7 @@ export const RouteSwitcher = () =>{
 			{/* <Route component={NotFound} /> */}
 
 			<Route exact path='/' component={HomePage} />
+			{/*<Route exact path='/en' component={HomePage} />*/}
 			{/*<LocalizationRoute exact path='/' component={HomePage} />*/}
 			<Route exact path='/hotels_in_ukraine' component={SingleHotel}/*{HOTELS}*/ />
 			<Route exact path='/gallery' component={PureContent} />

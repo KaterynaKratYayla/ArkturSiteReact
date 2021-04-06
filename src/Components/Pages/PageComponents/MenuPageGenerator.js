@@ -7,12 +7,17 @@ import '../PageComponents/ResponsiveHeader/header.css'
 // import contentPages from './contentPages.json'
 import {HomePage } from './HomePage'
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
-import {getPurePage} from '../../../Redux/actions'
+import {getPages, getPurePage} from '../../../Redux/actions'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
+import {ContentPages} from "./ContentPages";
 // import Arktur_DMC_logo from '../Library/images/Arktur_DMC_logo.ico'
+
 
 console.log('[file]', 'src/Components/Pages/PageComponents/MenuPageGenerator.js');
 export const PureContent = ({location}) => {
+    const pages = ContentPages();
+    console.log('[MenuPageGenerator]', pages);
+
     console.log('[file]:export const PureContent', 'src/Components/Pages/PageComponents/MenuPageGenerator.js');
 
     // contentPages.forEach(function(item){
