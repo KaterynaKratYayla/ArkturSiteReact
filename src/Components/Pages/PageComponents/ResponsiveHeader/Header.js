@@ -37,6 +37,7 @@ import './header.css'
 import {getPages} from "../../../../Redux/actions";
 // import './ResponsiveCSS.css'
 import config from '../../../../Redux/config';
+import {FormattedMessage, useIntl} from "react-intl";
 
 const defaultLocale = config.defaultLocale;
 const apiUrl = config.apiUrl;
@@ -54,6 +55,7 @@ console.log('[file]:import', 'import { LocalizationNavLink } from \'../../../Lib
 console.log('[file]', 'src/Components/Pages/PageComponents/ResponsiveHeader/Header.js');
 export const TopMenu = () => {
 	console.log('[file]:export const TopMenu', 'src/Components/Pages/PageComponents/ResponsiveHeader/Header.js');
+	const intl = useIntl();
 
 	const { user: currentUser } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
@@ -62,6 +64,7 @@ export const TopMenu = () => {
 	};
 
 	const changeLocale = ( locale ) => {
+		console.log('[changeLocale]', locale);
 		dispatch (changeLang(locale));
 	}
 
@@ -83,9 +86,12 @@ export const TopMenu = () => {
 			(locale) => {
 				{/*TODO: Подправить стили и вынести их в файл css. Пока сделал как получилось, чтобы было видно выбор языков*/}
 				return (
-					<Dropdown.Item style={{backgroundColor: "#2146ce"}} href="#/action-1">
+					<Dropdown.Item style={{backgroundColor: "#2146ce"}} href={`/${locale.name.toLowerCase()}`}>
 						{locale.name}
 					</Dropdown.Item>
+					/*<Dropdown.Item style={{backgroundColor: "#2146ce"}} href="#/action-1">
+						{locale.name}
+					</Dropdown.Item>*/
 				);
 			}
 		);
@@ -142,7 +148,12 @@ export const TopMenu = () => {
 
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
 					{currentUser ? (
-						<LocalizationNavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</LocalizationNavLink>
+						// <NavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</NavLink>
+						/*<LocalizationNavLink to='/' activeClassName='active' onClick={logOut}>LOG OUT</LocalizationNavLink>*/
+						<LocalizationNavLink to='/' activeClassName='active' onClick={logOut}>
+							{/*<FormattedMessage id='topMenu.logout' />*/}
+							{intl.formatMessage({ id: 'topMenu.logout' })}
+						</LocalizationNavLink>
 					) : (
 						<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>
 					)}
@@ -160,7 +171,7 @@ export const TopMenu = () => {
 
 				{/*TODO: Подправить стили и вынести их в файл css. Пока сделал как получилось, чтобы было видно выбор языков*/}
 				<Dropdown className='languageSelector'>
-					<Dropdown.Toggle variant="success" id="dropdown-basic">
+					<Dropdown.Toggle variant="success" id="dropdown-basic" onSelect={changeLocale}>
 						{current_locale.toUpperCase()}
 					</Dropdown.Toggle>
 					<MenuItems />

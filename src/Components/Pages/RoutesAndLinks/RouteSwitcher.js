@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
+import {Route, NavLink, Link, BrowserRouter, Switch, Redirect} from 'react-router-dom'
 import {Router} from 'react-router'
 import {UserOutlined} from '@ant-design/icons'
 
@@ -18,9 +18,11 @@ import {SingleHotel} from '../../Library/HotelsUkraineTestComponents/single_hote
 import { TestCities } from '../../Library/HotelsUkraineTestComponents/test_cities'
 import Login from "../../Library/Authorization/Login";
 import Register from "../../Library/Authorization/Register";
+import config from '../../../Redux/config';
 import { logout } from "../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
 import { HelmetWrapper, LocalizationRoute, LocalizationNavLink, LocalizaitonSwitch } from '../../Library';
 
+const supportedLangs = config.supportedLangs.join('|');
 console.log('[file]:import', 'import {COVID, ABOUT, CONTACTUS, SIGNIN, FORGROUPS} from \'../PageComponents/TopMenuComponents\'');
 console.log('[file]:import', 'import {HomePage} from \'../PageComponents/HomePage\'');
 console.log('[file]:import', 'import { PureContent } from \'../PageComponents/MenuPageGenerator\'');
@@ -76,9 +78,12 @@ export const RouteSwitcher = () =>{
 			<Route exact path='/forgroups' component={FORGROUPS} />
 			{/* <Route component={NotFound} /> */}
 
-			<Route exact path='/' component={HomePage} />
+			{/*<Route exact path={`/:locale(${supportedLangs})`} component={HomePage} />*/}
+			{/*<Route exact path='/' component={HomePage} />*/}
 			{/*<Route exact path='/en' component={HomePage} />*/}
+			{/*<LocalizationRoute exact path='/en' component={HomePage} />*/}
 			{/*<LocalizationRoute exact path='/' component={HomePage} />*/}
+			<LocalizationRoute path='/' component={HomePage} />
 			<Route exact path='/hotels_in_ukraine' component={SingleHotel}/*{HOTELS}*/ />
 			<Route exact path='/gallery' component={PureContent} />
 			<Route exact path='/testcities' component={TestCities} />
@@ -93,6 +98,7 @@ export const RouteSwitcher = () =>{
 			<Route exact to='/Bukovel_Resort' component={PureContent}/>
 			<Route exact to='/Mariupol' component={PureContent}/>
 
+			<Redirect to={config.defaultLocale} />
 		</Switch>
 	)
 }

@@ -18,7 +18,7 @@ const LocalizationWrapper = ( props ) => {
     const { locale } = props.match.params;
 
     const dispatch = useDispatch();
-    const r_locale = useSelector( state => state.localization.locale );
+    const r_locale = useSelector( state => state.localization.current_locale );
 
     useEffect(() => {
         dispatch(
