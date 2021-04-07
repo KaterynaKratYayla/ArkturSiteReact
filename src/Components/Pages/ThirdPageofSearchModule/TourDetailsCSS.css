@@ -13,6 +13,12 @@
     font-weight: bold;
 }
 
+.ChoiceBlockWrapper{
+    display: grid;
+    grid-template-columns:repeat(2,20vw);
+    margin-top: 30px;
+}
+
 .Icons{
     display: flex;
     flex-direction: row;
@@ -48,7 +54,7 @@
 .BookingDetails h3{
     text-align: center;
     color: #005AEB;
-    font-size: 20px;
+    font-size: 22px;
     font-weight: bold;
     font-family: 'Arial Narrow';
 }
@@ -60,22 +66,48 @@
     margin-top: 1vw;
 }
 
-.RateChoiceBlock{
+/* .RateChoiceBlock{
     display: grid;
     grid-template-columns: repeat(2, 20vw);
     margin-top: 1vw;
     padding-left: 3vw;
-}
+} */
 
-.first{
+/* .first{
     margin-top: 1vh;
     margin-bottom: 1vh;
 }
 
 .third{
     order:2;
+} */
+
+.ChoiceBlock{
+    display:flex;
+    flex-direction:column;
+    /* margin-top: 1vw; */
+    padding-left: 3vw;
 }
 
+.ChoiceBlock h4{
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgb(77, 75, 75);
+}
+
+.InclusionsBlock{
+    display:flex;
+    flex-direction:column;
+    margin-left: 40px;
+}
+
+.InclusionsBlock h4{
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgb(77, 75, 75);
+}
 
 .BookingChoice h4{
     font-family: 'Arial Narrow';
@@ -84,12 +116,12 @@
     color: rgb(77, 75, 75);
 }
 
-.RateChoiceBlock h4{
+/* .RateChoiceBlock h4{
     font-family: 'Arial Narrow';
     font-weight: bold;
     font-size: 17px;
     color: rgb(77, 75, 75);
-}
+} */
 
 .PaxChoice{
     display: flex;
@@ -102,6 +134,22 @@
     font-weight: bold;
     font-size: 17px;
     color: rgb(77, 75, 75);
+}
+
+.PaxResult{
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
+    height: 32px;
+    width: 90%;
+    padding: 4px 11px;
+    background-color: white;
+}
+
+.PaxResult h4{
+    color: rgb(16, 45, 105);
+    font-family: 'Arial Narrow';
+    font-size: 16px;
+    cursor: pointer;
 }
 
 .DropdownButton{
@@ -167,7 +215,8 @@
 
 .DateSelection{
     font-size: 14px;
-    color:#001959;
+    color:blue;
+    font-weight: bold;
 }
 
 .Minus{
@@ -190,4 +239,30 @@
    font-weight: bolder;
    width: 40px;
    height: 40px
+}
+.DownOutlined{
+    color: #d9d9d9;
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+.RadioWrapper{
+    margin-top: 20px;
+}
+
+.RadioWrapper h5{
+    color: blue;
+    font-size: 19px;
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    min-width: 35vw;
+    margin-bottom: 15px;
+}
+
+.Radio{
+    margin-top: 20px;
+    min-width:35vw; 
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
 }

@@ -8,7 +8,8 @@ import content from './content';
 import pages from './pages';
 import auth from "./auth";
 import message from "./message";
-import toptours from './toptours'
+import toptours from './toptours';
+import paxchoice from './paxchoice'
 
 
 //{combineReducers} - это библиотека из редакса для комбинации нескольких редьюсеров
@@ -22,6 +23,7 @@ const root_reducer = combineReducers({
 	toptours,
 	auth,
 	message,
+	paxchoice
 });
 
 export default root_reducer;

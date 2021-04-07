@@ -7,16 +7,14 @@ import moment from 'moment';
 import { Select } from 'antd';
 import {getContent} from '../../../Redux/actions/content'
 import {ValidateQuery} from '../Helpers/helper'
-import 'antd/dist/antd.css'
-import {PlusOutlined, MinusOutlined, CalendarOutlined} from '@ant-design/icons'
+import 'antd/dist/antd.css';
 import {RateChoiceBlock} from './RateChoiceBlock'
-
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
 import {Moon} from '../../Library/Icons/moon.js'
 import {Sun} from '../../Library/Icons/sun.js'
+import {CalendarOutlined} from '@ant-design/icons'
 
 import './TourDetailsCSS.css'
-import 'antd/dist/antd.css'
 
   export const TourDetails = (props) =>{
     let location = useLocation();
@@ -33,7 +31,7 @@ import 'antd/dist/antd.css'
     const { Option } = Select;
 
     useEffect ( () => {
-      axios.get(`http://smartbooker.biz/interface/content?id=${search_data.tour_id}&language=en`)
+      axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=en`)
         .then( res => {
           setDetails(res.data)
           })
@@ -48,7 +46,7 @@ import 'antd/dist/antd.css'
 
 
     useEffect ( () => {
-      axios.get('http://smartbooker.biz/interface/price'
+      axios.get('https://hotels-ua.biz/interface/price'
       , {
       params:{ 
         city_id: search_data.city_id,
@@ -73,7 +71,7 @@ import 'antd/dist/antd.css'
     
      
         useEffect ( () => {         
-            axios.get('http://smartbooker.biz/interface/price'
+            axios.get('https://hotels-ua.biz/interface/price'
             , {
           
             params:{ 

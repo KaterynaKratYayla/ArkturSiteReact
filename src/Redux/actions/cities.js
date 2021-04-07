@@ -14,7 +14,7 @@ export const getGeo = () => ( dispatch) => {
 
     dispatch({ type: GET_GEO_REQ });
 
-    axios.get('http://smartbooker.biz/interface/classifier?classifier=contract',  {
+    axios.get('https://hotels-ua.biz/interface/classifier?classifier=contract',  {
     }) 
         .then( res => {
             const newArray1 = res.data.map(function(b){
@@ -52,7 +52,7 @@ export const getGeo = () => ( dispatch) => {
     
         dispatch({ type: GET_GENERAL_GEO_REQ });
     
-        axios.get('http://smartbooker.biz/interface/classifier?classifier=contract',  {
+        axios.get('https://hotels-ua.biz/interface/classifier?classifier=contract',  {
         }) 
             .then( res => {
                       

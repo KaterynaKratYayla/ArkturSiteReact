@@ -18,11 +18,14 @@ moment.locale('uk')
 
 export const ItemObj = ({tariff, searchResults,tour_name}) => {
 
+  // console.log('CHECKING', tariff,searchResults,tour_name)
   const location = useLocation()
   const history = useHistory();
 
   let search_data = ValidateQuery(location)
   console.log('ITEM OBJ LOCATION', location)
+
+  console.log('HISTORY CHECK', history)
 
     //фильтрую объект с тарифами, датами так, чтобы вывести первую встречающую дату каждого вида (к примеру, у меня пришло
     //в массиве 10 раз дата 2021-03-03, 3 раза дата 2021-03-04, 4 раза дата 2021-03-05 - я вывожу новый массив, где будет
@@ -37,7 +40,7 @@ export const ItemObj = ({tariff, searchResults,tour_name}) => {
     const [selection, setSelection] = useState(filtered_tour_dates[0].date);
     const [detailsList, setDetailsList] = useState([]);
     // const [detailsList, setdetailsList] = useState([{}]);
-
+ 
         console.log('[ItemObj TARIFF]', tariff)
         console.log('[ItemObj searchResults]', searchResults)
         // console.log('[ItemObj HISTORY]', history)
@@ -66,7 +69,7 @@ setDetailsList([outline]);
 
   return (
     <div class='div_ItemObj'>
-    
+
       <div className='availablePeriods'>
        <div style={{fontSize: '12px',fontWeight: 'bold'}}>Available dates : </div>
         <select 
@@ -84,6 +87,7 @@ setDetailsList([outline]);
                     </option>
                 )    
               })
+            
             }
           </>
         </select>
