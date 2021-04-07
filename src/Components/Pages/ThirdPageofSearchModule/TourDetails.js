@@ -13,6 +13,7 @@ import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
 import {Moon} from '../../Library/Icons/moon.js'
 import {Sun} from '../../Library/Icons/sun.js'
 import {CalendarOutlined} from '@ant-design/icons'
+import {PaxChoice} from './PaxChoice'
 
 import './TourDetailsCSS.css'
 
@@ -28,6 +29,8 @@ import './TourDetailsCSS.css'
     const [rateDetails, setrateDetails] = useState([{}]);
     const [selectionDetails, setSelection] = useState(search_data.selection)
     const [filteredDetails, setfilteredDetails] = useState([{}])
+    const [open, setOpen] = useState(false)
+
     const { Option } = Select;
 
     useEffect ( () => {
@@ -107,7 +110,9 @@ import './TourDetailsCSS.css'
         setSelection(value)
 }
 
-
+const MakeVisible = () =>{
+  setOpen(!open)
+}
 
       return (
           <div class='TourDetailsWrapper'>
@@ -183,11 +188,19 @@ import './TourDetailsCSS.css'
                      </Select>
                      </div>
                 </div>
-                  <RateChoiceBlock
+                  {/* <RateChoiceBlock
                       selectionDetails={selectionDetails}
-                      tour_id={search_data.tour_id}/>
+                      tour_id={search_data.tour_id}/> */}
+                      <PaxChoice 
+                         selectionDetails={selectionDetails}
+                         tour_id={search_data.tour_id}
+                         MakeVisible = {MakeVisible}
+                         open={open}
+                      />
                </div>
+ 
               </div>
+
             <div>
               {
                 details && details.map((item) =>{

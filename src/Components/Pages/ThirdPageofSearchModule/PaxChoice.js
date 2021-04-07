@@ -5,6 +5,7 @@ import {getPax} from "../../../Redux/actions/paxchoice"
 
 import {PlusOutlined, MinusOutlined, DownOutlined} from '@ant-design/icons'
 import {Pax} from '../../Library/Icons/pax.js'
+import {RateChoiceBlock} from './RateChoiceBlock'
 
 import './TourDetailsCSS.css'
 import 'antd/dist/antd.css';
@@ -15,15 +16,8 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
   const [counterAdults, setCounterAdults] = useState(2)
   const [counterChild, setCounterChild] = useState(0)
   const [counterInfant, setCounterInfant] = useState(0)
-  // const [paxList, setPaxList] = useState({})
-  // const [hotelMapped, sethotelMapped] = useState([{}])
+  const [total, setTotal] = useState({counterAdults,counterChild,counterInfant})
 
-const pax = useSelector(state => state.paxchoice.pax)
-const dispatch = useDispatch();
-
-useEffect ( () => {
-  dispatch (getPax (counterAdults,counterChild,counterInfant));
-  },[]);
 
   useEffect (() =>{
     axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
@@ -55,11 +49,21 @@ useEffect ( () => {
 
   console.log('PAX AMOUNT NEW', paxAmountNew[0], paxAmountNew[paxAmountNew.length-1])
 
-    if( !pax ){
+    if( !paxAmountNew ){
       return <div> Loading...</div>
   }
 
-  console.log('CHECKING' , pax)
+  // console.log('CHECKING' , pax)
+
+  const TotalPax = () =>{
+    const totalpax = {
+      counterAdults: counterAdults,
+      counterChild: counterChild,
+      counterInfant: counterInfant
+    }
+
+    setTotal(totalpax)
+  }
 
   const add = () =>{
     counterAdults<paxAmountNew[paxAmountNew.length-1]? setCounterAdults(counterAdults+1)
@@ -86,13 +90,14 @@ useEffect ( () => {
 
    
      return(
-        <div class='first'>
+        <div style={{marginTop:'3vh'}}>
+            <div class='PaxChoiceWrapper'>
                  <div class='PaxChoice'>
                     <Pax />
                     <h4>Amount of People</h4>
                 </div>
                 <div class='PaxResult' onClick={MakeVisible}>
-                  <h4>
+                  <h4 onClick={TotalPax}>
                       {counterAdults} Adults, {counterChild} Children, {counterInfant} Infants
                       <DownOutlined className='DownOutlined'/>
                   </h4>
@@ -100,7 +105,7 @@ useEffect ( () => {
                   <div class={open === false? 'PopUpNotActive' : 'PopUpActive'}>
                     <div style={{display: 'grid', 
                                  gridTemplateRows: 'repeat(3, 6vh)',
-                                 rowGap: '3vh'}}>
+                                 rowGap: '10px'}}>
                     <div style={{display: 'grid',  
                                  gridTemplateColumns: '5vw 4vw 2vw 4vw 5vw'}}>
                         <h4>Adults</h4>
@@ -133,13 +138,20 @@ useEffect ( () => {
                     </div>
                   </div>
 
-                  <div onClick={() =>dispatch (getPax (counterAdults, counterChild, counterInfant))}>
+                  <div onClick={TotalPax}>
+                  
                     <button class="PopUpButton" onClick={MakeVisible}>
                             Confirm
                     </button>
                   </div>
                         
-                 </div> 
-               </div>
+               </div> 
+            </div>
+  
+                 <RateChoiceBlock 
+                   totalPax={total}
+                   tour_id={tour_id}
+                   selectionDetails={selectionDetails}/>
+      </div>
     )
 } 

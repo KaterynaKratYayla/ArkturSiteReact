@@ -6,16 +6,9 @@ import { Radio } from 'antd';
 
 import {BookButton} from './BookButton'
 
-export const OccupancyRates = ({choiceDetailsNew,hotelChoice,tour_id,selectionDetails}) =>{
+export const OccupancyRates = ({choiceDetailsNew,hotelChoice,tour_id,selectionDetails,totalPax}) =>{
 
    const [hotels, setHotels] = useState([{}])
-
-  //  const paxAmount = useSelector(state => state.paxchoice.pax)
-  //  const dispatch = useDispatch();
-
-  //  useEffect ( () => {
-  //      dispatch (getPax ());
-  //      },[]);
 
     console.log('OCCUPANCY', choiceDetailsNew, hotelChoice)
 
@@ -39,7 +32,7 @@ export const OccupancyRates = ({choiceDetailsNew,hotelChoice,tour_id,selectionDe
 
 
     return(
-     <div> 
+     <div style={{marginTop:'5vh'}}> 
         {       
             choiceDetailsNew[0].mapping && choiceDetailsNew[0].mapping.length>0? choiceDetailsNew[0].mapping.map((item)=>{
                     for(let key in item){
@@ -56,7 +49,11 @@ export const OccupancyRates = ({choiceDetailsNew,hotelChoice,tour_id,selectionDe
                                               hotelChoice={hotelChoice}
                                               room_id={item[key].room_hotel[i]}
                                               hotels={hotels}
-                                              // AmountPax={AmountPax}
+                                              totalPax={totalPax}
+                                              date={selectionDetails}
+                                              tour_id={tour_id}
+                                              mappingItem={item[key]}
+                                              tariff={choiceDetailsNew[0].tariff.map((item)=>item.rooms)}
                                             />
                                          </div>
                                        </div>
@@ -79,11 +76,11 @@ export const OccupancyRates = ({choiceDetailsNew,hotelChoice,tour_id,selectionDe
 }
 
 
-const Ticks = ({hotelChoice,room_id,hotels})=>{
+const Ticks = ({hotelChoice,room_id,hotels,totalPax,date,tour_id,mappingItem,tariff})=>{
 
-    console.log('KEY', hotelChoice, room_id, hotels)
+    console.log('KEY', totalPax)
 
-    const [value, setValue] = useState(1);
+    const [value, setValue] = useState(2);
   
     const onChange = e => {
         console.log('radio checked', e.target.value);
@@ -103,7 +100,7 @@ const Ticks = ({hotelChoice,room_id,hotels})=>{
                                      <>
                                        <h5>
                                                  <span style={{fontSize:'17px',
-                                                              color: 'rgb(16, 45, 105)',
+                                                              color: 'rgb(77, 75, 75)',
                                                               fontStyle:'italic'
 
                                                             }}>with accommodation at hotel 
@@ -112,7 +109,7 @@ const Ticks = ({hotelChoice,room_id,hotels})=>{
                                                   {' '+ hotelChoice + ' '} 
                                                   
                                                   <span style={{fontSize:'17px',
-                                                              color: 'rgb(16, 45, 105)',
+                                                              color: 'rgb(77, 75, 75)',
                                                               fontStyle:'italic'
 
                                                             }}>in a
@@ -128,23 +125,49 @@ const Ticks = ({hotelChoice,room_id,hotels})=>{
 
                                        <h4 style={{marginTop:'2vh', 
                                                    textAlign:'center',
-                                                   textDecoration:'underline'}}>Please choose your occupancy : </h4>
+                                                   textDecoration:'underline',
+                                                   fontSize:'20px',
+                                                   color:'#102D69'}}>Please choose your occupancy : </h4>
                                     </h5>
-                                    
-                                         <Radio.Group onChange={onChange} 
+                                          {     
+                                            totalPax.counterChild===0?(               
+                                              <Radio.Group onChange={onChange} 
                                                       value={value} 
                                                       className='Radio'>
                                                           {
-                                                              OccupancyTypes&&OccupancyTypes.map((item,index)=>{
+                                                              OccupancyTypes&&OccupancyTypes.map((item,index,array)=>{
                                                                 if(index < item3.max_adults_room){
                                                                   return(
-                                                                    <Radio style={{color:'#102D69',fontWeight:'bold'}} value={index}>{item}</Radio>
+                                                                    <Radio style={{color:'#102D69',fontWeight:'bold'}} 
+                                                                           value={index+1}
+                                                                           key={index}>{item}</Radio>
                                                                   )
                                                                 }
-                                                              })
-                                                          }
-                                         </Radio.Group>
 
+                                                                
+                                                              })
+                                                            }                                 
+                                         </Radio.Group>):
+                                         (
+                                          <Radio.Group onChange={onChange} 
+                                          value={value} 
+                                          className='Radio'>
+                                              {
+                                                  OccupancyTypes&&OccupancyTypes.map((item,index,array)=>{
+                                                    if(index < item3.max_adults_room&&index>0){
+                                                      return(
+                                                        <Radio style={{color:'#102D69',fontWeight:'bold'}} 
+                                                               value={index+1}
+                                                               key={index}>{item}</Radio>
+                                                      )
+                                                    }
+
+                                                    
+                                                  })
+                                                }                                 
+                                           </Radio.Group>
+                                         )
+                                      }
                                         <div>
                                            {
                                                                                        
@@ -165,8 +188,14 @@ const Ticks = ({hotelChoice,room_id,hotels})=>{
             }
             <BookButton 
                value={value}
-               room_id={room_id}
-              //  AmountPax={AmountPax}
+               hotel_room_id={room_id}
+               totalPax={totalPax}
+               date={date}
+               tour_id={tour_id}
+               hotelChoice={hotelChoice}
+               tour_room={mappingItem.room_tour}
+               hotel_id={mappingItem.hotel_id}
+               tariff={tariff}
             />
         </div>
     )

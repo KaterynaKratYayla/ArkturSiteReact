@@ -20,11 +20,11 @@ import {Hotels} from '../../Library/Icons/hotels.js'
 
 import './TourDetailsCSS.css'
 
-export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
+export const RateChoiceBlock =({selectionDetails,tour_id,totalPax}) =>{
 
       // const [choiceDetails, setchoiceDetails] = useState([{}]);
       const [hotelChoice, sethotelChoice] = useState('Hotels Available')
-      const [open, setOpen] = useState(false)
+      // const [open, setOpen] = useState(false)
       const [occupancy, setOccupancy] = useState(false)
       const [choiceDetailsNew, setChoiceDetailsNew] = useState([{}]);
 
@@ -63,25 +63,20 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
            
      console.log('CHOICE_DETAILS_NEW', choiceDetailsNew)
 
-   
-      const MakeVisible = () =>{
-        setOpen(!open)
-      }
-
-      // console.log('[SASHAS_OBJECT]' , choiceDetails)
 
       return(
+
         <div class='ChoiceBlockWrapper'>
-            
-          {/* <div class='RateChoiceBlock'> */}
+        
           <div class='ChoiceBlock'>
+
             
-               <PaxChoice 
+               {/* <PaxChoice 
                     MakeVisible = {MakeVisible}
                     open={open}
                     tour_id={tour_id}
                     selectionDetails={selectionDetails}
-                    />
+                    /> */}
                 <>
                   {
                       (choiceDetailsNew[0].hotels && choiceDetailsNew[0].hotels.length>0 && choiceDetailsNew[0].hotels!=='no attached hotels') ? (
@@ -128,7 +123,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id}) =>{
                                 hotelChoice={hotelChoice}
                                 selectionDetails={selectionDetails}
                                 tour_id={tour_id}
-                                // AmountPax={AmountPax}
+                                totalPax={totalPax}
                               /> 
                              
                             
