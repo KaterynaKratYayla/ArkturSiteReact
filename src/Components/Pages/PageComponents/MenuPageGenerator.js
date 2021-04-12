@@ -15,8 +15,8 @@ import {ContentPages} from "./ContentPages";
 
 console.log('[file]', 'src/Components/Pages/PageComponents/MenuPageGenerator.js');
 export const PureContent = ({location}) => {
-    const pages = ContentPages();
-    console.log('[MenuPageGenerator]', pages);
+    /*const pages = ContentPages();
+    console.log('[MenuPageGenerator]', pages);*/
 
     console.log('[file]:export const PureContent', 'src/Components/Pages/PageComponents/MenuPageGenerator.js');
 

@@ -125,16 +125,16 @@ export const TopMenu = () => {
 							return (
 							<li>
 								<div>
-									<LocalizationNavLink to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
+									{/*<LocalizationNavLink to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
 									                 state: {id: page.id}}}
 													 activeClassName='active'>
 														 {page.name.replace(/UPPER/g, " " ).toUpperCase()}
-									</LocalizationNavLink>
-									{/* <NavLink exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
+									</LocalizationNavLink>*/}
+									 <NavLink exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
 									                 state: {id: page.id}}}
 													 activeClassName='active'>
 														 {page.name.replace(/UPPER/g, " " ).toUpperCase()}
-									</NavLink> */}
+									</NavLink>
 								</div>
 						   </li>
 						   )
