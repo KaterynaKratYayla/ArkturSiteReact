@@ -34,7 +34,7 @@ const reducer = ( state = initState, action ) => {
 		case GET_PAGES_ERR:
 			return({
 				...state,
-                pages_errors: [...state.errors, action.error ]
+                pages_errors: [...state.pages_errors, action.error ]
             })
 
             case GET_PurePage_REQ:
@@ -53,7 +53,7 @@ const reducer = ( state = initState, action ) => {
             case GET_PurePage_ERR:
                 return({
                     ...state,
-                    purepage_errors: [...state.errors, action.error ]
+                    purepage_errors: [...state.purepage_errors, action.error ]
                 })
 
         default:

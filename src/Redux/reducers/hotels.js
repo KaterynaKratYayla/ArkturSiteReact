@@ -46,7 +46,7 @@ const reducer = ( state = initState, action ) => {
 		case GET_DESC_ERR:
 			return({
 				...state,
-				parts_errors: [...state.errors, action.error ]
+				parts_errors: [...state.parts_errors, action.error ]
 			})
 
             case GET_EN_DESC_REQ:
@@ -65,7 +65,7 @@ const reducer = ( state = initState, action ) => {
             case GET_EN_DESC_ERR:
                 return({
                     ...state,
-					en_parts_errors: [...state.errors, action.error ]
+					en_parts_errors: [...state.en_parts_errors, action.error ]
                 })
 
                 case GET_DESC_ERR:
@@ -90,7 +90,7 @@ const reducer = ( state = initState, action ) => {
             case GET_IMAGES_ERR:
                 return({
                     ...state,
-					images_errors: [...state.errors, action.error ]
+					images_errors: [...state.images_errors, action.error ]
                 })
 
         default:

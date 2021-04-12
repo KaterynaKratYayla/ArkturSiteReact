@@ -42,7 +42,7 @@ const reducer = ( state = initState, action ) => {
 		case GET_GEO_ERR:
 			return({
 				...state,
-				locs_errors: [...state.errors, action.error ]
+				locs_errors: [...state.locs_errors, action.error ]
             })
 
             case GET_GENERAL_GEO_REQ:
@@ -62,7 +62,7 @@ const reducer = ( state = initState, action ) => {
 		case GET_GENERAL_GEO_ERR:
 			return({
 				...state,
-				gen_locs_errors: [...state.errors, action.error ]
+				gen_locs_errors: [...state.gen_locs_errors, action.error ]
 			})
 
         default:

@@ -45,7 +45,7 @@ const reducer = ( state = initState, action ) => {
 		case GET_TOUR_ERR:
 			return({
 				...state,
-                touritems_errors: [...state.errors, action.error ]
+                touritems_errors: [...state.touritems_errors, action.error ]
 			})
 
             case GET_EN_TOUR_REQ:
@@ -65,7 +65,7 @@ const reducer = ( state = initState, action ) => {
             case GET_EN_TOUR_ERR:
                 return({
                     ...state,
-                    en_touritems_errors: [...state.errors, action.error ]
+                    en_touritems_errors: [...state.en_touritems_errors, action.error ]
                 })
 
 
@@ -85,7 +85,7 @@ const reducer = ( state = initState, action ) => {
             case GET_IMAGES_TOUR_ERR:
                 return({
                     ...state,
-                    images_errors: [...state.errors, action.error ]
+                    images_errors: [...state.images_errors, action.error ]
                 })
 
         case GET_CONTENT_REQ:
@@ -105,7 +105,7 @@ const reducer = ( state = initState, action ) => {
         case GET_CONTENT_ERR:
               return({
                    ...state,
-                  content_errors: [...state.errors, action.error ]
+                  content_errors: [...state.content_errors, action.error ]
                })
 
         default:
