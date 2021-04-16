@@ -12,7 +12,8 @@ import { PureContent } from '../PageComponents/MenuPageGenerator'
 import { Search } from '../FirstPageofSearchModule/SearchFront'
 import { GuestItem } from '../SecondPageofSearchModule/GuestItem'
 import { TourDetails } from '../ThirdPageofSearchModule/TourDetails'
-import {TopToursDetails} from '..//PageComponents/TopToursDetails'
+import {TopToursDetails} from '../PageComponents/TopToursDetails'
+import {BookingForm} from '../BookingForm/BookingForm'
 // import Helmet from '../../Helmet'
 import {SingleHotel} from '../../Library/HotelsUkraineTestComponents/single_hotel'
 import { TestCities } from '../../Library/HotelsUkraineTestComponents/test_cities'
@@ -40,6 +41,7 @@ export const RouteSwitcher = () =>{
 			<Route exact path='/testcities' component={TestCities} /> 
 			<Route exact path='/search_results' component={GuestItem}/>
 			<Route exact path='/tour_details' component={TourDetails} />
+			<Route exact path='/booking_form' component={BookingForm}/>
 			<Route exact path='/toptours' component={TopToursDetails} />
 			<Route exact to='/Kyiv' component={PureContent}/>
 			<Route exact to='/Odesa' component={PureContent}/>

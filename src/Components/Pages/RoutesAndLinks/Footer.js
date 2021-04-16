@@ -18,28 +18,6 @@ export const Footer = () => {
 
 const pages = ContentPages();
 
-//   const pages = useSelector(state => state.pages.pages)
-//   const dispatch = useDispatch();
-//      useEffect ( () => {
-//       dispatch (getPages ());
-//     },[]);
-
-//     if( !pages ){
-//       return <div> Loading...</div>
-//   }
-
-// useEffect (() =>{
-// 	axios.get('http://smartbooker.biz/interface/classifier?classifier=sitepage',  {
-//     }) 
-//         .then( res => {
-                  
-//             console.log('[PAGES_INFO] : ' , res.data)
-//             // dispatch(pagesResponse(res.data))
-// 			setPages(res.data)
-//         })
-        
-//     },[]);
-
   console.log('[PAGES_SMART]', pages)
 
    return (

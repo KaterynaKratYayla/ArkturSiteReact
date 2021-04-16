@@ -13,7 +13,7 @@ export const getPages = () => ( dispatch, getState ) => {
 
     dispatch({ type: GET_PAGES_REQ });
 
-    axios.get('http://smartbooker.biz/interface/classifier?classifier=sitepage',  {
+    axios.get('https://hotels-ua.biz/interface/classifier?classifier=sitepage',  {
     }) 
         .then( res => {
                   
@@ -34,7 +34,7 @@ export const getPurePage = (id) => ( dispatch, getState ) => {
     
      dispatch({ type: GET_PurePage_REQ });
     
-  axios.get(`http://smartbooker.biz/interface/sitepagecontent?id=${id}&language=en`,  {
+  axios.get(`https://hotels-ua.biz/interface/sitepagecontent?id=${id}&language=en`,  {
      }) 
          .then( res => {
                       
