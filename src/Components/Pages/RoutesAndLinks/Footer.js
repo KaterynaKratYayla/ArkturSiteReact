@@ -4,6 +4,7 @@ import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 import {Router} from 'react-router'
 import Helmet from '../../Library/PageDevices/Helmet'
 import {Container, Row, Col} from 'react-bootstrap'
+import axios from "axios"
 
 import {ContentPages} from '../PageComponents/ContentPages'
 import {getPages} from '../../../Redux/actions/pages'
@@ -12,6 +13,8 @@ import { PureContent } from '../PageComponents/MenuPageGenerator'
 
 
 export const Footer = () => {
+
+	// const [pages, setPages] = useState([{}])
 
 const pages = ContentPages();
 
@@ -25,7 +28,19 @@ const pages = ContentPages();
 //       return <div> Loading...</div>
 //   }
 
-  console.log('[PAGES SMART]', pages)
+// useEffect (() =>{
+// 	axios.get('http://smartbooker.biz/interface/classifier?classifier=sitepage',  {
+//     }) 
+//         .then( res => {
+                  
+//             console.log('[PAGES_INFO] : ' , res.data)
+//             // dispatch(pagesResponse(res.data))
+// 			setPages(res.data)
+//         })
+        
+//     },[]);
+
+  console.log('[PAGES_SMART]', pages)
 
    return (
 	// <Container fluid='xs,sm,md,lg,xl'>

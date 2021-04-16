@@ -78,7 +78,7 @@ export const OccupancyRates = ({choiceDetailsNew,hotelChoice,tour_id,selectionDe
 
 const Ticks = ({hotelChoice,room_id,hotels,totalPax,date,tour_id,mappingItem,tariff})=>{
 
-    console.log('KEY', totalPax)
+    console.log('KEY', hotels)
 
     const [value, setValue] = useState(2);
   

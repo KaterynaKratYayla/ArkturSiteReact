@@ -44,7 +44,7 @@ export const TopMenu = () => {
 
 	const pages = ContentPages();
 	console.log('[PAGES HEADER]', pages)
-
+	
 	return (
 	<header class='wrapperMain'>	
 
@@ -68,7 +68,7 @@ export const TopMenu = () => {
 							return (
 							<li>
 								<div>
-									<NavLink exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
+									<NavLink exact to={{pathname: `/${page.name.replace(/upper/, " ").toLowerCase()}`,
 									                 state: {id: page.id}}}
 													 activeClassName='active'>
 														 {page.name.replace(/UPPER/g, " " ).toUpperCase()}
