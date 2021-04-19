@@ -1,4 +1,5 @@
 import React, {useState, useEffect}  from 'react'
+import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {getPax} from "../../../Redux/actions/paxchoice"
 import axios from "axios"
@@ -8,7 +9,10 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
     
 
     console.log("TARIFF",tariff[0],tour_room.id)
-    const [booking,setBooking] = useState({})
+    const [booking,setBooking] = useState([])
+
+    const location = useLocation()
+    const history = useHistory();
 
      const AddToBasket=()=>{
         const newBooking={
@@ -22,8 +26,10 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
             hotel_id: hotel_id
         }
     
-        setBooking(newBooking)
-        console.log('BOOKING',booking)
+        setBooking([newBooking])
+
+        const route_query_form = `${location.search},smart_id=123234`
+        history.push(`/booking_form/${route_query_form}`, [...booking, newBooking])
     }
 
     return(
@@ -55,7 +61,7 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
             }
             </>
            
-              <CartDemo/>
+              {/* <CartDemo/> */}
            
         </div>
     )
