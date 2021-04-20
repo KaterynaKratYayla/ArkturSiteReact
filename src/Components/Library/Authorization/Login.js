@@ -8,7 +8,7 @@ import CheckButton from "react-validation/build/button";
 
 import { login } from "../../../Redux/actions/auth";
 import Register from "./Register";
-import './Loign.css';
+import './Login.css';
 
 const required = (value) => {
   if (!value) {
