@@ -1,32 +1,35 @@
-import React , {useEffect} from 'react'
+import React , {useEffect, useState} from 'react'
+import {useLocation,useHistory} from 'react-router-dom'
 import {Helmet} from 'react-helmet'
 import {useDispatch, useSelector} from 'react-redux'
 import ReactHtmlParser from 'react-html-parser'
+import axios from "axios"
 
-import '../PageComponents/ResponsiveHeader/header.css'
-// import contentPages from './contentPages.json'
 import {HomePage } from './HomePage'
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
 import {getPurePage} from '../../../Redux/actions'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
-// import Arktur_DMC_logo from '../Library/images/Arktur_DMC_logo.ico'
+import {ValidateQuery} from '../Helpers/helper'
 
-export const PureContent = ({location}) => {
+import '../PageComponents/ResponsiveHeader/header.css'
 
-    // contentPages.forEach(function(item){
-        // console.log('[CONTENT_PAGES] : ' , location)
-    // })
 
-    // console.log('[LOCATION]', location, location.state.id)
+export const PureContent = () => {
+
+  const location = useLocation(); 
+
+  let search_data = ValidateQuery(location)
+
+  console.log('LOCATION',location,search_data.id)
 
     const purePage = useSelector(state => state.pages.purepage)
     const dispatch = useDispatch();
 
     useEffect ( () => {
-      dispatch (getPurePage (location.state.id));
-    },[location.state.id]);
+      dispatch (getPurePage (search_data.id));
+    },[]);
 
-    console.log('[PURE PAGE]', purePage)
+      console.log('[PURE_PAGE]', purePage)
 
     if( !purePage ){
       return <div> Loading...</div>
@@ -60,7 +63,7 @@ export const PureContent = ({location}) => {
 
          })
 
-       }
+       } 
 
     </div>
     ) 

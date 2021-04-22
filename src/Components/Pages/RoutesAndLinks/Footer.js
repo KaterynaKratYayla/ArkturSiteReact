@@ -6,116 +6,93 @@ import Helmet from '../../Library/PageDevices/Helmet'
 import {Container, Row, Col} from 'react-bootstrap'
 import axios from "axios"
 
-import {ContentPages} from '../PageComponents/ContentPages'
+import {ContentPages,SitePageType,SitePageRegion} from '../PageComponents/ContentPages'
 import {getPages} from '../../../Redux/actions/pages'
 import './footer.css'
 import { PureContent } from '../PageComponents/MenuPageGenerator'
 
-
 export const Footer = () => {
 
-	// const [pages, setPages] = useState([{}])
+const sitePageType = SitePageType();
+const sitePageRegion = SitePageRegion();
 
-const pages = ContentPages();
-
-  console.log('[PAGES_SMART]', pages)
+  console.log('[PAGES_SMART]', sitePageType, sitePageRegion)
 
    return (
-	// <Container fluid='xs,sm,md,lg,xl'>
-	 <footer
-	 		//  class={sm? 'footerSM' : md? 'footer': 'footer'}
-			class='footer'>
-
-		 <div class="footerLinks">
+	
+	 <footer class='footer'>
 		 <Container fluid='xs,sm,md,lg,xl'>
           <Row xs={1} sm={1} md={2} lg={3}>
-		   <Col Col lg={true}>
-		    <div class='Hotels'>	
-		   	
-		  	 <h3>CITY HOTELS</h3>
-			    <ul>
-				
-					  {
-						pages && pages.map((page)=>{
-						  if(page.name.includes('Hotels')){	
-							return (
-							 <li>
-								<div>
-									<Link exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
-									                 state: {id: page.id}}}>{page.name}</Link> 
-								</div>
-						    </li>
-						   
-						   )
-						  }
-						})
-					  }
-				</ul>
-			  
-			 </div>
-			 </Col>
-			 <Col lg={true}> 
-			<div class='SPA'>
-			  <h3>RESORTS AND MEDICAL SPA DESTINATIONS</h3>
-			    <ul>
-					  {
-						pages && pages.map((page)=>{
-						  if(page.name.includes('SPA')){	
-							return (
-							<li>
-								<div>
-									<Link exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
-									                 state: {id: page.id}}}>{page.name.replace(/SPA/g, " " )}
-									</Link> 
-								</div>
-						   </li>
-						   )
-						  }
-						})
-					  }
-				</ul>
-			  </div>
-			  </Col> 
-			  <Col lg={true}> 
-			 <div class='INFO'>
-			   <h3>INFORMATION</h3>
-			    <ul>
-					  {
-						pages && pages.map((page)=>{
-						  if(page.name.includes('INFO')){	
-							return (
-							<li key={page.id}>
-								<div>
-									<Link exact to={{pathname: `/${page.name.replace(/ /g, "_").toLowerCase()}`,
-									                 state: {id: page.id}}}>{page.name.replace(/INFO/g, " " )}
-									</Link> 
-								</div>
-						   </li>
-						   )
-						  }
-						})
-					  }
-					</ul>
-			  	  </div>
-			  	 </Col> 
-			    </Row> 
+		   {/* <Col Col lg={true}> */} 
+
+						    <>
+							  { 
+								sitePageType&&sitePageType.map((item)=>{
+									return (
+									  sitePageRegion&&sitePageRegion.map((item1)=>{
+										if(item.sitepage_region_id === item1.sitepage_region_id){
+											return(
+											  <Col Col lg={true}>
+												<div class='footerLinks'>
+													<h3>{item.sitepage_type_name}</h3>
+													<SitePagesList 
+													 sitepage_type={item}/>
+												</div> 
+											  </Col>  
+						 					)
+						   				  }
+										})
+									  )									
+									})
+					   			}
+							</>		 
+
+					{/* {/* </Col>   */}
+	     		  </Row> 
 			  </Container>
-			 </div>
-			 {/* </Container> */}
-			 <Switch>
-				  <Route path='/helmet' component={Helmet} />
-					{
-						pages && pages.map((page) => {
-							<Route exact path={`/${page.name.replace(/ /g, "_").toLowerCase()}`}							 
-							component={PureContent} />
-								{/* <PureContent id={page.id}/> */}
-							// </Route>
-						})
-					}
-			 </Switch>		
-		 </footer>
-	//   </Container>
+			 </footer>
+	
    )
  }
 
 
+const SitePagesList = ({sitepage_type}) =>{
+  const pages = ContentPages();
+	return(
+		<>
+		  <ul>
+			{
+				pages.length>0?pages.map((page)=>{
+				 if(sitepage_type.sitepage_type_id === page.sitepage_type_id){
+					return(
+						<li key={page.id}>
+							<div>
+							     	{/* <NavLink exact to={{pathname: `/${page.title.map((item1)=>item1.text)}/?id=${page.id}`,
+							              state: {id: page.id}}}>{page.title.map((item1)=>item1.text)}</NavLink>  */}
+										<Link to={`/${page.title.map((item1)=>item1.text)}/?id=${page.id}`}>
+										{page.title.map((item1)=>item1.text)}</Link> 
+							</div>
+						</li>
+					)
+				 }
+				}):(null)
+			}	
+			</ul>
+			{/* <Switch>
+	 			<Route path='/helmet' component={Helmet} />
+ 					{
+ 						pages.length>0?pages.map((page)=>{
+ 				 			if(sitepage_type.sitepage_type_id === page.sitepage_type_id){
+ 							 return(
+ 								<Route exact path={`/${page.title.map((item1)=>item1.text)}`}
+								 	   component={PureContent}/>
+		 					)
+ 						 }
+ 						}):(null)
+ 					}	
+ 			</Switch> */}
+			
+		</>
+	
+	)
+}

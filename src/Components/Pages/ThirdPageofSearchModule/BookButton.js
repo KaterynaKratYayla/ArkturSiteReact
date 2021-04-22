@@ -8,7 +8,7 @@ import {CartDemo} from '../Cart/Cart'
 export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoice,tour_room,hotel_id,tariff}) =>{
     
 
-    console.log("TARIFF",tariff[0],tour_room.id)
+    console.log("TARIFF",tariff[0],tour_room)
     const [booking,setBooking] = useState([])
 
     const location = useLocation()
@@ -46,10 +46,24 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
                           if(totalPax.counterAdults >= item3.min_adult&&totalPax.counterAdults<=item3.max_adult){
                            return(
                             <div class='WrapperAddToBasket'>
-                                <h4>{
-                                // item1.tariff_name.match(/\=.+/)[0].replace('=','')+
-                                item.room_name +', ' + item1.tariff_name + ', ' +item3.sale + ' UAH'}</h4>
-                                <button class='AddToBasketButton' onClick={AddToBasket}>Add to Basket</button>
+                              <div style={{display:'block',width:'25vw'}}>
+                                     <h4>
+                                            <span style={{color:'blue'}}>{'TOTAL tour cost '}</span>
+                                                                with {item1.tariff_name} :
+                                            <span style={{color:'blue',fontWeight:'bold', fontSize:'22px'}}>
+                                                {Math.ceil(item3.sale*totalPax.counterAdults)} UAH
+                                            </span>
+                                     </h4>
+                                     <span style={{fontSize:'12px',
+                                                  color:'grey',
+                                                  fontWeight:'bold',
+                                                  fontFamily:'Arial',
+                                                  lineHeight:'8px'
+                                                  }}>
+                                                      {'Cost Includes: ' + item.room_name + ' ' + item3.sale + 'UAH tour per person' + ' x ' + totalPax.counterAdults + ' adults'}
+                                    </span>
+                                </div>
+                               <button class='AddToBasketButton' onClick={AddToBasket}>Book Now</button>
                             </div>
                         )
                        }
