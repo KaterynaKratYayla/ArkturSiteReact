@@ -8,6 +8,8 @@ import CheckButton from "react-validation/build/button";
 
 import { login } from "../../../Redux/actions/auth";
 import Register from "./Register";
+import './Login.css';
+import './Custom.css';
 
 const required = (value) => {
   if (!value) {
@@ -72,7 +74,7 @@ const Login = (props) => {
   return (
       <div className="container mt-3">
         <div className="col-md-12">
-          <div className="card card-container">
+          <div className="card card-container" style={{backgroundColor: '#f7f7f7'}}>
             <img
               src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
               alt="profile-img"
@@ -81,7 +83,7 @@ const Login = (props) => {
 
             <Form onSubmit={handleLogin} ref={form}>
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Username <sup>*</sup></label>
                 <Input
                   type="text"
                   className="form-control"
@@ -93,7 +95,7 @@ const Login = (props) => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Password <sup>*</sup></label>
                 <Input
                   type="password"
                   className="form-control"

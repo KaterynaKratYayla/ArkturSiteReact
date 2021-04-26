@@ -129,7 +129,7 @@ const Register = () => {
 
   return (
     <div className="col-md-12">
-      <div className="card card-container">
+      <div className="card card-container" style={{backgroundColor: '#f7f7f7'}}>
         <img
           src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
           alt="profile-img"
@@ -140,7 +140,7 @@ const Register = () => {
           {!successful && (
             <div>
               <div className="form-group">
-                <label htmlFor="firstName">First name</label>
+                <label htmlFor="firstName">First name <sup>*</sup></label>
                 <Input
                     type="text"
                     className="form-control"
@@ -152,7 +152,7 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="lastName">Last name</label>
+                <label htmlFor="lastName">Last name <sup>*</sup></label>
                 <Input
                     type="text"
                     className="form-control"
@@ -164,7 +164,7 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="username">Username</label>
+                <label htmlFor="username">Username <sup>*</sup></label>
                 <Input
                   type="text"
                   className="form-control"
@@ -176,7 +176,7 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email <sup>*</sup></label>
                 <Input
                   type="text"
                   className="form-control"
@@ -188,7 +188,7 @@ const Register = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Password <sup>*</sup></label>
                 <Input
                   type="password"
                   className="form-control"
