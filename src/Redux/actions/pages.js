@@ -70,8 +70,8 @@ export const getPurePage = (id) => ( dispatch, getState ) => {
                 }).map((item1)=>{
                     return {"sitepage_type_id": item1.sitepage_type_id,
                             "sitepage_type_name":item1.sitepage_type_name,
-                            "sitepage_region_id": item1.sitepage_type_id,
-                            "sitepage_region_name": item1.sitepage_type_id,}
+                            "sitepage_region_id": item1.sitepage_region_id,
+                            "sitepage_region_name": item1.sitepage_region_name,}
                 })
 
                 dispatch(sitePageTypeResponse(arraynew))
