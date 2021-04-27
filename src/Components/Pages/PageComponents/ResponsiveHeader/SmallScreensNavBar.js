@@ -4,12 +4,14 @@ import { NavComponent } from './NavComponent';
 import {MenuBar} from '../../../Library/Icons/menubar'
 import {MenuClose} from '../../../Library/Icons/menuclose'
 
-const SmallScreensNavBar = ({pages,width}) =>{
+const SmallScreensNavBar = ({width,sitepage_type}) =>{
+    console.log("SMALL",sitepage_type)
     // declare 'translate' as a state variable
-    console.log('PAGES', pages)
+    // console.log('PAGES', pages)
     let [translate, setTranslate ] = useState(false);
     return(
         <div> 
+            
              <button className="hamburger-btn"
                      onClick= {()=> setTranslate(!translate)}>  {/* toggle translate */}
                   {/* change the btn text based on whether translate is true or false */} 
@@ -30,7 +32,8 @@ const SmallScreensNavBar = ({pages,width}) =>{
                 <NavComponent
                     // navClass="nav-small"
                     linkClassName = "nav-small-link"
-                    pages={pages}
+                    // pages={pages}
+                    sitepage_type={sitepage_type}
                     width={width}
                     onClick = {()=>setTranslate(true)}  //set translate to true to hide the sidebar list
                 />

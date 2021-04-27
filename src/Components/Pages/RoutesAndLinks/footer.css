@@ -1,13 +1,9 @@
 .footer{
     width: 100% ;
-    /* background-color: #001959; */
     background-color: #003057;
     min-height: 25vh;
     padding-bottom: 3vw;
-    /* padding-left: 50vw; */
     bottom: 0;
-    /* text-align: center; */
-    /* right: 0; */
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -54,22 +50,13 @@
 }
 
 .footerLinks{
-    padding-top: 2vw;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    margin-top: 2vw;
     /* min-width: 110vw; */
 }
 
 .footerLinks h3{
     padding-bottom: 1.5vw;
 }
-
-.Hotels .SPA .INFO{
-    display: flex;
-    flex-direction: column;
-}
-
 
 .footer h3{
     color: white;

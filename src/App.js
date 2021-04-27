@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import {TopMenu} from './Components/Pages/PageComponents/ResponsiveHeader/Header'
-import {Footer} from './Components/Pages/RoutesAndLinks/Footer'
+import {Footer,MenuLinks} from './Components/Pages/RoutesAndLinks/Footer'
 import './App.css';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import {ScrollToTop} from './Components/Library/PageDevices/ScrollToTop';
-import {RouteSwitcher} from './Components/Pages/PageComponents/ResponsiveHeader/Header'
+import {RouteSwitcher} from './Components/Pages/RoutesAndLinks/RouteSwitcher'
 // import AxiosDemo from './Redux/components/pages/Axios';
 import Login from "./Components/Library/Authorization/Login";
 import Register from "./Components/Library/Authorization/Register";

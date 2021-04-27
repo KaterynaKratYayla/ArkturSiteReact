@@ -1,5 +1,7 @@
 import { GET_PAGES_REQ, GET_PAGES_RES , GET_PAGES_ERR } from '../constants';
 import { GET_PurePage_REQ, GET_PurePage_RES , GET_PurePage_ERR } from '../constants';
+import { GET_PageTYPE_REQ, GET_PageTYPE_RES, GET_PageTYPE_ERR} from '../constants';
+import { GET_PageREGION_REQ, GET_PageREGION_RES, GET_PageREGION_ERR} from '../constants';
 
 const initState = {
 	pages: [],
@@ -8,6 +10,14 @@ const initState = {
 
     purepage: [],
     purepage_loaded: false,
+    errors: [],
+
+    pageType: [],
+    pageType_loaded: false,
+    errors: [],
+
+    pageRegion: [],
+    pageRegion_loaded: false,
     errors: []
 }
 
@@ -52,6 +62,44 @@ const reducer = ( state = initState, action ) => {
                     ...state,
                     errors: [...state.errors, action.error ]
                 })
+
+                case GET_PageTYPE_REQ:
+                    return({
+                        ...state,
+                        pageType_loaded: false
+                     })
+    
+                case GET_PageTYPE_RES:
+                    return({
+                        ...state,
+                        pageType_loaded: true,
+                        pageType: action.payload
+                      })
+    
+                case GET_PageTYPE_ERR:
+                    return({
+                        ...state,
+                        errors: [...state.errors, action.error ]
+                      })
+
+                      case GET_PageREGION_REQ:
+                        return({
+                            ...state,
+                            pageRegion_loaded: false
+                         })
+        
+                    case GET_PageREGION_RES:
+                        return({
+                            ...state,
+                            pageRegion_loaded: true,
+                            pageRegion: action.payload
+                          })
+        
+                    case GET_PageREGION_ERR:
+                        return({
+                            ...state,
+                            errors: [...state.errors, action.error ]
+                          })
             
         default:
 			return state;

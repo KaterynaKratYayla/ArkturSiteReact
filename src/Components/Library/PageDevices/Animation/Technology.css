@@ -1,0 +1,166 @@
+#emptyBlock{
+    /* display: flex; */
+    /* position: relative; */
+    max-width: 100%;
+    min-height: 21vw;
+    background-size: cover;
+    background: /*linear-gradient(50deg,rgba(163,204,236, 0.005), rgb(189,216,239)),*/
+    url("./slider images/shutterstock_739595833-streched.jpg");
+}
+
+/* .animatedEl{ */
+
+/* *{box-sizing:border-box} */
+
+@keyframes loader {
+  0% {transform:rotate(-45deg)}
+  50%{transform:rotate(-135deg)}
+  100%{transform:rotate(-225deg)}}
+@keyframes span-1 {
+  0% {transform:translate(0)}
+  50%{transform:translate(-30px, 0);border-color:#470510}
+  100%{transform:translate(0);}}
+@keyframes span-2 {
+  0%{transform:translate(0)}
+  50%{transform:translate(30px, 0);border-color:#751a27}
+  100%{transform:translate(0);}}
+@keyframes span-3 {
+  0%{transform:translate(0)}
+  50%{transform:translate(0, -30px);border-color:#b14153}
+  100%{transform:translate(0);}}
+@keyframes span-4 {
+  0%{transform:translate(0)}
+  50%{transform:translate(0, 30px);border-color:#da7e8d}
+  100%{transform:translate(0);}}
+  .loader {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    animation: loader 15s alternate infinite ease-in-out;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .loader span{
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 4px solid #0B1B48;
+    border-radius: 10px;
+  }
+  .loader span:nth-child(1) {
+    animation: span-1 15s ease-in-out infinite;
+  }
+  .loader span:nth-child(2) {
+    animation: span-2 15s ease-in-out infinite;
+  }
+  .loader span:nth-child(3) {
+    animation: span-3 15s ease-in-out infinite;
+  }
+  .loader span:nth-child(4) {
+    animation: span-4 15s ease-in-out infinite;
+  }
+
+/* NEXT */
+@keyframes loader1 {
+    100% {transform:rotate(-45deg)}
+    50%{transform:rotate(-135deg)}
+    0%{transform:rotate(-225deg)}}
+  @keyframes div-1 {
+    100% {transform:translate(0);}
+    50%{transform:translate(-50px, 0);border-color: rgb(39, 39, 41)}
+    0%{transform:translate(0);}}
+  @keyframes div-2 {
+    100%{transform:translate(0);}
+    50%{transform:translate(50px, 0);border-color: rgb(102, 104, 101)}
+    0%{transform:translate(0);}}
+  @keyframes div-3 {
+    100%{transform:translate(0);}
+    50%{transform:translate(0, -50px);border-color:rgb(157, 161, 158)}
+    0%{transform:translate(0);}}
+  @keyframes div-4 {
+    100%{transform:translate(0);}
+    50%{transform:translate(0, 50px);border-color:rgb(66, 68, 67)}
+    0%{transform:translate(0);}}
+  .loader1 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation: loader1 15s alternate infinite ease-in-out;
+    margin-left: 20vw;
+    /* margin-right: auto; */
+  }
+  .loader1 div {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 4px solid #0B1B48;
+    border-radius: 10px;
+  }
+  .loader1 div:nth-child(1) {
+    animation: div-1 15s ease-in-out infinite;
+  }
+  .loader1 div:nth-child(2) {
+    animation: div-2 15s ease-in-out infinite;
+  }
+  .loader1 div:nth-child(3) {
+    animation: div-3 15s ease-in-out infinite;
+  }
+  .loader1 div:nth-child(4) {
+    animation: div-4 15s ease-in-out infinite;
+  }
+
+  /* second NEXT */
+@keyframes loader2 {
+    100% {transform:rotate(-45deg)}
+    50%{transform:rotate(-135deg)}
+    0%{transform:rotate(-225deg)}}
+  @keyframes p-1 {
+    100% {transform:translate(0);}
+    50%{transform:translate(-50px, 0);border-color: rgb(4, 4, 83)}
+    0%{transform:translate(0);}}
+  @keyframes p-2 {
+    100%{transform:translate(0);}
+    50%{transform:translate(50px, 0);border-color: rgb(32, 11, 124)}
+    0%{transform:translate(0);}}
+  @keyframes p-3 {
+    100%{transform:translate(0);}
+    50%{transform:translate(0, -50px);border-color:rgb(46, 21, 182)}
+    0%{transform:translate(0);}}
+  @keyframes p-4 {
+    100%{transform:translate(0);}
+    50%{transform:translate(0, 50px);border-color:rgb(45, 98, 243)}
+    0%{transform:translate(0);}}
+  .loader2 {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation: loader2 15s alternate infinite ease-in-out;
+    /* margin-bottom: auto; */
+    /* margin-top: auto; */
+    margin-left: 70vw;
+  }
+    .loader2 p {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border: 4px solid #0B1B48;
+    border-radius: 10px;
+  }
+  .loader2 p:nth-child(1) {
+    animation: p-1 15s ease-in-out infinite;
+  }
+  .loader2 p:nth-child(2) {
+    animation: p-2 15s ease-in-out infinite;
+  }
+  .loader2 p:nth-child(3) {
+    animation: p-3 15s ease-in-out infinite;
+  }
+  .loader2 p:nth-child(4) {
+    animation: p-4 15s ease-in-out infinite;
+  } 

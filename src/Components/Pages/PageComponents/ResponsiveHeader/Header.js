@@ -4,7 +4,9 @@ import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 import {Router} from 'react-router'
 import {UserOutlined} from '@ant-design/icons'
 
+import {NavComponent} from './NavComponent'
 import {RouteSwitcher} from '../../RoutesAndLinks/RouteSwitcher'
+import {SitePagesList} from '../../RoutesAndLinks/SitePagesList'
 import {COVID, ABOUT, CONTACTUS, SIGNIN, FORGROUPS} from '../TopMenuComponents'
 import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../MiddleMenuComponents' 
 import {HomePage} from '../HomePage'
@@ -17,9 +19,9 @@ import {TopToursDetails} from '../TopToursDetails'
 // import Helmet from '../../Helmet'
 
 import {HomeOutlined} from '@ant-design/icons'
-import {ContentPages} from '../ContentPages'
-import {SingleHotel} from '../../../Library/HotelsUkraineTestComponents/single_hotel'
-import { TestCities } from '../../../Library/HotelsUkraineTestComponents/test_cities'
+import {ContentPages,SitePageType,SitePageRegion} from '../ContentPages'
+// import {SingleHotel} from '../../../Library/HotelsUkraineTestComponents/single_hotel'
+// import { TestCities } from '../../../Library/HotelsUkraineTestComponents/test_cities'
 import {LargeScreensNavBar} from './LargeScreensNavBar'
 import SmallScreensNavBar from './SmallScreensNavBar'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
@@ -45,6 +47,9 @@ export const TopMenu = () => {
 	const pages = ContentPages();
 	console.log('[PAGES HEADER]', pages)
 	
+	const sitePageType = SitePageType();
+	const sitePageRegion = SitePageRegion();
+
 	return (
 	<header class='wrapperMain'>	
 
@@ -61,7 +66,30 @@ export const TopMenu = () => {
 						  </NavLink>
 						) : true}
 
-				    <ul class='Upper'>
+							<>
+							  { 
+								sitePageType&&sitePageType.map((item)=>{
+									return (
+									  sitePageRegion&&sitePageRegion.map((item1)=>{
+										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Header") && item.sitepage_type_name.includes("UPPER")){
+											return(
+												<div>
+													{/* <h3>{item.sitepage_type_name}</h3> */}
+													<NavComponent 
+													 sitepage_type={item}
+													 linkClassName={"Upper"}/>
+												</div> 
+						 					)
+						   				  }
+										})
+									  )									
+									})
+					   			}
+							</>		 
+
+
+
+				    {/* <ul class='Upper'>
 					  {
 						pages && pages.map((page)=>{
 						  if(page.name.includes('UPPER')){	
@@ -79,7 +107,7 @@ export const TopMenu = () => {
 						  }
 						})
 					  }
-				</ul>
+				</ul> */}
 
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
 					{currentUser ? (
@@ -103,19 +131,38 @@ export const TopMenu = () => {
 					 	alt='Arktur DMC logo'/>
 			   </NavLink>	 
 
-			 { width > 1000 ?
+
+			   <>
+							  { 
+								sitePageType&&sitePageType.map((item)=>{
+									return (
+									  sitePageRegion&&sitePageRegion.map((item1)=>{
+										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Header") && item.sitepage_type_name.includes("MIDDLE")){
+											return(
+												<>
+												 { width > 1000 ?
 				
-                <LargeScreensNavBar 
-						pages={pages}/>
-                :
-                <SmallScreensNavBar 
-						navClass="nav-small"
-                        linkClassName = "nav-small-link"
-						pages={pages}
-						width={width}/>
-                } 
-							    
-			    {/* </div>  */}
+													<LargeScreensNavBar 
+															// pages={pages}/>
+															sitepage_type={item}/>
+													:
+													<SmallScreensNavBar 
+															navClass="nav-small"
+															linkClassName = "nav-small-link"
+															// pages={pages}
+															sitepage_type={item}
+															width={width}/>
+													} 
+												</>
+						 					)
+						   				  }
+										})
+									  )									
+									})
+					   			}
+							</>	
+
+	
 			  </div>					
 
 		   <RouteSwitcher />
