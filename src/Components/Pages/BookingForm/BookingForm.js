@@ -2,6 +2,7 @@
 import React from 'react'
 import {useHistory , useLocation} from "react-router-dom"
 
+import {ValidateQuery} from '../Helpers/helper'
 import {ClientDetails} from './ClientDetails'
 import {CartDetails} from './CartDetails'
 
@@ -11,8 +12,11 @@ export const BookingForm = (props) =>{
     const location = useLocation()
     const history = useHistory();
 
-    console.log('HISTORY',history)
-    console.log('LOCATION', location.state)
+    // console.log('HISTORY',history)
+    // console.log('LOCATION', location.state)
+
+    let search_data = ValidateQuery(location)
+    console.log('GUEST ITEM LOCATION', search_data)
 
     return(
       <div class='FormWrapper'>
@@ -42,7 +46,7 @@ export const BookingForm = (props) =>{
         </h3>
           <div class='RegWrapper'>
             <ClientDetails />
-            <CartDetails />
+            <CartDetails cart={search_data}/>
           </div>
       </div>
     )

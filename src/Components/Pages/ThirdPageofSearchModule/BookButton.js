@@ -10,25 +10,31 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
 
     console.log("TARIFF",tariff[0],tour_room)
     const [booking,setBooking] = useState([])
+    const [rateTotal, setrateTotal] = useState()
+    const [tourTariffId, setTourTariffId] = useState()
 
     const location = useLocation()
     const history = useHistory();
 
-     const AddToBasket=()=>{
+     const AddToBasket=(param)=>(e)=>{
         const newBooking={
             tour_id:tour_id,
+            tour_tariff_id:e.target.value,
             tourDate: date,
             totalPax: totalPax,
             paxPerRoom: value,
             hotel_room_id: hotel_room_id,
             hotelName: hotelChoice,
             tour_room_id: tour_room.id,
-            hotel_id: hotel_id
-        }
-    
+            hotel_id: hotel_id,
+            amount:param
+            }
+
+        console.log('ETARGET',e.target.value)
         setBooking([newBooking])
 
-        const route_query_form = `${location.search},smart_id=123234`
+        // const route_query_form = `${location.search},smart_id=123234`
+        const route_query_form = `?start=${date},tour_id=${tour_id},tour_tariff_id=${e.target.value},tour_room_id=${tour_room.id},hotel_id=${hotel_id},hotel_room_id=${hotel_room_id},adults=${totalPax.counterAdults},children=${totalPax.counterChild},infant=${totalPax.counterInfant},htlName=${hotelChoice},amount=${param}`
         history.push(`/booking_form/${route_query_form}`, [...booking, newBooking])
     }
 
@@ -63,7 +69,7 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
                                                       {'Cost Includes: ' + item.room_name + ' ' + item3.sale + 'UAH tour per person' + ' x ' + totalPax.counterAdults + ' adults'}
                                     </span>
                                 </div>
-                               <button class='AddToBasketButton' onClick={AddToBasket}>Book Now</button>
+                               <button class='AddToBasketButton' value={item1.smart_tariff_type_id} onClick={AddToBasket(Math.ceil(item3.sale*totalPax.counterAdults))}>Book Now</button>
                             </div>
                         )
                        }
