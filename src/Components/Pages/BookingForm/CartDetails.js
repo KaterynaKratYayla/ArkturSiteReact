@@ -40,13 +40,11 @@ export const CartDetails = ({cart}) =>{
         // .then(response => setSendCart(response.data));
 
     useEffect(() => {
-        const AddToCartRQ = {
-            "title": {
+        const ActionRQ = {
                 "username":"Serodynringa",
                 "password":"%tmMJZbABm6cB@tY",
                 "user_id" :1426,
                 "action":"AddToCartRQ",
-
                 "data" :
                     {
                         "bookings":
@@ -69,15 +67,14 @@ export const CartDetails = ({cart}) =>{
                                 }
                             ]
                     }
-            }
-        };
+            };
 
         // const headers = {"username":"Serodynringa",
         //     "password":"%tmMJZbABm6cB@tY",
         //     "user_id" :1426,
         //     "action":"AddToCartRQ"}
 
-        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({AddToCartRQ}))
+        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
             .then(response => setSendCart(response.data));
 
         // axios.post('http://smartbooker.biz/interface/xmlsubj/', AddToCartRQ,{headers})
