@@ -25,8 +25,8 @@ const required = (value) => {
 captchaSettings.set({
   captchaEndpoint:
   // 'https://your-app-backend-hostname.your-domain.com/botdetect-captcha-lib/simple-botdetect.php'
-      'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php'
-      // 'http://captcha-test/simple-botdetect.php'
+  //     'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php'
+      'http://captcha-test/simple-botdetect.php'
 });
 
 const Login = (props) => {
@@ -56,7 +56,7 @@ const Login = (props) => {
   const handleLogin = (e) => {
     e.preventDefault();
 
-    setLoading(true);
+    // setLoading(true);
 
     form.current.validateAll();
 
@@ -87,33 +87,34 @@ const Login = (props) => {
         // 'https://your-app-backend-hostname.your-domain.com/your-app-backend-path',
         // 'http://smartbooker/botdetect-captcha-lib',
         // 'http://smartbooker',
-        'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php',
+        // 'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php',
         // 'http://smartbooker/botdetect-captcha-lib/botdetect.php',
-        // 'http://captcha-test/simple-botdetect.php',
+        'http://captcha-test/basic.php',
         postData, {headers: {'Content-Type': 'application/json; charset=utf-8'}})
         .then(response => {
-          if (response.data.success == false) {
+          console.log('response.data: ', response.data);
+          if (response.data.success === false) {
             // captcha validation failed; reload image
             captcha.reloadImage();
             // TODO: maybe display an error message, too
           } else {
             // TODO: captcha validation succeeded; proceed with your workflow
+
+            if (checkBtn.current.context._errors.length === 0) {
+              dispatch(login(username, password))
+                  .then(() => {
+                    // props.history.push("/profile");
+                    props.history.push("/");
+                    // window.location.reload(); // может, не нужно перезагружать страницу, если мы и так на главной?
+                  })
+                  .catch(() => {
+                    // setLoading(false);
+                  });
+            } else {
+              // setLoading(false);
+            }
           }
         });
-
-    if (checkBtn.current.context._errors.length === 0) {
-      dispatch(login(username, password))
-        .then(() => {
-          // props.history.push("/profile");
-          props.history.push("/");
-          // window.location.reload(); // может, не нужно перезагружать страницу, если мы и так на главной?
-        })
-        .catch(() => {
-          setLoading(false);
-        });
-    } else {
-      setLoading(false);
-    }
   };
 
   if (isLoggedIn) {
