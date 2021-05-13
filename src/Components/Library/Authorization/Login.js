@@ -2,6 +2,7 @@ import React, { useState, useRef } from "react";
 import {Provider, useDispatch, useSelector} from "react-redux";
 import {Link, Redirect, Route, Switch} from 'react-router-dom';
 import { Captcha, captchaSettings } from 'reactjs-captcha';
+import axios from "axios";
 
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -10,7 +11,6 @@ import CheckButton from "react-validation/build/button";
 import { login } from "../../../Redux/actions/auth";
 import Register from "./Register";
 import './Login.css';
-import axios from "axios";
 
 const required = (value) => {
   if (!value) {
@@ -22,11 +22,20 @@ const required = (value) => {
   }
 };
 
+const displayErrorMessage = (value) => {
+  if (!value) {
+    return (
+        <div className="alert alert-danger" role="alert">
+          <div>Your input is wrong.</div>
+          <div>Retype the characters from the picture</div>
+        </div>
+    );
+  }
+};
+
 captchaSettings.set({
   captchaEndpoint:
-  // 'https://your-app-backend-hostname.your-domain.com/botdetect-captcha-lib/simple-botdetect.php'
-  //     'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php'
-      'http://captcha-test/simple-botdetect.php'
+      'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php'
 });
 
 const Login = (props) => {
@@ -36,6 +45,7 @@ const Login = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [captcha, setCaptcha] = useState("");
+  const [captchaInputSuccess, setCaptchaInputSuccess] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const { isLoggedIn } = useSelector(state => state.auth);
@@ -71,25 +81,10 @@ const Login = (props) => {
       captchaId: captchaId
     };
 
-    // let self = this;
-
     // post the captcha data to the /your-app-backend-path on your backend.
     // make sure you import the axios in this view with: import axios from 'axios';
-    // axios.post(
-    //     // 'https://your-app-backend-hostname.your-domain.com/your-app-backend-path',
-    //     // 'http://smartbooker/botdetect-captcha-lib',
-    //     // 'http://smartbooker',
-    //     // 'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php',
-    //     // 'http://smartbooker/botdetect-captcha-lib/botdetect.php',
-    //     'http://captcha-test/simple-botdetect.php',
-    //     postData, {headers: {'Content-Type': 'application/json; charset=utf-8'}})
     axios.post(
-        // 'https://your-app-backend-hostname.your-domain.com/your-app-backend-path',
-        // 'http://smartbooker/botdetect-captcha-lib',
-        // 'http://smartbooker',
-        // 'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php',
-        // 'http://smartbooker/botdetect-captcha-lib/botdetect.php',
-        'http://captcha-test/basic.php',
+        'http://smartbooker/botdetect-captcha-lib/basic.php',
         postData, {headers: {'Content-Type': 'application/json; charset=utf-8'}})
         .then(response => {
           console.log('response.data: ', response.data);
@@ -97,6 +92,7 @@ const Login = (props) => {
             // captcha validation failed; reload image
             captcha.reloadImage();
             // TODO: maybe display an error message, too
+            setCaptchaInputSuccess(false);
           } else {
             // TODO: captcha validation succeeded; proceed with your workflow
 
@@ -132,9 +128,6 @@ const Login = (props) => {
               className="profile-img-card"
             />
 
-            {/*<Form onSubmit={handleLogin} ref={form}>*/}
-            {/*<Form id="yourFormWithCaptchaForm" method="POST"
-                  onSubmit={handleLogin.bind(this)} ref={form}>*/}
             <Form id="yourFormWithCaptchaForm" method="POST"
                   onSubmit={handleLogin} ref={form}>
               <div className="form-group">
@@ -166,29 +159,12 @@ const Login = (props) => {
                 <Captcha captchaStyleName="yourFirstCaptchaStyle"
                          ref={(captcha) => {setCaptcha(captcha)}} />
                 <label>
-                  <span>Retype the characters from the picture:</span>
+                  <span>Retype the characters from the picture: <sup>*</sup></span>
                   {/* captcha code: user-input textbox */}
-                  {/*<Input></Input>*/}
                   <input id="yourFirstCaptchaUserInput" type="text"/>
                 </label>
+                {displayErrorMessage(captchaInputSuccess)}
               </div>
-
-              {/*<section id="main-content">
-                <form id="yourFormWithCaptchaForm" method="POST"
-                      onSubmit={handleLogin.bind(this)}>
-
-                   captcha challenge: placeholder
-                  <Captcha captchaStyleName="yourFirstCaptchaStyle"
-                           ref={(captcha) => {captcha = captcha}} />
-                  <label>
-                    <span>Retype the characters from the picture:</span>
-                     captcha code: user-input textbox
-                    <input id="yourFirstCaptchaUserInput" type="text"/>
-                  </label>
-
-                  <button type="submit" id="submitButton">Validate</button>
-                </form>
-              </section>*/}
 
               <div className="form-group">
                 <button className="btn btn-primary btn-block" disabled={loading}>
@@ -202,12 +178,6 @@ const Login = (props) => {
               <div className="form-group text-center">
                 Don`t have an account yet?
               </div>
-
-              {/*<div className="form-group text-center">
-                <Link to={"/register"} >
-                  Sign Up
-                </Link>
-              </div>*/}
 
               <div className="form-group text-center">
                 <Link to={"/sign_up"} >
