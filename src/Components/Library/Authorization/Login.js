@@ -35,7 +35,8 @@ const displayErrorMessage = (value) => {
 
 captchaSettings.set({
   captchaEndpoint:
-      'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php'
+      // 'http://smartbooker/botdetect-captcha-lib/simple-botdetect.php'
+      'http://smartbooker.biz/botdetect-captcha-lib/simple-botdetect.php'
 });
 
 const Login = (props) => {
@@ -84,7 +85,8 @@ const Login = (props) => {
     // post the captcha data to the /your-app-backend-path on your backend.
     // make sure you import the axios in this view with: import axios from 'axios';
     axios.post(
-        'http://smartbooker/botdetect-captcha-lib/basic.php',
+        // 'http://smartbooker/botdetect-captcha-lib/basic.php',
+        'http://smartbooker.biz/botdetect-captcha-lib/basic.php',
         postData, {headers: {'Content-Type': 'application/json; charset=utf-8'}})
         .then(response => {
           console.log('response.data: ', response.data);
