@@ -1,0 +1,31 @@
+.NonActivePmnt{
+    display: none;
+}
+
+.ActivePmnt{
+    display: block;
+    color: blue;
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.NonActiveSubmit{
+    display: none;
+}
+
+.SubmitButton{
+    background: #009FE3;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 19px;
+    width: 12vw;
+    height: 40px;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-top: 25px;
+    margin-bottom: 8px;   
+}

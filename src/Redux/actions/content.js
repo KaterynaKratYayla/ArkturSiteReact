@@ -27,3 +27,4 @@ export const getContent = (id) => ( dispatch, getState ) => {
         dispatch({ type: GET_CONTENT_ERR, error: err });
        });
    }
+

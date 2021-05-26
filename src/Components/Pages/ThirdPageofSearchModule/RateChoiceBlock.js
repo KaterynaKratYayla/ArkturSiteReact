@@ -3,6 +3,7 @@ import axios from "axios"
 import 'antd/dist/antd.css';
 import {useDispatch, useSelector} from 'react-redux'
 import {getPax} from "../../../Redux/actions/paxchoice"
+import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
 // import PropTypes from 'prop-types';
 
 // import DropdownButton from 'react-bootstrap/DropdownButton'
@@ -132,7 +133,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id,totalPax}) =>{
                 
 
                          
-                   ) : (<div>Please click here to send your request</div>)
+                   ) : (<LoadingMessage/>)
                   }
                 </>
           </div>

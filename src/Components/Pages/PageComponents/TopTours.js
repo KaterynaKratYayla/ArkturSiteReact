@@ -10,6 +10,7 @@ import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
 import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
 import {SyncOutlined,SmileTwoTone,LoadingOutlined} from '@ant-design/icons'
+import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
 import './TopToursCSS.css'
 
 export const TopTours = () => {
@@ -143,12 +144,7 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
                                             id={tour.tour_id}
                                             class="TopToursImage"
                                             src={'http://' + tour.main_photo[0]}/>
-                                            ):(<div className='Loading'><LoadingOutlined className='LoadingOutlinedIcon'/>
-                                                <div style={{color:'grey',
-                                                             fontSize:'15px',
-                                                             fontFamily:'Arial'}}>The content is being loaded. Please wait</div>
-                                            
-                                            </div>)
+                                            ):(<LoadingMessage />)
                                           }
                                         </div> 
                                        <div class='TopToursTitle'

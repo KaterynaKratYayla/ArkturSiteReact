@@ -1,13 +1,17 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
+import axios from 'axios'
 // import '../PageComponents/ResponsiveHeader/header.css'
 import { Radio } from 'antd';
 
 import {ClientTitles} from '../../Library/StaticJsonData/ClientTitles'
+import {ConfirmButton} from './ConfirmButton'
 import './BookingForm.css'
 // import {SwitcherItem} from './Switcher'
 // import {Switcher} from './Switcher'
 
-export const ClientDetails = () => {
+export const ClientDetails = ({cart}) => {
+
+    const [sendCart, setSendCart] = useState([{}]);
 
     const [myInput1, setMyInput1] = useState('');
     const [myInput2, setMyInput2] = useState('');
@@ -18,8 +22,55 @@ export const ClientDetails = () => {
     
     const [list , setList] = useState([]);
 
+    const [clicked,setClicked] = useState(false)
+
     const [bookerTravels, setbookerTravels] = useState(0);
-  
+
+    useEffect(() => {
+        const ActionRQ = {
+                "username":"Serodynringa",
+                "password":"%tmMJZbABm6cB@tY",
+                "user_id" :1426,
+                "action":"AddToCartRQ",
+                "data" :
+                    {
+                        "bookings":
+                            [
+                                {
+                                    "start" : cart.start,
+                                    "tour_id" : cart.tour_id,
+                                    "tour_tariff_id" : cart.tour_tariff_id,
+                                    "tour_room_id" : cart.tour_room_id,
+                                    "numberofunits" : 1,
+                                    "hotel_id" : cart.hotel_id,
+                                    "hotel_room_id" : cart.hotel_room_id,
+                                    "hotel_rate_id" : null,
+                                    "calculation_data" :
+                                        {
+                                            "adults":cart.adults,
+                                            "children":cart.children,
+                                            "amount" : cart.amount
+                                        }
+                                }
+                            ]
+                    }
+            };
+
+        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+            .then(response => setSendCart(response.data))
+            .catch(error =>{
+                setSendCart(undefined)
+                console.log('[axios error]: ', error)
+              });
+                     
+    }, []);
+
+    if( !sendCart){
+        return <div> Loading...</div>
+    }
+    
+    console.log('SENDCART',sendCart)
+ 
     const bookerTravelsChoice = e => {
         console.log('radio checked', e.target.value);
         setbookerTravels(e.target.value);
@@ -54,47 +105,50 @@ export const ClientDetails = () => {
       return setMyOption(e.target.value)  
     }
 
-    const addToList = () => {
-        const newList = {
-            done: false,
-            name: myInput1,
-            surname: myInput2,
-            phone: myInput3,
-            email: myInput4,
-            item3: align,
-            item4: options 
-        }
+//     function setDone (name){
+//         return function(){
+//              let changedList = list.map(function(listing){
+//             if (listing.name === name){
+//                 listing.done = !listing.done;
+//             }
+//              return listing
+//         })
 
-    setList([...list, newList]);
-    // setMyInput1('');
-    // setMyInput2('');
-
-    console.log(newList)
-
-    }
-
-    function setDone (name){
-        return function(){
-             let changedList = list.map(function(listing){
-            if (listing.name === name){
-                listing.done = !listing.done;
-            }
-             return listing
-        })
-
-        setList (changedList)
-    }
-}
+//         setList (changedList)
+//     }
+// }
 
     const onSubmit = (e) =>{
         e.preventDefault();
+        // const newList = {
+            // done: false,
+            // name: myInput1,
+            // surname: myInput2,
+            // phone: myInput3,
+            // email: myInput4,
+            // item3: align,
+            // item4: options 
+        // }
+
+            // setList([...list,newList]);
+    }
+
+    const AddContacts = () =>{
+         const newList = {
+            name: myInput1,
+            surname: myInput2,
+            phone: myInput3,
+            email: myInput4
+        }
+            setList([newList]);
+            list.length>0?setClicked(true):setClicked(false)
     }
 
     return(
         <form className='myForm' onSubmit={onSubmit}>
           
           <div class='InputBlock'>
-            <label class='FormLabel'>{'Contact Person'}</label>
+            <label class='FormLabel'>{'Lead Client Details'}</label>
               <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly',width:'80%'}}>
             
                     <select style={{marginRight:'0.5vw'}}>
@@ -107,7 +161,7 @@ export const ClientDetails = () => {
 
                         }
                     </select>
-                    
+                   
                     <input 
                         type={'text'}
                         value={myInput1}
@@ -223,14 +277,14 @@ export const ClientDetails = () => {
                     ):null
                 }
             </>
-           <button 
-                   type='submit' 
-                   class='SubmitButton' 
-                   onClick={addToList}>
-                       Submit
-            </button>
-        
-            <ul>
+           <ConfirmButton 
+                clientData = {list}
+                AddContacts = {AddContacts}
+                booking = {sendCart}
+                clicked={clicked}
+                />
+                 
+            {/* <ul>
                 {
                     list.map (function(listitem,index){
                         return <li 
@@ -242,7 +296,7 @@ export const ClientDetails = () => {
                         
                     })
                 }
-                </ul>
+                </ul> */}
         </form>
     )
 }

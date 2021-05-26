@@ -5,6 +5,7 @@ import {getContent} from "../../../Redux/actions/content"
 import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
 import './SearchItems.css'
 import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
+import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import 'moment/locale/uk'
@@ -79,7 +80,7 @@ export const ItemContent = ({tour})=>{
          }
        )) : (
         // <div>{tour.name}{tour.duration}</div> 
-        <div>HELLO</div> 
+        <LoadingMessage/>
        )
      }
       </>
