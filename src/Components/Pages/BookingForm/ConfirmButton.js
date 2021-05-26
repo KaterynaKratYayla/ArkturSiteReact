@@ -6,7 +6,7 @@ import Item from 'antd/lib/list/Item';
 
 export const ConfirmButton = ({AddContacts, clientData, booking,clicked}) =>{
 
-    console.log('CLIENTDATA1', clientData)
+    console.log('CLIENTDATA1', clientData[0].name)
     // console.log('CLIENTDATA2',Object.entries(booking[0]))
     
     const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([]);
@@ -47,10 +47,14 @@ export const ConfirmButton = ({AddContacts, clientData, booking,clicked}) =>{
                                     "operation" : "add", 
                                     "client_type" : "buyer", 
                                     "site_client_id" : 1,
-                                    "name" : clientData[0].name,
-                                    "surname" : clientData[0].surname,
-                                    "phone" : clientData[0].phone, 
-                                    "email" : clientData[0].email 
+                                    // "name" : clientData[0].name,
+                                    // "surname" : clientData[0].surname,
+                                    // "phone" : clientData[0].phone, 
+                                    // "email" : clientData[0].email 
+                                    "name" : "Kate",
+                                    "surname" : "Krat",
+                                    "phone" : "+380933266802", 
+                                    "email" : "kkrat@arktur.ua"
                                 },
                                 {
                                     "operation" : "add", 
