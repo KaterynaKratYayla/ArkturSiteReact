@@ -89,26 +89,7 @@ export const TopMenu = () => {
 
 
 
-				    {/* <ul class='Upper'>
-					  {
-						pages && pages.map((page)=>{
-						  if(page.name.includes('UPPER')){	
-							return (
-							<li>
-								<div>
-									<NavLink exact to={{pathname: `/${page.name.replace(/upper/, " ").toLowerCase()}`,
-									                 state: {id: page.id}}}
-													 activeClassName='active'>
-														 {page.name.replace(/UPPER/g, " " ).toUpperCase()}
-									</NavLink> 
-								</div>
-						   </li>
-						   )
-						  }
-						})
-					  }
-				</ul> */}
-
+				  
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
 					{currentUser ? (
 						<NavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</NavLink>
