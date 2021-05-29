@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import './ConfirmButton.css'
 import Item from 'antd/lib/list/Item';
-import {Example} from '../../Library/LiqPay/Example';
+import { Pay } from '../../Library/LiqPay/Pay';
 
 export const ConfirmButton = ({AddContacts, clientData, booking,clicked}) =>{
 
@@ -95,7 +95,7 @@ export const ConfirmButton = ({AddContacts, clientData, booking,clicked}) =>{
         }
        {
          clicked === true?(
-             <Example />
+             <Pay />
             ):null
         }
       </>
