@@ -18,6 +18,7 @@ import {TopToursDetails} from '../PageComponents/TopToursDetails'
 import {BookingForm} from '../BookingForm/BookingForm'
 import {SingleHotel} from '../../Library/HotelsUkraineTestComponents/single_hotel'
 import { TestCities } from '../../Library/HotelsUkraineTestComponents/test_cities'
+import {OfflineSummary} from '../BookingForm/OfflineSummary'
 import Login from "../../Library/Authorization/Login";
 import Register from "../../Library/Authorization/Register";
 import { logout } from "../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
@@ -42,6 +43,7 @@ export const RouteSwitcher = () =>{
 			<Route exact path='/tour_details' component={TourDetails} />
 			<Route exact path='/booking_form' component={BookingForm}/>
 			<Route exact path='/toptours' component={TopToursDetails} />
+			<Route exact path='/offlineSummary' component={OfflineSummary}/>
 			{/* </Switch> */}
 				{/* <Switch> */}
 				<>
