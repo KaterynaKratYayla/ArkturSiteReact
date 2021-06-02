@@ -31,9 +31,9 @@ export const Pay = () => {
             <LiqPayPay
                 publicKey={process.env.REACT_APP_PUBLIC_KEY}
                 privateKey={process.env.REACT_APP_PRIVATE_KEY}
-                description="Payment for product\n
-                Payment for product\n
-                Payment for product"
+                description={`Payment for product
+                              Payment for product
+                              Payment for product`}
                 orderId={Math.floor(1 + Math.random() * 900000000)}
                 // result_url="http://localhost:3000"
                 result_url={process.env.REACT_APP_URL}
