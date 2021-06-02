@@ -1,13 +1,14 @@
-import React, { Component } from "react";
-import { LiqPayPay, LiqPaySubscribe } from "react-liqpay";
+import React from "react";
+import { LiqPayPay } from "react-liqpay";
 
 console.log('[file]', 'src/Components/Library/LiqPay/Example.js');
 
 export const Pay = () => {
     console.log('[file]:export const Pay', 'src/Components/Library/LiqPay/Pay.js');
+    console.log('server_url: ', process.env.REACT_SERVER_URL);
     const payInfo = {
-        amount: 999,
-        currency: 'USD',
+        amount: 1,
+        currency: 'UAH',
         title: 'PAY'
     }
 
@@ -26,18 +27,23 @@ export const Pay = () => {
     )
 
     return (
-        <div style={{ display: "flex" }}>
+        <div style={{display: "flex"}}>
             <LiqPayPay
                 publicKey={process.env.REACT_APP_PUBLIC_KEY}
                 privateKey={process.env.REACT_APP_PRIVATE_KEY}
-                description="Payment for product"
+                description="Payment for product\n
+                Payment for product\n
+                Payment for product"
                 orderId={Math.floor(1 + Math.random() * 900000000)}
-                result_url="http://domain.com/user/account"
-                server_url="http://server.domain.com/liqpay"
+                // result_url="http://localhost:3000"
+                result_url={process.env.REACT_APP_URL}
+                server_url={process.env.REACT_APP_SERVER_URL}
                 product_description="Online courses"
-                style={{ margin: "8px" }}
-                extra={[<ButtonComponent key="1" />]}
-                amount={payInfo.amount}/>
+                style={{margin: "8px"}}
+                extra={[<ButtonComponent key="1"/>]}
+                amount={payInfo.amount}
+                currency={payInfo.currency}
+            />
         </div>
     );
 }

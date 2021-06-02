@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import axios from 'axios'
 
 import {OfflineSummary} from './OfflineSummary'
+import { Pay } from '../../Library/LiqPay/Pay'
 
 import './ConfirmButton.css'
 
@@ -29,11 +30,11 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
        {
         clicked === true?(
             <>
-                <button
+                {/*<button
                     class='ActivePmnt'>
                         Please proceed to PrivatBank terminal for payment
-                </button>
-
+                </button>*/}
+                <Pay />
             </>
         ):null
         }
