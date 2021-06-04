@@ -7,7 +7,7 @@ import Helmet from '../../Library/PageDevices/Helmet'
 
 import {ContentPages,SitePageType,SitePageRegion} from '../PageComponents/ContentPages'
 import {FORGROUPS} from '../PageComponents/TopMenuComponents'
-// import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../PageComponents/MiddleMenuComponents' 
+// import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../PageComponents/MiddleMenuComponents'
 import {HomePage} from '../PageComponents/HomePage'
 // import {TOURS} from '../PageComponents/DropDownTours'
 import { PureContent } from '../PageComponents/MenuPageGenerator'
@@ -21,6 +21,7 @@ import { TestCities } from '../../Library/HotelsUkraineTestComponents/test_citie
 import {OfflineSummary} from '../BookingForm/OfflineSummary'
 import Login from "../../Library/Authorization/Login";
 import Register from "../../Library/Authorization/Register";
+import PaymentResult from "../LiqPay/PaymentResult";
 import { logout } from "../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
 
 export const RouteSwitcher = () =>{
@@ -29,16 +30,17 @@ export const RouteSwitcher = () =>{
 	const pages = ContentPages();
 
 	return(
-		
+
 		 <Switch>
 		 {/* <Route path='/helmet' component={Helmet} /> */}
-			<Route exact path='/sign_in' component={Login} />    
+			<Route exact path='/sign_in' component={Login} />
 			<Route exact path="/sign_up" component={Register} />
+			<Route exact path="/payment_result" component={PaymentResult} />
 			<Route exact path='/forgroups' component={FORGROUPS} />
 		{/* <Route component={NotFound} /> */}
 			<Route exact path='/' component={HomePage} />
 			<Route exact path='/hotels_in_ukraine' component={SingleHotel}/>
-			<Route exact path='/testcities' component={TestCities} /> 
+			<Route exact path='/testcities' component={TestCities} />
 			<Route exact path='/search_results' component={GuestItem}/>
 			<Route exact path='/tour_details' component={TourDetails} />
 			<Route exact path='/booking_form' component={BookingForm}/>
@@ -53,9 +55,9 @@ export const RouteSwitcher = () =>{
  								<Route exact path={`/${page.title.map((item1)=>item1.text)}`} component={PureContent}/>
 		 					)
  						})
- 					}	
+ 					}
 			  </>
  			</Switch>
-	
+
 	)
 }

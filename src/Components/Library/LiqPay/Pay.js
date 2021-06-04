@@ -31,14 +31,17 @@ export const Pay = () => {
             <LiqPayPay
                 publicKey={process.env.REACT_APP_PUBLIC_KEY}
                 privateKey={process.env.REACT_APP_PRIVATE_KEY}
+                // TODO: create Component to load description dynamically
                 description={`Payment for product
                               Payment for product
                               Payment for product`}
+                // TODO: send booking_entity_id
                 orderId={Math.floor(1 + Math.random() * 900000000)}
                 // result_url="http://localhost:3000"
                 result_url={process.env.REACT_APP_URL}
                 server_url={process.env.REACT_APP_SERVER_URL}
                 product_description="Online courses"
+                product_description_my="Online courses my"
                 style={{margin: "8px"}}
                 extra={[<ButtonComponent key="1"/>]}
                 amount={payInfo.amount}
