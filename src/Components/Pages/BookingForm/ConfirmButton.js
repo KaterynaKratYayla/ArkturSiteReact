@@ -34,7 +34,7 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                     class='ActivePmnt'>
                         Please proceed to PrivatBank terminal for payment
                 </button>*/}
-                <Pay />
+                <Pay service_id = {app_service_id} />
             </>
         ):null
         }

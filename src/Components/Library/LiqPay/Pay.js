@@ -3,7 +3,7 @@ import { LiqPayPay } from "react-liqpay";
 
 console.log('[file]', 'src/Components/Library/LiqPay/Example.js');
 
-export const Pay = () => {
+export const Pay = ({service_id}) => {
     console.log('[file]:export const Pay', 'src/Components/Library/LiqPay/Pay.js');
     console.log('server_url: ', process.env.REACT_SERVER_URL);
     const payInfo = {
@@ -36,7 +36,8 @@ export const Pay = () => {
                               Payment for product
                               Payment for product`}
                 // TODO: send booking_entity_id
-                orderId={Math.floor(1 + Math.random() * 900000000)}
+                orderId={service_id}
+                // orderId={Math.floor(1 + Math.random() * 900000000)}
                 // result_url="http://localhost:3000"
                 result_url={process.env.REACT_APP_URL}
                 server_url={process.env.REACT_APP_SERVER_URL}
