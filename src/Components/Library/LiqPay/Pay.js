@@ -3,9 +3,33 @@ import { LiqPayPay } from "react-liqpay";
 
 console.log('[file]', 'src/Components/Library/LiqPay/Example.js');
 
-export const Pay = ({service_id}) => {
+export const Pay = ({service_id, smart_order_id}) => {
     console.log('[file]:export const Pay', 'src/Components/Library/LiqPay/Pay.js');
-    console.log('server_url: ', process.env.REACT_SERVER_URL);
+    console.log('server_url: ', process.env.REACT_APP_SERVER_URL);
+
+    const CryptoJS = require("crypto-js");
+
+    const orderData = {
+        "username":"Serodynringa",
+        "password":"%tmMJZbABm6cB@tY",
+        "user_id" :1426,
+        "action":"GetPaymentInfoRQ",
+        "data" :
+            {
+                "site_order_id" : 1,		// index of the order in the site (by default = 1)
+                "smart_order_id" : smart_order_id,	// booking.id in Smart - for control
+                "site_service_id" : 1,		// index of the service in the site
+                "smart_service_id" : service_id,	// booking_entity.id in Smart
+                "site_client_id" : 3,		// it must be BUYER only
+                "smart_client_id" : 5817	// it must be BUYER only
+            }
+    }
+
+    const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(orderData), process.env.REACT_APP_PRIVATE_KEY).toString();
+    localStorage.setItem('orderData', ciphertext);
+
+    localStorage.setItem('service_id', service_id);
+
     const payInfo = {
         amount: 1,
         currency: 'UAH',
@@ -37,8 +61,6 @@ export const Pay = ({service_id}) => {
                               Payment for product`}
                 // TODO: send booking_entity_id
                 orderId={service_id}
-                // orderId={Math.floor(1 + Math.random() * 900000000)}
-                // result_url="http://localhost:3000"
                 result_url={process.env.REACT_APP_URL}
                 server_url={process.env.REACT_APP_SERVER_URL}
                 product_description="Online courses"

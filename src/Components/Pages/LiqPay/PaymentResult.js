@@ -3,19 +3,21 @@ import axios from "axios";
 
 const PaymentResult = () => {
 
+    const CryptoJS = require("crypto-js");
+
+    const orderId = localStorage.getItem('service_id');
+    const orderDataEncrypted = localStorage.getItem('orderData');
+    const bytes  = CryptoJS.AES.decrypt(orderDataEncrypted, process.env.REACT_APP_PRIVATE_KEY);
+    const orderData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    console.log('orderData: ', orderData);
+    console.log('orderData_str: ', JSON.stringify({orderData}));
+
     const [paymentInfo, setPaymentInfo] = useState(null);
 
     useEffect(() => {
-        const ActionRQ = {
-            "username":"Serodynringa",
-            "password":"%tmMJZbABm6cB@tY",
-            "user_id" :1426,
-            "action":"GetPaymentInfo",
-            "data" :
-                {
-                    "service_id":3
-                }
-        };
+        const ActionRQ = orderData;
+        console.log('orderData_ActionRQ: ', ActionRQ);
+        console.log('orderData_ActionRQ_str: ', JSON.stringify({ActionRQ}));
 
         axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
             .then(response => setPaymentInfo(response.data))
@@ -25,10 +27,11 @@ const PaymentResult = () => {
             });
 
     }, []);
+    console.log('paymentInfo: ', paymentInfo);
     return (
         <div>
             <p>Congrats!</p>
-            <p>{paymentInfo}</p>
+            <p>{orderId}</p>
         </div>
     );
 }

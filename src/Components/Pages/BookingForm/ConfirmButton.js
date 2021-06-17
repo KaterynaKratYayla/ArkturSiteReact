@@ -1,12 +1,13 @@
 import React,{useState, useEffect} from 'react';
 import axios from 'axios'
+import { connect } from "react-redux";
 
 import {OfflineSummary} from './OfflineSummary'
 import { Pay } from '../../Library/LiqPay/Pay'
 
 import './ConfirmButton.css'
 
-export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_service_id,clicked}) =>{
+export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_service_id, smart_order_id, clicked}) =>{
 
     return(
       <>
@@ -34,11 +35,13 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                     class='ActivePmnt'>
                         Please proceed to PrivatBank terminal for payment
                 </button>*/}
-                <Pay service_id = {app_service_id} />
+                <Pay
+                    service_id = {app_service_id}
+                    smart_order_id = {smart_order_id}
+                />
             </>
         ):null
         }
       </>
     )
 }
-
