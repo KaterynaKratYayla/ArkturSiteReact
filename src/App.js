@@ -14,14 +14,20 @@ import Register from "./Components/Library/Authorization/Register";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { logout } from "./Redux/actions/auth";
+import PaymentService from "./Redux/services/payment.service";
+import { PaymentServiceProvider } from "./Components/Context/PaymentServiceContext";
 import { clearMessage } from "./Redux/actions/message";
 import {HomePage} from "./Components/Pages/PageComponents/HomePage"
+// import { setOrderId } from './Redux/actions'
 
 import { history } from "./Redux/helpers/history";
+
+const paymentService = new PaymentService();
 
 function App() {
     const { user: currentUser } = useSelector((state) => state.auth);
     const dispatch = useDispatch();
+    // dispatch(setOrderId(25));
 
     useEffect(() => {
         if (currentUser) {
@@ -34,15 +40,17 @@ function App() {
     };
 
   return (
-    <BrowserRouter history={history}>
-        <ScrollToTop />
-        {/* <RouteSwitcher/> */}
-        <TopMenu />
-        {/* <hr /> */}
+      <PaymentServiceProvider value={paymentService} >
+        <BrowserRouter history={history}>
+            <ScrollToTop />
+            {/* <RouteSwitcher/> */}
+            <TopMenu />
+            {/* <hr /> */}
 
-        <Footer />
+            <Footer />
 
-    </BrowserRouter>
+        </BrowserRouter>
+      </PaymentServiceProvider>
   );
 }
 

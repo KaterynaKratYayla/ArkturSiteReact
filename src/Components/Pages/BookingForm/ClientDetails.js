@@ -14,13 +14,14 @@ import './BookingForm.css'
 export const ClientDetails = ({cart}) => {
 
     const history = useHistory();
-    
+
     const [sendCart, setSendCart] = useState([{}]);
 
     const [nameInput, setNameInput]= useState('');
     const [surnameInput, setSurnameInput] = useState('');
     const [phoneInput, setPhoneInput] = useState('');
     const [emailInput, setEmailInput] = useState('');
+    const [bookingId, setBookingId] = useState('');
     // const [options, setMyOption] = useState('');
     const [align, setAlign] = useState('');
 
@@ -29,7 +30,7 @@ export const ClientDetails = ({cart}) => {
     const [clicked,setClicked] = useState(false)
 
     const [bookerTravels, setbookerTravels] = useState(0);
-    
+
     // const [testHook, setTestHook] = useState([{}])
 
     // const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([{}]);
@@ -70,7 +71,7 @@ export const ClientDetails = ({cart}) => {
                 setSendCart(undefined)
                 console.log('[axios error]: ', error)
               });
-                     
+
     }, []);
 
     let app_service_id = new Object();
@@ -81,14 +82,14 @@ export const ClientDetails = ({cart}) => {
     if( !sendCart){
         return <div> Loading...</div>
     }
-    
+
     console.log('SENDCART',sendCart.data)
 
 
 
     console.log('NEWARRAY', app_service_id.service_id)
 
-    
+
     const bookerTravelsChoice = e => {
         console.log('radio checked', e.target.value);
         setbookerTravels(e.target.value);
@@ -137,7 +138,7 @@ export const ClientDetails = ({cart}) => {
             phone: phoneInput,
             email: emailInput
         }
-            setList(newList); 
+            setList(newList);
 
             // if(!ModifyClientsRQ_Add){
             //     history.push('\offlineSummary')
@@ -162,7 +163,7 @@ export const ClientDetails = ({cart}) => {
                         }
                     </select>
 
-                   
+
                    <input
                         type={'text'}
                         value={nameInput}
@@ -280,16 +281,18 @@ export const ClientDetails = ({cart}) => {
                 }
             </>
 
-           <ConfirmButton 
+           <ConfirmButton
                 name={nameInput}
                 surname={surnameInput}
                 phone={phoneInput}
                 email={emailInput}
                 AddContacts = {AddContacts}
                 app_service_id = {app_service_id.service_id}
+                smart_order_id ={app_service_id.booking_id}
+                customer_reference = {app_service_id.customer_reference}
                 clicked={clicked}
                 />
-                 
+
         </form>
     )
 }

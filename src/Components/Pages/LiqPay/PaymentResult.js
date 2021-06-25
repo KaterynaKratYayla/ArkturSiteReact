@@ -1,39 +1,104 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Component} from 'react';
 import axios from "axios";
+import {useDispatch, useSelector} from "react-redux";
+import {connect} from "react-redux";
+import {setPaymenInfo, fetchPaymentInfo, fetchPaymentVoucher} from "../../../Redux/actions";
+import { withPaymentService } from "../../HOC";
+import { compose } from "../../../Redux/helpers";
 
-const PaymentResult = () => {
+class PaymentResult extends Component {
 
-    const CryptoJS = require("crypto-js");
+    componentDidMount() {
+        this.props.fetchPaymentInfo();
+    }
 
-    const orderId = localStorage.getItem('service_id');
-    const orderDataEncrypted = localStorage.getItem('orderData');
-    const bytes  = CryptoJS.AES.decrypt(orderDataEncrypted, process.env.REACT_APP_PRIVATE_KEY);
-    const orderData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-    console.log('orderData: ', orderData);
-    console.log('orderData_str: ', JSON.stringify({orderData}));
-
-    const [paymentInfo, setPaymentInfo] = useState(null);
-
-    useEffect(() => {
-        const ActionRQ = orderData;
-        console.log('orderData_ActionRQ: ', ActionRQ);
-        console.log('orderData_ActionRQ_str: ', JSON.stringify({ActionRQ}));
-
-        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
-            .then(response => setPaymentInfo(response.data))
-            .catch(error =>{
-                setPaymentInfo(undefined)
-                console.log('[axios error]: ', error)
-            });
-
-    }, []);
-    console.log('paymentInfo: ', paymentInfo);
-    return (
-        <div>
-            <p>Congrats!</p>
-            <p>{orderId}</p>
-        </div>
-    );
+    render() {
+        console.log("work_with_payment: ");
+        if (this.props.paymentInfo === null) {
+            return (
+                <div>
+                    <div>Hi!</div>
+                </div>
+            );
+        } else {
+            const orderId = this.props.paymentInfo[0].data.smart_service_id;
+            const isSuccess = this.props.paymentInfo[0].success ? "All is good" : "Please wait...";
+            const openInNewTab = (url) => {
+                const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+                if (newWindow) newWindow.opener = null
+            }
+            return (
+                <div>
+                    <div>Hi!</div>
+                    <div>{orderId}</div>
+                    <div>{isSuccess}</div>
+                    <button
+                        onClick={() => {
+                            // this.props.fetchPaymentVoucher(orderId);
+                            // openInNewTab(this.props.voucherData.data.voucherUrl);
+                            openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
+                        }}
+                    >Get voucher</button>
+                    {/*<div>{this.props.voucherData.data.voucherUrl}</div>*/}
+                </div>
+            );
+            /*if (this.props.voucherData !== null) {
+                return (
+                    <div>
+                        <div>Hi!</div>
+                        <div>{orderId}</div>
+                        <div>{isSuccess}</div>
+                        <button
+                            onClick={() => {
+                                this.props.fetchPaymentVoucher(orderId);
+                                openInNewTab(this.props.voucherData.data.voucherUrl);
+                            }}
+                        >Get voucher</button>
+                        {/!*<div>{this.props.voucherData.data.voucherUrl}</div>*!/}
+                    </div>
+                );
+            } else {
+                return (
+                    <div>
+                        <div>Hi!</div>
+                        <div>{orderId}</div>
+                        <div>{isSuccess}</div>
+                        <button
+                            onClick={this.props.fetchPaymentVoucher(orderId)}
+                        >Get voucher</button>
+                    </div>
+                );
+            }*/
+        }
+    }
 }
 
-export default PaymentResult;
+const mapStateToProps = ({payment, voucher}) => {
+    console.log("work_with_payment: mapStateToProps ");
+    const {paymentInfo, loading} = payment;
+    const {voucherData} = voucher;
+    if (paymentInfo !== null) {
+        console.log("work_with_payment: paymentInfo: ", paymentInfo);
+        console.log("work_with_payment: loading", loading);
+    }
+    if (voucher !== null) {
+        console.log("work_with_payment: voucherDoc: ", voucher);
+        console.log("work_with_payment: loading", loading);
+    }
+
+    return { paymentInfo, voucherData };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    console.log("work_with_payment: mapDispatchToProps ");
+    const { paymentService } = ownProps;
+    return {
+        fetchPaymentInfo: fetchPaymentInfo(paymentService, dispatch),
+        // fetchPaymentVoucher: (orderId) => fetchPaymentVoucher(paymentService, dispatch, orderId)
+    }
+}
+
+export default compose(
+    withPaymentService(),
+    connect(mapStateToProps, mapDispatchToProps)
+)(PaymentResult);

@@ -4,10 +4,11 @@ import { connect } from "react-redux";
 
 import {OfflineSummary} from './OfflineSummary'
 import { Pay } from '../../Library/LiqPay/Pay'
+import SaveReference from '../../Library/Notifications/SaveReference'
 
 import './ConfirmButton.css'
 
-export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_service_id, smart_order_id, clicked}) =>{
+export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_service_id, smart_order_id, customer_reference, clicked}) =>{
 
     return(
       <>
@@ -35,6 +36,7 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                     class='ActivePmnt'>
                         Please proceed to PrivatBank terminal for payment
                 </button>*/}
+                <SaveReference customer_reference = {customer_reference} />
                 <Pay
                     service_id = {app_service_id}
                     smart_order_id = {smart_order_id}
