@@ -1,15 +1,5 @@
 import React, {useState,useEffect} from 'react'
 import { useHistory } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux';
-import moment from 'moment';
-import Autocomplete from 'react-autocomplete';
-import { DatePicker ,Space } from 'antd';
-import {Container, Row, Col} from 'react-bootstrap'
-
-import {GuestItem} from '../SecondPageofSearchModule/GuestItem';
-import {Switcher, SwitcherItem} from './Switcher'
-import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
-import {getTopTours} from "../../../Redux/actions/toptours"
 import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 import {LargeScreenSearch} from './LargeScreenSearch'
 import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
@@ -19,111 +9,16 @@ import './SwitcherFront.css';
 import 'antd/dist/antd.css';
 import '../../Library/SearchPannel/SearchPannelCSS.css'
 
-moment.locale('uk')
+// moment.locale('uk')
 
 export const Search = (props) => {
       // console.log('[PROPS] : ', props)
       const genProps = props
 
-
-  const [date, setDate] = useState('');
-  const [testDate, setTestDate] = useState('');
-  const [list , setList] = useState([]);
-  const [value, setValue] = useState('');
-  const [open, setOpen] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [align, setAlign] = useState('');  
-  const [myID, setmyID] = useState('');
- 
   const history = useHistory();
 
-  const dispatch = useDispatch();
-  const geo = useSelector(state => state.cities.locs)
-  const geoGeneral = useSelector(state => state.cities.gen_locs)
-  const topTours = useSelector(state => state.toptours.toptours)
-
   const [width, height] = useWindowWidthAndHeight();
-  // const dateFormat = 'DD-MM-YYYY'
 
-  useEffect ( () => {
-     dispatch (getGeo ());
-  }, []);
-      console.log('[GEO] : ' , geo)
-
-  useEffect ( () => {
-     dispatch (getGeneralGeo ());
-  }, []);
-     console.log('[general_GEO] : ' , geoGeneral)
-
-  useEffect ( () => {
-    dispatch (getTopTours ());
-  }, []);
-    console.log('[GetTopTours] : ' , topTours)
-
-  // const toggler = ( me ) => _ => {
-  //   setAlign(me);
-  //  }
-
-  // function dateFunc (e) {      
-  //     return setDate (e.target.value)
-  //     }
-
-  function onChange(date, dateString) {
-    setTestDate(dateString)
-    console.log('[TEST_DATE] : ' , dateString)
-    console.log('[DATE_PICKER] : ' , date, dateString);
-      }
-
-  const optionChecker = (e) => {
-     console.log('[VALUE] : ', e.target.value)
-    //  console.log('[ETARGET]',e.target)
-
-    setValue (e.target.value)
-     if(value.length >= 0){
-       setOpen(true)
-
-     }
-
-    }
-
-  const addToList = () => {
-
- 
-    const filtered = geo.filter(function(item){
-        return item.name === value
-    })
-
-    const filtered_city_id = geoGeneral.filter(function(item){
-      if(item.tour_id === filtered[0].id){
-        return item.city_id
-      }
-      else return item.city_id === filtered[0].id
-    })
-    
-    console.log('FILTERED_CITY_ID', filtered_city_id )
-
-    const newList = {
-      id: filtered[0].id,
-      title: value,
-      date: testDate
-  };
-
-  setList([...list, newList]);
-  setDate('');
-  setValue('');
-
-  let route_query = `?title=${value},date=${testDate},id=${filtered[0].id},city_id=${filtered_city_id[0].city_id}`
-
-  console.log('[NewList] : ' , newList)
-
-  history.push(`/search_results/${route_query}` , [...list, newList])
-  console.log('[HISTORY : ] ', history)
-}
-
-  const onSubmit = (e) =>{
-    // console.log('[event]:', e, '[e.target]:', e.target, '[e.target.value] :', e.target.value) 
-    e.preventDefault();
-}
    
   return(
         <div>
@@ -149,16 +44,7 @@ export const Search = (props) => {
            width={width}
            />
           }                                   
-        
-            <>       
-              {list.length > 0 && (
-               <GuestItem 
-                    title={value}
-                    list={list}
-                  />	
-             )
-           }
-        </>
+                
 
        </div>
       )

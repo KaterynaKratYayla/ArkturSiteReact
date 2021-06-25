@@ -5,14 +5,15 @@ import {useDispatch, useSelector} from 'react-redux'
 import { connect } from 'react-redux';
 import { Route, Switch, BrowserRouter, useHistory , useLocation} from "react-router-dom";
 // import {TourDetails} from './tourDetails';
-import './SearchItems.css'
-import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
+import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import {MinRate} from './MinRate'
-import {TourDetails} from '../ThirdPageofSearchModule/TourDetails'
-import {ValidateQuery} from '../Helpers/helper'
+import {TourDetails} from '../../ThirdPageofSearchModule/TourDetails'
+import {ValidateQuery} from '../../Helpers/helper'
 // import 'moment/locale/uk'
+
+import './SearchItems.css'
 
 moment.locale('uk')
 

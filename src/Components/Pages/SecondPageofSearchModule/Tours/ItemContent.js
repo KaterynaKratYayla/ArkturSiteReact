@@ -1,11 +1,11 @@
 import React, {useState, useEffect} from 'react'
 import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
-import {getContent} from "../../../Redux/actions/content"
+import {getContent} from "../../../../Redux/actions/content"
 import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
 import './SearchItems.css'
-import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
-import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
+import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
+import {LoadingMessage} from '../../../Library/PageDevices/LoadingMessage'
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import 'moment/locale/uk'

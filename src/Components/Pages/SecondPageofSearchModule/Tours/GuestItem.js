@@ -2,20 +2,20 @@ import React, {useState, useEffect} from 'react'
 // import {history} from '../../Front Page/History'
 import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
-import {getPosts} from "../../../Redux/actions/list"
+import {getPosts} from "../../../../Redux/actions/list"
 import { connect } from 'react-redux';
 import { useLocation, Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
 // import {TourDetails} from './tourDetails';
 import './SearchItems.css'
-import {SearchInner} from '../../Library/SearchPannel/SearchPannel'
-import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
+import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
+import {getGeo, getGeneralGeo} from "../../../../Redux/actions/cities"
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import {ItemContent} from './ItemContent'
 import {ItemObj} from './ItemObj'
-import {ValidateQuery} from '../Helpers/helper'
+import {ValidateQuery} from '../../Helpers/helper'
 
-import {Search} from '../FirstPageofSearchModule/SearchFront'
+import {Search} from '../../FirstPageofSearchModule/SearchFront'
 // import 'moment/locale/uk'
 
 moment.locale('uk')
