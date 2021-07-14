@@ -36,6 +36,11 @@ export const Pay = ({service_id, smart_order_id}) => {
         title: 'PAY'
     }
 
+    // Описание платежа, которое выводится на странице ввода деталей платёжной карты
+    const paymentDescription = () => `title: ${payInfo.title}
+    amount: ${payInfo.amount}
+    currency: ${payInfo.currency}`;
+
     const ButtonComponent = () => (
         <button style={{
             backgroundColor: '#337ab7',
@@ -56,9 +61,11 @@ export const Pay = ({service_id, smart_order_id}) => {
                 publicKey={process.env.REACT_APP_PUBLIC_KEY}
                 privateKey={process.env.REACT_APP_PRIVATE_KEY}
                 // TODO: create Component to load description dynamically
-                description={`Payment for product
+                description={paymentDescription()}
+                /*description={`${payInfo.title} ${payInfo.amount} ${payInfo.currency}`}*/
+                /*description={`Payment for product
                               Payment for product
-                              Payment for product`}
+                              Payment for product`}*/
                 // TODO: send booking_entity_id
                 orderId={service_id}
                 result_url={process.env.REACT_APP_URL}
