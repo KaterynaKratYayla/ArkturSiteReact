@@ -7,6 +7,9 @@ import cities from './cities';
 import content from './content';
 import pages from './pages';
 import auth from "./auth";
+import order from "./order";
+import voucher from "./voucher";
+import payment from "./payment";
 import message from "./message";
 import toptours from './toptours';
 import paxchoice from './paxchoice'
@@ -22,6 +25,9 @@ const root_reducer = combineReducers({
 	pages,
 	toptours,
 	auth,
+	order,
+	voucher,
+	payment,
 	message,
 	paxchoice
 });

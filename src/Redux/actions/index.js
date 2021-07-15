@@ -5,3 +5,6 @@ export * from './content';
 export * from './pages';
 export * from './toptours';
 export * from './hotels';
+export * from './order';
+export * from './payment';
+export * from './voucher';

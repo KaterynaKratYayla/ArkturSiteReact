@@ -13,13 +13,14 @@ import './BookingForm.css'
 export const ClientDetails = ({cart}) => {
 
     const history = useHistory();
-    
+
     const [sendCart, setSendCart] = useState([{}]);
 
     const [nameInput, setNameInput]= useState('');
     const [surnameInput, setSurnameInput] = useState('');
     const [phoneInput, setPhoneInput] = useState('');
     const [emailInput, setEmailInput] = useState('');
+    const [bookingId, setBookingId] = useState('');
     // const [options, setMyOption] = useState('');
     const [align, setAlign] = useState('');
 
@@ -28,7 +29,7 @@ export const ClientDetails = ({cart}) => {
     const [clicked,setClicked] = useState(false)
 
     const [bookerTravels, setbookerTravels] = useState(0);
-    
+
     // const [testHook, setTestHook] = useState([{}])
 
     // const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([{}]);
@@ -69,7 +70,51 @@ export const ClientDetails = ({cart}) => {
                 setSendCart(undefined)
                 console.log('[axios error]: ', error)
               });
-                     
+
+        /*axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+            .then(response => setSendCart(response.data[0]))
+            .catch(error =>{
+                setSendCart(undefined)
+                console.log('[axios error]: ', error)
+              });*/
+
+    }, []);
+
+    useEffect(() => {
+        const ActionRQ = {
+            "username":"Serodynringa",
+            "password":"%tmMJZbABm6cB@tY",
+            "user_id" :1426,
+            "action":"GetPriceHotelRQ",
+            "data" :
+                {
+                    "start" : "2021-08-09", // date of arrival
+                    "end" : "2021-08-12", // date of departure
+                    "city_id" : 19, 		// Id of city - can`t be equel to zero
+                    "hotel_id" : 196, 		// Id of hotel: if hotel_id = 0, must be return all hotels of the pointed city in response
+                    "numberofunits" : 1,	// Quantity of rooms, 1 by default, NOT OBLIGATORY
+                    "calculation_data" :
+                        {
+                            "adults" : 3,
+                            "children" : 1,
+                            "lower_cost_limit" : 50.00, // lower cost limit of room in USD, NOT OBLIGATORY
+                            "upper_cost_limit" : 200.00 // upper cost limit of room in USD, NOT OBLIGATORY
+                        }
+                }
+        };
+
+        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+            .then(response => console.log("GetPriceHotelRQ: ", response))
+            .catch(error =>{
+                console.log('[axios error]: ', error)
+              });
+
+        /*axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+            .then(response => console.log("GetPriceHotelRQ: ", response))
+            .catch(error =>{
+                console.log('[axios error]: ', error)
+              });*/
+
     }, []);
 
     let app_service_id = new Object();
@@ -80,14 +125,14 @@ export const ClientDetails = ({cart}) => {
     if( !sendCart){
         return <div> Loading...</div>
     }
-    
+
     console.log('SENDCART',sendCart.data)
 
 
 
     console.log('NEWARRAY', app_service_id.service_id)
 
-    
+
     const bookerTravelsChoice = e => {
         console.log('radio checked', e.target.value);
         setbookerTravels(e.target.value);
@@ -136,7 +181,7 @@ export const ClientDetails = ({cart}) => {
             phone: phoneInput,
             email: emailInput
         }
-            setList(newList); 
+            setList(newList);
 
             // if(!ModifyClientsRQ_Add){
             //     history.push('\offlineSummary')
@@ -161,7 +206,7 @@ export const ClientDetails = ({cart}) => {
                         }
                     </select>
 
-                   
+
                    <input
                         type={'text'}
                         value={nameInput}
@@ -279,16 +324,18 @@ export const ClientDetails = ({cart}) => {
                 }
             </>
 
-           <ConfirmButton 
+           <ConfirmButton
                 name={nameInput}
                 surname={surnameInput}
                 phone={phoneInput}
                 email={emailInput}
                 AddContacts = {AddContacts}
                 app_service_id = {app_service_id.service_id}
+                smart_order_id ={app_service_id.booking_id}
+                customer_reference = {app_service_id.customer_reference}
                 clicked={clicked}
                 />
-                 
+
         </form>
     )
 }
