@@ -92,7 +92,7 @@ const [geoindex, setGeoindex] = useState([]);
               "start" : search_data.start, // date of arrival  
               "end" : search_data.end, // date of departure
               "city_id" : search_data.city_id,         // Id of city - can`t be equel to zero
-              "hotel_id" : search_data.city_id === search_data.id? "320" : search_data.id,       // Id of hotel: if hotel_id = 0, must return all hotels of the pointed city in response
+              "hotel_id" : search_data.city_id === search_data.id? 0 : search_data.id,       // Id of hotel: if hotel_id = 0, must return all hotels of the pointed city in response
               "numberofunits" : search_data.r,    // Quantity of rooms, 1 by default, NOT OBLIGATORY
               "calculation_data" : 
                     {   
