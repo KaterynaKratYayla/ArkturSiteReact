@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {setPaymenInfo, fetchPaymentInfo, fetchPaymentVoucher} from "../../../Redux/actions";
 import { withPaymentService } from "../../HOC";
 import { compose } from "../../../Redux/helpers";
-import { CartDetails } from "../BookingForm/CartDetails";
+import { CartDetails } from "./CartDetails";
 
 class PaymentResult extends Component {
 
