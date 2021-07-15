@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {setPaymenInfo, fetchPaymentInfo, fetchPaymentVoucher} from "../../../Redux/actions";
 import { withPaymentService } from "../../HOC";
 import { compose } from "../../../Redux/helpers";
+import { CartDetails } from "../BookingForm/CartDetails";
 
 class PaymentResult extends Component {
 
@@ -21,18 +22,32 @@ class PaymentResult extends Component {
                 </div>
             );
         } else {
+            console.log("work_with_payment, paymentInfo: ", this.props.paymentInfo);
             const orderId = this.props.paymentInfo[0].data.smart_service_id;
             const isSuccess = this.props.paymentInfo[0].success ? "All is good" : "Please wait...";
             const openInNewTab = (url) => {
                 const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
                 if (newWindow) newWindow.opener = null
             }
+            const CryptoJS = require("crypto-js");
+            const searchDataEncrypted = localStorage.getItem('search_data');
+            const bytes  = CryptoJS.AES.decrypt(searchDataEncrypted, process.env.REACT_APP_PRIVATE_KEY);
+            const searchData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
             return (
                 <div>
+                    <CartDetails cart={searchData}/>
                     <div>Hi!</div>
                     <div>{orderId}</div>
                     <div>{isSuccess}</div>
-                    <button
+                    <button style={{
+                        backgroundColor: '#337ab7',
+                        color: '#fff',
+                        borderColor: '#2e6da4',
+                        border: '1px solid transparent',
+                        borderRadius: '4px',
+                        padding: '6px 12px',
+                        cursor: 'pointer'
+                    }}
                         onClick={() => {
                             // this.props.fetchPaymentVoucher(orderId);
                             // openInNewTab(this.props.voucherData.data.voucherUrl);
