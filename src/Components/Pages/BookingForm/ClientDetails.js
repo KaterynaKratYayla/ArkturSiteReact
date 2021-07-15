@@ -6,7 +6,6 @@ import { Radio } from 'antd';
 
 import {ClientTitles} from '../../Library/StaticJsonData/ClientTitles'
 import {ConfirmButton} from './ConfirmButton'
-import {OfflineSummary} from './OfflineSummary'
 import './BookingForm.css'
 // import {SwitcherItem} from './Switcher'
 // import {Switcher} from './Switcher'

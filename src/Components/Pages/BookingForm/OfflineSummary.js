@@ -1,63 +1,21 @@
-import React, {useState,useEffect} from 'react'
-import axios from 'axios'
+import React, {useState, useEffect} from 'react'
+import {useHistory} from 'react-router-dom'
 
-export const OfflineSummary = ({name,surname,phone,email,app_service_id}) =>{
+import './OfflineSummary.css'
 
-    const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([]);
+export const OfflineSummary = ({wait}) =>{
+
+    const [hidden, setHidden] = useState("Hidden")
 
     useEffect(() => {
-        const ActionRQ = {
-                "username":"Serodynringa",
-                "password":"%tmMJZbABm6cB@tY",
-                "user_id" :1426, 
-                "action":"ModifyClientsRQ",
-                "data" : 
-                    {
-                        "service_id" : app_service_id,
-                        "service_number" : 1,
-                        "clients" : 
-                            [	
-                                {
-                                    "operation" : "add", 
-                                    "client_type" : "buyer", 
-                                    "site_client_id" : 1,
-                                    "name" : name,
-                                    "surname" : surname,
-                                    "phone" : phone, 
-                                    "email" : email 
-                                },
-                                // {
-                                //     "operation" : "add", 
-                                //     "client_type" : "client", 
-                                //     "site_client_id" : 2,
-                                //     "name" : "Gogel",
-                                //     "surname" : "Mogel",
-                                //     "phone" : "+38 (044) 490 7114", 
-                                //     "email" : "atest@arktur.ua"
-                                // },
-                           ]
-                    }
-                };
+        setTimeout(Show,wait)
+        },[]);
 
-        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
-            .then(response => setModifyClientsRQ_Add(response.data));
-    }, []);
+    const Show = () =>{
+        setHidden("")
+    }
 
-    console.log('ModifyClientsRQ_Add',ModifyClientsRQ_Add)
-
- return(
-     <>
-     <div>All ok</div>
-     <div>
-         {
-             ModifyClientsRQ_Add && ModifyClientsRQ_Add.map((item)=>{
-                return(
-                    <h4>{item.action}</h4>
-                )
-             })
-         }
-     </div>
-     </>
- )   
-    
+    return(
+        <h2 className={hidden}>Thank you for your request. Our team will get back to you as soon as possible with the confirmation and further details</h2>
+    )
 }

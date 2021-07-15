@@ -1,6 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import './SearchPannelCSS.css';
-import {GuestItem} from '../../Pages/SecondPageofSearchModule/GuestItem';
+import {GuestItem} from '../../Pages/SecondPageofSearchModule/Tours/GuestItem';
 import {Switcher, SwitcherItem} from '../../Pages/FirstPageofSearchModule/Switcher'
 import '../../Pages/FirstPageofSearchModule/SwitcherFront.css';
 import moment from 'moment';

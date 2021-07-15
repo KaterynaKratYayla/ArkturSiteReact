@@ -2,6 +2,7 @@ import React,{useState, useEffect} from 'react';
 import axios from 'axios'
 import { connect } from "react-redux";
 
+import {OnlineSummary} from './OnlineSummary'
 import {OfflineSummary} from './OfflineSummary'
 import { Pay } from '../../Library/LiqPay/Pay'
 import SaveReference from '../../Library/Notifications/SaveReference'
@@ -20,15 +21,18 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
        </button>
        {
           clicked === true?(
-               <OfflineSummary
+              <>
+               <OnlineSummary
                     name={name}
                     surname={surname}
                     phone={phone}
                     email={email}
                     app_service_id = {app_service_id}
                     />
+               </>     
+            
             ):null
-      }
+       }
        {
         clicked === true?(
             <>
@@ -42,8 +46,9 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                     smart_order_id = {smart_order_id}
                 />
             </>
-        ):null
-        }
-      </>
-    )
+            ):null
+      }
+    </>  
+  
+ )
 }

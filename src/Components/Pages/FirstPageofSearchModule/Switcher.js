@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const Switcher = (props) =>{
     const {children, active, name, changeHandler} = props;
      
-    console.log(props)
+    console.log('SWITCHER',props)
 
     return (
     // <div className='switcher'> {name} : {

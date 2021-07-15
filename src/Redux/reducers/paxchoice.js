@@ -1,19 +1,20 @@
 import { GET_PAX_REQ ,GET_PAX_RES, GET_PAX_ERR} from '../constants'
 
 const initState = {
-	pax: [],
-    pax_loaded: false,
+	pax: {adults:2,children:0,infants:0,rooms:1},
+    // pax:[],
+    pax_loaded: true,
     errors: []
 }
 
-
 const reducer = ( state = initState, action ) => {
-	switch( action.type ){
+    console.log('ACTION_pax', action)
+    switch( action.type ){
 
         case GET_PAX_REQ:
               return({
                 ...state,
-                pax_loaded: false
+                pax_loaded: true
                 })
         
         case GET_PAX_RES:

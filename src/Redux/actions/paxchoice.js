@@ -11,14 +11,23 @@ export const paxResponse = ( res ) => ({
 
 // console.log('[CONTENTRESPONCE]' , contentResponse)
 
-export const getPax = (adults,children,infants) => ( dispatch, getState ) => {
-
-    console.log('GET_PAX:', getState())
+export const getPax = (adults,children,infants,rooms) => ( dispatch, getState ) => {
+    // console.log('GET_PAX5',adults,children,infants,rooms)
+    console.log('GET_PAX1:', getState())
+    // const test = getState().paxchoice.pax;
     dispatch({ type: GET_PAX_REQ });
 
-    const newObject = {adults: adults,
+    // const test = getState().paxchoice.pax
+
+    const newObject = {
+        adults: adults,
         children: children,
-        infants: infants}
+        infants: infants,
+        rooms: rooms}
+        
+        // console.log('GET_PAX4', newObject)
+        // console.log('GET_PAX3', getState().paxchoice.pax)
 
     dispatch(paxResponse(newObject))
+    console.log('GET_PAX4', newObject)
    }

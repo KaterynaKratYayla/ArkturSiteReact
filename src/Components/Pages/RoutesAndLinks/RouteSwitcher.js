@@ -12,7 +12,8 @@ import {HomePage} from '../PageComponents/HomePage'
 // import {TOURS} from '../PageComponents/DropDownTours'
 import { PureContent } from '../PageComponents/MenuPageGenerator'
 // import { Search } from '../FirstPageofSearchModule/SearchFront'
-import { GuestItem } from '../SecondPageofSearchModule/GuestItem'
+import { GuestItem } from '../SecondPageofSearchModule/Tours/GuestItem'
+import { HotelItems } from '../SecondPageofSearchModule/Hotels/HotelItems'
 import { TourDetails } from '../ThirdPageofSearchModule/TourDetails'
 import {TopToursDetails} from '../PageComponents/TopToursDetails'
 import {BookingForm} from '../BookingForm/BookingForm'
@@ -40,12 +41,16 @@ export const RouteSwitcher = () =>{
 		{/* <Route component={NotFound} /> */}
 			<Route exact path='/' component={HomePage} />
 			<Route exact path='/hotels_in_ukraine' component={SingleHotel}/>
-			<Route exact path='/testcities' component={TestCities} />
-			<Route exact path='/search_results' component={GuestItem}/>
+			<Route exact path='/testcities' component={TestCities} /> 
+			<Route exact path='/search_results_tours' component={GuestItem}/>
+			<Route exact path='/search_results_hotels' component={HotelItems}/>
+			{/* <Route exact path='/testcities' component={TestCities} />
+			<Route exact path='/search_results' component={GuestItem}/> */}
 			<Route exact path='/tour_details' component={TourDetails} />
 			<Route exact path='/booking_form' component={BookingForm}/>
 			<Route exact path='/toptours' component={TopToursDetails} />
 			<Route exact path='/offlineSummary' component={OfflineSummary}/>
+			
 			{/* </Switch> */}
 				{/* <Switch> */}
 				<>

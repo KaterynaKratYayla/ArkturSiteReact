@@ -4,6 +4,7 @@ import thunk from 'redux-thunk';
 import reducer from '../reducers';
 import { logger, loggerFn } from './middlewares/logger';
 import { promise } from './middlewares/promise';
+import {paxResponse} from '../actions/paxchoice'
 
 const composeEnhancers = process.env.NODE_ENV !== 'production' && typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
 
@@ -20,7 +21,7 @@ const store = createStore(
     composeEnhancers( middlewares )
 );
 
-
 console.log('[STORE]', store.getState());
+
 
 export default store;
