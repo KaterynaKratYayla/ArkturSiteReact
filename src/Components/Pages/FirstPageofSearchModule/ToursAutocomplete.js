@@ -33,6 +33,7 @@ export const ToursAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gene
 //   const [align, setAlign] = useState('TOURS');  
 //   const [myID, setmyID] = useState('');
 //   const [loading,setLoading]=useState(false)
+const [pickedToursValue, setPickedToursValue] = useState(false);
  
   const history = useHistory();
 
@@ -88,6 +89,10 @@ export const ToursAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gene
     }
 
   const addToList = () => {
+    if (pickedToursValue === false){
+      alert ("Please choose your destination")
+    }
+   else {
 
     const filtered = geo.filter(function(item){
         return item.name === value
@@ -120,6 +125,7 @@ export const ToursAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gene
   console.log('[HISTORY : ] ', history)
 
   GeneralListFunction(list,value)
+ }
 }
 
 //   const onSubmit = (e) =>{
@@ -179,7 +185,7 @@ export const ToursAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gene
                     onChange={optionChecker}
                     
                     onSelect={value => setValue(value) 
-                      + setOpen(false)
+                      + setOpen(false) + setPickedToursValue(true)
                     }
 
                     renderItem={(item, highlighted) =>

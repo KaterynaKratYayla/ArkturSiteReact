@@ -1,14 +1,16 @@
 import React, {useState,useEffect} from 'react'
 import { useHistory } from "react-router-dom";
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector,useStore} from 'react-redux';
 import moment from 'moment';
 import Autocomplete from 'react-autocomplete';
 import { DatePicker ,Space } from 'antd';
+import {HotelsPaxChoice} from './HotelsPaxChoice'
 
-import {getHotels, getGeneralHotels} from "../../../Redux/actions/hotels"
+import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
+import {getPax} from "../../../../Redux/actions/paxchoice"
 
-import './Search.css';
-import './SwitcherFront.css';
+import '../Search.css';
+import '../SwitcherFront.css';
 import 'antd/dist/antd.css';
 
 moment.locale('uk')
@@ -19,12 +21,24 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       const [list , setList] = useState([]);
       const [hotelsvalue, setHotelsValue] = useState('');
       const [open, setOpen] = useState(false);
+      const [paxListOpen, setPaxListOpen] = useState(false);
+      const [totalPax, setTotalPax] = useState();
+      const [pickedHotelValue, setPickedHotelValue] = useState(false);
+      const [loaded,setLoaded]=useState(false);
      
       const history = useHistory();
     
       const dispatch = useDispatch();
+      // const store = useStore();
       const smart_hotels = useSelector(state => state.hotels.hotels)
       const general_smart_hotels = useSelector(state => state.hotels.general_hotels)
+      const totalPaxRedux = useSelector(state => state.paxchoice.pax)
+
+      // useEffect ( () => {
+      //   dispatch (getPax ());
+      // }, [])
+
+      console.log('TOTALPAX', totalPaxRedux)
 
       const {RangePicker} = DatePicker; 
     
@@ -55,6 +69,11 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
         }
     
       const addToList = () => {
+
+       if (pickedHotelValue === false){
+          alert ("Please choose your hotel")
+        }
+       else {
     
         const filteredHotels = smart_hotels.filter(function(item){
             return item.name === hotelsvalue
@@ -79,7 +98,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       setStayDates('');
       setHotelsValue('');
     
-      let route_query = `?title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id}`
+      let route_query = `?title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},a=${totalPaxRedux.adults},c=${totalPaxRedux.children},i=${totalPaxRedux.infants},r=${totalPaxRedux.rooms}`
     
       console.log('[hotelNewList] : ' , list, hotelsvalue)
     
@@ -87,12 +106,17 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       console.log('[HISTORY : ] ', history)
     
       GeneralListFunction(list,hotelsvalue)
+     }
     }
         
+    const MakeVisible = () =>{
+      setPaxListOpen(!paxListOpen)
+    }
+
       return(
             <div>
-                <form className={formClass} onSubmit={onSubmit}> 
-                    <div>
+              <form className={formClass} onSubmit={onSubmit}> 
+                    <div style={{width:'25%'}}>
                      
                        <Autocomplete
                          {...props}
@@ -101,7 +125,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
     
                            inputProps={{
                              style: 
-                            { width: '30vw',
+                            { width: '19vw',
                               height: '45px', 
                               fontFamily: 'Tahoma', 
                               fontSize: '16px',
@@ -109,8 +133,10 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                               borderBottom: 'none',
                               borderLeft: 'none',
                               marginTop: '0.2vw',
-                              marginLeft: '2vw',
-                              
+                              // marginLeft: '2vw'
+                              // flex: '0',
+                              // display:'block'
+                                                          
                             }, 
                               
                           placeholder: 
@@ -135,13 +161,13 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                                   }
                           
                         items={smart_hotels}
-                        
+                       
                         getItemValue={item => item.name}
                         
                         onChange={optionChecker}
                         
                         onSelect={value => setHotelsValue(value) 
-                          + setOpen(false)
+                          + setOpen(false) + setPickedHotelValue(true)
                         }
     
                         renderItem={(item, highlighted) =>
@@ -163,7 +189,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                         />
               </div>  
                
-            <div>
+            <div style={{width:'25%'}}>
                  
                  <Space direction="vertical">
                     <RangePicker
@@ -175,11 +201,20 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                         onChange={onChange}
                         bordered={false}
                         className={datepickerClass}
+
                     />
                 </Space>
               
             </div> 
-                <div class='borderInnerWrapper2'>
+
+               <div style={{width:'25%'}}>
+                  <HotelsPaxChoice 
+                     MakeVisible={MakeVisible}
+                     paxListOpen={paxListOpen}
+                  />
+                </div>
+                <div class='borderInnerWrapper2' style={{width:'25%'}}>
+                
                      <button type='submit' onClick={addToList}>SEARCH</button>
                 </div>
     

@@ -4,7 +4,7 @@ import React, {useState,useEffect} from 'react'
 import moment from 'moment';
 
 import {ToursAutocomplete} from './ToursAutocomplete'
-import {HotelsAutocomplete} from './HotelsAutocomplete'
+import {HotelsAutocomplete} from './HotelsAutocompleteBlock/HotelsAutocomplete'
 import {GuestItem} from '../SecondPageofSearchModule/Tours/GuestItem';
 import {HotelItems} from '../SecondPageofSearchModule/Hotels/HotelItems';
 import {Switcher, SwitcherItem} from './Switcher'
