@@ -91,7 +91,7 @@ export const ClientDetails = ({cart}) => {
                     "start" : "2021-08-09", // date of arrival
                     "end" : "2021-08-12", // date of departure
                     "city_id" : 19, 		// Id of city - can`t be equel to zero
-                    "hotel_id" : 0, 		// Id of hotel: if hotel_id = 0, must be return all hotels of the pointed city in response
+                    "hotel_id" : cart.hotel_id, 		// Id of hotel: if hotel_id = 0, must be return all hotels of the pointed city in response
                     "numberofunits" : 1,	// Quantity of rooms, 1 by default, NOT OBLIGATORY
                     "calculation_data" :
                         {
