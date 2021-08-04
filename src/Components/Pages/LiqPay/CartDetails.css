@@ -2,9 +2,9 @@
     padding: 1vw;
     border:2px solid rgb(206, 207, 209);
     border-radius:0.5vw;
-    display: inline-block;
-    max-width: 30vw;
-    /* flex:1; */
+    /*display: inline-block;*/
+    max-width: fit-content;
+    /* flex:1;*/
 }
 
 
@@ -51,7 +51,7 @@
 
 .MainRateDetails h5{
     color: rgb(77, 75, 75);
-    font-size: 16px;    
+    font-size: 16px;
 }
 
 .TaxDetails{

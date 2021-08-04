@@ -24,7 +24,7 @@ class PaymentResult extends Component {
         } else {
             console.log("work_with_payment, paymentInfo: ", this.props.paymentInfo);
             const orderId = this.props.paymentInfo[0].data.smart_service_id;
-            const isSuccess = this.props.paymentInfo[0].success ? "All is good" : "Please wait...";
+            const isSuccess = this.props.paymentInfo[0].success ? "All is good" : "Please wait..";
             const openInNewTab = (url) => {
                 const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
                 if (newWindow) newWindow.opener = null
@@ -36,24 +36,27 @@ class PaymentResult extends Component {
             return (
                 <div>
                     <CartDetails cart={searchData}/>
-                    <div>Hi!</div>
-                    <div>{orderId}</div>
-                    <div>{isSuccess}</div>
-                    <button style={{
-                        backgroundColor: '#337ab7',
-                        color: '#fff',
-                        borderColor: '#2e6da4',
-                        border: '1px solid transparent',
-                        borderRadius: '4px',
-                        padding: '6px 12px',
-                        cursor: 'pointer'
-                    }}
-                        onClick={() => {
-                            // this.props.fetchPaymentVoucher(orderId);
-                            // openInNewTab(this.props.voucherData.data.voucherUrl);
-                            openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
+                    <div style={{display: 'flex', justifyContent: 'center'}}>
+                        <div style={{marginRight: '5px'}}>Hi!</div>
+                        <div style={{marginRight: '5px'}}>Your order id is {orderId}.</div>
+                        <div style={{marginRight: '5px'}}>{isSuccess}.</div>
+                        <div style={{marginRight: '5px'}}>Now you can</div>
+                        <button style={{
+                            backgroundColor: '#337ab7',
+                            color: '#fff',
+                            borderColor: '#2e6da4',
+                            border: '1px solid transparent',
+                            borderRadius: '4px',
+                            padding: '6px 12px',
+                            cursor: 'pointer'
                         }}
-                    >Get voucher</button>
+                            onClick={() => {
+                                // this.props.fetchPaymentVoucher(orderId);
+                                // openInNewTab(this.props.voucherData.data.voucherUrl);
+                                openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
+                            }}
+                        >Get voucher</button>
+                    </div>
                     {/*<div>{this.props.voucherData.data.voucherUrl}</div>*/}
                 </div>
             );
