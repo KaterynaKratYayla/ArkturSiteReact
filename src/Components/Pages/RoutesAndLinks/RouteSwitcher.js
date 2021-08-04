@@ -20,6 +20,7 @@ import {BookingForm} from '../BookingForm/BookingForm'
 import {SingleHotel} from '../../Library/HotelsUkraineTestComponents/single_hotel'
 import { TestCities } from '../../Library/HotelsUkraineTestComponents/test_cities'
 import {OfflineSummary} from '../BookingForm/OfflineSummary'
+import {HotelDetails} from '../ThirdPageofSearchModule/Hotels/HotelDetails'
 import Login from "../../Library/Authorization/Login";
 import Register from "../../Library/Authorization/Register";
 import PaymentResult from "../LiqPay/PaymentResult";
@@ -46,6 +47,7 @@ export const RouteSwitcher = () =>{
 			<Route exact path='/search_results_hotels' component={HotelItems}/>
 			{/* <Route exact path='/testcities' component={TestCities} />
 			<Route exact path='/search_results' component={GuestItem}/> */}
+			<Route exact path='/hotel_details' component={HotelDetails}/>
 			<Route exact path='/tour_details' component={TourDetails} />
 			<Route exact path='/booking_form' component={BookingForm}/>
 			<Route exact path='/toptours' component={TopToursDetails} />

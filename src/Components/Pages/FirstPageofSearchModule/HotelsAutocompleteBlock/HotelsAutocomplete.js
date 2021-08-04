@@ -98,7 +98,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       setStayDates('');
       setHotelsValue('');
     
-      let route_query = `?title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},a=${totalPaxRedux.adults},c=${totalPaxRedux.children},i=${totalPaxRedux.infants},r=${totalPaxRedux.rooms}`
+      let route_query = `?title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},infants=${totalPaxRedux.infants},rooms=${totalPaxRedux.rooms}`
     
       console.log('[hotelNewList] : ' , list, hotelsvalue)
     

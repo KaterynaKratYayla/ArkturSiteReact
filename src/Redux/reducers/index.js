@@ -12,7 +12,10 @@ import voucher from "./voucher";
 import payment from "./payment";
 import message from "./message";
 import toptours from './toptours';
-import paxchoice from './paxchoice'
+import paxchoice from './paxchoice';
+import hotelcontent from './hotelcontent';
+import hotelrates from './hotelrates';
+import hotelroomschoice from './hotelroomschoice'
 
 
 //{combineReducers} - это библиотека из редакса для комбинации нескольких редьюсеров
@@ -29,7 +32,10 @@ const root_reducer = combineReducers({
 	voucher,
 	payment,
 	message,
-	paxchoice
+	paxchoice,
+	hotelcontent,
+	hotelrates,
+	hotelroomschoice
 });
 
 export default root_reducer;

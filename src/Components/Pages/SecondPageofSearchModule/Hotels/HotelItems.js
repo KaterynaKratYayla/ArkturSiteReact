@@ -11,10 +11,11 @@ import {getGeneralHotels} from "../../../../Redux/actions/hotels"
 import moment from 'moment';
 // import ReactHtmlParser from 'react-html-parser'
 import {HotelContent} from './HotelContent'
-// import {ItemObj} from './ItemObj'
+import {HotelRates} from './HotelRates'
 import {ValidateQuery} from '../../Helpers/helper'
 
 import {Search} from '../../FirstPageofSearchModule/SearchFront'
+import { LoadingMessage } from '../../../Library/PageDevices/LoadingMessage';
 // import 'moment/locale/uk'
 
 import './HotelItemsCSS.css'
@@ -36,7 +37,7 @@ console.log('HOTEL ITEM LOCATION', location)
 
 // // const searchResults = search_data.query.replace(/_/g, " ")
 // console.log('[SEARCHRESULTS] : ' , searchResults , 'DATSENKO',search_data, search_data.title.replace(/_/g, " "))
-console.log('DATSENKO',search_data)
+console.log('DATSENKO',search_data.city_id)
 
 const dispatch = useDispatch();
 const generalHotelItems = useSelector(state => state.hotels.general_hotels)
@@ -44,6 +45,7 @@ const generalHotelItems = useSelector(state => state.hotels.general_hotels)
 const [hotelRate, setHotelRate] = useState([])
 const [filtered1, setFiltered1] = useState([]);
 const [geoindex, setGeoindex] = useState([]);
+const [timing,setTiming] = useState();
 
 // console.log('[TEST]', test)
  
@@ -91,25 +93,39 @@ const [geoindex, setGeoindex] = useState([]);
             {       
               "start" : search_data.start, // date of arrival  
               "end" : search_data.end, // date of departure
-              "city_id" : search_data.city_id,         // Id of city - can`t be equel to zero
-              "hotel_id" : search_data.city_id === search_data.id? 0 : search_data.id,       // Id of hotel: if hotel_id = 0, must return all hotels of the pointed city in response
-              "numberofunits" : search_data.r,    // Quantity of rooms, 1 by default, NOT OBLIGATORY
+              "city_id" : search_data.city_id,
+              // search_data.city_id,         // Id of city - can`t be equel to zero
+              "hotel_id" : search_data.city_id === search_data.id? 0 : search_data.id ,
+              // search_data.city_id === search_data.id? 320 : search_data.id,       // Id of hotel: if hotel_id = 0, must return all hotels of the pointed city in response
+              "numberofunits" : search_data.rooms,    // Quantity of rooms, 1 by default, NOT OBLIGATORY
               "calculation_data" : 
                     {   
-                      "adults" : search_data.a,
-                      "children" : search_data.c,
+                      "adults" : search_data.adults,
+                      "children" : search_data.children,
+                      // "child_discount" : search_data.c !== 0? 0.5: null,
                       "lower_cost_limit" : 0.00, // lower cost limit of room in USD, NOT OBLIGATORY
                       "upper_cost_limit" : 200.00 // upper cost limit of room in USD, NOT OBLIGATORY
                     }
             }
         };
-        
+    
     axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
-        .then(response => setHotelRate(response.data))
-        
+        .then(response => {
+          for(let key in response.data.data){
+            if(key === 'hotels'){
+              setHotelRate(response.data.data[key])
+            }
+            
+          }
+         }
+        )
+        .catch( error => {
+          setHotelRate(undefined)
+          console.log( '[axios error] : ' , error)
+           });
     }, []);
 
-console.log('HOTEL_RATE',hotelRate)
+console.log('GEN_HOTEL_RATE',hotelRate)
 
     return(
       <div>
@@ -120,7 +136,8 @@ console.log('HOTEL_RATE',hotelRate)
             </div>
             <div class='searchrendering_Wrapper'>
             <div>
-              <h3 style={{marginTop:'2vw', color:'#003057',fontFamily:'Arial',fontSize:'30px',fontWeight:'bold'}}>Search Results</h3>
+              <h3 style={{marginTop:'2vw', 
+                          color:'#003057',fontFamily:'Arial',fontSize:'30px',fontWeight:'bold'}}>Search Results</h3>
             </div>
           {/* <div  style={{width:'100%',marginLeft:'auto',marginRight:'auto'}}> */}
              
@@ -128,76 +145,121 @@ console.log('HOTEL_RATE',hotelRate)
            {/* </div> */}
                
                 {/* <div>{history.location.pathname}</div> */}
-              <div>
-                <h2
-                  style={{color:'#001959',
-                          backgroundColor:'rgb(255, 239, 131)',
-                          // border:'2px solid #001959',
-                          borderRadius:'5px',
-                          marginLeft: 'auto',
-                          marginRight: 'auto',
-                          textAlign: 'center',
-                          paddingTop:'2vh',
-                          paddingBottom: '2vh'
-                        }}>
-                      {/* {filtered_hotel_items[0].city_name} : {filtered_hotel_items.length} properties found */}
-                      City Name : {filtered_hotel_items.length} properties found
-                  </h2>
-                  <ul className='HotelDescriptionUl'>
-                    <>
-                      {
-                        filtered_hotel_items.length > 0  && filtered_hotel_items? (filtered_hotel_items.map((hotel) => {
-                          return (
-                            <li key={hotel.hotel_id} className='HotelDescriptionLi'>
-                                 {/* <h3 style={{fontSize:'27px',
-                                              color: '#001959'}}>
-                                                     {hotel.hotel_name} 
-                                 </h3> */}
+              <div>            
+                {
+                  hotelRate.length===0?  
+                   (<div
+                      style={{position:'absolute', 
+                              zIndex: '1000',
+                              top: '70%',
+                              left: '50%',
+                              transform: 'translate(-50%, -50%)',
+                             }}
+                         ><LoadingMessage loadingMessageClass='RateLoading'/></div>): 
+                         (              
+                           <>
+                            <h2
+                              style={{color:'#001959',
+                              backgroundColor:'rgb(255, 239, 131)',
+                              // border:'2px solid #001959',
+                              borderRadius:'5px',
+                              marginLeft: 'auto',
+                              marginRight: 'auto',
+                              textAlign: 'center',
+                              paddingTop:'2vh',
+                              paddingBottom: '2vh'
+                            }}>
+                              {/* {filtered_hotel_items[0].city_name} : {filtered_hotel_items.length} properties found */}
+                                City Name : {filtered_hotel_items.length} properties found
+                            </h2>
+           
+                               <ul className='HotelDescriptionUl'>
+                                 <>
+                                    {  
+                                      hotelRate.length>0 && hotelRate? (hotelRate.map((hotelTariff) => {
+                                         if(hotelTariff){
+                                           return (
+                                             <li key={hotelTariff.hotel_id} className='HotelDescriptionLi'>
+                                                <HotelRates
+                                                   key={hotelTariff.hotel_id}
+                                                   hotelTariff = {hotelTariff}
+                                                   hotelRooms = {hotelTariff.rooms}
+                                                   searchResults = {search_data}
+                                                   history={history}
+                                                   hotelName={hotelTariff.hotel_name}
+                                                />                     
 
-                                 {/* <div class='descriptionContent'>                         */}
-                                 {
-                                   <HotelContent
-                                      hotel = {hotel}
-                                    />
+                                                {
+                                                  filtered_hotel_items.length > 0  && filtered_hotel_items? (filtered_hotel_items.map((hotel) => {
+                                                   if(hotel.hotel_id === hotelTariff.hotel_id){
+                                                     if(hotel){
+                                                      return (
+                                                          <HotelContent
+                                                              hotel = {hotel}
+                                                              hotelTariff = {hotelTariff}
+                                                           />
+                                                          )
+                                                        }
+                                                       }
+                                                      }
+                                                     )
+                                                    ):null
+                                                  }
+                                                </li>
+                                                 )
+                                                }
+                                              }
+                                             )):
+                                            null
+                                          }
+                                       
 
-                                //   rate? (rate.map((tariff) => {
-                                //    if(hotel.hotel_id === tariff.hotel_id){
-                                //     return (
-                                //     <ItemObj
-                                //        key={tariff.hotel_id}
-                                //        tariff = {tariff}
-                                //        searchResults = {search_data}
-                                //        history={history}
-                                //        hotel_name={tour.hotel_name}
-                                //      />
-                                //     )
-                                //   }
-                                //  }
-                                //   )
-                                // ):
-                                // (<button className="onrequestButton">Sold out</button>)
-                              }
-                              {/* </div> */}
-                              </li>
-                           )
-                          })) : (
-                       <div className='noResultSearch'>
-                          Your
-                           Search returned no results. Please change your parameters and try once again.
-                      </div> )           
-                  }                    
-              </>
-              {/* <hr /> */}
-           </ul>  
-         </div>
-         
-           {/* {
-             searchResults[0].click && ( 
-                <TourDetails searchResultsNew={searchResults}/>
-             )
-           } */}
-      
-
+                                       {/* {
+                                         filtered_hotel_items.length > 0  && filtered_hotel_items? (filtered_hotel_items.map((hotel) => {
+                                          return ( 
+                                            <li key={hotel.hotel_id} className='HotelDescriptionLi'>
+                                               {
+                                                 <HotelContent
+                                                    hotel = {hotel} 
+                                                  />
+                                               } 
+                                                {      
+                                              hotelRate? (hotelRate.map((hotelTariff) => {
+                                               if(hotel.hotel_id === hotelTariff.hotel_id){
+  
+                                                return (
+                                                 <HotelRates
+                                                   key={hotelTariff.hotel_id}
+                                                   hotelTariff = {hotelTariff}
+                                                   hotelRooms = {hotelTariff.rooms}
+                                                   searchResults = {search_data}
+                                                   history={history}
+                                                   hotel_name={hotel.hotel_name}
+                                                 />
+                                                )
+                                                
+                                              }
+                                             }
+                                              )
+                                            ):
+                                            (<button className="onrequestButton">Sold out</button>)
+                                          }
+                                          
+                                          </li>
+                                        )
+                                       }
+                                       )) : (
+                                      <div className='noResultSearch'>
+                                          Your Search returned no results. Please change your parameters and try once again.
+                                     </div> )           
+                              }                      */}
+                             
+                              </>
+                           </ul>
+                         </>
+                      )
+                } 
+            </div>   
        </div>
     </div>
   )

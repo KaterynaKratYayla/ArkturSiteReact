@@ -8,3 +8,6 @@ export * from './hotels';
 export * from './order';
 export * from './payment';
 export * from './voucher';
+export * from './hotelcontent';
+export * from './hotelrates';
+export * from './hotelroomschoice';

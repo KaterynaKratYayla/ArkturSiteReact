@@ -11,18 +11,24 @@ import {Star} from '../../../Library/Icons/star'
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import 'moment/locale/uk'
+import { getHotelContent } from '../../../../Redux/actions'
 
 moment.locale('uk')
 
-export const HotelContent = ({hotel})=>{
+export const HotelContent = ({hotel,hotelTariff})=>{
   console.log('[HOTEL_CONTENT]' , hotel)
   const [result, setResult] = useState('')
+  const [emptyContent, setEmptyContent] = useState(false)
   // const [id, setId] = useState([])
 
-// const contents = useSelector(state => state.content.content)
+// const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
 // const dispatch = useDispatch();
 
-// console.log('[CONTENTS]', contents )
+// useEffect (() =>{
+//   dispatch(getHotelContent(hotel.hotel_id))
+// },[hotel.hotel_id])
+
+// console.log('[HOTEL_HOTEL_CONTENTS]', hotelcontents)
 
   useEffect ( () => {
     axios.get(`https://hotels-ua.biz/interface/hotelcontent?id=${hotel.hotel_id}&language=en`)
@@ -49,21 +55,21 @@ export const HotelContent = ({hotel})=>{
 
    return(
      
-    <div style={{paddingRight: '2vw'}}>
+    <div style={{paddingRight: '2vw', gridColumn:'1 / 4', gridRow:'1 / 3'}}>
       
       <ul class='Hotel_ItemContent'>
+        
         <>
       {
-       result ? (result.map((trip) =>{
-       
+       result.length>0?(result.map((trip) =>{
          for(let key in trip){
           if(key==="hotel_parameters"){
 
             for(let key1 in trip[key]){
-              // if(Object.keys(trip[key])!=="phone"){
                 console.log('KEY1',trip[key])
                return (
                 <li class='Li_HotelContent'>
+                {/* // <li style={{gridColumn:'2', gridRow:'1'}}> */}
                   <div style={{display:'flex', 
                                flexDirect:'row'}}>
                      <h3 style={{fontSize:'27px',
@@ -73,11 +79,13 @@ export const HotelContent = ({hotel})=>{
                                    {hotel.hotel_name} 
                      </h3>
                      <div>
+                     
                       {
                         trip[key].category&&Array.from(trip[key].category).includes('*')?
                           Array.from(trip[key].category).map((star)=>
                               <span style={{marginLeft:'0.1vw', marginRight:'0.1vw'}}><Star/></span>
                           ):null
+
                       }
                      </div>
                     </div>
@@ -105,7 +113,6 @@ export const HotelContent = ({hotel})=>{
               
                )
               // }
-
               
              }
           }
@@ -122,7 +129,9 @@ export const HotelContent = ({hotel})=>{
             return (
             <li
             style={{listStyleType:'none',
-            textAlign: 'left'}}
+            textAlign: 'left',
+            
+            }}
             >
                   <img 
                       // class='imageSearchrender'
@@ -136,16 +145,43 @@ export const HotelContent = ({hotel})=>{
             )
           }
           
+          // else {
+          //   return (
+          //     <li class='Li_HotelContent'>
+          //       <div style={{display:'flex', 
+          //                    flexDirect:'row'}}>
+          //          <h3 style={{fontSize:'27px',
+          //                     color: '#001959',
+          //                     fontWeight: 'bold',
+          //                     marginRight:'2vw'}}>
+          //                        {hotel.hotel_name} 
+          //          </h3>
+          //       </div>
+          //    </li>
+          //   )
+          // }
          }
        )) : (
         // <div>{tour.name}{tour.duration}</div> 
-        <LoadingMessage/>
+        // <LoadingMessage/>
+        
+          <li class='Li_HotelContent'>
+            <div style={{display:'flex', 
+                         flexDirect:'row'}}>
+               <h3 style={{fontSize:'27px',
+                          color: '#001959',
+                          fontWeight: 'bold',
+                          marginRight:'2vw'}}>
+                                {hotel.hotel_name} 
+               </h3>
+              </div>
+            </li>
+        
        )
      }
       </>
      </ul>
-    {/* <div> */}
-      {/* HI CONTENT */}
+ 
     </div>
    )
 }

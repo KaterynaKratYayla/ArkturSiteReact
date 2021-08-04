@@ -1,0 +1,76 @@
+.HotelDetailsWrapper{
+    margin: 3vh 6vw 5vh 6vw;
+}
+
+.HotelDetailsWrapper h2{
+    color: #102D69;
+    font-family: "Arial";
+    font-size: 27px;
+    font-weight: bold;
+    margin-right:2vw;
+}
+
+.SearchDetails{
+    display: grid;
+    grid-template-columns: repeat(5,20%);
+    /* grid-auto-rows: minmax(2vw,auto); */
+    text-align:center;
+    padding: 1vw;
+    border:2px solid rgb(206, 207, 209);
+    border-radius:0.5vw;
+    /* font-family:Arial;
+    color:#102D69;
+    font-size:17px;
+    font-weight:bold; */
+    /* background-color: #ecf3fa; */
+    background-color:rgb(245, 233, 159);
+    text-align: center;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+}
+
+.SearchDetails h4,span{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.SearchDetails h4{
+    font-family:Arial;
+    color:#102D69;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.SearchDetails span{
+    font-family:Arial;
+    color: blue;
+    font-size:17px;
+    font-weight:bold;
+}
+
+.ContentDetails{
+    display:grid;
+    /* flex-direction: row-reverse; */
+    /* justify-content: space-evenly; */
+    /* flex-direction: column; */
+    grid-template-columns: 70% 30%;
+    /* grid-auto-rows: minmax(4vw, auto); */
+}
+
+.availableButton{
+    padding: 0.5vw 1vw;
+    /* width: 10vw; */
+    font-size: 17px;
+    font-family:Arial;
+    font-weight: bold; 
+    background-color: #2f81b8;
+    /* background-color: #37e04e; */
+    color: white;
+    border-radius: 0.5vw;
+  }
+  
+  .availableButton:hover{
+    cursor:pointer;
+    background-color: #085486;
+    color: rgb(250, 250, 141)
+  }
