@@ -1,0 +1,29 @@
+.WrapperAddToBasket{
+    min-width:35vw;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+
+.WrapperAddToBasket h4{
+    width: 30vw;
+    height: 25px;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+
+.AddToBasketButton{
+    background: #009FE3;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 19px;
+    width: 8vw;
+    height: 40px;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-top: 25px;
+    margin-bottom: 8px;   
+}

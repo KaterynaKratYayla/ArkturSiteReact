@@ -1,0 +1,1 @@
+export const HotelRateGridTitles = ['Room Type','Pax','Total Rate','Tariff','Availablity','Book']

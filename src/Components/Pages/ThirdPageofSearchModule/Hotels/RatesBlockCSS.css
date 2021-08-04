@@ -1,0 +1,48 @@
+.RatesGridWrapper{
+    display: grid;
+    grid-template-columns: 30% 5% 10% 35% 10% 10%;
+    grid-auto-rows: minmax(4vw,auto);
+    padding-left:0;
+    margin-bottom:0;
+}
+
+.Header{
+    background-color: #dce5ee;
+    border-radius: 0.5vw;
+    border: 2px solid rgb(109, 109, 196);
+}
+
+.Details{
+    display: grid;
+    grid-template-columns: 30% 5% 10% 35% 10% 10%;
+    grid-auto-rows: minmax(4vw,auto);
+    /* border: 2px solid rgb(109, 109, 196); */
+    /* grid-gap:0; */
+    /* border-bottom: 2px solid rgb(109, 109, 196);
+    border-right: 2px solid rgb(109, 109, 196); */
+}
+
+.Details h5{
+    /* margin-top:auto; */
+    margin-bottom:0;
+    padding-bottom:1vw;
+    padding-top: 1vw;
+}
+
+.RatesGridHeader{
+    list-style: none;
+    font-family:Arial;
+    color:#102D69;
+    font-size:17px;
+    font-weight:bold;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AvailableOptions{
+    font-size: 15px;
+    color:#102D69;
+    font-family:'Arial';
+    /* font-weight:bold; */
+    text-align:center;
+}
