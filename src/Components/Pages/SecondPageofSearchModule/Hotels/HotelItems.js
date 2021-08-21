@@ -110,11 +110,14 @@ const [timing,setTiming] = useState();
         };
     
     axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
-        .then(response => {
+        .then(response => 
+          {
+          
           for(let key in response.data.data){
             if(key === 'hotels'){
               setHotelRate(response.data.data[key])
             }
+            // setHotelRate(response.data)
             
           }
          }
@@ -183,7 +186,7 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                                 <HotelRates
                                                    key={hotelTariff.hotel_id}
                                                    hotelTariff = {hotelTariff}
-                                                   hotelRooms = {hotelTariff.rooms}
+                                                   hotelRooms = {hotelTariff.room_rates}
                                                    searchResults = {search_data}
                                                    history={history}
                                                    hotelName={hotelTariff.hotel_name}

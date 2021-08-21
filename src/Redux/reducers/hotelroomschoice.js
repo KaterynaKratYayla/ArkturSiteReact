@@ -2,7 +2,7 @@ import { GET_HTL_ROOM_NUMBER_REQ, GET_HTL_ROOM_NUMBER_RES, GET_HTL_ROOM_NUMBER_E
 
 const initState = {
 	// pax: {adults:2,children:0,infants:0,rooms:1},
-    room:1,
+    room:[],
     room_loaded: true,
     errors: []
 }

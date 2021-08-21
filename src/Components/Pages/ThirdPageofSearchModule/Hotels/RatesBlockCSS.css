@@ -12,6 +12,21 @@
     border: 2px solid rgb(109, 109, 196);
 }
 
+.RoomTypeColumn{
+    grid-column:1;
+    /* grid-row: 1/span 2; */
+    color: #102D69;
+    font-size: 18px;
+    font-family:Arial;
+    font-weight:bold;
+    border-top: 2px solid rgb(109, 109, 196);
+    border-right: 2px solid rgb(109, 109, 196);
+}
+
+.NotActive{
+    display:none;
+}
+
 .Details{
     display: grid;
     grid-template-columns: 30% 5% 10% 35% 10% 10%;
