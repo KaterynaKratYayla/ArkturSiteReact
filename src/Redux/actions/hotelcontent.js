@@ -17,7 +17,10 @@ export const getHotelContent = (id) => ( dispatch, getState ) => {
 
     axios.get(`https://hotels-ua.biz/interface/hotelcontent?id=${id}&language=en`)
       .then( res => {
-        dispatch(hotelContentResponse(res.data))
+        const filtered_res = res.data.filter((item,index,array) =>
+        array.findIndex(t => t.content_name === item.content_name)===index)
+
+        dispatch(hotelContentResponse(filtered_res))
         console.log('[REDUX_HOTEL_CONTENT]:' , res.data)
         })
       

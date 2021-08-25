@@ -3,7 +3,8 @@ import { useSelector,useDispatch} from 'react-redux'
 import { getHotelRates } from '../../../../Redux/actions'
 import { HotelRateGridTitles } from '../../../Library/StaticJsonData/HotelRateGridTitles'
 import {BookButtonHotel} from './BookButtonHotel'
-import {getRoomsChoice} from '../../../../Redux/actions/hotelroomschoice'
+// import {getRoomsChoice} from '../../../../Redux/actions/hotelroomschoice'
+import {getAvail} from '../../../../Redux/actions/availabilitychoice'
 
 import { Select } from 'antd';
 
@@ -15,6 +16,9 @@ const [visible, setVisible] = useState(true)
 
     const dispatch = useDispatch();
     const hotelratesRatesBlock = useSelector(state => state.hotelrates.hotelrates)
+    const pickedHotelRooms = useSelector(state=>state.availabilitychoice.avail_rooms)
+
+    console.log('PICKEDHOTELROOMS',pickedHotelRooms)
 
   useEffect ( () => {
     dispatch (getHotelRates(search_data));
@@ -68,6 +72,7 @@ const [visible, setVisible] = useState(true)
                                                             gridColumn:'2',
                                                               borderBottom: '2px solid rgb(109, 109, 196)',
                                                               borderRight: '2px solid rgb(109, 109, 196)',
+                                                              borderLeft: '2px solid rgb(109, 109, 196)',
                                                               fontSize: '18px',
                                                               color: '#102D69',
                                                               fontFamily:'Arial',
@@ -139,12 +144,13 @@ const [visible, setVisible] = useState(true)
                                                     </h5> */}
                                                     <h5 style={{
                                                             display:'grid',
-                                                            gridColumn:'2/-1',
+                                                            gridColumn:'5/-1',
                                                             gridTemplateColumns:'50% 50%',
                                                             marginBottom:'0',
                                                             paddingBottom:'0.5vw',
                                                             paddingTop: '0.5vw',
-                                                            textAlign:'center'}}>
+                                                            textAlign:'center',
+                                                            borderBottom: '2px solid rgb(109, 109, 196)'}}>
                                                                 <AvailableOptions 
                                                                             // item={item}
                                                                             rooms={search_data.rooms}
@@ -186,67 +192,6 @@ const [visible, setVisible] = useState(true)
       }
                                          
 
-                        // <h5 style={{gridColumn:'5/-1',
-                        //             color: '#102D69',
-                        //             borderBottom: '2px solid rgb(109, 109, 196)',
-                        //             borderRight: '2px solid rgb(109, 109, 196)',
-                        //             display:'flex',
-                        //             flexDirection:'column'
-                        //             }}>
-                        //      {
-                                // rate.tariffs.map((tariff)=>{
-                                    // console.log('ARRAY', ratesarray)
-                                    // return(
-                                    //     <>
-                                    //         {
-                                    //          tariff.prices.map((item,index,tariffarray)=>{
-                                    //             console.log('TARIFF', tariffarray)
-                                    //             return(
-                                    //                 <h5 style={{
-                                    //                         display:'grid',
-                                    //                         gridTemplateColumns:'50% 50%',
-                                    //                         marginBottom:'0',
-                                    //                         paddingBottom:'0.5vw',
-                                    //                         paddingTop: '0.5vw',
-                                    //                         textAlign:'center'}}>
-                                    //                             <AvailableOptions 
-                                    //                                         item={item}
-                                    //                                         rooms={search_data.rooms}
-                                    //                                         // tariffarray={tariff}
-                                    //                                         room_id={rate.room_id}
-                                    //                                         room_name={rate.room_name}
-                                    //                                         room_type_id={rate.room_type_id}
-                                    //                                         room_type_name={rate.room_type_name}
-                                    //                                         room_subcategory_id={rate.room_subcategory_id}
-                                    //                                         room_subcategory_name={rate.room_subcategory_name}
-                                    //                                         sum={tariff.sum}
-                                    //                                         tariff_id={tariff.tariff_id}
-                                    //                                         tariff_name={tariff.tariff_name}
-                                    //                                         tariff_type_id={tariff.tariff_type_id}
-                                    //                                         tariff_type_name={tariff.tariff_type_name}
-
-                                    //                                         />
-                                    //                 </h5>
-                                    //             )
-                                    //        })
-                                    //     }
-                                    //     </>
-                                    // )
-                                // })
-                        //     }
-                        // </h5>
-                        
-//                       </>
-//                     )
-//                     })
-//                     )
-//                 }):null 
-//                } 
-//             </div> 
-//         </div>
-//     )
-// }
-
 const AvailableOptions = (props) =>{
 
     const {item,rooms,room_id,room_name,room_type_id,room_type_name,room_subcategory_id,room_subcategory_name,sum,tariff_id,availability} = props;
@@ -258,11 +203,10 @@ const AvailableOptions = (props) =>{
     // const [activeSelect,setActiveSelect] = useState(false)
     const { Option } = Select;
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const SelectRooms = (value) =>{
         setSelectedAvailability(value)
-        // dispatch (getRoomsChoice(value))
     }
 
     let empty_array = [];
@@ -276,10 +220,11 @@ const AvailableOptions = (props) =>{
 
     return(
         <>
-        {/* <h5> */}
+        <h5>
         <Select 
              defaultValue={selectedAvailability}
              onChange={SelectRooms}
+             onSelect={()=>dispatch (getAvail(selectedAvailability))}
              bordered={true}
              size='large'> 
               <>
@@ -302,12 +247,12 @@ const AvailableOptions = (props) =>{
                    }
                </>
           </Select>
-          {/* </h5> */}
+          </h5>
           {/* /* </select> */ }
-          {/* <h5 style={{     
-            //   borderBottom: '2px solid rgb(109, 109, 196)',
-                margin:'0',
-                textAlign:'center'}}> */}
+          {/* <h5 style={{      */}
+              {/* //  borderBottom: '2px solid rgb(109, 109, 196)', */}
+                {/* margin:'0', */}
+                {/* textAlign:'center'}}>  */}
                     <BookButtonHotel 
                         selectedAvailability={selectedAvailability}
                         room_id={room_id}
@@ -320,6 +265,6 @@ const AvailableOptions = (props) =>{
                         tariff_id={tariff_id}
                         />
         {/* </h5>  */}
-        </>
+      </>
     )
 }

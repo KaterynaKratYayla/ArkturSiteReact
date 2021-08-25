@@ -17,9 +17,10 @@ export const HotelDetails = () =>{
     let search_data = ValidateQuery(location)
 
     console.log('[HOTEL_DETAILS_SEARCH]', search_data)
-
-    const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
+    
     const dispatch = useDispatch();
+    const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
+    const pickedHotelRooms = useSelector(state=>state.availabilitychoice.avail_rooms)
 
 useEffect (() =>{
   dispatch(getHotelContent(search_data.hotel_id))

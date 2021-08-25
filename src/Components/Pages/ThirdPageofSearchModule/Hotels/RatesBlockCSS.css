@@ -19,8 +19,9 @@
     font-size: 18px;
     font-family:Arial;
     font-weight:bold;
-    border-top: 2px solid rgb(109, 109, 196);
-    border-right: 2px solid rgb(109, 109, 196);
+    /* border-top: 2px solid rgb(109, 109, 196); */
+    background-color: rgb(214, 214, 247);
+    /* border-right: 2px solid rgb(109, 109, 196); */
 }
 
 .NotActive{

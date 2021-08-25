@@ -11,3 +11,4 @@ export * from './voucher';
 export * from './hotelcontent';
 export * from './hotelrates';
 export * from './hotelroomschoice';
+export * from './availabilitychoice';
