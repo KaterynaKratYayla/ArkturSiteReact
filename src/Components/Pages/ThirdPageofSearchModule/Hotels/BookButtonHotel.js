@@ -33,7 +33,7 @@ export const BookButtonHotel = (props) =>{
             }
         setBooking([newBooking])
 
-        const route_hotel_query_form = `?service_type_id=${1},start=${location.search.start},end=${location.search.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${location.search.hotel_id},adults=${location.search.start},children=${location.search.start},htlName=${location.search.start},amount=${sum}`
+        const route_hotel_query_form = `?service_type_id=${1},start=${location.search.start},end=${location.search.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${location.search.hotel_id},adults=${location.search.start},children=${location.search.start},htlName=${location.search.hotel_name},amount=${sum}`
         history.push(`/booking_form/${route_hotel_query_form}`, [...booking, newBooking])
     }
 
