@@ -29,7 +29,7 @@ export const BookButtonHotel = (props) =>{
             // tourDate: start, (из поиска)
             // totalPax: totalPax,(из поиска)
             // paxPerRoom: value,(из поиска)
-            // hotelName: hotelChoice,(из поиска)
+            // hotelName: hotelChoice,(из поиска )
             }
         setBooking([newBooking])
 
