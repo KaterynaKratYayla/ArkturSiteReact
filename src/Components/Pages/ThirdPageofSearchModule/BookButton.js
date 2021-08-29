@@ -34,7 +34,7 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
         setBooking([newBooking])
 
         // const route_query_form = `${location.search},smart_id=123234`
-        const route_query_form = `?start=${date},tour_id=${tour_id},tour_tariff_id=${e.target.value},tour_room_id=${tour_room.id},hotel_id=${hotel_id},hotel_room_id=${hotel_room_id},adults=${totalPax.counterAdults},children=${totalPax.counterChild},infant=${totalPax.counterInfant},htlName=${hotelChoice},amount=${param}`
+        const route_query_form = `?start=${date},contract_id=${tour_id},tariff_id=${e.target.value},room_id=${tour_room.id},hotel_id=${hotel_id},hotel_room_id=${hotel_room_id},adults=${totalPax.counterAdults},children=${totalPax.counterChild},infant=${totalPax.counterInfant},htlName=${hotelChoice},amount=${param},service_type_id=${11}`
         history.push(`/booking_form/${route_query_form}`, [...booking, newBooking])
     }
 

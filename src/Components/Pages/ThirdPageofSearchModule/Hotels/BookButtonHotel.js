@@ -9,7 +9,7 @@ import './BookButtonHotelCSS.css'
 
 export const BookButtonHotel = (props) =>{
 
-    const {tariff_id,room_id,room_name,sum,selectedAvailability,room_type_name,room_subcategory_name,room_type_id,room_subcategory_id,tariff_name,tariff_type_id,tariff_type_name} = props;
+    const {tariff_id,room_id,sum,selectedAvailability,tariff_type_id,contract_id} = props;
 
     const [booking,setBooking] = useState([]);
     const location = useLocation();
@@ -20,47 +20,34 @@ export const BookButtonHotel = (props) =>{
      const AddToBasket=(e)=>{
 
         const newBooking={
-            hotel_tariff_id:tariff_id,
-            hotel_room_id:room_id,
-            hotel_room_name:room_name,
-            amount:sum,
+            tariff_id:tariff_id, //ok
+            room_id:room_id, //ok
+            amount:sum, //ok
             rooms:selectedAvailability,
-            room_type_name:room_type_name,
-            room_subcategory_name:room_subcategory_name,
-            room_type_id:room_type_id,
-            room_subcategory_id:room_subcategory_id,
-            tariff_name:tariff_name,
             tariff_type_id:tariff_type_id,
-            tariff_type_name:tariff_type_name
 
-
-            // tour_id:hotel_id, (из поиска)
-            // tour_tariff_id: tariff_id,
             // tourDate: start, (из поиска)
             // totalPax: totalPax,(из поиска)
             // paxPerRoom: value,(из поиска)
-            // hotel_room_id: room_id,
             // hotelName: hotelChoice,(из поиска)
-            // tour_room_id: tour_room.id, (не нужно)
-            // hotel_id: hotel_id,(из поиска)
-            // amount:sum
             }
-
-        // console.log('ETARGET',e.target.value)
         setBooking([newBooking])
 
-        const route_hotel_query_form = `${location.search}?hotel_tariff_id=${tariff_id},hotel_room_id=${room_id},hotel_room_name=${room_name},amount=${sum},rooms=${selectedAvailability},room_type_name=${room_type_name},room_subcategory_name=${room_subcategory_name},room_type_id=${room_type_id},room_subcategory_id=${room_subcategory_id},tariff_name=${tariff_name},tariff_type_id=${tariff_type_id},tariff_type_name=${tariff_type_name}`
+        const route_hotel_query_form = `?service_type_id=${1},start=${location.search.start},end=${location.search.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${location.search.hotel_id},adults=${location.search.start},children=${location.search.start},htlName=${location.search.hotel_name},amount=${sum}`
         history.push(`/booking_form/${route_hotel_query_form}`, [...booking, newBooking])
     }
 
     return(
-        <div>
+        
+        /* style={{display: 'flex', */
+                /* justifyContent: 'flex-end', */
+                     /* alignItems: 'center'}}> */
             <button class='AddToBasketButton'
                 onClick={AddToBasket}> 
                     {/* value={item1.smart_tariff_type_id} onClick={AddToBasket(Math.ceil(item3.sale*totalPax.counterAdults))}> */}
                     Book Now
             </button>
-        </div>
+       
 
     )
 }

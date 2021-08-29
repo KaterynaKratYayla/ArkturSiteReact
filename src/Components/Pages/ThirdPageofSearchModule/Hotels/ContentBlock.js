@@ -8,6 +8,7 @@ import './HotelDetailsCSS.css'
 
 export const ContentBlock = ({hotelcontents,search_data}) =>{
    
+  console.log('[HOTELCONTENTS]', hotelcontents)
 const [photoHeight, setPhotoHeight] = useState('55vh')
   return(
    <div class="ContentDetails">
@@ -38,6 +39,7 @@ const [photoHeight, setPhotoHeight] = useState('55vh')
                   }
                 }
             }
+            
             if(trip.content_name === 'Body'){
                 return (
                     // <div class='Li_HotelContent'>

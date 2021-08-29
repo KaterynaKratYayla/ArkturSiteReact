@@ -45,14 +45,16 @@ export const ClientDetails = ({cart}) => {
                         "bookings":
                             [
                                 {
+                                    "service_type_id": cart.service_type_id,
                                     "start" : cart.start,
-                                    "tour_id" : cart.tour_id,
-                                    "tour_tariff_id" : cart.tour_tariff_id,
-                                    "tour_room_id" : cart.tour_room_id,
+                                    "end": cart.end? cart.end: null,
+                                    "contract_id" : cart.tour_id,  //former tour_id
+                                    "tariff_id" : cart.tour_tariff_id, //former tour_tariff_id
+                                    "room_id" : cart.tour_room_id, //former tour_room_id
                                     "numberofunits" : 1,
                                     "hotel_id" : cart.hotel_id,
-                                    "hotel_room_id" : cart.hotel_room_id,
-                                    "hotel_rate_id" : null,
+                                    "hotel_room_id" : cart.service_type_id === 11? cart.hotel_room_id : null, //only for package tour
+                                    "hotel_rate_id" : cart.service_type_id === 11? cart.hotel_rate_id : null, // only for package tours
                                     "calculation_data" :
                                         {
                                             "adults":cart.adults,
