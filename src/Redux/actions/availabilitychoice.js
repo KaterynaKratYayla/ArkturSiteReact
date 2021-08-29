@@ -11,12 +11,15 @@ export const availResponse = ( res ) => ({
 
 // console.log('[CONTENTRESPONCE]' , contentResponse)
 
-export const getAvail = (rooms) => ( dispatch, getState ) => {
+export const getAvail = (value,index) => ( dispatch, getState ) => {
   
+    // console.log('ACTIVEINDEX',activeIndex)
     dispatch({ type: GET_AVAIL_REQ });
 
     const avail_obj = {
-        avail_rooms: rooms}
+        availability: value,
+        activeIndex: index,
+        picked: true}
  
     dispatch(availResponse(avail_obj))
     console.log('GET_AVAIL', avail_obj)

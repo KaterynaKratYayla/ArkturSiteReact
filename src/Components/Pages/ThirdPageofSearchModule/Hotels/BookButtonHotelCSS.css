@@ -14,6 +14,7 @@
 }
 
 .AddToBasketButton{
+    align-self: center;
     background: #009FE3;
     color: white;
     border: 1px solid grey;

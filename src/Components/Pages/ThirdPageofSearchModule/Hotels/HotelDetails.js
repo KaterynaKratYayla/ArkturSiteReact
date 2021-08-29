@@ -4,7 +4,7 @@ import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {ValidateQuery} from '../../Helpers/helper'
 import {Star} from '../../../Library/Icons/star'
-import { getHotelContent } from '../../../../Redux/actions';
+import { getHotelContent, getHotelSearch } from '../../../../Redux/actions';
 import {ContentBlock} from './ContentBlock'
 import {RatesBlock} from './RatesBlock'
 
@@ -25,6 +25,10 @@ export const HotelDetails = () =>{
 useEffect (() =>{
   dispatch(getHotelContent(search_data.hotel_id))
 },[search_data.hotel_id])
+
+useEffect(() =>{
+    dispatch(getHotelSearch(search_data.start,search_data.end,search_data.hotel_id))
+})
 
     console.log('[HOTEL_HOTEL_CONTENTS]', hotelcontents)
 

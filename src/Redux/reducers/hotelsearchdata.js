@@ -1,8 +1,8 @@
-import { GET_AVAIL_REQ ,GET_AVAIL_RES, GET_AVAIL_ERR} from '../constants'
+import { GET_HTL_SEARCH_REQ ,GET_HTL_SEARCH_RES, GET_HTL_SEARCH_ERR} from '../constants'
 
 const initState = {
-	avail_rooms: [],
-    avail_loaded: true,
+	hotel_search_data: [],
+    loaded: false,
     errors: []
 }
 
@@ -10,20 +10,20 @@ const reducer = ( state = initState, action ) => {
     console.log('ACTION_avail', action)
     switch( action.type ){
 
-        case GET_AVAIL_REQ:
+        case GET_HTL_SEARCH_REQ:
               return({
                 ...state,
-                avail_loaded: true
+                loaded: true
                 })
         
-        case GET_AVAIL_RES:
+        case GET_HTL_SEARCH_RES:
               return({
                  ...state,
-                 avail_loaded: true,
-                 avail_rooms: action.payload
+                 loaded: true,
+                 hotel_search_data: action.payload
                 })
         
-        case GET_AVAIL_ERR:
+        case GET_HTL_SEARCH_ERR:
               return({
                    ...state,
                    errors: [...state.errors, action.error ]

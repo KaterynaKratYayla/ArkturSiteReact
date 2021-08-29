@@ -34,6 +34,23 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       const general_smart_hotels = useSelector(state => state.hotels.general_hotels)
       const totalPaxRedux = useSelector(state => state.paxchoice.pax)
 
+      // let empty_array = [];
+
+      // empty_array.length = 6;
+      // for(let i=0; i<empty_array.length; i++){
+      //   empty_array[i] = "*"
+        
+      // }
+   
+
+      // console.log(empty_array)
+
+      // let filledArray = new Array(10).fill('*');
+    
+
+      let filledArray = new Array(10).fill(null).map(()=> ({'hello':'goodbye'}))
+      console.log(filledArray)
+
       // useEffect ( () => {
       //   dispatch (getPax ());
       // }, [])

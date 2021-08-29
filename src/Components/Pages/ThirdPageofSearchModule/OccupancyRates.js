@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getPax} from "../../../Redux/actions/paxchoice"
 import axios from "axios"
 import { Radio } from 'antd';
+import { OccupancyTypes} from '../../Library/StaticJsonData/OccupancyTypes';
 
 import {BookButton} from './BookButton'
 
@@ -87,7 +88,7 @@ const Ticks = ({hotelChoice,room_id,hotels,totalPax,date,tour_id,mappingItem,tar
         setValue(e.target.value);
      };
      
-    const OccupancyTypes = ['Single Occupancy', 'Double Occupancy', 'Triple Occupancy','Quadruple Occupancy']
+    // const OccupancyTypes = ['Single Occupancy', 'Double Occupancy', 'Triple Occupancy','Quadruple Occupancy']
 
     return(
         <div>
