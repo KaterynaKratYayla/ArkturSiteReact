@@ -80,8 +80,39 @@ console.log('[TEST]', test)
 
   console.log('[TODAY MONTH]' , currentMonth, '[TODAY DATE]', today, '[TEST_DATE] : ' , search_data.date + '-01')
 
-useEffect ( () => {
-  axios.get('http://smartbooker.biz/interface/price'
+    useEffect(() => {
+        const ActionRQ = {
+            "username":"Serodynringa",
+            "password":"%tmMJZbABm6cB@tY",
+            "user_id" :1426,
+            "action":"GetPriceTourRQ",
+            "data" :
+                {
+                    city_id: search_data.city_id,
+                    date: currentMonth === search_data.date ? today : (search_data.date + '-01'),
+                    window: 30,
+                    tour_id: filtered_tour_id.length === 1? filtered_tour_id[0] : null ///если в ответ при поиске пришёл массив из более 1 айди тура (что может быть при поиске клиентом по городу, а не по туру), то, так как Смарт не принимает массив, данный параметр при передаче данных игнорируется (равен null). Иначе этот параметр в одном экземпляре и он тогда передаётся в Смарт и участвует в фильтрации
+                }
+        };
+
+        // axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+        // axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+            .then( res => {
+                setRate(res.data)
+                console.log('[SET_RATE]' , res.data)
+            })
+            .catch( error => {
+                setRate(undefined)
+                console.log( '[axios error] : ' , error)
+            });
+
+    }, []);
+
+/*useEffect ( () => {
+  axios.get('http://smartbooker/interface/xmlsubj'
+  // axios.get('http://smartbooker/interface/price'
+  // axios.get('http://smartbooker.biz/interface/price'
   // axios.get('https://hotels-ua.biz/interface/price'
   , {
 
@@ -101,8 +132,9 @@ useEffect ( () => {
     setRate(undefined)
     console.log( '[axios error] : ' , error)
      });
- }, []);
+ }, []);*/
 
+ console.log('[search_data] : ' , search_data)
  console.log('[SET_RATE] : ' , rate)
 
     return(

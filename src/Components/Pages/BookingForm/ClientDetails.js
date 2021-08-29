@@ -88,11 +88,11 @@ export const ClientDetails = ({cart}) => {
             "action":"GetPriceHotelRQ",
             "data" :
                 {
-                    "start" : "2021-08-23", // date of arrival
-                    "end" : "2021-08-27", // date of departure
-                    "city_id" : 41, 		// Id of city - can`t be equel to zero
-                    "hotel_id" : 0, 		// Id of hotel: if hotel_id = 0, must be return all hotels of the pointed city in response
-                    "numberofunits" : 1,	// Quantity of rooms, 1 by default, NOT OBLIGATORY
+                    "start" : "2021-09-21", // date of arrival
+                    "end" : "2021-09-24", // date of departure
+                    "city_id" : 36, 		// Id of city - can`t be equel to zero
+                    "hotel_id" : 0, //692, 		// Id of hotel: if hotel_id = 0, must be return all hotels of the pointed city in response
+                    "numberofunits" : 2,	// Quantity of rooms, 1 by default, NOT OBLIGATORY
                     "calculation_data" :
                         {
                             "adults" : 2,

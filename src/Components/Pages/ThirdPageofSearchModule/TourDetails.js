@@ -47,9 +47,40 @@ import './TourDetailsCSS.css'
 
     console.log('[DETAILED CONTENT]', details)
 
+      useEffect(() => {
+          const ActionRQ = {
+              "username":"Serodynringa",
+              "password":"%tmMJZbABm6cB@tY",
+              "user_id" :1426,
+              "action":"GetPriceTourRQ",
+              "data" :
+                  {
+                      city_id: search_data.city_id,
+                      // date: currentMonth === search_data.date ? today : (search_data.date + '-01'),
+                      date : search_data.selection,
+                      window: 30,
+                      tour_id: search_data.tour_id
+                  }
+          };
 
-    useEffect ( () => {
-      axios.get('http://smartbooker.biz/interface/price'
+          // axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+          axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+              // axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+              .then( res => {
+                  setrateDetails(res.data)
+                  // console.log('setrateDetails]' , res.data)
+              })
+              .catch( error => {
+                  setrateDetails(undefined)
+                  console.log( '[axios error] : ' , error)
+              });
+
+      }, []);
+
+    /*useEffect ( () => {
+      axios.get('http://smartbooker/interface/xmlsubj'
+      // axios.get('http://smartbooker/interface/price'
+      // axios.get('http://smartbooker.biz/interface/price'
       // axios.get('https://hotels-ua.biz/interface/price'
       , {
       params:{
@@ -69,14 +100,48 @@ import './TourDetailsCSS.css'
         setrateDetails(undefined)
         console.log( '[axios error] : ' , error)
          });
-     }, []);
+     }, []);*/
 
      console.log('[setrateDetails] : ' , rateDetails)
 
+      useEffect(() => {
+          const ActionRQ = {
+              "username":"Serodynringa",
+              "password":"%tmMJZbABm6cB@tY",
+              "user_id" :1426,
+              "action":"GetPriceTourRQ",
+              "data" :
+                  {
+                      city_id: search_data.city_id,
+                      // date: currentMonth === search_data.date ? today : (search_data.date + '-01'),
+                      date : search_data.selection,
+                      window: 30,
+                      tour_id: search_data.tour_id
+                  }
+          };
 
-        useEffect ( () => {
-            axios.get('http://smartbooker.biz/interface/price'
-            // axios.get('https://hotels-ua.biz/interface/price'
+          // axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+          axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+              // axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+              .then( res => {
+                  const filtered = res.data[0].rate.filter((item1,index,array) =>
+                      array.findIndex(t => t.date === item1.date)===index)
+
+                  setfilteredDetails(filtered)
+                  console.log('[setfilteredDetails]' , filtered)
+              })
+              .catch( error => {
+                  setfilteredDetails(undefined)
+                  console.log( '[axios error] : ' , error)
+              });
+
+      }, []);
+
+        /*useEffect ( () => {
+            axios.get('http://smartbooker/interface/xmlsubj'
+            // axios.get('http://smartbooker/interface/price'
+                // axios.get('http://smartbooker.biz/interface/price'
+                // axios.get('https://hotels-ua.biz/interface/price'
             , {
 
             params:{
@@ -99,7 +164,7 @@ import './TourDetailsCSS.css'
               setfilteredDetails(undefined)
               console.log( '[axios error] : ' , error)
                });
-           }, []);
+           }, []);*/
 
     //  const ChoosePax =(e)=>{
     //     setPax(e.target.value)

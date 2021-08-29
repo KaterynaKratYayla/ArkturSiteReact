@@ -28,7 +28,7 @@ export const HotelItems = ({title}) =>{
 
 console.log('HOTEL_TITLE', title)
 
-///получаю с помощью своиства истории (history) из компонента search результаты поиска - массив с одним объектом. 
+///получаю с помощью своиства истории (history) из компонента search результаты поиска - массив с одним объектом.
 let location = useLocation();
 let history = useHistory();
 
@@ -48,19 +48,19 @@ const [geoindex, setGeoindex] = useState([]);
 const [timing,setTiming] = useState();
 
 // console.log('[TEST]', test)
- 
+
   ///получаю из смарта тур имя, тур айди, сити имя, сити айди
   useEffect ( () => {
     dispatch (getGeneralHotels ());
   }, [])
 
-  console.log('[GENERAL_HOTELS] , ' , generalHotelItems)///получаю из смарта имя отеля, айди отеля, сити имя, сити айди 
+  console.log('[GENERAL_HOTELS] , ' , generalHotelItems)///получаю из смарта имя отеля, айди отеля, сити имя, сити айди
 
   ///используется непосредственно для вывода названий отелей на странице.
-  ///если айди города, который мне приходит первоначально от Саши Ефица (классификатор contracts) не находится в данных, пришедших в результате поиска клиентом, 
+  ///если айди города, который мне приходит первоначально от Саши Ефица (классификатор contracts) не находится в данных, пришедших в результате поиска клиентом,
   ///то в переменную filtered возвращается тур айди из классификатора contracts, равное айди, пришедшему от клиентского поиска
   ///иначе возвращается сити айди из классификатора contracts, равное айди из поиска
- 
+
   const filtered_hotel_items = generalHotelItems.filter(function(item){
       if(item.city_id.indexOf(search_data.id) === -1){
         return item.hotel_id === search_data.id
@@ -69,7 +69,7 @@ const [timing,setTiming] = useState();
     })
 
     console.log('[FILTERED_GENERAL_HOTELS]', filtered_hotel_items)
-  
+
   ///отфильтровала данные поиска, чтобы получить только айди отеля поиска
   const filtered_hotel_id = filtered_hotel_items.map(function(item1){
     return item1.hotel_id
@@ -87,19 +87,19 @@ const [timing,setTiming] = useState();
     const ActionRQ = {
         "username":"Serodynringa",
         "password":"%tmMJZbABm6cB@tY",
-        "user_id" :1426, 
+        "user_id" :1426,
         "action":"GetPriceHotelRQ",
-        "data" : 
-            {       
-              "start" : search_data.start, // date of arrival  
+        "data" :
+            {
+              "start" : search_data.start, // date of arrival
               "end" : search_data.end, // date of departure
               "city_id" : search_data.city_id,
               // search_data.city_id,         // Id of city - can`t be equel to zero
               "hotel_id" : search_data.city_id === search_data.id? 0 : search_data.id ,
               // search_data.city_id === search_data.id? 320 : search_data.id,       // Id of hotel: if hotel_id = 0, must return all hotels of the pointed city in response
               "numberofunits" : search_data.rooms,    // Quantity of rooms, 1 by default, NOT OBLIGATORY
-              "calculation_data" : 
-                    {   
+              "calculation_data" :
+                    {
                       "adults" : search_data.adults,
                       "children" : search_data.children,
                       // "child_discount" : search_data.c !== 0? 0.5: null,
@@ -108,14 +108,16 @@ const [timing,setTiming] = useState();
                     }
             }
         };
-    
+
+    // axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
     axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+    // axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
         .then(response => {
           for(let key in response.data.data){
             if(key === 'hotels'){
               setHotelRate(response.data.data[key])
             }
-            
+
           }
          }
         )
@@ -129,34 +131,34 @@ console.log('GEN_HOTEL_RATE',hotelRate)
 
     return(
       <div>
-        
+
         {/* <h3>Search Results</h3> */}
             <div>
               <Search />
             </div>
             <div class='searchrendering_Wrapper'>
             <div>
-              <h3 style={{marginTop:'2vw', 
+              <h3 style={{marginTop:'2vw',
                           color:'#003057',fontFamily:'Arial',fontSize:'30px',fontWeight:'bold'}}>Search Results</h3>
             </div>
           {/* <div  style={{width:'100%',marginLeft:'auto',marginRight:'auto'}}> */}
-             
+
               {/* <SearchInner /> */}
            {/* </div> */}
-               
+
                 {/* <div>{history.location.pathname}</div> */}
-              <div>            
+              <div>
                 {
-                  hotelRate.length===0?  
+                  hotelRate.length===0?
                    (<div
-                      style={{position:'absolute', 
+                      style={{position:'absolute',
                               zIndex: '1000',
                               top: '70%',
                               left: '50%',
                               transform: 'translate(-50%, -50%)',
                              }}
-                         ><LoadingMessage loadingMessageClass='RateLoading'/></div>): 
-                         (              
+                         ><LoadingMessage loadingMessageClass='RateLoading'/></div>):
+                         (
                            <>
                             <h2
                               style={{color:'#001959',
@@ -172,10 +174,10 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                               {/* {filtered_hotel_items[0].city_name} : {filtered_hotel_items.length} properties found */}
                                 City Name : {filtered_hotel_items.length} properties found
                             </h2>
-           
+
                                <ul className='HotelDescriptionUl'>
                                  <>
-                                    {  
+                                    {
                                       hotelRate.length>0 && hotelRate? (hotelRate.map((hotelTariff) => {
                                          if(hotelTariff){
                                            return (
@@ -183,11 +185,11 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                                 <HotelRates
                                                    key={hotelTariff.hotel_id}
                                                    hotelTariff = {hotelTariff}
-                                                   hotelRooms = {hotelTariff.rooms}
+                                                   hotelRooms = {hotelTariff.room_rates}
                                                    searchResults = {search_data}
                                                    history={history}
                                                    hotelName={hotelTariff.hotel_name}
-                                                />                     
+                                                />
 
                                                 {
                                                   filtered_hotel_items.length > 0  && filtered_hotel_items? (filtered_hotel_items.map((hotel) => {
@@ -212,21 +214,21 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                              )):
                                             null
                                           }
-                                       
+
 
                                        {/* {
                                          filtered_hotel_items.length > 0  && filtered_hotel_items? (filtered_hotel_items.map((hotel) => {
-                                          return ( 
+                                          return (
                                             <li key={hotel.hotel_id} className='HotelDescriptionLi'>
                                                {
                                                  <HotelContent
-                                                    hotel = {hotel} 
+                                                    hotel = {hotel}
                                                   />
-                                               } 
-                                                {      
+                                               }
+                                                {
                                               hotelRate? (hotelRate.map((hotelTariff) => {
                                                if(hotel.hotel_id === hotelTariff.hotel_id){
-  
+
                                                 return (
                                                  <HotelRates
                                                    key={hotelTariff.hotel_id}
@@ -237,29 +239,29 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                                    hotel_name={hotel.hotel_name}
                                                  />
                                                 )
-                                                
+
                                               }
                                              }
                                               )
                                             ):
                                             (<button className="onrequestButton">Sold out</button>)
                                           }
-                                          
+
                                           </li>
                                         )
                                        }
                                        )) : (
                                       <div className='noResultSearch'>
                                           Your Search returned no results. Please change your parameters and try once again.
-                                     </div> )           
+                                     </div> )
                               }                      */}
-                             
+
                               </>
                            </ul>
                          </>
                       )
-                } 
-            </div>   
+                }
+            </div>
        </div>
     </div>
   )
