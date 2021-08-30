@@ -150,7 +150,7 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                 {/* <div>{history.location.pathname}</div> */}
               <div>            
                 {
-                  hotelRate.length===0?  
+                  !hotelRate?  
                    (<div
                       style={{position:'absolute', 
                               zIndex: '1000',
