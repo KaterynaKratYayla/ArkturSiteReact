@@ -1,0 +1,96 @@
+import React , {useState, useEffect} from 'react';
+import { useSelector,useDispatch} from 'react-redux'
+import {BookButtonHotel} from '../BookButtonHotel'
+import { OccupancyTypes } from '../../../../Library/StaticJsonData/OccupancyTypes'
+import {getOccupancySearch} from '../../../../../Redux/actions/hotelsearchdata'
+
+import { Select } from 'antd';
+
+import './RatesBlockCSS.css'
+
+
+export const AvailableOptions = (props) =>{
+
+    const {currency,index,rooms,room_id,room_name,sum,tariff_id,availability,occupancy,contract_id} = props;
+    
+    console.log('PROPS', props)
+
+    const [selectedAvailability, setSelectedAvailability] = useState(parseInt(rooms,10))
+
+    const { Option } = Select;
+
+    const dispatch = useDispatch();
+
+    const SelectRooms = (value) => {
+        setSelectedAvailability(value)
+        // setPicked(true)
+        // dispatch(getAvail(value,index))
+    }
+
+    useEffect(()=>{
+      dispatch(getOccupancySearch(selectedAvailability,occupancy))
+    },[])
+
+    let empty_array = [];
+
+    for (let i=1; empty_array.length<availability;i++){
+      empty_array.push(i)
+    }
+
+    console.log('AVAILABILITY', selectedAvailability, empty_array)
+   
+    return(
+    <>
+
+      <h5 style={{
+               fontSize: '17px',
+               color: '#102D69',
+               fontFamily:'Arial',
+               fontWeight:'bold',
+               display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'}}>
+                  {currency} {sum*selectedAvailability}
+      </h5> 
+
+      <h5 style={{display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center'}}>
+       <Select 
+           defaultValue={selectedAvailability}
+           onChange={SelectRooms}
+           bordered={true}
+           size='large'> 
+             <>
+               {
+                empty_array&&empty_array.map((item)=>{
+                  return (
+                    <Option  
+                       className='AvailableOptions' 
+                       value={item}
+                       key={item}> 
+                              {item} 
+                    </Option>  
+                   )    
+                 })
+               }
+            </>
+      </Select>
+     </h5>
+    
+    <div style={{display: 'flex',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center'}}>
+      <BookButtonHotel 
+        selectedAvailability={selectedAvailability}
+        room_id={room_id}
+        room_name={room_name}
+        sum={sum}
+        tariff_id={tariff_id}
+        contract_id={contract_id}
+        occupancy={occupancy}
+      />
+      </div>
+  </>
+ )
+}
