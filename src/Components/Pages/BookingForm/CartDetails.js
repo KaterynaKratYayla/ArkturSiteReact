@@ -2,6 +2,7 @@ import React , {useEffect, useState} from 'react'
 import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 import {getContent} from '../../../Redux/actions/content'
+import {getHotelContent} from '../../../Redux/actions/hotelcontent'
 import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
 import ReactHtmlParser from 'react-html-parser'
 
@@ -10,9 +11,10 @@ import './CartDetails.css'
 export const CartDetails = ({cart}) =>{
 
     console.log('CART', cart)
+    const dispatch = useDispatch();
 
     // const [sendCart, setSendCart] = useState([]);
-    const [cartContent, setCartContent] = useState([]);
+    // const [tourContent, setTourContent] = useState([]);
 
     // const dispatch = useDispatch();
     // const cartContent = useSelector(state => state.content.content)
@@ -21,18 +23,34 @@ export const CartDetails = ({cart}) =>{
     //   }, [])
     // console.log('[CARTCONTENT]',cartContent)
 
-    useEffect ( () => {
-        axios.get(`https://hotels-ua.biz/interface/content?id=${cart.tour_id}&language=en`)
-          .then( res => {
-            setCartContent(res.data)
-            })
+    useEffect(()=>{
+      dispatch(getHotelContent(cart.hotel_id))
+    },[])
+
+    useEffect(()=>{
+        dispatch(getContent(cart.contract_id))
+      },[])
+
+    const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
+    const tourcontents = useSelector(state => state.content.content)
+
+    console.log('CARTSERVICE', cart.service_type_id)
+    
+    const content = cart.service_type_id === 11? tourcontents : hotelcontents
+    console.log('CONTENT',content)
+
+       // useEffect ( () => {
+    //     axios.get(`https://hotels-ua.biz/interface/content?id=${cart.contract_id}&language=en`) //former cart.tour_id
+    //       .then( res => {
+    //         setTourContent(res.data)
+    //         })
           
-        .catch( error => {
-            setCartContent(undefined)
-          console.log( '[axios error] : ' , error)
-           });
-       }, []);
-       console.log('[BRIEFCONTENT]',cartContent)
+    //     .catch( error => {
+    //         setTourContent(undefined)
+    //       console.log( '[axios error] : ' , error)
+    //        });
+    //    }, []);
+    //    console.log('[BRIEFCONTENT]',tourContent)
   
 
     return(
@@ -44,7 +62,7 @@ export const CartDetails = ({cart}) =>{
                         textAlign:'center',
                         order:'-2'}}>Your Booking Details</h2>
                 {
-                    cartContent.length >0 ? cartContent.map ((item)=>{
+                    content.length >0 ? content.map ((item)=>{
                         return( 
                           <>
                              <h3 style={{color:'#003057',
@@ -93,7 +111,7 @@ export const CartDetails = ({cart}) =>{
                 <div class='MainRateDetails'>
 
                     <h5>Tour Start Date</h5><div>{cart.start}</div>
-                    <h5>Accommodation at Hotel</h5><div>{cart.htlName}</div>
+                    <h5>Accommodation at Hotel</h5><div>{cart.htlName.replace('%20',' ')}</div>
                     <h5>Booked for</h5><div></div>
                     <h5>Adults</h5><div>{cart.adults}</div>
                     <h5>Children</h5><div>{cart.children}</div>

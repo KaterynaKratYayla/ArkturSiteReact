@@ -9,31 +9,27 @@ import './BookButtonHotelCSS.css'
 
 export const BookButtonHotel = (props) =>{
 
-    const {tariff_id,room_id,sum,selectedAvailability,tariff_type_id,contract_id} = props;
+    const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy} = props;
 
     const [booking,setBooking] = useState([]);
     const location = useLocation();
     const history = useHistory();
 
-    console.log('BOOKBUTTON', location.search)
+    const search_data = useSelector(state=>state.hotelsearchdata.hotel_search_data)
+
+    console.log('BOOKBUTTON', search_data)
  
      const AddToBasket=(e)=>{
 
         const newBooking={
-            tariff_id:tariff_id, //ok
-            room_id:room_id, //ok
-            amount:sum, //ok
-            rooms:selectedAvailability,
-            tariff_type_id:tariff_type_id,
-
-            // tourDate: start, (из поиска)
-            // totalPax: totalPax,(из поиска)
-            // paxPerRoom: value,(из поиска)
-            // hotelName: hotelChoice,(из поиска )
+            tariff_id:tariff_id,
+            room_id:room_id,
+            amount:totalsum,
+            rooms:selectedAvailability
             }
         setBooking([newBooking])
 
-        const route_hotel_query_form = `?service_type_id=${1},start=${location.search.start},end=${location.search.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${location.search.hotel_id},adults=${location.search.start},children=${location.search.start},htlName=${location.search.hotel_name},amount=${sum}`
+        const route_hotel_query_form = `?service_type_id=${1},start=${search_data.start},end=${search_data.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${search_data.hotel_id},adults=${selectedAvailability*occupancy},children=${search_data.children},htlName=${search_data.hotel_name},amount=${totalsum}`
         history.push(`/booking_form/${route_hotel_query_form}`, [...booking, newBooking])
     }
 

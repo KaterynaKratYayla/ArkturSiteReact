@@ -6,7 +6,7 @@ import {ValidateQuery} from '../../Helpers/helper'
 import {Star} from '../../../Library/Icons/star'
 import { getHotelContent, getHotelSearch } from '../../../../Redux/actions';
 import {ContentBlock} from './ContentBlock'
-import {RatesBlock} from './RatesBlock'
+import {RatesBlock} from './RatesBlock/RatesBlock'
 
 import './HotelDetailsCSS.css' 
 
@@ -20,14 +20,16 @@ export const HotelDetails = () =>{
     
     const dispatch = useDispatch();
     const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
-    const pickedHotelRooms = useSelector(state=>state.availabilitychoice.avail_rooms)
+    const searchUpdate = useSelector(state=>state.hotelsearchdata.occupancy_search_data)
+
+    console.log('[OCCUPANCY]',searchUpdate)
 
 useEffect (() =>{
   dispatch(getHotelContent(search_data.hotel_id))
 },[search_data.hotel_id])
 
 useEffect(() =>{
-    dispatch(getHotelSearch(search_data.start,search_data.end,search_data.hotel_id))
+    dispatch(getHotelSearch(search_data))
 })
 
     console.log('[HOTEL_HOTEL_CONTENTS]', hotelcontents)

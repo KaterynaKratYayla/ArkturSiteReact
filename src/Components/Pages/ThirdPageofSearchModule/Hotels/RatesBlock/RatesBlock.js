@@ -1,20 +1,17 @@
 import React, {useState,useEffect} from 'react'
 import { useSelector,useDispatch} from 'react-redux'
-import { getHotelRates } from '../../../../Redux/actions'
-import { HotelRateGridTitles } from '../../../Library/StaticJsonData/HotelRateGridTitles'
-import {BookButtonHotel} from './BookButtonHotel'
+import { getHotelRates } from '../../../../../Redux/actions'
+import { HotelRateGridTitles } from '../../../../Library/StaticJsonData/HotelRateGridTitles'
+import {BookButtonHotel} from '../BookButtonHotel'
 // import {getRoomsChoice} from '../../../../Redux/actions/hotelroomschoice'
-import {getAvail} from '../../../../Redux/actions/availabilitychoice'
-import { OccupancyTypes } from '../../../Library/StaticJsonData/OccupancyTypes'
-import {Pax} from '../../../Library/Icons/pax'
-
-import { Select } from 'antd';
+// import {getAvail} from '../../../../../Redux/actions/availabilitychoice'
+import { OccupancyTypes } from '../../../../Library/StaticJsonData/OccupancyTypes'
+import {Pax} from '../../../../Library/Icons/pax'
+import {AvailableOptions} from './AvailableOptions'
 
 import './RatesBlockCSS.css'
 
 export const RatesBlock = ({search_data}) =>{
-
-    // const [picked, setPicked] = useState(false)
    
     const dispatch = useDispatch();
     const hotelratesRatesBlock = useSelector(state => state.hotelrates.hotelrates)
@@ -31,16 +28,6 @@ export const RatesBlock = ({search_data}) =>{
   useEffect ( () => {
     dispatch (getHotelRates(search_data));
   }, [search_data])
-
-  // const SelectedAvail = (sum,indexRoom,indexPrice) =>{
-  //   let total;
-  //  if([indexRoom,indexPrice].join('') === pickedHotelRooms.activeIndex){
-  //     total = sum*pickedHotelRooms.availability
-  //     // setPicked(true)
-  //   }
-  //   else total = sum*search_data.rooms
-  //   return total 
-  // }
 
   console.log('SEARCH_DATA',search_data)
   console.log('RATESBLOCK',hotelratesRatesBlock)
@@ -148,8 +135,9 @@ export const RatesBlock = ({search_data}) =>{
                                                                             room_name={item.room_name}
                                                                             room_type_id={item.room_type_id}
                                                                             room_type_name={item.room_type_name}
-                                                                            room_subcategory_id={item.room_subcategory_id}
-                                                                            room_subcategory_name={item.room_subcategory_name}
+                                                                            // room_subcategory_id={item.room_subcategory_id}
+                                                                            // room_subcategory_name={item.room_subcategory_name}
+                                                                            occupancy={item4.pax}
                                                                             sum={item4.sum}
                                                                             tariff_id={item3.tariff_id}
                                                                             availability={item3.availability}
@@ -182,88 +170,3 @@ export const RatesBlock = ({search_data}) =>{
       }
                                          
 
-const AvailableOptions = (props) =>{
-
-    const {currency,index,rooms,room_id,room_name,room_type_id,room_type_name,room_subcategory_id,room_subcategory_name,sum,tariff_id,availability,contract_id} = props;
-    
-    console.log('PROPS', props)
-
-    const [selectedAvailability, setSelectedAvailability] = useState(parseInt(rooms,10))
-
-    const { Option } = Select;
-
-    const dispatch = useDispatch();
-
-    const SelectRooms = (value) => {
-        setSelectedAvailability(value)
-        // setPicked(true)
-        dispatch(getAvail(value,index))
-    }
-
-    let empty_array = [];
-
-    for (let i=1; empty_array.length<availability;i++){
-      empty_array.push(i)
-    }
-
-    console.log('AVAILABILITY', selectedAvailability, empty_array)
-   
-
-    return(
-    <>
-
-      <h5 style={{
-               fontSize: '17px',
-               color: '#102D69',
-               fontFamily:'Arial',
-               fontWeight:'bold',
-               display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'}}>
-                  {currency} {sum*selectedAvailability}
-      </h5> 
-
-      <h5 style={{display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center'}}>
-       <Select 
-           defaultValue={selectedAvailability}
-           onChange={SelectRooms}
-           bordered={true}
-           size='large'> 
-             <>
-               {
-                empty_array&&empty_array.map((item)=>{
-                  return (
-                    <Option  
-                       className='AvailableOptions' 
-                       value={item}
-                       key={item}> 
-                              {item} 
-                    </Option>  
-                   )    
-                 })
-               }
-            </>
-      </Select>
-     </h5>
-    
-    <div style={{display: 'flex',
-                    justifyContent: 'flex-end',
-                    alignItems: 'center'}}>
-      <BookButtonHotel 
-        selectedAvailability={selectedAvailability}
-        room_id={room_id}
-        room_name={room_name}
-        room_type_id={room_type_id}
-        room_type_name={room_type_name}
-        room_subcategory_id={room_subcategory_id}
-        room_subcategory_name={room_subcategory_name}
-        sum={sum}
-        tariff_id={tariff_id}
-        contract_id={contract_id}
-      />
-      </div>
-  </>
- )
-}

@@ -21,10 +21,10 @@ export const BookingForm = (props) =>{
     let search_data = ValidateQuery(location)
     console.log('GUEST ITEM LOCATION', search_data)
 
-    const CryptoJS = require("crypto-js");
+    // const CryptoJS = require("crypto-js");
 
-    const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(search_data), process.env.REACT_APP_PRIVATE_KEY).toString();
-    localStorage.setItem('search_data', ciphertext);
+    // const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(search_data), process.env.REACT_APP_PRIVATE_KEY).toString();
+    // localStorage.setItem('search_data', ciphertext);
 
     const date_difference = moment(search_data.start).diff(moment(moment().format('YYYY-MM-DD')),'days')
     const canx_deadline_date=moment(search_data.start).subtract(7, 'days').calendar()

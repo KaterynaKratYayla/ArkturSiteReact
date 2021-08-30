@@ -34,6 +34,8 @@ export const ClientDetails = ({cart}) => {
 
     // const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([{}]);
 
+    // console.log('KATE',cart.service_type_id, cart.start,cart.end,cart.contract_id,cart.tariff_id,cart.room_id,cart.service_type_id,cart.hotel_id,cart.adults,cart.children,cart.amount)
+    
     useEffect(() => {
         const ActionRQ = {
                 "username":"Serodynringa",
@@ -48,10 +50,10 @@ export const ClientDetails = ({cart}) => {
                                     "service_type_id": cart.service_type_id,
                                     "start" : cart.start,
                                     "end": cart.end? cart.end: null,
-                                    "contract_id" : cart.tour_id,  //former tour_id
-                                    "tariff_id" : cart.tour_tariff_id, //former tour_tariff_id
-                                    "room_id" : cart.tour_room_id, //former tour_room_id
-                                    "numberofunits" : 1,
+                                    "contract_id" : cart.contract_id,  //former tour_id
+                                    "tariff_id" : cart.tariff_id, //former tour_tariff_id
+                                    "room_id" : cart.room_id, //former tour_room_id
+                                    "numberofunits" : cart.service_type_id === parseInt(1)? cart.numberofunits: parseInt(11),
                                     "hotel_id" : cart.hotel_id,
                                     "hotel_room_id" : cart.service_type_id === 11? cart.hotel_room_id : null, //only for package tour
                                     "hotel_rate_id" : cart.service_type_id === 11? cart.hotel_rate_id : null, // only for package tours
@@ -67,12 +69,16 @@ export const ClientDetails = ({cart}) => {
             };
 
         axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
-            .then(response => setSendCart(response.data[0]))
+            .then(response => {
+                // console.log('RESPONSE', response)
+                setSendCart(response.data[0])
+              })
             .catch(error =>{
                 setSendCart(undefined)
                 console.log('[axios error]: ', error)
               });
 
+<<<<<<< HEAD
         /*axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
             .then(response => setSendCart(response.data[0]))
             .catch(error =>{
@@ -117,8 +123,11 @@ export const ClientDetails = ({cart}) => {
                 console.log('[axios error]: ', error)
               });*/
 
+=======
+>>>>>>> 6f3bbda1a5e64431d24c0748fb98ca2f1df87b8b
     }, []);
 
+    
     let app_service_id = new Object();
     for(let key in sendCart.data){
         app_service_id = sendCart.data[key]
@@ -128,11 +137,10 @@ export const ClientDetails = ({cart}) => {
         return <div> Loading...</div>
     }
 
-    console.log('SENDCART',sendCart.data)
 
+    console.log('SENDCART',sendCart)
 
-
-    console.log('NEWARRAY', app_service_id.service_id)
+    // console.log('NEWARRAY', app_service_id.service_id)
 
 
     const bookerTravelsChoice = e => {
@@ -332,7 +340,7 @@ export const ClientDetails = ({cart}) => {
                 phone={phoneInput}
                 email={emailInput}
                 AddContacts = {AddContacts}
-                app_service_id = {app_service_id.service_id}
+                app_service_id = {app_service_id.service_id} 
                 smart_order_id ={app_service_id.booking_id}
                 customer_reference = {app_service_id.customer_reference}
                 clicked={clicked}
