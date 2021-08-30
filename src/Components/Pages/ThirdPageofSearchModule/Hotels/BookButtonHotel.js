@@ -9,7 +9,7 @@ import './BookButtonHotelCSS.css'
 
 export const BookButtonHotel = (props) =>{
 
-    const {selectedAvailability,room_id,room_name,sum,tariff_id,contract_id,occupancy} = props;
+    const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy} = props;
 
     const [booking,setBooking] = useState([]);
     const location = useLocation();
@@ -24,12 +24,12 @@ export const BookButtonHotel = (props) =>{
         const newBooking={
             tariff_id:tariff_id,
             room_id:room_id,
-            amount:sum,
+            amount:totalsum,
             rooms:selectedAvailability
             }
         setBooking([newBooking])
 
-        const route_hotel_query_form = `?service_type_id=${1},start=${search_data.start},end=${search_data.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${search_data.hotel_id},adults=${selectedAvailability*occupancy},children=${search_data.children},htlName=${search_data.hotel_name},amount=${sum}`
+        const route_hotel_query_form = `?service_type_id=${1},start=${search_data.start},end=${search_data.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${search_data.hotel_id},adults=${selectedAvailability*occupancy},children=${search_data.children},htlName=${search_data.hotel_name},amount=${totalsum}`
         history.push(`/booking_form/${route_hotel_query_form}`, [...booking, newBooking])
     }
 

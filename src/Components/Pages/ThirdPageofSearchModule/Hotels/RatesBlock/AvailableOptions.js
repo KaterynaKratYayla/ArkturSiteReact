@@ -16,6 +16,7 @@ export const AvailableOptions = (props) =>{
     console.log('PROPS', props)
 
     const [selectedAvailability, setSelectedAvailability] = useState(parseInt(rooms,10))
+    const [totalsum,setTotalSum] = useState(selectedAvailability*sum)
 
     const { Option } = Select;
 
@@ -23,6 +24,7 @@ export const AvailableOptions = (props) =>{
 
     const SelectRooms = (value) => {
         setSelectedAvailability(value)
+        setTotalSum(value*sum)
         // setPicked(true)
         // dispatch(getAvail(value,index))
     }
@@ -85,7 +87,7 @@ export const AvailableOptions = (props) =>{
         selectedAvailability={selectedAvailability}
         room_id={room_id}
         room_name={room_name}
-        sum={sum}
+        totalsum={totalsum}
         tariff_id={tariff_id}
         contract_id={contract_id}
         occupancy={occupancy}
