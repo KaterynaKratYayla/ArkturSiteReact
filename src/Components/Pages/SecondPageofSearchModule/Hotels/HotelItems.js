@@ -201,6 +201,7 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                                               hotel = {hotel}
                                                               hotelTariff = {hotelTariff}
                                                            />
+                                                           
                                                           )
                                                         }
                                                        }

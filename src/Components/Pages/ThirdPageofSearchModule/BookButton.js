@@ -5,6 +5,8 @@ import {getPax} from "../../../Redux/actions/paxchoice"
 import axios from "axios"
 import {CartDemo} from '../Cart/Cart'
 
+import './TourDetailsCSS.css'
+
 export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoice,tour_room,hotel_id,tariff}) =>{
     
 
@@ -69,7 +71,7 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
                                                       {'Cost Includes: ' + item.room_name + ' ' + item3.sale + 'UAH tour per person' + ' x ' + totalPax.counterAdults + ' adults'}
                                     </span>
                                 </div>
-                               <button class='AddToBasketButton' value={item1.smart_tariff_type_id} onClick={AddToBasket(Math.ceil(item3.sale*totalPax.counterAdults))}>Book Now</button>
+                               <button type='submit' class='AddToCartTour' value={item1.smart_tariff_type_id} onClick={AddToBasket(Math.ceil(item3.sale*totalPax.counterAdults))}>Book Now</button>
                             </div>
                         )
                        }

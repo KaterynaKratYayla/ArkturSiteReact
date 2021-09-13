@@ -7,6 +7,8 @@ import { OccupancyTypes} from '../../Library/StaticJsonData/OccupancyTypes';
 
 import {BookButton} from './BookButton'
 
+import './TourDetailsCSS.css'
+
 export const OccupancyRates = ({choiceDetailsNew,hotelChoice,tour_id,selectionDetails,totalPax}) =>{
 
    const [hotels, setHotels] = useState([{}])

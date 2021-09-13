@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
 // import axios from "axios"
 import {useHistory , useLocation} from "react-router-dom"
 import {ValidateQuery} from '../../Helpers/helper'
-import './HotelItemsCSS.css'
 // import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
 import moment from 'moment';
 // import ReactHtmlParser from 'react-html-parser'
@@ -77,8 +76,8 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
 
     // console.log('[HOTEL_RATES_RATES]',hotelRooms)
    return(
-    <div style={{gridColumn:'2',
-                 gridRow:'2'}}>
+
+    <div style={{gridColumn:'2', gridRow:'2'}}>
 
       <div style={{display:'grid',
                    gridTemplateColumns: '50% 50%',
@@ -129,14 +128,16 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
             gridRow:'3',
             textAlign:'end'}}>
                 <button 
-                    type='submmit'
-                    className='availableButtonGeneral'
-                  onClick={addToHotelDetails}
+                    type='submit'
+                    class='availableButtonHotel'
+                    onClick={addToHotelDetails}
                             >See Availability
                 </button>
           </div>
        </div>         
+    
     </div>
+  
    )
 }
 

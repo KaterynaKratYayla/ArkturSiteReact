@@ -295,7 +295,7 @@
     margin-bottom: 8px;
 }
 
-.AddToBasketButton{
+.AddToCartTour{
     background: #009FE3;
     color: white;
     border: 1px solid grey;
@@ -307,5 +307,11 @@
     text-align: center;
     padding-bottom: 5px;
     margin-top: 25px;
-    margin-bottom: 8px;   
+    margin-bottom: 8px; 
+    position:relative;
+    z-index: 50;  
+}
+
+.AddToCartTour:hover{
+    cursor:pointer;
 }

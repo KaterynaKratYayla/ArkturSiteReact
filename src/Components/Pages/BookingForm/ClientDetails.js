@@ -53,10 +53,10 @@ export const ClientDetails = ({cart}) => {
                                     "contract_id" : cart.contract_id,  //former tour_id
                                     "tariff_id" : cart.tariff_id, //former tour_tariff_id
                                     "room_id" : cart.room_id, //former tour_room_id
-                                    "numberofunits" : cart.service_type_id === parseInt(1)? cart.numberofunits: parseInt(11),
+                                    "numberofunits" : cart.service_type_id === parseInt(1)? cart.numberofunits: parseInt(1),
                                     "hotel_id" : cart.hotel_id,
-                                    "hotel_room_id" : cart.service_type_id === 11? cart.hotel_room_id : null, //only for package tour
-                                    "hotel_rate_id" : cart.service_type_id === 11? cart.hotel_rate_id : null, // only for package tours
+                                    "hotel_room_id" : cart.service_type_id === parseInt(1)? cart.hotel_room_id : null, //only for package tour
+                                    "hotel_rate_id" : cart.service_type_id === parseInt(1)? cart.hotel_rate_id : null, // only for package tours
                                     "calculation_data" :
                                         {
                                             "adults":cart.adults,

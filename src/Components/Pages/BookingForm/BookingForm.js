@@ -7,6 +7,10 @@ import {ValidateQuery} from '../Helpers/helper'
 import {ClientDetails} from './ClientDetails'
 import {CartDetails} from './CartDetails'
 
+import sha256 from 'crypto-js/sha256';
+import hmacSHA512 from 'crypto-js/hmac-sha512';
+import Base64 from 'crypto-js/enc-base64';
+
 import './BookingForm.css'
 
 moment.locale('en')
@@ -20,6 +24,7 @@ export const BookingForm = (props) =>{
 
     let search_data = ValidateQuery(location)
     console.log('GUEST ITEM LOCATION', search_data)
+  
 
     const CryptoJS = require("crypto-js");
 

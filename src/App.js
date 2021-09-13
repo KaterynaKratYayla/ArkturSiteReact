@@ -22,6 +22,8 @@ import {HomePage} from "./Components/Pages/PageComponents/HomePage"
 
 import { history } from "./Redux/helpers/history";
 
+console.log('ENV',process.env.REACT_APP_PRIVATE_KEY)
+
 const paymentService = new PaymentService();
 
 function App() {
