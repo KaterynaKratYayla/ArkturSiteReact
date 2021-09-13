@@ -24,7 +24,7 @@ moment.locale('uk')
 
 export const GuestItem = ({tour, selector, list}) =>{
 
-///получаю с помощью своиства истории (history) из компонента search результаты поиска - массив с одним объектом. 
+///получаю с помощью своиства истории (history) из компонента search результаты поиска - массив с одним объектом.
 let location = useLocation();
 let history = useHistory();
 
@@ -45,19 +45,19 @@ const [filtered1, setFiltered1] = useState([]);
 const [geoindex, setGeoindex] = useState([]);
 
 console.log('[TEST]', test)
- 
+
   ///получаю из смарта тур имя, тур айди, сити имя, сити айди
   useEffect ( () => {
     dispatch (getGeneralGeo ());
   }, [])
 
-  console.log('[GENERAL_GEO] , ' , generalGeo)///получаю из смарта тур имя, тур айди, сити имя, сити айди 
+  console.log('[GENERAL_GEO] , ' , generalGeo)///получаю из смарта тур имя, тур айди, сити имя, сити айди
 
   ///используется непосредственно для вывода названий туров на странице.
-  ///если айди города, который мне приходит первоначально от Саши Ефица (классификатор contracts) не находится в данных, пришедших в результате поиска клиентом, 
+  ///если айди города, который мне приходит первоначально от Саши Ефица (классификатор contracts) не находится в данных, пришедших в результате поиска клиентом,
   ///то в переменную filtered возвращается тур айди из классификатора contracts, равное айди, пришедшему от клиентского поиска
   ///иначе возвращается сити айди из классификатора contracts, равное айди из поиска
- 
+
   const filtered = generalGeo.filter(function(item){
       if(item.city_id.indexOf(search_data.id) === -1){
         return item.tour_id === search_data.id
@@ -66,7 +66,7 @@ console.log('[TEST]', test)
     })
 
     console.log('[FILTERED]', filtered)
-  
+
   ///отфильтровала данные поиска, чтобы получить только тур айди поиска
   const filtered_tour_id = filtered.map(function(item1){
     return item1.tour_id
@@ -80,16 +80,48 @@ console.log('[TEST]', test)
 
   console.log('[TODAY MONTH]' , currentMonth, '[TODAY DATE]', today, '[TEST_DATE] : ' , search_data.date + '-01')
 
-useEffect ( () => {
-  axios.get('https://hotels-ua.biz/interface/price'
+    useEffect(() => {
+        const ActionRQ = {
+            "username":"Serodynringa",
+            "password":"%tmMJZbABm6cB@tY",
+            "user_id" :1426,
+            "action":"GetPriceTourRQ",
+            "data" :
+                {
+                    city_id: search_data.city_id,
+                    date: currentMonth === search_data.date ? today : (search_data.date + '-01'),
+                    window: 30,
+                    tour_id: filtered_tour_id.length === 1? filtered_tour_id[0] : null ///если в ответ при поиске пришёл массив из более 1 айди тура (что может быть при поиске клиентом по городу, а не по туру), то, так как Смарт не принимает массив, данный параметр при передаче данных игнорируется (равен null). Иначе этот параметр в одном экземпляре и он тогда передаётся в Смарт и участвует в фильтрации
+                }
+        };
+
+        // axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+        // axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+            .then( res => {
+                setRate(res.data)
+                console.log('[SET_RATE]' , res.data)
+            })
+            .catch( error => {
+                setRate(undefined)
+                console.log( '[axios error] : ' , error)
+            });
+
+    }, []);
+
+/*useEffect ( () => {
+  axios.get('http://smartbooker/interface/xmlsubj'
+  // axios.get('http://smartbooker/interface/price'
+  // axios.get('http://smartbooker.biz/interface/price'
+  // axios.get('https://hotels-ua.biz/interface/price'
   , {
 
-  params:{ 
+  params:{
     city_id: search_data.city_id,
     date: currentMonth === search_data.date ? today : (search_data.date + '-01'),
     window: 30,
     tour_id: filtered_tour_id.length === 1? filtered_tour_id[0] : null ///если в ответ при поиске пришёл массив из более 1 айди тура (что может быть при поиске клиентом по городу, а не по туру), то, так как Смарт не принимает массив, данный параметр при передаче данных игнорируется (равен null). Иначе этот параметр в одном экземпляре и он тогда передаётся в Смарт и участвует в фильтрации
-      } 
+      }
     }
   )
     .then( res => {
@@ -100,13 +132,14 @@ useEffect ( () => {
     setRate(undefined)
     console.log( '[axios error] : ' , error)
      });
- }, []);
+ }, []);*/
 
+ console.log('[search_data] : ' , search_data)
  console.log('[SET_RATE] : ' , rate)
 
     return(
       <div>
-        
+
         {/* <h3>Search Results</h3> */}
             <div>
               <Search />
@@ -116,10 +149,10 @@ useEffect ( () => {
               <h3 style={{marginTop:'2vw', color:'#003057',fontFamily:'Arial',fontSize:'30px',fontWeight:'bold'}}>Search Results</h3>
             </div>
           {/* <div  style={{width:'100%',marginLeft:'auto',marginRight:'auto'}}> */}
-             
+
               {/* <SearchInner /> */}
            {/* </div> */}
-               
+
                 {/* <div>{history.location.pathname}</div> */}
               <div>
                   <ul className='descriptionUl'>
@@ -130,16 +163,16 @@ useEffect ( () => {
                             <li key={tour.tour_id} className='descriptionLi'>
                                 <h3 style={{fontSize:'27px',
                                              color: '#001959'}}>
-                                                    {tour.tour_name} 
+                                                    {tour.tour_name}
                                 </h3>
 
-                                 <div class='descriptionContent'>                        
+                                 <div class='descriptionContent'>
                                  {
                                    <ItemContent
                                       tour = {tour}
                                    />
                                  }
-                                
+
                                  {
                                   rate? (rate.map((tariff) => {
                                    if(tour.tour_id === tariff.tour_id){
@@ -165,19 +198,19 @@ useEffect ( () => {
                        <div className='noResultSearch'>
                           Your
                            Search returned no results. Please change your parameters and try once again.
-                      </div> )           
-                  }                    
+                      </div> )
+                  }
               </>
               {/* <hr /> */}
-           </ul>  
+           </ul>
          </div>
-         
+
            {/* {
-             searchResults[0].click && ( 
+             searchResults[0].click && (
                 <TourDetails searchResultsNew={searchResults}/>
              )
            } */}
-      
+
 
        </div>
     </div>

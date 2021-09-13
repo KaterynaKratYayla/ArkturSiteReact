@@ -1,0 +1,59 @@
+.CartDetails{
+    padding: 1vw;
+    border:2px solid rgb(206, 207, 209);
+    border-radius:0.5vw;
+    /*display: inline-block;*/
+    max-width: fit-content;
+    /* flex:1;*/
+}
+
+
+.CartDetails h4{
+    color: rgb(77, 75, 75);
+    font-size:18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.NotPickedImage{
+    padding:5px;
+    width:6vw;
+    height:11vh;
+    border-radius:0.7vw;
+    cursor:pointer;
+    /* z-index: -1; */
+    /* position: relative; */
+}
+
+.PickedImage,
+.NotPickedImage:hover{
+    padding:5px;
+    width:6vw;
+    height:11vh;
+    border-radius:0.7vw;
+    cursor:pointer;
+    opacity:0.7;
+    /* border: 2px solid rgb(68, 63, 139); */
+    background-color: rgb(17, 17, 114);
+    /* display: inline-block;//// //*/
+    /* border-radius: 8px;// /////*/
+    /* height:100%; */
+    /* position:fixed; */
+    /* width:100%; */
+    /* top:0; */
+    /* left:0; */
+}
+
+.MainRateDetails{
+    display: grid;
+    grid-template-columns: repeat(2,15vw);
+}
+
+.MainRateDetails h5{
+    color: rgb(77, 75, 75);
+    font-size: 16px;
+}
+
+.TaxDetails{
+    font-size: 14px;
+}
