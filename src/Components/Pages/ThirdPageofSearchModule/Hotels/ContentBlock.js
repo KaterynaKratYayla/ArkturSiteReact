@@ -49,7 +49,8 @@ const [photoHeight, setPhotoHeight] = useState('55vh')
                                 fontSize:'14px', 
                                 height:`${photoHeight}`,
                                 overflow:'scroll',
-                                padding:'0.5vw'}}>
+                                padding:'0.5vw',
+                                marginLeft: '2vw'}}>
                         {ReactHtmlParser(trip.text)}
                     </div>
                 )

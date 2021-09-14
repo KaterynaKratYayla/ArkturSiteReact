@@ -23,7 +23,7 @@ export const CartGallery = ({photos,photoHeight}) => {
                       style={{padding:'5px',
                               marginLeft:'auto',
                               marginRight:'auto',
-                              width:'40vw',
+                              width:'37vw',
                               height:`${photoHeight}`,
                               borderRadius:'0.7vw'
                    }}/>
