@@ -104,7 +104,7 @@ export const TopMenu = () => {
 
 			</div>
 
-	 		<div className='middleMenu'>
+	 		<div className={`${width>1000?'middleMenu':'middleMenuSmallScreen'}`}>
 					{/* <div class='middleMenu_left'> */}
 			   <NavLink exact to='/' >
 					<img class='ArkturDMClogo'

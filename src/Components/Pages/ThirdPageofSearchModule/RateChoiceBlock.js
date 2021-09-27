@@ -87,7 +87,6 @@ export const RateChoiceBlock =({selectionDetails,tour_id,totalPax}) =>{
                                 >
                                 <div style={{display:'flex', 
                                               flexDirection:'row',
-                                              maxWidth:'15vw',
                                               marginBottom: '0.5vh'}}>
                                                           
                                                     <Hotels />
@@ -133,7 +132,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id,totalPax}) =>{
                 
 
                          
-                   ) : (<LoadingMessage/>)
+                   ) : (<LoadingMessage loadingMessageClass='TourRateLoading'/>)
                   }
                 </>
           </div>

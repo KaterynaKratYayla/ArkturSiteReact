@@ -46,8 +46,8 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
     <div class='largeScreenSearch'>
       <div>
         <Switcher name={'align'} changeHandler={toggler} active={align} switcherWidth={`${width*0.2}px`}>
-        <SwitcherItem value='HOTELS'><Hotels/> Hotels</SwitcherItem>
-          <SwitcherItem value='TOURS'><Tours/> Tours</SwitcherItem>
+          <SwitcherItem value='HOTELS'><Hotels/><h4> Hotels</h4></SwitcherItem>
+          <SwitcherItem value='TOURS'><Tours/><h4>Tours</h4></SwitcherItem>
         </Switcher>  
       </div>
 

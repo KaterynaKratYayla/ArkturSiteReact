@@ -103,6 +103,16 @@
     /* padding-left: 3vw; */
 }
 
+.TourRateLoading{
+    width: 285px;
+    height: 250px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+}
+
 
 .TourChoiceBlock h4{
     font-family: 'Arial Narrow';
@@ -296,11 +306,17 @@
     justify-content: space-evenly;
 }
 
-.WrapperAddToBasket{
-    min-width:35vw;
-    display:flex;
-    flex-direction:row;
-    justify-content:space-between;
+.TourWrapperAddToBasket{
+    /* min-width:35vw; */
+    /* display:flex; */
+    /* flex-direction:row; */
+    /* justify-content:space-between; */
+    display:grid;
+    grid-template-columns: 60% 40%;
+    /* width: 100%; */
+    padding-top:3vh;
+    margin-top:0;
+    column-gap:4vw;
 }
 
 .WrapperAddToBasket h4{
@@ -318,8 +334,8 @@
     border-radius: 2px;
     font-weight: bold;
     font-size: 19px;
-    width: 8vw;
-    height: 40px;
+    width: 45%;
+    height: 6vh;
     text-align: center;
     padding-bottom: 5px;
     margin-top: 25px;

@@ -10,7 +10,7 @@ const SmallScreensNavBar = ({width,sitepage_type}) =>{
     // console.log('PAGES', pages)
     let [translate, setTranslate ] = useState(false);
     return(
-        <div> 
+        <div style={{width:'100%'}}>  
             
              <button className="hamburger-btn"
                      onClick= {()=> setTranslate(!translate)}>  {/* toggle translate */}

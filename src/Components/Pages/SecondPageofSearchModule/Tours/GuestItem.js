@@ -147,7 +147,7 @@ console.log('[TEST]', test)
             <div>
               {/* <Search /> */}
             </div>
-            <div class='searchrendering_Wrapper'>
+            <div class='TourSearchrendering_Wrapper'>
             <div>
               <h3 style={{marginTop:'2vw', 
                   color:'#003057',
@@ -168,7 +168,7 @@ console.log('[TEST]', test)
                              }}
                          ><LoadingMessage loadingMessageClass='RateLoading'/></div>): 
                          (            
-                  <ul className='descriptionUl'
+                  <ul className={`${width>1000? 'TourDescriptionUl':'TourDescriptionUlSmallScreen'}`}
                       style={{width:`${width>1000? width*0.65 : width*0.9}px`}}>
                     <>
                       {
@@ -180,7 +180,7 @@ console.log('[TEST]', test)
                                                     {tour.tour_name}
                                 </h3>
 
-                                 <div class={`${width>1000?'descriptionContent':'descriptionContentSmallScreen'}`}>
+                                 <div class={`${width>1000?'TourDescriptionContent':'TourDescriptionContentSmallScreen'}`}>
                                  {
                                    <ItemContent
                                       tour = {tour}

@@ -1,9 +1,15 @@
-.descriptionUl{
-    /* width: 65vw; */
+.TourDescriptionUl{
     margin-left: auto;
     margin-right: auto;
     margin-top: 5vh;
     font-family: 'Tahoma';
+}
+
+.TourDescriptionUlSmallScreen{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+  font-family: 'Tahoma';
 }
 
 .descriptionLi{
@@ -25,7 +31,7 @@
     /* padding-left: ; */
 }
 
-.descriptionContent{
+.TourDescriptionContent{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -33,7 +39,7 @@
   margin-top:2vh;
 }
 
-.descriptionContentSmallScreen{
+.TourDescriptionContentSmallScreen{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -91,7 +97,7 @@
     color:rgb(250, 250, 141)
   } */
 
-  .searchrendering_Wrapper{
+  .TourSearchrendering_Wrapper{
     display: flex;
     flex-direction: column;
     align-items: center;

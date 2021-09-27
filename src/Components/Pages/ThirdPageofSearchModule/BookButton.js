@@ -3,13 +3,13 @@ import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {getPax} from "../../../Redux/actions/paxchoice"
 import axios from "axios"
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 // import {CartDemo} from '../Cart/Cart'
 
 import './TourDetailsCSS.css'
 
 export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoice,tour_room,hotel_id,tariff}) =>{
     
-
     console.log("TARIFF",tariff[0],tour_room)
     const [booking,setBooking] = useState([])
     const [rateTotal, setrateTotal] = useState()
@@ -18,7 +18,9 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
     const location = useLocation()
     const history = useHistory();
 
-     const AddToBasket=(param)=>(e)=>{
+    const [width, height] = useWindowWidthAndHeight()
+
+    const AddToBasket=(param)=>(e)=>{
         const newBooking={
             tour_id:tour_id,
             tour_tariff_id:e.target.value,
@@ -41,7 +43,10 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
     }
 
     return(
-        <div>
+        <div 
+        // style={{width:`${width>1000?width*0.4:width*0.7}px`,
+                    //  textAlign:'center'}}
+                     >
             <>
             {
                 tariff&&tariff[0].map((item)=>{
@@ -53,8 +58,9 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
                         return item1.rate_details.map((item3)=>{
                           if(totalPax.counterAdults >= item3.min_adult&&totalPax.counterAdults<=item3.max_adult){
                            return(
-                            <div class='WrapperAddToBasket'>
-                              <div style={{display:'block',width:'25vw'}}>
+                            <div class='TourWrapperAddToBasket'
+                                style={{width:`${width>1000?width*0.5:width*0.8}px`}}>
+                              <div>
                                      <h4>
                                             <span style={{color:'blue'}}>{'TOTAL tour cost '}</span>
                                                                 with {item1.tariff_name} :

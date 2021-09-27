@@ -105,7 +105,7 @@ const optionChecker = (e) => {
 
   console.log('[NewList] : ' , newList)
 
-  history.push(`/search_results/${route_query}` , [...list, newList])
+  history.push(`/search_results_tours/${route_query}` , [...list, newList])
   
 
   console.log('[HISTORY : ] ', history)
