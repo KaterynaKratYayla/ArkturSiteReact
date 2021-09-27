@@ -152,9 +152,18 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                             class="TopToursImage"
                                             width={`${width*0.6/3}px`}
                                             src={'http://' + tour.main_photo[0]}/>
-                                            ):(<LoadingMessage itemWidth={`${width*0.6/3}px`}/>)
-                                          }
+                                            ):tour.main_photo[1]?(
+                                              <img  
+                                                id={tour.tour_id}
+                                                class="TopToursImage"
+                                                width={`${width*0.6/3}px`}
+                                                src={'http://' + tour.main_photo[1]}/>
+                                                ):null
+                                            // (<LoadingMessage itemWidth={`${width*0.6/3}px`}/>)
+                                            }
                                         </div> 
+                                        {
+                                          tour.main_photo[0]||tour.main_photo[1]?(
                                        <div class='TopToursTitle'
                                             style={{width:`${width*0.6/3}px`}}
                                             id={tour.tour_id}>
@@ -162,13 +171,13 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                               style={{width:`${width*0.6/3}px`}}> 
                                                 {tour.tour_name.toUpperCase()} 
                                           </h4> 
-                                      </div> 
+                                      </div> ):null
+                                    }
                                 </li> 
-                            ) 
-                          } 
-                      })) 
+                            )}
+                         })) 
                      : 
-                      (<div>{null}</div>) 
+                      (null) 
                     } 
                   
                 </ul> 
@@ -233,15 +242,19 @@ const MediumScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                                 class="TopToursImage"
                                                 width={`${width*0.5/2}px`}
                                                 src={'http://' + tour.main_photo[0]}/>
-                                            ):(<LoadingMessage itemWidth={`${width*0.5/2}px`}/>)
+                                            ):null
+                                            // (<LoadingMessage itemWidth={`${width*0.5/2}px`}/>)
                                          }
                                         </div> 
+                                        {
+                                            tour.main_photo[0]?(
                                        <div class='TopToursTitle' style={{width:`${width*0.5/2}px`}}>
                                           <h4 id={tour.tour_id}
                                           style={{width:`${width*0.5/2}px`}}> 
                                                 {tour.tour_name.toUpperCase()} 
                                           </h4> 
-                                      </div> 
+                                      </div> ):null
+                                    }
                                 </li> 
                             ) 
                           } 
@@ -305,15 +318,20 @@ const SmallScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                             class="SmallerTopToursImage"
                                             style={{width:width}}
                                             src={'http://' + tour.main_photo[0]}/>
-                                            ):(<LoadingMessage itemWidth={`${width}px`}/>)
+                                            ):null
+                                            // (<LoadingMessage itemWidth={`${width}px`}/>
+                                            // )
                                          }
                                     </div>
+                                    {
+                                            tour.main_photo[0]?(
                                     <div class='SmallerTopToursTitle'
                                           style={{width:width}}>
                                       <h4 id={tour.tour_id}>
                                            {tour.tour_name}
                                       </h4>
-                                    </div>
+                                    </div>):null
+                                  }
                               </li>
                           )
                         }
