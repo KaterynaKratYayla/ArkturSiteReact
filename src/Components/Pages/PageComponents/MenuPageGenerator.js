@@ -11,6 +11,8 @@ import {getPurePage} from '../../../Redux/actions'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {ValidateQuery} from '../Helpers/helper'
 
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+
 import '../PageComponents/ResponsiveHeader/header.css'
 
 
@@ -19,6 +21,8 @@ export const PureContent = () => {
   const location = useLocation(); 
 
   let search_data = ValidateQuery(location)
+
+  const [width, height] = useWindowWidthAndHeight();
 
   console.log('LOCATION',location,search_data.id)
 
@@ -57,7 +61,7 @@ export const PureContent = () => {
 
            if(page.content_name === "Body"){
              return (
-               <div>{ReactHtmlParser(page.text)}</div>
+               <div  style={{maxWidth:`${width}px`,overflow:'hidden'}}>{ReactHtmlParser(page.text)}</div>
              )
            }
 

@@ -1,14 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types';
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
 export const Switcher = (props) =>{
-    const {children, active, name, changeHandler} = props;
+    const {children, active, name, changeHandler,switcherWidth} = props;
      
+    const [width, height] = useWindowWidthAndHeight();
+
     console.log('SWITCHER',props)
 
     return (
     // <div className='switcher'> {name} : {
-      <div className='switcher'>  {  
+      <div className='switcher' style={{width:switcherWidth}}>  {  
         React.Children.count(children) > 0 && (
           <>
           {

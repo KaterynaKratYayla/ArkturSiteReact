@@ -2,21 +2,24 @@
     border:none;
     rotate: 20%;
     font-size: 40px;
-    text-align: center;
-    
+    /* text-align: center; */
+
 }
 
 .Loading{
-    width: 285px;
     height: 270px;
-    text-align: center;
+    /* text-align: center; */
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
 .LoadingText{
-    color:grey;
-    font-size:15px;
+    color:rgb(7, 7, 85);
+    font-size: 17px;
     font-family:Arial;
+    /* vertical-align: middle; */
+    margin: auto;
+    position:absolute;
+    top:40%
 }

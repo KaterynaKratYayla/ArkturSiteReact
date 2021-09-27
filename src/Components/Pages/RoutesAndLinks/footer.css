@@ -9,6 +9,10 @@
     justify-content: space-around;
 }
 
+.footer h2{
+    line-height: 1rem;
+}
+
 /* .footerXS {
     min-width: 400px;
     background-color: orange;

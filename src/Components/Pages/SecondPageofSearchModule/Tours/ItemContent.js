@@ -4,10 +4,12 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getContent} from "../../../../Redux/actions/content"
 import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
 import './SearchItems.css'
-import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
+import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import {LoadingMessage} from '../../../Library/PageDevices/LoadingMessage'
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+
 import 'moment/locale/uk'
 
 moment.locale('uk')
@@ -16,7 +18,7 @@ export const ItemContent = ({tour})=>{
   console.log('[TOUR]' , tour)
   const [result, setResult] = useState('')
   // const [id, setId] = useState([])
-
+  const [width, height] = useWindowWidthAndHeight()
 // const contents = useSelector(state => state.content.content)
 // const dispatch = useDispatch();
 
@@ -53,7 +55,8 @@ export const ItemContent = ({tour})=>{
        result ? (result.map((trip) =>{
         if(trip.content_name === 'Summary'){
           return (
-              <li class='Li_ItemContent'>
+              <li class='Li_ItemContent'
+                  style={{width:`${width>1000?'50%':'60%'}`}}>
                   {ReactHtmlParser(trip.text)}
               </li>
             )
@@ -62,15 +65,19 @@ export const ItemContent = ({tour})=>{
           else if(trip.content_name === 'Image'){
             return (
             <li
-            style={{listStyleType:'none',
-            textAlign: 'left'}}
+            style={{
+              listStyleType:'none',
+              textAlign: 'left',
+              width:`${width>1000?'50%':'40%'}`
+              
+            }}
             >
                   <img 
                       // class='imageSearchrender'
                      style = {{
-                      width: '18vw',
-                      height: '14vw',
-                      borderRadius: '5px'  
+                      width: '100%',
+                      borderRadius: '5px',
+                      height: '20vw'  
                       }}
                       src={'http://' + trip.text[2]}/> 
               </li>

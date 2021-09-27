@@ -355,7 +355,7 @@ a.active {
 .purecontentPage{
     display: flex;
     flex-direction: column;
-    min-width: 30vw;
+    /* min-width: 30vw; */
     /* padding: 2vw; */
     color: rgb(3, 3, 63);
     justify-content: center;
@@ -367,7 +367,7 @@ a.active {
 }
 
 .purecontentPage img{
-    max-width: 400px;
+    max-width: 100%;
     max-height: 300px;
     border-radius: 2px;
     

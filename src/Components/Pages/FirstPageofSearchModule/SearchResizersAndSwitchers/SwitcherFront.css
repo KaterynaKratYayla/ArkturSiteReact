@@ -20,16 +20,17 @@
 } */
 
 .switcher{
-    position: relative;
+    /* position: relative; */
     margin-top: 1vw;
-    width: 83.7%;
+    /* width: 80%; */
     text-align: left;
-    margin-left: auto;
-    margin-right: auto;
+    /* height: 7vw; */
+    /* overflow: hidden */
+    /* margin-left: auto; */
+    /* margin-right: auto; */
 }
 
 .switcher__item.active{
-    /* background-color: #005AEB; */
     background-color: #96c6f0;
     color: #003057;
 
@@ -45,8 +46,8 @@
     border-left: 1px solid #8bc0f0;
     border-right : 1px solid #8bc0f0;
     border-bottom: none;
-    border-top-right-radius: 1vw;
+    border-top-right-radius: 3vw;
     border-top-left-radius: 1vw;
-    max-width: 7vw;
-
+    width: 35%;
+    height: 100%;
 }

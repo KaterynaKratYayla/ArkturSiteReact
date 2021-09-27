@@ -17,7 +17,7 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
             type='submit'
             class={clicked === false? 'SubmitButton':'NonActiveSubmit'}
             onClick={AddContacts}>
-                Confirm Details
+                CONFIRM DETAILS
        </button>
        {
           clicked === true?(

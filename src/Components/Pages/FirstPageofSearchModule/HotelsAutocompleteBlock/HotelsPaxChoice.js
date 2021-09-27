@@ -2,6 +2,7 @@ import React, {useState, useEffect, useCallback}  from 'react'
 // import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 import {getPax} from "../../../../Redux/actions/paxchoice"
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
 import {PlusOutlined, MinusOutlined, DownOutlined} from '@ant-design/icons'
 import {Pax} from '../../../Library/Icons/pax.js'
@@ -21,9 +22,11 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
 
  const dispatch = useDispatch();
 
+ const [width, height] = useWindowWidthAndHeight();
+
  useEffect ( () => {
-    dispatch (getPax (counterAdults,counterChild,counterInfant,counterRooms));
-  }, [counterAdults,counterChild,counterInfant,counterRooms])
+    dispatch (getPax (counterAdults,counterChild,counterRooms));
+  }, [counterAdults,counterChild,counterRooms])
 
 //   useEffect (() =>{
 //     axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
@@ -108,61 +111,63 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
    
      return(
         <div style={{marginTop:'0.8vw'}}>
-            <div class='HotelPaxChoiceWrapper'>
-                <div class='HotelPaxResult' onClick={MakeVisible}>
-                  <h4 onClick={TotalPax}>
+            <div class='HotelPaxChoiceWrapper' style={{width:`${width >=1000? null: width*0.8}px`}} >
+                <div class={`${width >= 1000? 'HotelPaxResult' : 'HotelPaxResultSmallScreen'}`} style={{width:`${width >=1000? null: width*0.8}px`}} onClick={MakeVisible}>
+                  <h4 style={{display:'flex',flexDirection:'row',justifyContent:'center'}} onClick={TotalPax}>
+
                      <Pax />
-                      {counterAdults} Adults, {counterChild} Children, {counterInfant} Infants, {counterRooms} Rooms
+                      <div style={{paddingLeft:'1vw'}}> {counterAdults} Adults</div>, 
+                      <div style={{paddingLeft:'1vw'}}> {counterChild} Children</div>,
+                      <div style={{paddingLeft:'1vw'}}> {counterRooms} Rooms </div>
+                      {/* {counterInfant} Infants,  */}
                       <DownOutlined className='DownOutlined'/>
+
                   </h4>
                 </div>
-                  <div class={paxListOpen === false? 'PopUpNotActive' : 'PopUpActive'}>
+                  <div class={paxListOpen === false? 'PopUpNotActive' : 'PopUpActive'} style={{width:`${width >=1000? null: width*0.8}px`}}>
                     <div style={{display: 'grid', 
                                  gridTemplateRows: 'repeat(3, 6vh)',
-                                 rowGap: '10px'}}>
+                                 rowGap: '10px'
+                                 }}>
                     <div style={{display: 'grid',  
-                                 gridTemplateColumns: '5vw 4vw 2vw 4vw 5vw'}}>
+                                 gridTemplateColumns: '25% 17% 16% 17% 25%'}}>
                         <h4>Adults</h4>
-                        <MinusOutlined className='Minus' onClick={deduct}/>
-                         <>
-                            {
-                              <h4>{counterAdults}</h4>  
-                            }
-                         </>
-                        <PlusOutlined className='Plus' onClick={add}/>
-                        <span>12+ y.o.</span>
+                        <h4><MinusOutlined className='Minus' onClick={deduct}/></h4>
+                        <h4>{counterAdults}</h4>  
+                        <h4><PlusOutlined className='Plus' onClick={add}/></h4>
+                        <h4>12+ y.o.</h4>
                     </div>
 
                     <div style={{display: 'grid',  
-                                 gridTemplateColumns: '5vw 4vw 2vw 4vw 5vw'}}>
+                                 gridTemplateColumns: '25% 17% 16% 17% 25%'}}>
                         <h4>Children</h4>
-                        <MinusOutlined className='Minus' onClick={deductChild}/>
+                        <h4><MinusOutlined className='Minus' onClick={deductChild}/></h4>
                         <h4>{counterChild}</h4>
-                        <PlusOutlined className='Plus' onClick={addChild}/>
-                        <span>2-11 y.o.</span>
+                        <h4><PlusOutlined className='Plus' onClick={addChild}/></h4>
+                        <h4>2-11 y.o.</h4>
                     </div>
 
-                    <div style={{display: 'grid',  
+                    {/* <div style={{display: 'grid',  
                                  gridTemplateColumns: '5vw 4vw 2vw 4vw 5vw'}}>
                         <h4>Infants</h4>
                         <MinusOutlined className='Minus' onClick={deductInfant}/>
                         <h4>{counterInfant}</h4>
                         <PlusOutlined className='Plus' onClick={addInfant}/>
                         <span>0-2 y.o.</span>
-                    </div>
+                    </div> */}
 
                     <div style={{display: 'grid',  
-                                 gridTemplateColumns: '5vw 4vw 2vw 4vw 5vw'}}>
+                                 gridTemplateColumns: '25% 17% 16% 17% 25%'}}>
                         <h4>Rooms</h4>
-                        <MinusOutlined className='Minus' onClick={deductRooms}/>
+                        <h4><MinusOutlined className='Minus' onClick={deductRooms}/></h4>
                         <h4>{counterRooms}</h4>
-                        <PlusOutlined className='Plus' onClick={addRooms}/>
-                        {/* <span>0-2 y.o.</span> */}
+                        <h4><PlusOutlined className='Plus' onClick={addRooms}/></h4>
+
                     </div>
 
                   </div>
 
-                  <div onClick={TotalPax}>
+                  <div onClick={TotalPax} style={{textAlign:'center'}}>
                   
                     <button class="PopUpButton" onClick={MakeVisible}>
                             Confirm

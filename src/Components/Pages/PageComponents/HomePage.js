@@ -1,7 +1,7 @@
 import React from 'react'
 import '../PageComponents/ResponsiveHeader/header.css'
 import Slider from '../../Library/Slider/Slider'
-import {Search} from '../FirstPageofSearchModule/SearchFront'
+import {Search} from '../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
 import {Helmet} from 'react-helmet'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {TopTours} from './TopTours'

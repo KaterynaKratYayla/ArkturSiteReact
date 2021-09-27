@@ -6,10 +6,7 @@ import moment from 'moment';
 import {ValidateQuery} from '../Helpers/helper'
 import {ClientDetails} from './ClientDetails'
 import {CartDetails} from './CartDetails'
-
-import sha256 from 'crypto-js/sha256';
-import hmacSHA512 from 'crypto-js/hmac-sha512';
-import Base64 from 'crypto-js/enc-base64';
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 
 import './BookingForm.css'
 
@@ -25,6 +22,7 @@ export const BookingForm = (props) =>{
     let search_data = ValidateQuery(location)
     console.log('GUEST ITEM LOCATION', search_data)
   
+    const [width, height] = useWindowWidthAndHeight();
 
     const CryptoJS = require("crypto-js");
 
@@ -44,9 +42,9 @@ export const BookingForm = (props) =>{
                   :(`Free cancellation before 12:00 pm on ${moment(canx_deadline_date).format('YYYY-MM-DD')} (E. Europe Standard Time).You can change or cancel this stay for a full refund if plans change. Because flexibility matters.`)}
             </span>
         </h3>
-          <div class='RegWrapper'>
-            <ClientDetails cart={search_data}/>
-            <CartDetails cart={search_data}/>
+          <div class={`${width>1000?'RegWrapper':'RegWrapperSmallScreen'}`}>
+              <ClientDetails cart={search_data}/>
+              <CartDetails cart={search_data}/>
           </div>
       </div>
     )

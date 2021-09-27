@@ -16,7 +16,7 @@ import 'antd/dist/antd.css';
 
 moment.locale('uk')
 
-export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,GeneralListFunction}) =>{
+export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass,onSubmit,props,GeneralListFunction}) =>{
      
       const [stayDates, setStayDates] = useState([]);
       const [list , setList] = useState([]);
@@ -30,33 +30,15 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       const history = useHistory();
 
       const [width, height] = useWindowWidthAndHeight();
-    
+
       const dispatch = useDispatch();
       // const store = useStore();
       const smart_hotels = useSelector(state => state.hotels.hotels)
       const general_smart_hotels = useSelector(state => state.hotels.general_hotels)
-      const totalPaxRedux = useSelector(state => state.paxchoice.pax)
-
-      // let empty_array = [];
-
-      // empty_array.length = 6;
-      // for(let i=0; i<empty_array.length; i++){
-      //   empty_array[i] = "*"
-        
-      // }
-   
-
-      // console.log(empty_array)
-
-      // let filledArray = new Array(10).fill('*');
-    
+      const totalPaxRedux = useSelector(state => state.paxchoice.pax)   
 
       let filledArray = new Array(10).fill(null).map(()=> ({'hello':'goodbye'}))
       console.log(filledArray)
-
-      // useEffect ( () => {
-      //   dispatch (getPax ());
-      // }, [])
 
       console.log('TOTALPAX', totalPaxRedux)
 
@@ -75,8 +57,8 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
      
       function onChange(dates, dateStrings) {
         setStayDates(dateStrings)
-        console.log('[DATES :]', 'From: ', dates[0], ', to: ', dates[1]);
-        console.log('[STAYDATES :]','From: ', dateStrings[0], ', to: ', dateStrings[1]);
+        console.log('From: ', dates[0], ', to: ', dates[1]);
+        console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
           }
     
       const optionChecker = (e) => {
@@ -88,13 +70,10 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
           }
         }
     
-        ////FOR DATEPICKER (RANGEDATEPICKER) TO DISABLE CHOICE OF DATES THAT ARE BEFORE TODAY
-        
-      const disabledDate = (current) =>{
+        const disabledDate = (current) =>{
           // Can not select days before today 
+          // return current < moment().subtract(1,'days').endOf('day');
           return current < moment().endOf('day');
-          // console.log('CURRENT',current)
-          // return current < moment().add(-1,'days')
         }
 
       const addToList = () => {
@@ -143,9 +122,9 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
     }
 
       return(
-            <div>
+            <div class={wrapper}>
               <form className={formClass} onSubmit={onSubmit}> 
-                    <div style={{width:`${width*0.8/4}px`}}>
+                    {/* <div style={{width:'25%'}}> */}
                      
                        <Autocomplete
                          {...props}
@@ -154,13 +133,18 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
     
                            inputProps={{
                              style: 
-                            { width: `${width*0.8/4}px`,
+                            { width: `${width*0.8}px`,
+                              marginRight:'auto',
+                              marginLeft:'auto',
                               height: '45px', 
                               fontFamily: 'Tahoma', 
                               fontSize: '16px',
-                              border:'none',
+                              borderTop: 'none',
+                              borderBottom: '0.5px solid grey',
+                              borderLeft: 'none',
+                              borderRight:'none',
                               marginTop: '0.2vw',
-                              textAlign:"center"
+                              textAlign:'center'
                               // marginLeft: '2vw'
                               // flex: '0',
                               // display:'block'
@@ -172,6 +156,9 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                         
                           }}
                            menuStyle={{
+                                  width: `${width*0.8}px`,
+                                  marginRight:'auto',
+                                  marginLeft:'auto',
                                     fontFamily: 'Arial Narrow',
                                     fontWeight:'bold',
                                     fontSize: '18px',
@@ -215,34 +202,37 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                         onMenuVisibilityChange={isOpen =>setOpen(false)}
                         
                         />
-              </div>  
+              {/* </div>   */}
                
-            <div style={{width:`${width*0.8/4}px`, borderLeft:'0.5px solid grey'}}>
+            {/* <div style={{width:'25%'}}> */}
                  
                  <Space direction="vertical">
                     <RangePicker
                         size={'large'}
                         disabledDate={disabledDate}
-                        // ranges={{
-                        // Today: [moment(), moment()],
-                        //     'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        //         }}
+                        ranges={{
+                        Today: [moment(), moment()],
+                            'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                }}
                         onChange={onChange}
                         bordered={false}
                         className={datepickerClass}
-
                     />
                 </Space>
               
-            </div> 
+            {/* </div>  */}
 
-               <div style={{width:`${width*0.8/4}px`,borderLeft:'0.5px solid grey'}}>
+               {/* <div style={{width:'25%'}}> */}
+               <div style={{borderTop: '0.5px solid grey',borderBottom:'0.5px solid grey'}}>
                   <HotelsPaxChoice 
                      MakeVisible={MakeVisible}
                      paxListOpen={paxListOpen}
                   />
                 </div>
-                <div class='borderInnerWrapper2' style={{width:`${width*0.8/4}px`}}>
+                {/* </div> */}
+                <div class='borderInnerWrapper2' style={{
+                                                          marginTop:'2vh',
+                                                          marginBottom:'2vh'}}>
                 
                      <button type='submit' onClick={addToList}>SEARCH</button>
                 </div>

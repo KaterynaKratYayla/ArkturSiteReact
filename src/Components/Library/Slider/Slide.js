@@ -1,6 +1,7 @@
 import React from 'react'
 import {css, jsx} from '@emotion/react'
 import './SliderCss.css'
+import {useWindowWidthAndHeight} from '../../Pages/Helpers/WindowResizeHook'
 
 
 // const Slide = (props) => { 
@@ -12,6 +13,11 @@ import './SliderCss.css'
 
 const Slide = ({content}) => {
 // console.log(content)
+
+const [width, height] = useWindowWidthAndHeight()
+
+console.log('HEIGHT',height)
+
 return (
 
     <div    
@@ -24,7 +30,10 @@ return (
 
     ><img 
          style={{width: '100%',
-                 margin: '-100px 0 -20px 0'}} 
+                 margin: `${width>1000?'-55px 0 0 0':'0'}`,
+                //  margin: '-105 0 0 0',
+                height:`${width>1000? height*0.92 : width > 786? height/1.5 : height/2}px`
+        }} 
          src={content}/> </div>
  )
 }

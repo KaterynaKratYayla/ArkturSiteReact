@@ -1,10 +1,12 @@
+.largeScreenSearch{
+    width:80%;
+    margin-right: auto;
+    margin-left: auto;    
+}
 .mySearch{
     display: flex;
     flex-direction: row;
     justify-content: center;
-    width: 80%;
-    margin-right: auto;
-    margin-left: auto;
     border-radius: 0 10px 10px 10px;
     border-right: 50px solid #96c6f0;
     border-left: 50px solid #96c6f0;
@@ -120,6 +122,15 @@
 div.datePicker{
     font-family:'Tahoma'; 
     padding-top: 0.8vw;
-    width: 16vw;
-    margin-left: 1vw;
+    /* margin-left: 1vw; */
+    /* color: grey */
 }
+
+input::placeholder{
+    color: grey;
+}
+
+.ant-picker-input input::placeholder {
+    color: grey;
+  }
+

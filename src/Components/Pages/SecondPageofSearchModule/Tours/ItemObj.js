@@ -5,13 +5,14 @@ import {useDispatch, useSelector} from 'react-redux'
 import { connect } from 'react-redux';
 import { Route, Switch, BrowserRouter, useHistory , useLocation} from "react-router-dom";
 // import {TourDetails} from './tourDetails';
-import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
+import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import {MinRate} from './MinRate'
 import {TourDetails} from '../../ThirdPageofSearchModule/TourDetails'
 import {ValidateQuery} from '../../Helpers/helper'
 // import 'moment/locale/uk'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
 import './SearchItems.css'
 
@@ -28,6 +29,7 @@ export const ItemObj = ({tariff, searchResults,tour_name}) => {
 
   console.log('HISTORY CHECK', history)
 
+  const [width, height] = useWindowWidthAndHeight()
     //фильтрую объект с тарифами, датами так, чтобы вывести первую встречающую дату каждого вида (к примеру, у меня пришло
     //в массиве 10 раз дата 2021-03-03, 3 раза дата 2021-03-04, 4 раза дата 2021-03-05 - я вывожу новый массив, где будет
     //объект в массиве, где первый раз встречается 2021-03-03, потом объект, где встречается 2021-03-04 первый раз, и т.д.)
@@ -69,14 +71,14 @@ setDetailsList([outline]);
 }
 
   return (
-    <div class='div_ItemObj'>
+    <div class={`${width>1000?'div_TourItemObj':'div_TourItemObjSmallScreen'}`}>
 
       <div className='availablePeriods'>
-       <div style={{fontSize: '12px',fontWeight: 'bold'}}>Available dates : </div>
+       <div style={{fontSize: '2vh',fontWeight: 'bold'}}>Available dates : </div>
         <select 
             value={selection}
             onChange={selectedPeriod}
-            style={{fontSize: '12px',color:'#001959'}}>
+            style={{fontSize: '2vh',color:'#001959'}}>
           <>
             {
               filtered_tour_dates && filtered_tour_dates.map((filter,index)=>{
@@ -102,7 +104,7 @@ setDetailsList([outline]);
         />
       <button 
           type='submmit'
-          className='availableButton'
+          className='availableButtonSecondPage'
           onClick={addToDetails}
           >VIEW DETAILS
       </button> 

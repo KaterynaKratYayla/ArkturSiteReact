@@ -6,6 +6,8 @@ import { Radio } from 'antd';
 
 import {ClientTitles} from '../../Library/StaticJsonData/ClientTitles'
 import {ConfirmButton} from './ConfirmButton'
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+
 import './BookingForm.css'
 // import {SwitcherItem} from './Switcher'
 // import {Switcher} from './Switcher'
@@ -35,7 +37,8 @@ export const ClientDetails = ({cart}) => {
     // const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([{}]);
 
     // console.log('KATE',cart.service_type_id, cart.start,cart.end,cart.contract_id,cart.tariff_id,cart.room_id,cart.service_type_id,cart.hotel_id,cart.adults,cart.children,cart.amount)
-    
+    const [width, height] = useWindowWidthAndHeight();
+
     useEffect(() => {
         const ActionRQ = {
                 "username":"Serodynringa",
@@ -70,7 +73,7 @@ export const ClientDetails = ({cart}) => {
 
         axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
             .then(response => {
-                // console.log('RESPONSE', response)
+                console.log('RESPONSE', response)
                 setSendCart(response.data[0])
               })
             .catch(error =>{
@@ -82,13 +85,16 @@ export const ClientDetails = ({cart}) => {
 
     
     let app_service_id = new Object();
-    for(let key in sendCart.data){
-        app_service_id = sendCart.data[key]
+    
+    if(sendCart){
+        for(let key in sendCart.data){
+            app_service_id = sendCart.data[key]
+        }
     }
 
-    if( !sendCart){
-        return <div> Loading...</div>
-    }
+    // if( !sendCart){
+    //     return <div> Loading...</div>
+    // }
 
 
     console.log('SENDCART',sendCart)
@@ -152,13 +158,13 @@ export const ClientDetails = ({cart}) => {
     }
 
     return(
-        <form className='myForm' onSubmit={onSubmit}>
+        <form className={`${width>1000?'myForm':'myFormSmallScreen'}`} onSubmit={onSubmit}>
 
           <div class='InputBlock'>
             <label class='FormLabel'>{'Lead Client Details'}</label>
-              <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly',width:'80%'}}>
+              <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly',width:'100%'}}>
 
-                    <select style={{marginRight:'0.5vw'}}>
+                    <select style={{marginRight:'0.5vw',width:'10%'}}>
                         {
                         ClientTitles&&ClientTitles.map((item)=>{
                             return(
@@ -177,7 +183,7 @@ export const ClientDetails = ({cart}) => {
                         placeholder={`Name`}
                         maxLength='50'
                         style={{
-                            width:"200px",
+                            width:'45%',
                             marginRight:'0.5vw'
                             }}
                         required/>
@@ -188,7 +194,7 @@ export const ClientDetails = ({cart}) => {
                         onChange={SurnameInputFunc}
                         placeholder={`Surname`}
                         maxLength='50'
-                        style={{width:"500px"}}
+                        style={{width:'45%'}}
                         required/>
 
                 </div>
@@ -247,9 +253,9 @@ export const ClientDetails = ({cart}) => {
                     bookerTravels===1?(
                       <div class='InputBlock'>
                         <label class='FormLabel'>{'Traveller Name Details'}</label>
-                          <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly',width:'80%'}}>
+                          <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly',width:'100%'}}>
 
-                            <select style={{marginRight:'0.5vw'}}>
+                            <select style={{marginRight:'0.5vw',width:'10%'}}>
                                 {
                                     ClientTitles&&ClientTitles.map((item)=>{
                                         return(
@@ -267,7 +273,7 @@ export const ClientDetails = ({cart}) => {
                                 placeholder={`Name`}
                                 maxLength='50'
                                 style={{
-                                        width:"200px",
+                                        width:"45%",
                                         marginRight:'0.5vw'
                                      }}
                                 required/>
@@ -278,7 +284,7 @@ export const ClientDetails = ({cart}) => {
                                 onChange={SurnameInputFunc}
                                 placeholder={`Surname`}
                                 maxLength='50'
-                                style={{width:"500px"}}
+                                style={{width:"45%"}}
                                 required/>
 
                         </div>

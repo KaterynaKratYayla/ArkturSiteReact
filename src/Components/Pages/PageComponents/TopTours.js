@@ -9,8 +9,10 @@ import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 
 import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
 import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
+import ArkturDMClogo from '../../Library/Images/ArkturDMClogo.svg'
 import {SyncOutlined,SmileTwoTone,LoadingOutlined} from '@ant-design/icons'
 import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
+
 import './TopToursCSS.css'
 
 export const TopTours = () => {
@@ -69,14 +71,16 @@ console.log('[TOURTOURS]', toptours)
            TopToursContents = {TopToursContents}
            TourTypes = {TourTypesFiltered}
            GetTourDetails={GetTourDetails}
-           width={width}/>)
+          //  width={width}
+           />)
         :
         width > 768?(
           <MediumScreenTopTours 
           TopToursContents = {TopToursContents}
           TourTypes = {TourTypesFiltered}
           GetTourDetails={GetTourDetails}
-          width={width}/>
+          // width={width}
+          />
         )
          :
         (
@@ -84,7 +88,8 @@ console.log('[TOURTOURS]', toptours)
             TopToursContents = {TopToursContents}
             TourTypes = {TourTypesFiltered}
             GetTourDetails={GetTourDetails}
-            width={width}/>
+            // width={width}
+            />
         )
         }
   
@@ -94,8 +99,8 @@ console.log('[TOURTOURS]', toptours)
 }
 
 
-const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) =>{
-  // const [width, height] = useWindowWidthAndHeight();
+const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
+  const [width, height] = useWindowWidthAndHeight();
 
   return(
     <div>
@@ -107,7 +112,7 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
           { TourTypes.length > 0 ? (TourTypes.map((type)=>{
 
            return(
-            <div class="TopToursWrapper"> 
+            <li class="TopToursWrapper"> 
               <h3 style={{
                           fontFamily:'Arial Narrow',
                           fontSize:'24px',
@@ -117,18 +122,20 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
                           backgroundColor:'#005AEB',
                           borderRadius:'5px',
                           lineHeight:'6vh',
-                          width:'58.7vw'}}>
+                          width:`${width*0.65}px`}}>
                                                 {type}
               </h3>
                 <ul style={{
+                       textAlign:'center',
                        display: 'grid', 
-                       gridTemplateColumns: 'repeat(3, 20vw)',
+                       gridTemplateColumns: `repeat(3, ${width*0.65/3}px)`,
                        listStyle: 'none',
-                       paddingLeft: '0'}}>
+                       }}>
 
                 {
                     TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => {
 
+                      console.log('PHOTO',tour.main_photo[0])
                         if(index < 12 && type === tour.subservices.name){
                             return( 
                               <li 
@@ -143,14 +150,17 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
                                           <img  
                                             id={tour.tour_id}
                                             class="TopToursImage"
+                                            width={`${width*0.6/3}px`}
                                             src={'http://' + tour.main_photo[0]}/>
-                                            ):(<LoadingMessage />)
+                                            ):(<LoadingMessage itemWidth={`${width*0.6/3}px`}/>)
                                           }
                                         </div> 
                                        <div class='TopToursTitle'
+                                            style={{width:`${width*0.6/3}px`}}
                                             id={tour.tour_id}>
-                                          <h4 id={tour.tour_id}> 
-                                                {tour.tour_name} 
+                                          <h4 id={tour.tour_id}
+                                              style={{width:`${width*0.6/3}px`}}> 
+                                                {tour.tour_name.toUpperCase()} 
                                           </h4> 
                                       </div> 
                                 </li> 
@@ -162,7 +172,7 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
                     } 
                   
                 </ul> 
-           </div> 
+           </li> 
            )
           })):(<div>{null}</div>) 
         }
@@ -172,19 +182,34 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes,width}) 
   )
 }
 
-const MediumScreenTopTours = ({TopToursContents,GetTourDetails,width}) =>{
-  // const [width, height] = useWindowWidthAndHeight();
+const MediumScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
+  const [width, height] = useWindowWidthAndHeight();
 
   return(
     <div>
       <div style={{textAlign: 'center'}}><img src={ArkturCollection}/>
       </div>
       
-      <div class="TopToursWrapper"> 
-
-           <ul style={{
+      <div>
+        <ul>
+          { TourTypes.length > 0 ? (TourTypes.map((type)=>{
+            return(
+              <div class="TopToursWrapper"> 
+                  <h3 style={{
+                          fontFamily:'Arial Narrow',
+                          fontSize:'24px',
+                          fontWeight:'bold',
+                          color:'white',
+                          textAlign:'center',
+                          backgroundColor:'#005AEB',
+                          borderRadius:'5px',
+                          lineHeight:'6vh',
+                          width:`${width*0.65}px`}}>
+                                                {type}
+                    </h3>
+                <ul style={{
                        display: 'grid', 
-                       gridTemplateColumns: `repeat(2, ${width/3}px)`,
+                       gridTemplateColumns: `repeat(2, ${width*0.6/2}px)`,
                        listStyle: 'none',
                        marginLeft:'auto',
                        marginRight: 'auto'
@@ -201,14 +226,20 @@ const MediumScreenTopTours = ({TopToursContents,GetTourDetails,width}) =>{
                                             tour_id={tour.tour_id}
                                           />  */}
                                         <div> 
-                                          <img  
-                                            id={tour.tour_id}
-                                            class="TopToursImage"
-                                            src={'http://' + tour.main_photo[0]}/>
+                                          {
+                                            tour.main_photo[0]?(
+                                              <img  
+                                                id={tour.tour_id}
+                                                class="TopToursImage"
+                                                width={`${width*0.5/2}px`}
+                                                src={'http://' + tour.main_photo[0]}/>
+                                            ):(<LoadingMessage itemWidth={`${width*0.5/2}px`}/>)
+                                         }
                                         </div> 
-                                       <div class='TopToursTitle'>
-                                          <h4 id={tour.tour_id}> 
-                                                {tour.tour_name} 
+                                       <div class='TopToursTitle' style={{width:`${width*0.5/2}px`}}>
+                                          <h4 id={tour.tour_id}
+                                          style={{width:`${width*0.5/2}px`}}> 
+                                                {tour.tour_name.toUpperCase()} 
                                           </h4> 
                                       </div> 
                                 </li> 
@@ -219,13 +250,18 @@ const MediumScreenTopTours = ({TopToursContents,GetTourDetails,width}) =>{
                       (<div>{null}</div>) 
                     } 
                 </ul> 
-      </div> 
+              </div> 
+              )
+            })): (<div>{null}</div>) 
+            }
+          </ul>
+        </div>
     </div>
   )
 }
 
-const SmallScreenTopTours = ({width,TopToursContents,GetTourDetails}) =>{
-  // const [width, height] = useWindowWidthAndHeight();
+const SmallScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
+  const [width, height] = useWindowWidthAndHeight();
 
   return(
     <div>
@@ -233,11 +269,26 @@ const SmallScreenTopTours = ({width,TopToursContents,GetTourDetails}) =>{
               <img src={ArkturCollection}
                    style={{width:width}}/>
             </div>
-              <div class="SmallerTopToursWrapper">
-
-              <ul style={{
-                listStyle: 'none',
-                paddingLeft: '0'
+      
+      <div>
+        <ul>
+          { TourTypes.length > 0 ? (TourTypes.map((type)=>{
+            return(
+            <div class="SmallerTopToursWrapper">
+                <h3 style={{
+                       fontFamily:'Arial Narrow',
+                       fontSize:'24px',
+                       fontWeight:'bold',
+                       color:'white',
+                       textAlign:'center',
+                       backgroundColor:'#005AEB',
+                       borderRadius:'5px',
+                       lineHeight:'6vh',
+                       width:`${width}px`}}>
+                                                {type}
+                   </h3>
+              <ul style={{   
+                listStyle: 'none'
                 }}>
                 {
                     TopToursContents.length > 0 ? (TopToursContents.map((tour,index) => { 
@@ -247,11 +298,15 @@ const SmallScreenTopTours = ({width,TopToursContents,GetTourDetails}) =>{
                                 key={tour.tour_id}
                                 onClick={GetTourDetails}>
                                     <div>
+                                    {
+                                            tour.main_photo[0]?(
                                        <img 
                                             id={tour.tour_id}
                                             class="SmallerTopToursImage"
                                             style={{width:width}}
                                             src={'http://' + tour.main_photo[0]}/>
+                                            ):(<LoadingMessage itemWidth={`${width}px`}/>)
+                                         }
                                     </div>
                                     <div class='SmallerTopToursTitle'
                                           style={{width:width}}>
@@ -268,7 +323,11 @@ const SmallScreenTopTours = ({width,TopToursContents,GetTourDetails}) =>{
                  }
 
               </ul>
-          </div>
+              </div>)
+          })):(<LoadingMessage itemWidth={`${width}px`}/>)
+        }
+        </ul>
+       </div>
     </div>
   )
 }

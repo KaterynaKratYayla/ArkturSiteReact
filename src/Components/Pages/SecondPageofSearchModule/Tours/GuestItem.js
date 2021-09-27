@@ -7,15 +7,17 @@ import { connect } from 'react-redux';
 import { useLocation, Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
 // import {TourDetails} from './tourDetails';
 import './SearchItems.css'
-import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
+import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import {getGeo, getGeneralGeo} from "../../../../Redux/actions/cities"
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import {ItemContent} from './ItemContent'
 import {ItemObj} from './ItemObj'
 import {ValidateQuery} from '../../Helpers/helper'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+import {LoadingMessage} from '../../../Library/PageDevices/LoadingMessage'
 
-import {Search} from '../../FirstPageofSearchModule/SearchFront'
+import {Search} from '../../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
 // import 'moment/locale/uk'
 
 moment.locale('uk')
@@ -52,6 +54,7 @@ console.log('[TEST]', test)
   }, [])
 
   console.log('[GENERAL_GEO] , ' , generalGeo)///получаю из смарта тур имя, тур айди, сити имя, сити айди
+  const [width, height] = useWindowWidthAndHeight()
 
   ///используется непосредственно для вывода названий туров на странице.
   ///если айди города, который мне приходит первоначально от Саши Ефица (классификатор contracts) не находится в данных, пришедших в результате поиска клиентом,
@@ -142,20 +145,31 @@ console.log('[TEST]', test)
 
         {/* <h3>Search Results</h3> */}
             <div>
-              <Search />
+              {/* <Search /> */}
             </div>
             <div class='searchrendering_Wrapper'>
             <div>
-              <h3 style={{marginTop:'2vw', color:'#003057',fontFamily:'Arial',fontSize:'30px',fontWeight:'bold'}}>Search Results</h3>
+              <h3 style={{marginTop:'2vw', 
+                  color:'#003057',
+                  fontFamily:'Arial',
+                  fontSize:'30px',
+                  fontWeight:'bold'}}>Search Results</h3>
             </div>
-          {/* <div  style={{width:'100%',marginLeft:'auto',marginRight:'auto'}}> */}
 
-              {/* <SearchInner /> */}
-           {/* </div> */}
-
-                {/* <div>{history.location.pathname}</div> */}
               <div>
-                  <ul className='descriptionUl'>
+                {
+                  !rate||rate.length===0?  
+                   (<div
+                      style={{
+                        position:'absolute', 
+                              left: '40%',
+                              transform: 'translate(0%, -50%)',
+                              margin:'0'
+                             }}
+                         ><LoadingMessage loadingMessageClass='RateLoading'/></div>): 
+                         (            
+                  <ul className='descriptionUl'
+                      style={{width:`${width>1000? width*0.65 : width*0.9}px`}}>
                     <>
                       {
                         filtered.length > 0  && filtered? (filtered.map((tour) => {
@@ -166,7 +180,7 @@ console.log('[TEST]', test)
                                                     {tour.tour_name}
                                 </h3>
 
-                                 <div class='descriptionContent'>
+                                 <div class={`${width>1000?'descriptionContent':'descriptionContentSmallScreen'}`}>
                                  {
                                    <ItemContent
                                       tour = {tour}
@@ -203,14 +217,9 @@ console.log('[TEST]', test)
               </>
               {/* <hr /> */}
            </ul>
+            )
+           }
          </div>
-
-           {/* {
-             searchResults[0].click && (
-                <TourDetails searchResultsNew={searchResults}/>
-             )
-           } */}
-
 
        </div>
     </div>

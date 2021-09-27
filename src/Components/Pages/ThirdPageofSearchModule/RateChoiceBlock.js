@@ -67,9 +67,9 @@ export const RateChoiceBlock =({selectionDetails,tour_id,totalPax}) =>{
 
       return(
 
-        <div class='ChoiceBlockWrapper'>
+        <div class='TourChoiceBlockWrapper'>
         
-          <div class='ChoiceBlock'>
+          <div class='TourChoiceBlock'>
 
             
                {/* <PaxChoice 
@@ -96,7 +96,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id,totalPax}) =>{
 
                                 <Select 
                                       defaultValue={hotelChoice}
-                                      style={{ maxWidth: '15vw',
+                                      style={{ width: '90%',
                                               color:'#102D69',
                                               fontWeight:'bold',
                                               }} 
@@ -138,7 +138,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id,totalPax}) =>{
                 </>
           </div>
 
-          <div class='InclusionsBlock'>
+          <div class='TourInclusionsBlock'>
              <>
                     
                 {

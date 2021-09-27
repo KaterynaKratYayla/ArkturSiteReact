@@ -1,8 +1,11 @@
 import React from 'react'
 import {css, jsx} from '@emotion/react'
+import {useWindowWidthAndHeight} from '../../Pages/Helpers/WindowResizeHook'
+
 import ArkturDMClogo from '../Images/ArkturDMClogo.svg'
 
 const Photo = ({content}) => {
+  const [width, height] = useWindowWidthAndHeight()
 return (
 
  <div    
@@ -17,7 +20,8 @@ return (
 
     >
       <img 
-        style={{width: '50%', height: '60vh' }} 
+        // style={{width: '50%', height: '60vh' }} 
+        style={{height: `${height/2}px`, width:'100%'}} 
         src={content.includes('jpg') ? 'http://' + content : ArkturDMClogo}/> 
  </div>
  )

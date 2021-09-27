@@ -57,6 +57,11 @@
     /* grid-auto-rows: minmax(4vw, auto); */
 }
 
+.ContentDetailsSmallScreen{
+    display:flex;
+    flex-direction: column;
+}
+
 .availableButton{
     padding: 0.5vw 1vw;
     /* width: 10vw; */

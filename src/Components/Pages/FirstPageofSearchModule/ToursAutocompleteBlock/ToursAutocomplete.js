@@ -6,16 +6,16 @@ import Autocomplete from 'react-autocomplete';
 import { DatePicker ,Space } from 'antd';
 import {Container, Row, Col} from 'react-bootstrap'
 
-import {GuestItem} from '../SecondPageofSearchModule/Tours/GuestItem';
-import {Switcher, SwitcherItem} from './Switcher'
-import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
-import {getTopTours} from "../../../Redux/actions/toptours"
-import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
-import {Hotels} from '../../Library/Icons/hotels'
-import {Tours} from '../../Library/Icons/tours'
+import {GuestItem} from '../../SecondPageofSearchModule/Tours/GuestItem';
+import {Switcher, SwitcherItem} from '../SearchResizersAndSwitchers/Switcher'
+import {getGeo, getGeneralGeo} from "../../../../Redux/actions/cities"
+import {getTopTours} from "../../../../Redux/actions/toptours"
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+import {Hotels} from '../../../Library/Icons/hotels'
+import {Tours} from '../../../Library/Icons/tours'
 
-import './Search.css';
-import './SwitcherFront.css';
+import '../SearchResizersAndSwitchers/Search.css';
+import '../SearchResizersAndSwitchers/SwitcherFront.css';
 import 'antd/dist/antd.css';
 
 moment.locale('uk')
@@ -128,6 +128,13 @@ const [pickedToursValue, setPickedToursValue] = useState(false);
  }
 }
 
+///not to pick up old date. This dunction is for DatePicker
+
+const disabledDate = (current) =>{
+  // Can not select days before today 
+  return current && current < moment().endOf('day');
+}
+
 //   const onSubmit = (e) =>{
     // console.log('[event]:', e, '[e.target]:', e.target, '[e.target.value] :', e.target.value) 
     // e.preventDefault();
@@ -221,6 +228,7 @@ const [pickedToursValue, setPickedToursValue] = useState(false);
                              placeholder='Choose month'
                              bordered={false}
                              className={datepickerClass}
+                             disabledDate={disabledDate}
                             //  dropdownClassName='dropdownDatePicker'
                             //  style={{
                             //    fontFamily:'Tahoma', 

@@ -3,16 +3,16 @@ import React, {useState,useEffect} from 'react'
 // import {useDispatch, useSelector} from 'react-redux';
 import moment from 'moment';
 
-import {ToursAutocomplete} from './ToursAutocomplete'
-import {HotelsAutocomplete} from './HotelsAutocompleteBlock/HotelsAutocomplete'
-import {GuestItem} from '../SecondPageofSearchModule/Tours/GuestItem';
-import {HotelItems} from '../SecondPageofSearchModule/Hotels/HotelItems';
+import {ToursAutocomplete} from '../ToursAutocompleteBlock/ToursAutocomplete'
+import {HotelsAutocomplete} from '../HotelsAutocompleteBlock/HotelsAutocomplete'
+import {GuestItem} from '../../SecondPageofSearchModule/Tours/GuestItem';
+import {HotelItems} from '../../SecondPageofSearchModule/Hotels/HotelItems';
 import {Switcher, SwitcherItem} from './Switcher'
 // import {getGeo, getGeneralGeo} from "../../../Redux/actions/cities"
 // import {getTopTours} from "../../../Redux/actions/toptours"
-// import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
-import {Hotels} from '../../Library/Icons/hotels'
-import {Tours} from '../../Library/Icons/tours'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+import {Hotels} from '../../../Library/Icons/hotels'
+import {Tours} from '../../../Library/Icons/tours'
 
 import './Search.css';
 import './SwitcherFront.css';
@@ -24,10 +24,11 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
 
   // const [list , setList] = useState([]);
   const [generalValue, setGeneralValue] = useState('');
-  const [align, setAlign] = useState('TOURS'); 
+  const [align, setAlign] = useState('HOTELS'); 
   const [generalList, setGeneralList] = useState([])
 
-  // const [width, height] = useWindowWidthAndHeight();
+  const [width, height] = useWindowWidthAndHeight();
+  console.log('WIDTH',width)
 
   const GeneralListFunction = (mylist,myvalue) =>{
     setGeneralList(mylist)
@@ -42,11 +43,11 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
     e.preventDefault();
 }
   return(
-    <div>
-      <div class='switcher'>
-        <Switcher name={'align'} changeHandler={toggler} active={align}>
+    <div class='largeScreenSearch'>
+      <div>
+        <Switcher name={'align'} changeHandler={toggler} active={align} switcherWidth={`${width*0.2}px`}>
+        <SwitcherItem value='HOTELS'><Hotels/> Hotels</SwitcherItem>
           <SwitcherItem value='TOURS'><Tours/> Tours</SwitcherItem>
-          <SwitcherItem value='HOTELS'><Hotels/> Hotels</SwitcherItem>
         </Switcher>  
       </div>
 

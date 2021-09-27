@@ -1,9 +1,16 @@
 .HotelDescriptionUl{
-    width: 65vw;
+    /* width: 65vw; */
     margin-left: auto;
     margin-right: auto;
     margin-top: 5vh;
     font-family: 'Tahoma';
+}
+
+.HotelDescriptionUlSmallScreen{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5vh;
+  font-family: 'Tahoma';
 }
 
 .HotelDescriptionLi{
@@ -22,10 +29,21 @@
     /* height: 10vh; */
 }
 
-/* .descriptionLi div{ */
-    /* text-align: right; */
-    /* padding-left: ; */
-/* } */
+.HotelDescriptionLiSmallScreen{
+  display: flex;
+  /* display:grid; */
+  flex-direction: column-reverse;
+  /* grid-template-columns: 100%; */
+  /* grid-auto-rows: minmax(100px, auto); */
+  text-align: justify;
+  border: 2px solid #d4e5f7;
+  border-radius: 5px;
+  background: #dce5fc;
+  padding: 1vw 2vw;
+  color: #001959;
+  margin-bottom: 1vh;
+  /* height: 10vh; */
+}
 
 .descriptionContent{
   display: flex;
@@ -48,11 +66,27 @@
     /* width: 30vw; */
   }
 
+  .WrapperHotel_ItemContent{
+    padding-right: 2vw;
+    grid-column:1 / 4;
+    grid-row:1 / 3;
+    margin-bottom: 3vw;
+  }
+
   .Hotel_ItemContent {
     display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
     justify-items: start;
+    padding: 0;
+  }
+
+  .Hotel_ItemContentSmallScreen {
+    display: grid;
+    grid-template-columns: 40% 60%;
+    grid-template-rows: repeat(10vw,2);
+    /* justify-content: flex-end; */
+    /* justify-items: start; */
     padding: 0;
   }
 
@@ -64,6 +98,13 @@
     padding-left: 1vw;
     min-width: 15vw;
   }
+
+  .Li_HotelContentSmallScreen{
+    grid-row:1/4; 
+    grid-column:2;
+    /* margin-bottom: 3vw; */
+  }
+
   .Li_HotelContent span{
     /* list-style-type: none; */
     font-size: 12px;
@@ -73,6 +114,32 @@
     /* min-width: 15vw; */
   }
 
+  .HotelNameStarRating{
+    display:flex; 
+    flex-direction:row;
+  }
+
+  .HotelNameStarRatingSmallScreen{
+    display:flex;
+    flex-direction: column;
+  }
+
+  .HotelAddressSmallScreen{
+    grid-row:2;
+    grid-column:2;
+    font-size:12px;
+  }
+
+  .Li_Image{
+    list-style-type:none;
+    text-align: left;
+  }
+
+  .Li_ImageSmallScreen{
+    list-style-type:none;
+    grid-row:1/3;
+    grid-column:1;
+  }
 
   .div_ItemObj{
     display: flex;
@@ -100,7 +167,7 @@
 
 .availableButtonHotel{
   padding: 0.5vw 1vw;
-  width: 10vw;
+  width: 55%;
   font-size: 13px;
   font-weight: bold;
   background-color: #5EB82F;

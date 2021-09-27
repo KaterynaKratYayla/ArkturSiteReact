@@ -14,6 +14,7 @@ import {Moon} from '../../Library/Icons/moon.js'
 import {Sun} from '../../Library/Icons/sun.js'
 import {CalendarOutlined} from '@ant-design/icons'
 import {PaxChoice} from './PaxChoice'
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 
 import './TourDetailsCSS.css'
 
@@ -32,6 +33,8 @@ import './TourDetailsCSS.css'
     const [open, setOpen] = useState(false)
 
     const { Option } = Select;
+
+    const [width, height] = useWindowWidthAndHeight()
 
     useEffect ( () => {
       axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=en`)
@@ -198,13 +201,16 @@ const MakeVisible = () =>{
 
             </div>
 
-            <div class='TourDetailsInner'>
-              <div>
+            <div class={`${width>1000?'TourDetailsInner':'TourDetailsInnerSmallScreen'}`}
+                  // style={{width:`${width}`}}
+                  >
+              {/* <div style={{width:`${width>1000?'40%':'100%'}`}}> */}
                 {
                    details && details.map((item) =>{
                     if(item.content_name === "Image"){
                       return (
-                          <div class='GalleryTourDetails'>
+                          <div class='GalleryTourDetails'
+                               style={{width:`${width>1000?'40%':'100%'}`, height:`${height/2}px`}}>
                              <Gallery galleryImages={item.text}/>
                           </div>
                         )
@@ -212,12 +218,19 @@ const MakeVisible = () =>{
                     }
                   )
                 }
-              </div>
-              <div class='BookingDetails'>
+              {/* </div> */}
+              <div class='TourBookingDetails'
+                   style={{width:`${width>1000?'60%':'100%'}`}}>
                 <h3>Tour Booking Details {rateDetails[0].duration}</h3>
-                 <div class='BookingChoice'>
+                 <div class='TourBookingChoice'>
 
-                     <div class='BookingChoiceInner'>
+                 {/* <div style={{
+                      display:'grid',
+                      gridTemplateColumns:'repeat(2,50%)',
+                      gridTemplateRows:'auto'
+                 }}> */}
+                     <div class='BookingChoiceInner'
+                        style={{gridRow:'1',gridColumn:'1'}}>
                             <div style={{
                                         display: 'flex',
                                         flexDirection: 'row'
@@ -232,7 +245,8 @@ const MakeVisible = () =>{
                          <div class='DateSelection'>{selectionDetails}</div>
                      </div>
 
-                     <div class='BookingChoiceInner'>
+                     <div class='BookingChoiceInner'
+                     style={{gridRow:'1',gridColumn:'2'}}>
                        <h4>Available dates :</h4>
                        <Select
                           defaultValue={selectionDetails}
@@ -254,21 +268,25 @@ const MakeVisible = () =>{
                             </>
                      </Select>
                      </div>
-                </div>
+                {/* </div>!!!!!!!!!!!!!! */}
                   {/* <RateChoiceBlock
                       selectionDetails={selectionDetails}
                       tour_id={search_data.tour_id}/> */}
+                      <div style={{gridRow:'2',gridColumn:'1/4'}}>
                       <PaxChoice
                          selectionDetails={selectionDetails}
                          tour_id={search_data.tour_id}
                          MakeVisible = {MakeVisible}
                          open={open}
                       />
+                      </div>
                </div>
 
+              </div> 
               </div>
 
             <div>
+              
               {
                 details && details.map((item) =>{
                   if(item.content_name === 'Body'){
@@ -281,6 +299,8 @@ const MakeVisible = () =>{
                 })
               }
             </div>
+         
         </div>
+        
       )
     }

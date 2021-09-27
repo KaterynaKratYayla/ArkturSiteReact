@@ -1,0 +1,15 @@
+.TopToursDetailsBlock{
+    display:flex;
+    flex-direction: column-reverse;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: '100vw' */
+}
+
+.TopToursDetailsBlockSmallScreen{
+    display:flex;
+    flex-direction: column-reverse;
+    margin-left: auto;
+    margin-right: auto;
+    /* width: '100vw' */
+}

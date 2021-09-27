@@ -1,7 +1,8 @@
-.galleryCSS{
+.photoGalleryCSS{
     position: relative;
-    height: 100%;
-    width: 100vh;
+    /* height: 100%; */
+    /* width: 100vh; */
+    /* width: 100%; */
     margin: 0 auto;
     overflow: hidden;  
 } 

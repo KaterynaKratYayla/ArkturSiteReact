@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getContent} from "../../../../Redux/actions/content"
 // import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
 import './HotelItemsCSS.css'
-import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
+import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import {LoadingMessage} from '../../../Library/PageDevices/LoadingMessage'
 import {Star} from '../../../Library/Icons/star'
 // import {MyMapComponent} from '../../../Library/PageDevices/GoogleMaps'
@@ -12,6 +12,7 @@ import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import 'moment/locale/uk'
 import { getHotelContent } from '../../../../Redux/actions'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
 moment.locale('uk')
 
@@ -19,6 +20,8 @@ export const HotelContent = ({hotel,hotelTariff})=>{
   console.log('[HOTEL_CONTENT]' , hotel)
   const [result, setResult] = useState('')
   const [emptyContent, setEmptyContent] = useState(false)
+  
+  const [width, height] = useWindowWidthAndHeight()
   // const [id, setId] = useState([])
 
 // const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
@@ -55,9 +58,9 @@ export const HotelContent = ({hotel,hotelTariff})=>{
 
    return(
      
-    <div style={{paddingRight: '2vw', gridColumn:'1 / 4', gridRow:'1 / 3'}}>
+    <div class='WrapperHotel_ItemContent'>
       
-      <ul class='Hotel_ItemContent'>
+      <ul class={`${width>1000? 'Hotel_ItemContent':'Hotel_ItemContentSmallScreen'}`}>
         
         <>
       {
@@ -68,10 +71,9 @@ export const HotelContent = ({hotel,hotelTariff})=>{
             for(let key1 in trip[key]){
                 console.log('KEY1',trip[key])
                return (
-                <li class='Li_HotelContent'>
+                <li class={`${width>1000?'Li_HotelContent':'Li_HotelContentSmallScreen'}`}>
                 {/* // <li style={{gridColumn:'2', gridRow:'1'}}> */}
-                  <div style={{display:'flex', 
-                               flexDirect:'row'}}>
+                  <div class={`${width>1000?'HotelNameStarRating':'HotelNameStarRatingSmallScreen'}`}>
                      <h3 style={{fontSize:'27px',
                                 color: '#001959',
                                 fontWeight: 'bold',
@@ -89,7 +91,7 @@ export const HotelContent = ({hotel,hotelTariff})=>{
                       }
                      </div>
                     </div>
-                    <div><span style={{fontWeight:'bold'}}>{hotel.city_name.toUpperCase()}</span> - {trip[key].address}</div>
+                    <div class={`${width>1000?null:'HotelAddressSmallScreen'}`}><span style={{fontWeight:'bold'}}>{hotel.city_name.toUpperCase()}</span> - {trip[key].address}</div>
                     {/* <MyMapComponent
                           isMarkerShown
                           googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
@@ -127,17 +129,13 @@ export const HotelContent = ({hotel,hotelTariff})=>{
           
           if(trip.content_name === 'Image'){
             return (
-            <li
-            style={{listStyleType:'none',
-            textAlign: 'left',
-            
-            }}
+            <li class={`${width>1000?'Li_Image':'Li_ImageSmallScreen'}`}
             >
                   <img 
                       // class='imageSearchrender'
                      style = {{
-                      width: '18vw',
-                      height: '14vw',
+                      width: `${width>1000?'18vw':'90%'}`,
+                      height: `${width>1000?'14vw':'100%'}`,
                       borderRadius: '5px'  
                       }}
                       src={'http://' + trip.text[2]}/> 

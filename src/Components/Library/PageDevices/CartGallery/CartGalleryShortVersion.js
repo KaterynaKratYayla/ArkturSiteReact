@@ -1,11 +1,14 @@
-import React, {useState} from 'react'
+import React , {useEffect, useState} from 'react'
+// import axios from "axios"
+import {useDispatch, useSelector} from 'react-redux'
+import {LoadingMessage} from '../LoadingMessage'
 import {useWindowWidthAndHeight} from '../../../Pages/Helpers/WindowResizeHook'
 
-import './CartGalleryCSS.css'
+// import ReactHtmlParser from 'react-html-parser'
 
-export const CartGallery = ({photos,photoHeight,photoWidth,smallImageHeight}) => {
+import './CartGalleryShortVersionCSS.css'
 
-    console.log('PHOTOS',photos)
+export const CartGalleryShortVersion = ({photos}) => {
 
     const [picked, setPicked] = useState(`https://${photos.text[0]}`)
     const [activeIndex, setActiveIndex] = useState()
@@ -19,42 +22,34 @@ export const CartGallery = ({photos,photoHeight,photoWidth,smallImageHeight}) =>
     }
 
     return(
-        <div 
-            style={{width:'96%',display:'flex',flexDirection:`${width>768?'row':'column'}`}}
-            >
-            <div style={{width:`${width>768?'60%':'100%'}`}}>
+        <div>
+            <div>
                   <img 
                       src={picked}
                       style={{padding:'5px',
                               marginLeft:'auto',
                               marginRight:'auto',
-                              width:`${photoWidth?photoWidth:'100%'}`,
-                              height:`${photoHeight}`,
+                              width:'100%',
+                              height:'45vh',
                               borderRadius:'0.7vw'
                    }}/>
             </div>
                               
             <div style={{
-                        // display:'flex',
-                        //  flexDirection:'row',
+                        display:'flex',
+                         flexDirection:'row',
                         //  justifyContent:'space-evenly'
-                         display:'grid',
-                         gridTemplateColumns:'repeat(4,25%)',
-                         rowGap:'0',
-                         width:`${width>768?'40%':'100%'}`
-                        //  justifyContent:'space-evenly'
+                        // display:'grid',
+                        // gridTemplateColumns:'repeat(4,25%)'
                         }}>
                         {
                            photos.text.map((image,index,array)=>{
                              return(
                                   <div> 
-                                         {/* {(index > 1 && index <=5)? */}
+                                         {(index > 1 && index <=5)?
                                              <img src={'https://'+image} 
-                                                  class={activeIndex === index?'CartPickedImage':'CartNotPickedImage'}
-                                                  style={{height:`${smallImageHeight?smallImageHeight:null}`}}
-                                                // width={width*0.5}
-                                                  onClick={pickAction(index)}/>
-                                                  {/* :null} */}
+                                                  class={activeIndex === index?'PickedImage':'NotPickedImage'}
+                                                  onClick={pickAction(index)}/>:null}
                                    </div>
                                    )
                                 })

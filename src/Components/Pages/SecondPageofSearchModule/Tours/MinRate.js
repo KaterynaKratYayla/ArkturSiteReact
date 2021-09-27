@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
 // import {TourDetails} from './tourDetails';
 import './SearchItems.css'
-import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
+import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 // import 'moment/locale/uk'

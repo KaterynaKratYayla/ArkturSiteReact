@@ -4,6 +4,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import {getContent} from '../../../Redux/actions/content'
 import {getHotelContent} from '../../../Redux/actions/hotelcontent'
 import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+import {CartGalleryShortVersion} from '../../Library/PageDevices/CartGallery/CartGalleryShortVersion'
+
 import ReactHtmlParser from 'react-html-parser'
 
 import './CartDetails.css'
@@ -34,6 +37,8 @@ export const CartDetails = ({cart}) =>{
     const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
     const tourcontents = useSelector(state => state.content.content)
 
+    const [width, height] = useWindowWidthAndHeight();
+
     console.log('CARTSERVICE', cart.service_type_id)
     
     const content = cart.service_type_id === 11? tourcontents : hotelcontents
@@ -54,7 +59,7 @@ export const CartDetails = ({cart}) =>{
   
 
     return(
-        <div class='CartDetails'>
+        <div class={`${width>1000?'CartDetails':'CartDetailsSmallScreen'}`}>
             <div style={{display:'flex', flexDirection:'column'}}>
                 <h2 style={{color:'#003057',
                         fontSize:'24px',
@@ -74,7 +79,7 @@ export const CartDetails = ({cart}) =>{
                             </h3>
                             <div style={{order:'0'}}>
                                 {item.content_name === "Image"?(
-                                    <CartGallery photos={item}/>
+                                    <CartGalleryShortVersion photos={item}/>
                               ):null}
                             </div>
                             <div style={{order:'1',
@@ -123,49 +128,3 @@ export const CartDetails = ({cart}) =>{
     )
 }
 
-const CartGallery = ({photos}) => {
-
-    const [picked, setPicked] = useState(`https://${photos.text[0]}`)
-    const [activeIndex, setActiveIndex] = useState()
-
-    const pickAction = (index) =>(e)=>{
-        setPicked(e.target.getAttribute('src'))
-        setActiveIndex(index)
-        console.log('[PICKED]:',e.target.getAttribute('src'))
-    }
-
-    return(
-        <div>
-            <div>
-                  <img 
-                      src={picked}
-                      style={{padding:'5px',
-                              marginLeft:'auto',
-                              marginRight:'auto',
-                              width:'27vw',
-                              height:'45vh',
-                              borderRadius:'0.7vw'
-                   }}/>
-            </div>
-                              
-            <div style={{display:'flex',
-                         flexDirection:'row',
-                         justifyContent:'space-evenly'
-                        }}>
-                        {
-                           photos.text.map((image,index,array)=>{
-                             return(
-                                  <div> 
-                                         {(index > 1 && index <=5)?
-                                             <img src={'https://'+image} 
-                                                  class={activeIndex === index?'PickedImage':'NotPickedImage'}
-                                                  onClick={pickAction(index)}/>:null}
-                                   </div>
-                                   )
-                                })
-                            }
-                                        
-                     </div>
-        </div>
-    )
-}

@@ -4,9 +4,12 @@ import GalleryContent from './PhotosContent'
 import Photo from './Photo'
 import './PhotoGalleryCSS.css'
 import {ArrowGallery} from './Arrow'
+import {useWindowWidthAndHeight} from '../../Pages/Helpers/WindowResizeHook'
+
 // import Dots from './dots'
 
 export const Gallery = ({galleryImages}) => {
+  const [width, height] = useWindowWidthAndHeight()
 
   const getWidth = () => window.innerWidth
   console.log('[GALLERY IMAGES] : ' , galleryImages)
@@ -31,7 +34,7 @@ export const Gallery = ({galleryImages}) => {
     return (setState({
       ...state,
       activeIndex: activeIndex + 1,
-      translate: (activeIndex + 1) * getWidth()
+      translate: (activeIndex + 1) * width
     })
     )
   }
@@ -42,7 +45,7 @@ export const Gallery = ({galleryImages}) => {
     if (activeIndex === 0) {
       return setState({
         ...state,
-        translate: (galleryImages.length - 1) * getWidth(),
+        translate: (galleryImages.length - 1) * width,
         activeIndex: galleryImages.length - 1
       })
     }
@@ -50,17 +53,18 @@ export const Gallery = ({galleryImages}) => {
     setState({
       ...state,
       activeIndex: activeIndex - 1,
-      translate: (activeIndex - 1) * getWidth()
+      translate: (activeIndex - 1) * width
     })
   }
 
   return(
-   <div>   
-        <div className='galleryCSS'> 
+  //  <div>   
+        <div className='photoGalleryCSS'
+              style={{height: `${height/2}px`}} > 
             <GalleryContent
                 translate={translate}
                 transition={transition}
-                width={getWidth() * galleryImages.length}
+                width={width * galleryImages.length}
                   >
                     {galleryImages.map((slide,index,array) => (
                         <Photo key={index} content={slide}/>  
@@ -78,6 +82,6 @@ export const Gallery = ({galleryImages}) => {
 
         </div>        
 
-  </div>
+  // </div>
   )
 }

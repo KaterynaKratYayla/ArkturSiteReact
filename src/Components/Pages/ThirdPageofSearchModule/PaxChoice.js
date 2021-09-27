@@ -91,7 +91,7 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
    
      return(
         <div style={{marginTop:'3vh'}}>
-            <div class='PaxChoiceWrapper'>
+            <div class='TourPaxChoiceWrapper'>
                  <div class='PaxChoice'>
                     <Pax />
                     <h4>Amount of People</h4>
@@ -102,12 +102,12 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
                       <DownOutlined className='DownOutlined'/>
                   </h4>
                 </div>
-                  <div class={open === false? 'PopUpNotActive' : 'PopUpActive'}>
+                  <div class={open === false? 'TourPopUpNotActive' : 'TourPopUpActive'}>
                     <div style={{display: 'grid', 
                                  gridTemplateRows: 'repeat(3, 6vh)',
                                  rowGap: '10px'}}>
                     <div style={{display: 'grid',  
-                                 gridTemplateColumns: '5vw 4vw 2vw 4vw 5vw'}}>
+                                 gridTemplateColumns: '25% 20% 10% 20% 25%'}}>
                         <h4>Adults</h4>
                         <MinusOutlined className='Minus' onClick={deduct}/>
                          <>
@@ -120,7 +120,7 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
                     </div>
 
                     <div style={{display: 'grid',  
-                                 gridTemplateColumns: '5vw 4vw 2vw 4vw 5vw'}}>
+                                 gridTemplateColumns: '25% 20% 10% 20% 25%'}}>
                         <h4>Children</h4>
                         <MinusOutlined className='Minus' onClick={deductChild}/>
                         <h4>{counterChild}</h4>
@@ -129,7 +129,7 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
                     </div>
 
                     <div style={{display: 'grid',  
-                                 gridTemplateColumns: '5vw 4vw 2vw 4vw 5vw'}}>
+                                 gridTemplateColumns: '25% 20% 10% 20% 25%'}}>
                         <h4>Infants</h4>
                         <MinusOutlined className='Minus' onClick={deductInfant}/>
                         <h4>{counterInfant}</h4>
@@ -140,7 +140,7 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
 
                   <div onClick={TotalPax}>
                   
-                    <button class="PopUpButton" onClick={MakeVisible}>
+                    <button class="TourPopUpButton" onClick={MakeVisible}>
                             Confirm
                     </button>
                   </div>

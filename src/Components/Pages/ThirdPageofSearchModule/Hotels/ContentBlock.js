@@ -3,6 +3,7 @@ import {Star} from '../../../Library/Icons/star'
 import ReactHtmlParser from 'react-html-parser'
 import {Gallery} from '../../../Library/PhotoGallery/PhotoGallery'
 import {CartGallery} from '../../../Library/PageDevices/CartGallery/CartGallery'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
 import './HotelDetailsCSS.css'
 
@@ -10,8 +11,12 @@ export const ContentBlock = ({hotelcontents,search_data}) =>{
    
   console.log('[HOTELCONTENTS]', hotelcontents)
 const [photoHeight, setPhotoHeight] = useState('55vh')
+const [width, height] = useWindowWidthAndHeight()
+
+console.log('WIDTH',width)
+
   return(
-   <div class="ContentDetails">
+   <div class={`${width>768?"ContentDetails":"ContentDetailsSmallScreen"}`}>
      <>
        {
          hotelcontents.length>0?(hotelcontents.map((trip) =>{

@@ -1,37 +1,30 @@
 import React, {useEffect, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import axios from "axios"
+
+import {getContent} from '../../../Redux/actions/content'
+import {getHotelContent} from '../../../Redux/actions/hotelcontent'
 import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
 import ReactHtmlParser from 'react-html-parser'
 
-import './CartDetails.css'
+import './CartDetailsSummary.css'
 
-export const CartDetails = ({cart}) => {
+export const CartDetailsSummary = ({cart}) => {
 
     console.log('CART', cart)
 
-    // const [sendCart, setSendCart] = useState([]);
-    const [cartContent, setCartContent] = useState([]);
+    const dispatch = useDispatch();
 
-    // const dispatch = useDispatch();
-    // const cartContent = useSelector(state => state.content.content)
-    //     useEffect ( () => {
-    //     dispatch (getContent (cart.tour_id));
-    //   }, [])
-    // console.log('[CARTCONTENT]',cartContent)
+     useEffect(()=>{
+      dispatch(getHotelContent(cart.hotel_id))
+    },[])
 
-    useEffect(() => {
-        axios.get(`https://hotels-ua.biz/interface/content?id=${cart.tour_id}&language=en`)
-            .then(res => {
-                setCartContent(res.data)
-            })
+    useEffect(()=>{
+        dispatch(getContent(cart.contract_id))
+      },[])
 
-            .catch(error => {
-                setCartContent(undefined)
-                console.log('[axios error] : ', error)
-            });
-    }, []);
-    console.log('[BRIEFCONTENT]', cartContent)
-
+    const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
+    const tourcontents = useSelector(state => state.content.content)
 
     return (
         <div class='CartDetails'>
@@ -48,7 +41,7 @@ export const CartDetails = ({cart}) => {
                 <div style={{display: 'flex', flexDirection: 'row'}}>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         {
-                            cartContent.length > 0 ? cartContent.map((item) => {
+                            hotelcontents.length > 0 ? hotelcontents.map((item) => {
                                 return (
                                     <>
                                         <h3 style={{
@@ -96,7 +89,7 @@ export const CartDetails = ({cart}) => {
                     </div>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
                         {
-                            cartContent.length > 0 ? cartContent.map((item) => {
+                            hotelcontents.length > 0 ? hotelcontents.map((item) => {
                                 return (
                                     <>
                                         <div style={{order: '0'}}>

@@ -13,10 +13,10 @@
     font-weight: bold;
 }
 
-.ChoiceBlockWrapper{
+.TourChoiceBlockWrapper{
     display: grid;
-    grid-template-columns:repeat(2,20vw);
-    /* margin-top: 30px; */
+    grid-template-columns:repeat(2,50%);
+    margin-top: 2vh;
 }
 
 .Icons{
@@ -32,26 +32,34 @@
 .TourDetailsInner{
     display: flex;
     flex-direction: row;
-    align-items: flex-start;
+    align-items: space-between;
+    width: 100%;
+}
+
+.TourDetailsInnerSmallScreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
 .GalleryTourDetails{
-    max-width: 45%;
+    /* max-width: 45%; */
     margin-right: 3vw;
 }
 
-.BookingDetails{
+.TourBookingDetails{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    min-width: 45%;
+    /* min-width: 45%; */
     min-height: 60vh;
     border: 2px solid rgb(206, 207, 209);
     border-radius: 6px;
     margin-top: 2vw;
 }
 
-.BookingDetails h3{
+.TourBookingDetails h3{
     text-align: center;
     color: #005AEB;
     font-size: 22px;
@@ -59,11 +67,18 @@
     font-family: 'Arial Narrow';
 }
 
-.BookingChoice{
+/* .BookingChoice{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     margin-top: 1vw;
+} */
+
+.TourBookingChoice{
+    display:grid;
+    grid-template-columns:repeat(2,50%);
+    grid-template-rows:auto;
+    margin-left:3vw;
 }
 
 /* .RateChoiceBlock{
@@ -82,47 +97,48 @@
     order:2;
 } */
 
-.ChoiceBlock{
+.TourChoiceBlock{
     display:flex;
     flex-direction:column;
-    padding-left: 3vw;
+    /* padding-left: 3vw; */
 }
 
 
-.ChoiceBlock h4{
+.TourChoiceBlock h4{
     font-family: 'Arial Narrow';
     font-weight: bold;
     font-size: 17px;
     color: rgb(77, 75, 75);
 }
 
-.PaxChoiceWrapper{
-    padding-left: 3vw;
-    max-width: 20vw;
+.TourPaxChoiceWrapper{
+    /* padding-left: 3vw; */
+    /* max-width: 20vw; */
+    width: 50%;
 }
 
-.PaxChoiceWrapper h4{
+.TourPaxChoiceWrapper h4{
     font-family: 'Arial Narrow';
     font-weight: bold;
     font-size: 17px;
     color: rgb(77, 75, 75);
 }
 
-.InclusionsBlock{
+.TourInclusionsBlock{
     display:flex;
     flex-direction:column;
-    margin-left: 40px;
-    margin-top: -50px;
+    /* margin-left: 40px; */
+    /* margin-top: -50px; */
 }
 
-.InclusionsBlock h4{
+.TourInclusionsBlock h4{
     font-family: 'Arial Narrow';
     font-weight: bold;
     font-size: 17px;
     color: rgb(77, 75, 75);
 }
 
-.BookingChoice h4{
+.TourBookingChoice h4{
     font-family: 'Arial Narrow';
     font-weight: bold;
     font-size: 17px;
@@ -191,16 +207,16 @@
     margin-left: 4vw;
 }
 
-.PopUpNotActive{
+.TourPopUpNotActive{
     display : none;
 }
 
-.PopUpActive{
+.TourPopUpActive{
     display: block;
     position: absolute;
     background-color: white;
     z-index: 1000;
-    width: 23vw;
+    /* width: 45; */
     border: 1px solid #d9d9d9;
     border-radius: 6px;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
@@ -208,7 +224,7 @@
     /* overflow: hidden; */
 }
 
-.PopUpButton{
+.TourPopUpButton{
     background: #009FE3;
     color: white;
     border: 1px solid grey;

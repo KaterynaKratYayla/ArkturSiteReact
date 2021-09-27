@@ -5,6 +5,8 @@ import {ValidateQuery} from '../../Helpers/helper'
 // import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
 import moment from 'moment';
 // import ReactHtmlParser from 'react-html-parser'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+
 import 'moment/locale/uk'
 
 import './HotelItemsCSS.css'
@@ -18,6 +20,7 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
     const history = useHistory();
   
     let search_data = ValidateQuery(location)
+    const [width, height] = useWindowWidthAndHeight()
 
     let min_rate = Number.MAX_VALUE;
 
@@ -26,16 +29,6 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
     // let newobj = {};
     // let newobj1 = {};
     let newobj2 = {};
-
-    // const filtered_hotelRooms = hotelRooms.map((item)=>{
-   
-    // newobj1 = {roomType: `${item.room_name === '0'? 'Regular' : item.room_name}` + ' ' + item.room_type_name};
-    //    return(
-    //        newobj = Object.assign(newobj1,item.tariffs.sort((a,b)=>(parseInt(a.sum,10)-parseInt(b.sum,10)))[0])
-    //         )
-    // })
-    
-    // console.log('filtered_hotelRooms',filtered_hotelRooms)
 
     hotelTariff.dates.forEach((item,index,array)=>{
       if (item.date === searchResults.start){
@@ -81,7 +74,7 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
 
       <div style={{display:'grid',
                    gridTemplateColumns: '50% 50%',
-                   gridAutoRows: 'minmax(50px, auto)'
+                   gridAutoRows: `${width>1000? 'minmax(40px, auto)': 'minmax(15px, auto)'}`
                 }}>
                 <>
                    {

@@ -3,7 +3,7 @@ import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {getPax} from "../../../Redux/actions/paxchoice"
 import axios from "axios"
-import {CartDemo} from '../Cart/Cart'
+// import {CartDemo} from '../Cart/Cart'
 
 import './TourDetailsCSS.css'
 

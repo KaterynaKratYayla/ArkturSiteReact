@@ -6,13 +6,15 @@ import ReactHtmlParser from 'react-html-parser'
 // import ReactHtmlParser from 'react-html-parser'
 import {Container, Row, Col} from 'react-bootstrap'
 
-import {Search} from '../FirstPageofSearchModule/SearchFront'
-import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
+import {Search} from '../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
+import {CartGallery} from '../../Library/PageDevices/CartGallery/CartGallery'
 import {ValidateQuery} from '../Helpers/helper'
 import {HomePage} from './HomePage'
 import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
 import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
-import './TopToursCSS.css'
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+
+import './TopToursDetailsCSS.css'
 
 export const TopToursDetails = (props) =>{
 
@@ -21,11 +23,14 @@ export const TopToursDetails = (props) =>{
     let history = useHistory();
 
     let search_data = ValidateQuery(location)
+
+    const [width, height] = useWindowWidthAndHeight();
+
     console.log('Tour Details', location)
     console.log('Seach Details', search_data)
     
     useEffect ( () => {
-    axios.get(`http://smartbooker.biz/interface/content?id=${search_data.tour_id}&language=en`)
+    axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=en`)
       .then( res => {
         setTTDetails(res.data)
         })
@@ -45,17 +50,15 @@ export const TopToursDetails = (props) =>{
     return(
         <div>
           <Search />
-            <div style={{display:"flex", 
-                         flexDirection: 'column-reverse', 
-                         marginLeft: 'auto', 
-                         marginRight: 'auto',
-                         minWidth: '100vw'}}>
+            <div class={`${width>1000?'TopToursDetailsBlock':'TopToursDetailsBlockSmallScreen'}`}
+                  style={{width:`${width*0.9}px`}}>
+
                 {
-                   ttDetails && ttDetails.map((item) =>{
-                    
+                 ttDetails && ttDetails.map((item) =>{
+               
                     if(item.content_name === "Image"){
                       return (
-                        <div style={{display:'flex', flexDirection:'column'}}>
+                     <div>
                           <h2 style={{
                                 color: '#102D69',
                                 fontFamily: "Arial",
@@ -66,13 +69,16 @@ export const TopToursDetails = (props) =>{
                             }}>
                                 {item.contract_name}
                           </h2>
-                          
+
                           <div>
-                             <Gallery galleryImages={item.text}/>
+                             <CartGallery photos={item}
+                                          photoHeight={'60vh'}
+                                          // photoWidth={'80%'}
+                                          smallImageHeight={'15vh'}
+                                          />
                           </div>
-                        </div>
-                        )
-                      }  
+                         </div>
+                        )}
                       
                     else if(item.content_name === 'Body'){
                         return (
@@ -81,7 +87,7 @@ export const TopToursDetails = (props) =>{
                             </div>
                           )
                         }
-                    }
+                      }                    
                   )
                 }
               </div>

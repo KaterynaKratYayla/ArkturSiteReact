@@ -6,15 +6,16 @@ import {useDispatch, useSelector} from 'react-redux'
 // import { connect } from 'react-redux';
 import { useLocation, Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
 // import {TourDetails} from './tourDetails';
-import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
+import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import {getGeneralHotels} from "../../../../Redux/actions/hotels"
 import moment from 'moment';
 // import ReactHtmlParser from 'react-html-parser'
 import {HotelContent} from './HotelContent'
 import {HotelRates} from './HotelRates'
 import {ValidateQuery} from '../../Helpers/helper'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
-import {Search} from '../../FirstPageofSearchModule/SearchFront'
+import {Search} from '../../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
 import { LoadingMessage } from '../../../Library/PageDevices/LoadingMessage';
 // import 'moment/locale/uk'
 
@@ -31,6 +32,8 @@ console.log('HOTEL_TITLE', title)
 ///получаю с помощью своиства истории (history) из компонента search результаты поиска - массив с одним объектом. 
 let location = useLocation();
 let history = useHistory();
+
+const [width, height] = useWindowWidthAndHeight()
 
 let search_data = ValidateQuery(location)
 console.log('HOTEL ITEM LOCATION', location)
@@ -135,28 +138,26 @@ console.log('GEN_HOTEL_RATE',hotelRate)
         
         {/* <h3>Search Results</h3> */}
             <div>
-              <Search />
+              {/* <Search /> */}
             </div>
             <div class='searchrendering_Wrapper'>
             <div>
               <h3 style={{marginTop:'2vw', 
-                          color:'#003057',fontFamily:'Arial',fontSize:'30px',fontWeight:'bold'}}>Search Results</h3>
+                          color:'#003057',
+                          fontFamily:'Arial',
+                          fontSize:'30px',
+                          fontWeight:'bold'}}>Search Results</h3>
             </div>
-          {/* <div  style={{width:'100%',marginLeft:'auto',marginRight:'auto'}}> */}
-             
-              {/* <SearchInner /> */}
-           {/* </div> */}
-               
-                {/* <div>{history.location.pathname}</div> */}
+
               <div>            
                 {
-                  !hotelRate?  
+                  !hotelRate||hotelRate.length===0?  
                    (<div
-                      style={{position:'absolute', 
-                              zIndex: '1000',
-                              top: '70%',
-                              left: '50%',
-                              transform: 'translate(-50%, -50%)',
+                      style={{
+                        position:'absolute', 
+                              left: '40%',
+                              transform: 'translate(0%, -50%)',
+                              margin:'0'
                              }}
                          ><LoadingMessage loadingMessageClass='RateLoading'/></div>): 
                          (              
@@ -176,13 +177,14 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                 City Name : {filtered_hotel_items.length} properties found
                             </h2>
            
-                               <ul className='HotelDescriptionUl'>
+                               <ul className={`${width>1000?'HotelDescriptionUl':'HotelDescriptionUlSmallScreen'}`}
+                                  style={{width:`${width>1000? width*0.65 : width*0.9}px`}}>
                                  <>
                                     {  
                                       hotelRate.length>0 && hotelRate? (hotelRate.map((hotelTariff) => {
                                          if(hotelTariff){
                                            return (
-                                             <li key={hotelTariff.hotel_id} className='HotelDescriptionLi'>
+                                             <li key={hotelTariff.hotel_id} className={`${width>1000? 'HotelDescriptionLi' : 'HotelDescriptionLiSmallScreen'}`}>
                                                 <HotelRates
                                                    key={hotelTariff.hotel_id}
                                                    hotelTariff = {hotelTariff}
