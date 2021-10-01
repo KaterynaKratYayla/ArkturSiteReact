@@ -26,21 +26,24 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
 
     console.log('[HOTELROOMS22]', hotelRooms)
 
-    // let newobj = {};
-    // let newobj1 = {};
     let newobj2 = {};
 
     hotelTariff.dates.forEach((item,index,array)=>{
+      console.log('ONE',hotelName , item)
       if (item.date === searchResults.start){
+        // console.log('ONE1',item.date)
         item.rooms.forEach((item1)=>{
           item1.tariffs.forEach((item2)=>{
             item2.prices.forEach((item3)=>{
               if(item3.sum < min_rate){
-                min_rate = item3.sum 
+                min_rate = item3.sum
                 newobj2={min_rate: min_rate, 
                          room_id: item1.room_id}
               }
             })
+            // }
+            // else 
+            // message = "Not Available"
           })
         })
       }
@@ -107,7 +110,7 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
                  gridRow:'1',
                  textAlign:'end'}}>
                             {hotelTariff.currency} {newobj2.min_rate}
-        </h3>
+         </h3>
         <h4 style={{fontSize:'12px',
                  color: 'grey',
                  fontWeight: 'bold',
@@ -116,16 +119,25 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
                  textAlign:'end'}}>
                             Includes taxes and charges
         </h4>
-          <div style={{
+         <div style={{
             gridColumn:'2',
             gridRow:'3',
             textAlign:'end'}}>
+             {/* {
+              newobj2.min_rate?( */}
+               
                 <button 
                     type='submit'
                     class='availableButtonHotel'
                     onClick={addToHotelDetails}
                             >See Availability
                 </button>
+             {/* ): */}
+               {/* <button  */}
+            {/* //       class='onrequestButton'>
+            //           <a href='https://arktur.ua/en/form/offline-booking-form'>Send your request</a>
+            //   </button>
+            // } */}
           </div>
        </div>         
     

@@ -34,7 +34,7 @@ export const getHotels = () => ( dispatch) => {
                  const hotelsArray3 = hotelsArray2.filter((item,index,array) =>
                  array.findIndex(t => t.name === item.name && t.id === item.id)===index)
                
-            console.log('[NEW ARRAY3] : ' , hotelsArray3)
+            console.log('[NEW ARRAY3_htl] : ' , hotelsArray3)
             dispatch(hotelsResponse([...hotelsArray1, ...hotelsArray3]))
         })
         .catch( err => {

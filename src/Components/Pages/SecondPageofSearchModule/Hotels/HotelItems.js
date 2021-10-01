@@ -181,7 +181,7 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                   style={{width:`${width>1000? width*0.65 : width*0.9}px`}}>
                                  <>
                                     {  
-                                      hotelRate.length>0 && hotelRate? (hotelRate.map((hotelTariff) => {
+                                      hotelRate && hotelRate.length>0? (hotelRate.map((hotelTariff) => {
                                          if(hotelTariff){
                                            return (
                                              <li key={hotelTariff.hotel_id} className={`${width>1000? 'HotelDescriptionLi' : 'HotelDescriptionLiSmallScreen'}`}>
@@ -195,7 +195,7 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                                 />                     
 
                                                 {
-                                                  filtered_hotel_items.length > 0  && filtered_hotel_items? (filtered_hotel_items.map((hotel) => {
+                                                  filtered_hotel_items.length > 0  && filtered_hotel_items?(filtered_hotel_items.map((hotel) => {
                                                    if(hotel.hotel_id === hotelTariff.hotel_id){
                                                      if(hotel){
                                                       return (
@@ -217,8 +217,8 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                               }
                                              )):
                                             null
-                                          }
-                                       
+                                                }
+                                                                                
 
                                        {/* {
                                          filtered_hotel_items.length > 0  && filtered_hotel_items? (filtered_hotel_items.map((hotel) => {

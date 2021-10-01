@@ -37,6 +37,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       const general_smart_hotels = useSelector(state => state.hotels.general_hotels)
       const totalPaxRedux = useSelector(state => state.paxchoice.pax)
 
+      console.log('TOTALPAXREDUX',totalPaxRedux)
       // let empty_array = [];
 
       // empty_array.length = 6;
@@ -92,9 +93,9 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
         
       const disabledDate = (current) =>{
           // Can not select days before today 
-          return current < moment().endOf('day');
+          // return current < moment().endOf('day');
           // console.log('CURRENT',current)
-          // return current < moment().add(-1,'days')
+          return current < moment().subtract(1,'days')
         }
 
       const addToList = () => {

@@ -13,10 +13,13 @@ import 'antd/dist/antd.css';
 
 export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
 
+  const totalPaxRedux = useSelector(state => state.paxchoice.pax)
+  console.log('totalPaxRedux',totalPaxRedux)
+
 //   const [paxAmountNew, setPaxAmountNew] = useState([])
   const [counterAdults, setCounterAdults] = useState(2)
   const [counterChild, setCounterChild] = useState(0)
-  const [counterInfant, setCounterInfant] = useState(0)
+  // const [counterInfant, setCounterInfant] = useState(0)
   const [counterRooms, setCounterRooms] = useState(1)
 //   const [total, setTotal] = useState({counterAdults,counterChild,counterInfant})
 
@@ -65,16 +68,9 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
   // console.log('CHECKING' , pax)
 
   const TotalPax = () =>{
-    // const totalpax = {
-    //   counterAdults: counterAdults,
-    //   counterChild: counterChild,
-    //   counterInfant: counterInfant,
-    //   counterRooms: counterRooms
-    // }
 
-    // setTotal(totalpax)
 
-    dispatch (getPax (counterAdults,counterChild,counterInfant,counterRooms))
+    dispatch (getPax (counterAdults,counterChild,counterRooms))
   }
 
   const add = () =>{
@@ -93,13 +89,13 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
     counterChild>0?setCounterChild(counterChild-1) : setCounterChild(0)
   }
 
-  const addInfant = () =>{
-    // counterInfant<1? setCounterInfant(counterInfant+1) : alert('This tour allows upto 1 Infant')
-    setCounterInfant(counterInfant+1)
-  }
-  const deductInfant = () =>{
-    counterInfant>0?setCounterInfant(counterInfant-1) : setCounterInfant(0)
-  }
+  // const addInfant = () =>{
+  //   // counterInfant<1? setCounterInfant(counterInfant+1) : alert('This tour allows upto 1 Infant')
+  //   setCounterInfant(counterInfant+1)
+  // }
+  // const deductInfant = () =>{
+  //   counterInfant>0?setCounterInfant(counterInfant-1) : setCounterInfant(0)
+  // }
 
   const addRooms = () =>{
     // counterInfant<1? setCounterInfant(counterInfant+1) : alert('This tour allows upto 1 Infant')

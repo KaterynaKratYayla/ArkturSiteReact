@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getPages,getSitePageType,getSitePageRegion} from '../../../Redux/actions/pages'
+import {getPages,getSitePageType,getSitePageRegion,getHotelPagesFooter} from '../../../Redux/actions/pages'
 
 export const ContentPages = () =>{
 const pages = useSelector(state => state.pages.pages)
@@ -40,3 +40,18 @@ export const SitePageType = () =>{
         }
       return sitePageRegion
     }
+
+    export const HotelPagesFooter = () =>{
+      const hotelPagesFooter = useSelector(state => state.pages.hotelPagesFooter)
+      
+      const dispatch = useDispatch();
+         useEffect ( () => {
+          dispatch (getHotelPagesFooter());
+        },[]);
+      
+        if( !hotelPagesFooter ){
+          return <div> Loading...</div>
+          }
+        return hotelPagesFooter
+      }
+    

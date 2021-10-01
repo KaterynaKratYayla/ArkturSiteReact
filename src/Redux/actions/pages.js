@@ -4,6 +4,7 @@ import { GET_PAGES_REQ, GET_PAGES_RES, GET_PAGES_ERR} from '../constants';
 import { GET_PurePage_REQ, GET_PurePage_RES, GET_PurePage_ERR} from '../constants';
 import { GET_PageTYPE_REQ, GET_PageTYPE_RES, GET_PageTYPE_ERR} from '../constants';
 import { GET_PageREGION_REQ, GET_PageREGION_RES, GET_PageREGION_ERR} from '../constants';
+import { GET_hotelPAGESfooter_REQ, GET_hotelPAGESfooter_RES, GET_hotelPAGESfooter_ERR} from '../constants';
 
 
 export const pagesResponse = ( res ) => ({
@@ -114,3 +115,29 @@ export const getPurePage = (id) => ( dispatch, getState ) => {
                     dispatch({ type: GET_PageREGION_ERR, error: err });
                 })
             }
+
+            export const hotelPagesFooterResponse = ( res ) => ({
+                type: GET_hotelPAGESfooter_RES,
+                payload: res
+            });
+            
+            export const getHotelPagesFooter = () => ( dispatch, getState ) => {
+            
+                dispatch({ type: GET_hotelPAGESfooter_REQ });
+            
+                axios.get('https://hotels-ua.biz/interface/classifier?classifier=sitepage&language=en',  {
+                }) 
+                    .then( res => {
+                              
+                        console.log('[PAGES_INFO_FOOTER] : ' , res.data)
+
+                        const filtered = res.data.filter((item)=>{
+                            return (item.name.includes("Hotels"))
+                        })
+
+                        dispatch(hotelPagesFooterResponse(filtered))
+                    })
+                    .catch( err => {
+                        dispatch({ type: GET_hotelPAGESfooter_ERR, error: err });
+                    })
+                }

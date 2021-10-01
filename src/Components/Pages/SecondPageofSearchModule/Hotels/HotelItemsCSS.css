@@ -194,6 +194,16 @@
   background-color: rgb(117, 111, 107);
 }
 
+.onrequestButton a{
+  color: white;
+  text-decoration:none;
+}
+
+.onrequestButton a:hover{
+  color: white;
+  text-decoration:underline;
+}
+
 .HotelAddress{
   list-style-type: none;
 }

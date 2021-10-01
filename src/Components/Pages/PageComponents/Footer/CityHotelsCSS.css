@@ -1,0 +1,64 @@
+.HotelFooterPages{
+    width:70%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1vh;
+}
+
+.HotelFooterPagesSmallScreen{
+    width:90%;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:1vh;
+}
+
+.HotelFooterPages h2{
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Arial;
+    background-color: #6194c0;
+    padding: 2vw;
+    border-radius: 1vw;
+}
+
+.HotelFooterPagesSmallScreen h2{
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    font-family: Arial;
+    background-color: #6194c0;
+    padding: 2vw;
+    border-radius: 1vw;
+}
+
+.HotelContentWrapper{
+    background:#ddeaf5;
+    border-radius:5px;
+    margin-bottom:-5vh;
+    padding-top:3vh;
+    padding-right:3vh;
+    padding-left:3vh;
+}
+
+.HotelContentWrapperSmallScreen{
+    background:#ddeaf5;
+    border-radius:5px;
+    padding-top:2vh;
+    padding-right:3vh;
+    padding-left:3vh;
+}
+
+.HotelContentWrapper img{
+    margin-bottom:2vh;
+}
+
+.HotelContentWrapperSmallScreen img{
+    margin-bottom:2vh;
+}
+
+.HotelContentWrapperSmallScreen h3{
+    font-size: 15px;
+}

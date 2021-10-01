@@ -16,18 +16,21 @@ export const Footer = () => {
 
 const sitePageType = SitePageType();
 const sitePageRegion = SitePageRegion();
+const pages = ContentPages();
 
-  console.log('[PAGES_SMART]', sitePageType, sitePageRegion)
+  console.log('[PAGES_SMART]', pages, sitePageType, sitePageRegion)
 
    return (
 	
 	 <footer class='footer'>
-		 <Container fluid='xs,sm,md,lg,xl'>
+		 
+		 <Container fluid='xs,sm,md,lg,xl' style={{marginLeft:'auto',marginRight:'auto',width:'80%'}}>
           <Row xs={1} sm={1} md={2} lg={3}>
 
 						    <>
 							  { 
 								sitePageType&&sitePageType.map((item)=>{
+									if(item.sitepage_type_id!=='7'){
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
 										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Footer")){
@@ -42,13 +45,15 @@ const sitePageRegion = SitePageRegion();
 						 					)
 						   				  }
 										})
-									  )									
+									  )	
+								     }								
 									})
 					   			}
 							</>		 
 
 	     		  </Row> 
 			  </Container>
+
 			 </footer>
 	
    )

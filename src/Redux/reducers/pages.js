@@ -2,6 +2,7 @@ import { GET_PAGES_REQ, GET_PAGES_RES , GET_PAGES_ERR } from '../constants';
 import { GET_PurePage_REQ, GET_PurePage_RES , GET_PurePage_ERR } from '../constants';
 import { GET_PageTYPE_REQ, GET_PageTYPE_RES, GET_PageTYPE_ERR} from '../constants';
 import { GET_PageREGION_REQ, GET_PageREGION_RES, GET_PageREGION_ERR} from '../constants';
+import { GET_hotelPAGESfooter_REQ, GET_hotelPAGESfooter_RES, GET_hotelPAGESfooter_ERR} from '../constants';
 
 const initState = {
 	pages: [],
@@ -18,6 +19,10 @@ const initState = {
 
     pageRegion: [],
     pageRegion_loaded: false,
+    errors: [],
+
+    hotelPagesFooter: [],
+    hotelPagesFooter_loaded: false,
     errors: []
 }
 
@@ -100,6 +105,25 @@ const reducer = ( state = initState, action ) => {
                             ...state,
                             errors: [...state.errors, action.error ]
                           })
+
+                          case GET_hotelPAGESfooter_REQ:
+                            return({
+                                ...state,
+                                hotelPagesFooter_loaded: false
+                             })
+            
+                        case GET_hotelPAGESfooter_RES:
+                            return({
+                                ...state,
+                                hotelPagesFooter_loaded: true,
+                                hotelPagesFooter: action.payload
+                              })
+            
+                        case GET_hotelPAGESfooter_ERR:
+                            return({
+                                ...state,
+                                errors: [...state.errors, action.error ]
+                              })
             
         default:
 			return state;

@@ -1,11 +1,11 @@
-import React from 'react'
-// import { useDispatch, useSelector } from "react-redux";
+import React , {useEffect, useState} from 'react'
+import { useDispatch, useSelector } from "react-redux";
 import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 // import {Router} from 'react-router'
 // import {UserOutlined} from '@ant-design/icons'
 import Helmet from '../../Library/PageDevices/Helmet'
 
-import {ContentPages,SitePageType,SitePageRegion} from '../PageComponents/ContentPages'
+import {ContentPages,SitePageType,SitePageRegion,HotelPagesFooter} from '../PageComponents/ContentPages'
 import {FORGROUPS} from '../PageComponents/TopMenuComponents'
 // import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../PageComponents/MiddleMenuComponents'
 import {HomePage} from '../PageComponents/HomePage'
@@ -19,6 +19,7 @@ import {TopToursDetails} from '../PageComponents/TopToursDetails'
 import {BookingForm} from '../BookingForm/BookingForm'
 import {SingleHotel} from '../../Library/HotelsUkraineTestComponents/single_hotel'
 import { TestCities } from '../../Library/HotelsUkraineTestComponents/test_cities'
+import {CityHotels} from '../PageComponents/Footer/CityHotels'
 import {OfflineSummary} from '../BookingForm/OfflineSummary'
 import {HotelDetails} from '../ThirdPageofSearchModule/Hotels/HotelDetails'
 import Login from "../../Library/Authorization/Login";
@@ -30,6 +31,9 @@ export const RouteSwitcher = () =>{
 	const sitePageType = SitePageType();
 	const sitePageRegion = SitePageRegion();
 	const pages = ContentPages();
+	const htlpages=HotelPagesFooter();
+
+	console.log('SITEPAGES',pages )
 
 	return(
 
@@ -58,11 +62,23 @@ export const RouteSwitcher = () =>{
 				<>
  					{
  						pages&&pages.map((page)=>{
- 							 return(
- 								<Route exact path={`/${page.title.map((item1)=>item1.text)}`} component={PureContent}/>
-		 					)
- 						})
- 					}
+						//  return(
+							// htlpages&&htlpages.map((htlpage)=>{
+						     if(page.name.includes('Hotels')){
+ 							  return(
+ 								// <Route exact path={`/${page.title.map((item1)=>item1.text.replace(/\s/g , '-'))}`} component={CityHotels}/>
+								<Route path={`/${page.name.replace(/\s/g , '-')}`} component={CityHotels}/>
+							   )
+		 	  				}
+							else {
+							   return(
+								   <Route exact path={`/${page.title.map((item1)=>item1.text.replace(/\s/g , '-'))}`} component={PureContent}/>
+								)
+							   }
+							})
+						 	
+						   }
+
 			  </>
  			</Switch>
 

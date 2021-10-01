@@ -2,7 +2,7 @@ import { GET_PAX_REQ ,GET_PAX_RES, GET_PAX_ERR} from '../constants'
 
 const initState = {
 	pax: {adults:2,children:0,rooms:1},
-    // pax:[],
+    pax:[],
     pax_loaded: true,
     errors: []
 }

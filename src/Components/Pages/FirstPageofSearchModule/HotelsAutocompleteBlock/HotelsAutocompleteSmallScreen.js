@@ -72,8 +72,8 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
     
         const disabledDate = (current) =>{
           // Can not select days before today 
-          // return current < moment().subtract(1,'days').endOf('day');
-          return current < moment().endOf('day');
+          return current < moment().subtract(1,'days').endOf('day');
+          // return current < moment().endOf('day');
         }
 
       const addToList = () => {

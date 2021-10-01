@@ -10,7 +10,7 @@
 }
 
 .footer h2{
-    line-height: 1rem;
+    line-height: 0.5rem;
 }
 
 /* .footerXS {
@@ -38,7 +38,7 @@
     padding-bottom: 0.3vw;
     color: white;
     padding-left: 0;
-    font-size: 15px;
+    font-size: 13px;
     font-family: Arial;
 }
 
@@ -59,12 +59,12 @@
 }
 
 .footerLinks h3{
-    padding-bottom: 1.5vw;
+    padding-bottom: 1.2vh;
 }
 
 .footer h3{
     color: white;
     font-weight: bold;
     font-family: Tahoma;
-    font-size: 15px;
+    font-size: 14px;
  }
