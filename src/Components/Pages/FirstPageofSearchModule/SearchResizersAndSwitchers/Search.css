@@ -105,7 +105,6 @@
 
 .borderInnerWrapper2{
     border: 2px solid white;
-    width: 15vw;
 }
 
 
@@ -127,11 +126,11 @@ div.datePicker{
 }
 
 input::placeholder{
-    color: grey;
+    color: rgb(75, 73, 73);
     font-size:90%;
 }
 
 .ant-picker-input input::placeholder {
-    color: grey;
+    color: rgb(75, 73, 73);
   }
 

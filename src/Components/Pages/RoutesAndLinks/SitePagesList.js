@@ -25,7 +25,7 @@ export const SitePagesList = ({sitepage_type}) =>{
                               <h2>
                                           {/* {/* <Link to={`/${page.title.map((item1)=>item1.text.replace(/\s/g , '-'))}/?id=${page.id}`}> */}
                                           <Link to={`/${page.name.replace(/\s/g , '-')}/?id=${page.id}`}>
-                                          {page.title.map((item1)=>item1.text)}</Link> 
+                                            {page.title.map((item1)=>item1.text)}</Link> 
                               </h2>
                           </li>
                       )

@@ -231,8 +231,7 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                 </div>
                 {/* </div> */}
                 <div class='borderInnerWrapper2' style={{
-                                                          marginTop:'2vh',
-                                                          marginBottom:'2vh'}}>
+                                                          marginTop:'2vh'}}>
                 
                      <button type='submit' onClick={addToList}>SEARCH</button>
                 </div>
