@@ -1,6 +1,7 @@
 import React, {useState, useEffect}  from 'react'
 import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
+import {useIntl} from 'react-intl'
 // import {getPax} from "../../../Redux/actions/paxchoice"
 // import axios from "axios"
 // import {CartDemo} from '../Cart/Cart'
@@ -8,9 +9,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import './BookButtonHotelCSS.css'
 
 export const BookButtonHotel = (props) =>{
-
+    
     const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy} = props;
 
+    const {locale} = useIntl();
+    
     const [booking,setBooking] = useState([]);
     const location = useLocation();
     const history = useHistory();
@@ -30,7 +33,7 @@ export const BookButtonHotel = (props) =>{
         setBooking([newBooking])
 
         const route_hotel_query_form = `?service_type_id=${parseInt(1)},start=${search_data.start},end=${search_data.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${search_data.hotel_id},adults=${occupancy},children=${search_data.children},htlName=${search_data.hotel_name},amount=${totalsum}`
-        history.push(`/booking_form/${route_hotel_query_form}`, [...booking, newBooking])
+        history.push(`/${locale}/booking_form/${route_hotel_query_form}`, [...booking, newBooking])
     }
 
     return(

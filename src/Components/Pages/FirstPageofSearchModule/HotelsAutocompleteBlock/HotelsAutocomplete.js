@@ -6,6 +6,10 @@ import Autocomplete from 'react-autocomplete';
 import { DatePicker ,Space } from 'antd';
 import {HotelsPaxChoice} from './HotelsPaxChoice'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+import {useIntl} from 'react-intl'
+import {LocalizationRoute} from '../../../Library/Localization/LocalizationRoute'
+import {LocalizationSwitch} from '../../../Library/Localization/LocalizationSwitch'
+import {LocalizationNavLink} from '../../../Library/Localization/LocalizationNavLink'
 
 import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getPax} from "../../../../Redux/actions/paxchoice"
@@ -18,6 +22,8 @@ moment.locale('uk')
 
 export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,GeneralListFunction}) =>{
      
+  const {locale} = useIntl();
+
       const [stayDates, setStayDates] = useState([]);
       const [list , setList] = useState([]);
       const [hotelsvalue, setHotelsValue] = useState('');
@@ -29,6 +35,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
      
       const history = useHistory();
 
+      console.log('AAA',history)
       const [width, height] = useWindowWidthAndHeight();
     
       const dispatch = useDispatch();
@@ -128,14 +135,15 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       setStayDates('');
       setHotelsValue('');
     
-      let route_query = `?title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
-    
       console.log('[hotelNewList] : ' , list, hotelsvalue)
-    
-      history.push(`/search_results_hotels/${route_query}` , [...list, hotelNewList])
-      console.log('[HISTORY : ] ', history)
-    
+
       GeneralListFunction(list,hotelsvalue)
+
+      let route_query = `?title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
+
+      history.push(`/${locale}/search_results_hotels/${route_query}`,[...list, hotelNewList])
+      console.log('[HISTORY : ] ', history)
+     
      }
     }
         
@@ -244,9 +252,10 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                   />
                 </div>
                 <div class='borderInnerWrapper2' style={{width:`${width*0.8/4}px`}}>
-                
-                     <button type='submit' onClick={addToList}>SEARCH</button>
+                    <button type='submit' onClick={addToList}>SEARCH</button>
+
                 </div>
+                
     
               </form> 
            </div>

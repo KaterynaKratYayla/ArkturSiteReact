@@ -7,6 +7,7 @@ import {Star} from '../../../Library/Icons/star'
 import { getHotelContent, getHotelSearch } from '../../../../Redux/actions';
 import {ContentBlock} from './ContentBlock'
 import {RatesBlock} from './RatesBlock/RatesBlock'
+import {InnerSearchBlock} from './InnerSearchBlock'
 
 import './HotelDetailsCSS.css' 
 
@@ -50,7 +51,8 @@ useEffect(() =>{
                         marginTop: '3vh',
                         }}>Availability</h3>
 
-                    <h3  class="SearchDetails">
+                    <InnerSearchBlock search_data={search_data}/>
+                    {/* <h3  class="SearchDetails">
                         <h4>Check-in date : <span>{search_data.start}</span></h4>
                         <h4>Check-out date : <span>{search_data.end}</span></h4>
                         <h4>Rooms : <span>{search_data.rooms} </span></h4>
@@ -61,7 +63,7 @@ useEffect(() =>{
                             // onClick={addToHotelDetails}
                                 >Change search details
                         </button>
-                    </h3>
+                    </h3> */}
 
                 <RatesBlock
                     search_data={search_data}

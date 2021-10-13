@@ -3,6 +3,8 @@ import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 import {getContent} from "../../../../Redux/actions/content"
 import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
+import {useIntl} from 'react-intl'
+
 import './SearchItems.css'
 import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import {LoadingMessage} from '../../../Library/PageDevices/LoadingMessage'
@@ -15,7 +17,10 @@ import 'moment/locale/uk'
 moment.locale('uk')
 
 export const ItemContent = ({tour})=>{
-  console.log('[TOUR]' , tour)
+  // console.log('[TOUR]' , tour)
+
+  const {locale} = useIntl();
+
   const [result, setResult] = useState('')
   // const [id, setId] = useState([])
   const [width, height] = useWindowWidthAndHeight()
@@ -25,7 +30,7 @@ export const ItemContent = ({tour})=>{
 // console.log('[CONTENTS]', contents )
 
   useEffect ( () => {
-    axios.get(`https://hotels-ua.biz/interface/content?id=${tour.tour_id}&language=en`)
+    axios.get(`https://hotels-ua.biz/interface/content?id=${tour.tour_id}&language=${locale === 'uk'? 'ua' :locale}`)
       .then( res => {
         setResult(res.data)
         })

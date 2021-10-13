@@ -3,6 +3,7 @@ import React, {useState,useEffect} from 'react'
 import {GuestItem} from '../../SecondPageofSearchModule/Tours/GuestItem';
 import moment from 'moment';
 import Autocomplete from 'react-autocomplete'
+import {useIntl} from 'react-intl'
 import { useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import {getGeo, getGeneralGeo} from "../../../../Redux/actions/cities"
@@ -17,6 +18,8 @@ import '../SearchResizersAndSwitchers/SwitcherFront.css';
 
 export const ToursAutocompleteSmallScreen = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
    
+  const {locale} = useIntl();
+
 const [date, setDate] = useState('');
 const [testDate, setTestDate] = useState('');
 const [list , setList] = useState([]);
@@ -105,7 +108,7 @@ const optionChecker = (e) => {
 
   console.log('[NewList] : ' , newList)
 
-  history.push(`/search_results_tours/${route_query}` , [...list, newList])
+  history.push(`/${locale}/search_results_tours/${route_query}` , [...list, newList])
   
 
   console.log('[HISTORY : ] ', history)

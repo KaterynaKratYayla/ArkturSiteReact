@@ -4,12 +4,14 @@ import {Footer,MenuLinks} from './Components/Pages/RoutesAndLinks/Footer'
 import './App.css';
 import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import {ScrollToTop} from './Components/Library/PageDevices/ScrollToTop';
 import {RouteSwitcher} from './Components/Pages/RoutesAndLinks/RouteSwitcher'
 // import AxiosDemo from './Redux/components/pages/Axios';
 import Login from "./Components/Library/Authorization/Login";
 import Register from "./Components/Library/Authorization/Register";
+import {IntlProvider} from 'react-intl'
+import {LocalizationWrapper} from './LocalizationWrapper'
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -19,12 +21,16 @@ import { PaymentServiceProvider } from "./Components/Context/PaymentServiceConte
 import { clearMessage } from "./Redux/actions/message";
 import {HomePage} from "./Components/Pages/PageComponents/HomePage"
 // import { setOrderId } from './Redux/actions'
+// import messages from './Archive/Translations/common'
+import config from './Redux/config'
 
 import { history } from "./Redux/helpers/history";
 
 console.log('ENV',process.env.REACT_APP_PRIVATE_KEY)
 
 const paymentService = new PaymentService();
+
+const supportedLangs = config.supportedLangs.join('|')
 
 function App() {
     const { user: currentUser } = useSelector((state) => state.auth);
@@ -42,17 +48,29 @@ function App() {
     };
 
   return (
+    <BrowserRouter history={history}>
       <PaymentServiceProvider value={paymentService} >
-        <BrowserRouter history={history}>
+          
+          <Switch>
+              <Route path={`/:locale(${supportedLangs})`} component={LocalizationWrapper}/>
+              <Redirect to={config.defaultLang}/>
+          </Switch>
+          
+           {/* <LocalizationWrapper /> */}
+          {/* <IntlProvider
+            locale="uk"
+            messages={messages['uk']}
+            >
             <ScrollToTop />
             {/* <RouteSwitcher/> */}
-            <TopMenu />
+        
+            {/* <TopMenu /> */}
             {/* <hr /> */}
-
-            <Footer />
-
-        </BrowserRouter>
+            {/* <Footer /> */}
+          {/* </IntlProvider> */} 
       </PaymentServiceProvider>
+    </BrowserRouter>
+    
   );
 }
 

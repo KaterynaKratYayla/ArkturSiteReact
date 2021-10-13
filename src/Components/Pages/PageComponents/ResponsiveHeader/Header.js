@@ -2,26 +2,22 @@ import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
 import {Router} from 'react-router'
+import {useIntl} from 'react-intl'
+import {FormattedMessage} from 'react-intl';
 import {UserOutlined} from '@ant-design/icons'
 
 import {NavComponent} from './NavComponent'
 import {RouteSwitcher} from '../../RoutesAndLinks/RouteSwitcher'
 import {SitePagesList} from '../../RoutesAndLinks/SitePagesList'
-import {COVID, ABOUT, CONTACTUS, SIGNIN, FORGROUPS} from '../TopMenuComponents'
-import {HOTELS, GALLERY, LOGO, SOCIAL, NotFound} from '../MiddleMenuComponents' 
 import {HomePage} from '../HomePage'
 import {TOURS} from '../DropDownTours'
 import { PureContent } from '../MenuPageGenerator'
 import { Search } from '../../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
-// import { GuestItem } from '../../SecondPageofSearchModule/GuestItem'
-// import { TourDetails } from '../../ThirdPageofSearchModule/TourDetails'
 import {TopToursDetails} from '../TopToursDetails'
 // import Helmet from '../../Helmet'
 
 import {HomeOutlined} from '@ant-design/icons'
 import {ContentPages,SitePageType,SitePageRegion} from '../ContentPages'
-// import {SingleHotel} from '../../../Library/HotelsUkraineTestComponents/single_hotel'
-// import { TestCities } from '../../../Library/HotelsUkraineTestComponents/test_cities'
 import {LargeScreensNavBar} from './LargeScreensNavBar'
 import SmallScreensNavBar from './SmallScreensNavBar'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
@@ -29,7 +25,9 @@ import {useLocation} from 'react-router-dom'
 import Login from "../../../Library/Authorization/Login";
 import Register from "../../../Library/Authorization/Register";
 import { logout } from "../../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
-import ArkturDMClogo from '../../../Library/Images/ArkturDMClogo.svg'
+import ArkturDMClogo from '../../../Library/Images/ArkturDMClogo.svg';
+import {changeLang} from '../../../../Redux/actions/locale'
+import { LocalizationNavLink } from '../../../Library/Localization/LocalizationNavLink';
 
 import './header.css'
 // import './ResponsiveCSS.css'
@@ -44,7 +42,15 @@ export const TopMenu = () => {
 
 	const [width, height] = useWindowWidthAndHeight();
 
-	const pages = ContentPages();
+	const lang = useSelector(state=>state.locale.locale)
+  
+	useEffect ( () => {
+		  dispatch (changeLang ());
+		}, [])
+  
+	const pages = ContentPages(lang);
+
+	// const pages = ContentPages('uk');
 	console.log('[PAGES HEADER]', pages)
 	
 	const sitePageType = SitePageType();
@@ -54,16 +60,19 @@ export const TopMenu = () => {
 	<header class='wrapperMain'>	
 
 	   		<div className='topMenu'>
-
+			    <NavLink to='/uk'>UKR</NavLink>
+    			<NavLink to='/ru'>RUS</NavLink>
+    			<NavLink to='/en'>ENG</NavLink>
 				<div className='topMenu_right'>
 						{currentUser ? (
-						  <NavLink exact to='/testcities' activeClassName='active'>
+						  <LocalizationNavLink exact to={`/${lang}/testcities`} activeClassName='active'>
 							  <div style={{display:'flex',
 							    	 flexDirection: 'row'}}>
 								  <UserOutlined className='UserOutlinedIcon'/>
+								
 								  <div>MY ACCOUNT</div>
 							</div>
-						  </NavLink>
+						  </LocalizationNavLink>
 						) : true}
 
 							<>
@@ -75,9 +84,9 @@ export const TopMenu = () => {
 											return(
 												<div>
 													{/* <h3>{item.sitepage_type_name}</h3> */}
-													<NavComponent 
-													 sitepage_type={item}
-													 linkClassName={"Upper"}/>
+													  <NavComponent  
+													   sitepage_type={item}
+													   linkClassName={"Upper"}/>
 												</div> 
 						 					)
 						   				  }
@@ -85,20 +94,23 @@ export const TopMenu = () => {
 									  )									
 									})
 					   			}
-							</>		 
+							</>	
 
 
 
 				  
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
 					{currentUser ? (
-						<NavLink exact to='/' activeClassName='active' onClick={logOut}>LOG OUT</NavLink>
+						<LocalizationNavLink exact to={`/`} activeClassName='active' onClick={logOut}>LOG OUT</LocalizationNavLink>
 					) : (
-						<NavLink exact to='/sign_in' activeClassName='active'>SIGN IN</NavLink>
+						<LocalizationNavLink exact to={`/sign_in`} activeClassName='active'>
+							{/* <FormattedMessage id='common.name'/> */}
+								SIGN In
+							</LocalizationNavLink>
 					)}					
 				</div>	
 
-				<Link exact to='/'><HomeOutlined className='HomeIcon'/></Link>
+				<LocalizationNavLink exact to={`/`}><HomeOutlined className='HomeIcon'/></LocalizationNavLink>
 					
 				</div>
 
@@ -106,11 +118,11 @@ export const TopMenu = () => {
 
 	 		<div className={`${width>1000?'middleMenu':'middleMenuSmallScreen'}`}>
 					{/* <div class='middleMenu_left'> */}
-			   <NavLink exact to='/' >
+			   <LocalizationNavLink exact to='/' >
 					<img class='ArkturDMClogo'
   					    src={ArkturDMClogo} 
 					 	alt='Arktur DMC logo'/>
-			   </NavLink>	 
+			   </LocalizationNavLink>	 
 
 
 			   <>

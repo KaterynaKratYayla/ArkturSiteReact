@@ -25,62 +25,81 @@ import {HotelDetails} from '../ThirdPageofSearchModule/Hotels/HotelDetails'
 import Login from "../../Library/Authorization/Login";
 import Register from "../../Library/Authorization/Register";
 import PaymentResult from "../LiqPay/PaymentResult";
+import {changeLang} from "../../../Redux/actions/locale"
 import { logout } from "../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
+import {useIntl} from 'react-intl'
 
-export const RouteSwitcher = () =>{
+import {localizeRoutePath} from '../Helpers/localizeRoutePath' 
+import {LocalizationRoute} from '../../Library/Localization/LocalizationRoute'
+import {LocalizationSwitch} from '../../Library/Localization/LocalizationSwitch'
+
+import config from '../../../Redux/config'
+
+const supportedLangs = config.supportedLangs.join('|')
+
+export const RouteSwitcher = (props) =>{
+	console.log('ROUTESWITCHER_PROPS',props)
+	// const {locale} = useIntl();
+
+	const dispatch=useDispatch();
+	const lang = useSelector(state=>state.locale.locale)
+
+	useEffect ( () => {
+		dispatch (changeLang ());
+	  }, [])
+
 	const sitePageType = SitePageType();
 	const sitePageRegion = SitePageRegion();
-	const pages = ContentPages();
+	const pages = ContentPages(lang);
 	const htlpages=HotelPagesFooter();
+
+console.log(localizeRoutePath('/'))
+// console.log(localizeRoutePath('/'))
 
 	console.log('SITEPAGES',pages )
 
+	// console.log('LOCALE', locale)
 	return(
+		<>
+		<LocalizationSwitch>
+		
+		  {/* <Switch> */}
+		   {/* <LocalizationRoute path='/helmet' component={Helmet} />  */}
+			<LocalizationRoute exact path='/sign_in' component={Login} />
+			<LocalizationRoute exact path='/sign_up' component={Register} />
+			<LocalizationRoute exact path='/payment_result' component={PaymentResult} />
+			<LocalizationRoute exact path='/forgroups' component={FORGROUPS} /> 
+		{/* /* <Route component={NotFound} /> */ }
+			<LocalizationRoute exact path='/' component={HomePage} /> 
+			{/* <Route exact path='/hotels_in_ukraine' component={SingleHotel}/> */ } 
+			{/* <Route exact path='/testcities' component={TestCities} />  */} 
+		
+			{/* <LocalizationRoute path='/testcities' component={TestCities} /> */}
+			 {/* <Route exact path='/search_results' component={GuestItem}/>  */ }
+			<LocalizationRoute exact path='/search_results_tours' component={GuestItem}/>
+			<LocalizationRoute exact path='/search_results_hotels' component={HotelItems}/>
+			<LocalizationRoute exact path='/hotel_details' component={HotelDetails}/>
+			<LocalizationRoute exact path='/tour_details' component={TourDetails} />
+			<LocalizationRoute exact path='/booking_form' component={BookingForm}/>
+			<LocalizationRoute exact path='/toptours' component={TopToursDetails} />
+			<LocalizationRoute exact path='/offlineSummary' component={OfflineSummary}/>
 
-		 <Switch>
-		 {/* <Route path='/helmet' component={Helmet} /> */}
-			<Route exact path='/sign_in' component={Login} />
-			<Route exact path="/sign_up" component={Register} />
-			<Route exact path="/payment_result" component={PaymentResult} />
-			<Route exact path='/forgroups' component={FORGROUPS} />
-		{/* <Route component={NotFound} /> */}
-			<Route exact path='/' component={HomePage} />
-			<Route exact path='/hotels_in_ukraine' component={SingleHotel}/>
-			<Route exact path='/testcities' component={TestCities} /> 
-			<Route exact path='/search_results_tours' component={GuestItem}/>
-			<Route exact path='/search_results_hotels' component={HotelItems}/>
-			{/* <Route exact path='/testcities' component={TestCities} />
-			<Route exact path='/search_results' component={GuestItem}/> */}
-			<Route exact path='/hotel_details' component={HotelDetails}/>
-			<Route exact path='/tour_details' component={TourDetails} />
-			<Route exact path='/booking_form' component={BookingForm}/>
-			<Route exact path='/toptours' component={TopToursDetails} />
-			<Route exact path='/offlineSummary' component={OfflineSummary}/>
-			
-			{/* </Switch> */}
-				{/* <Switch> */}
-				<>
  					{
- 						pages&&pages.map((page)=>{
-						//  return(
-							// htlpages&&htlpages.map((htlpage)=>{
-						     if(page.name.includes('Hotels')){
- 							  return(
- 								// <Route exact path={`/${page.title.map((item1)=>item1.text.replace(/\s/g , '-'))}`} component={CityHotels}/>
-								<Route path={`/${page.name.replace(/\s/g , '-')}`} component={CityHotels}/>
-							   )
-		 	  				}
-							else {
-							   return(
-								   <Route exact path={`/${page.title.map((item1)=>item1.text.replace(/\s/g , '-'))}`} component={PureContent}/>
-								)
-							   }
-							})
-						 	
-						   }
-
-			  </>
- 			</Switch>
-
+ 					pages&&pages.map((page)=>{
+						  if(page.name.includes('Hotels'.toLowerCase())){
+ 							return(  								
+								<LocalizationRoute exact path={`/sitepages_hotels`} component={CityHotels}/> 
+							) 
+		 	  			}
+						   else {
+							return(
+								<LocalizationRoute exact path={`/sitepages`} component={PureContent}/>
+							 )
+							}
+				    })
+				} 
+			
+		 </LocalizationSwitch> 
+	  </>   
 	)
 }

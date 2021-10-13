@@ -20,7 +20,7 @@ export const BookingForm = (props) =>{
     // console.log('LOCATION', location.state)
 
     let search_data = ValidateQuery(location)
-    console.log('GUEST ITEM LOCATION', search_data)
+    console.log('GUEST ITEM LOCATION', process.env.REACT_APP_PRIVATE_KEY)
   
     const [width, height] = useWindowWidthAndHeight();
 
@@ -28,6 +28,7 @@ export const BookingForm = (props) =>{
 
     const ciphertext = CryptoJS.AES.encrypt(JSON.stringify(search_data), process.env.REACT_APP_PRIVATE_KEY).toString();
     localStorage.setItem('search_data', ciphertext);
+    console.log('ciphertext',ciphertext)
 
     const date_difference = moment(search_data.start).diff(moment(moment().format('YYYY-MM-DD')),'days')
     const canx_deadline_date=moment(search_data.start).subtract(7, 'days').calendar()
