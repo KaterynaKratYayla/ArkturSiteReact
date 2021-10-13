@@ -2,11 +2,11 @@ import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getPages,getSitePageType,getSitePageRegion,getHotelPagesFooter} from '../../../Redux/actions/pages'
 
-export const ContentPages = () =>{
+export const ContentPages = (lang) =>{
 const pages = useSelector(state => state.pages.pages)
 const dispatch = useDispatch();
    useEffect ( () => {
-    dispatch (getPages ());
+    dispatch (getPages (lang));
   },[]);
 
   if( !pages ){

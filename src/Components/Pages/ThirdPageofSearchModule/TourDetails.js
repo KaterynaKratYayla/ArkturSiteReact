@@ -3,6 +3,7 @@ import axios from "axios"
 import ReactHtmlParser from 'react-html-parser'
 import {useDispatch, useSelector} from 'react-redux'
 import { useHistory , useLocation} from "react-router-dom";
+import {useIntl} from 'react-intl'
 import moment from 'moment';
 import { Select } from 'antd';
 import {getContent} from '../../../Redux/actions/content'
@@ -19,6 +20,8 @@ import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 import './TourDetailsCSS.css'
 
   export const TourDetails = (props) =>{
+
+    const {locale} = useIntl();
     let location = useLocation();
     let history = useHistory();
 
@@ -37,7 +40,7 @@ import './TourDetailsCSS.css'
     const [width, height] = useWindowWidthAndHeight()
 
     useEffect ( () => {
-      axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=en`)
+      axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=${locale}`)
         .then( res => {
           setDetails(res.data)
           })

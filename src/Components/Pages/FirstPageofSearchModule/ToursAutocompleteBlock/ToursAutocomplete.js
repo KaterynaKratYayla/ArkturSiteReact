@@ -5,6 +5,7 @@ import moment from 'moment';
 import Autocomplete from 'react-autocomplete';
 import { DatePicker ,Space } from 'antd';
 import {Container, Row, Col} from 'react-bootstrap'
+import {useIntl} from 'react-intl'
 
 import {GuestItem} from '../../SecondPageofSearchModule/Tours/GuestItem';
 import {Switcher, SwitcherItem} from '../SearchResizersAndSwitchers/Switcher'
@@ -22,7 +23,7 @@ moment.locale('uk')
 
 export const ToursAutocomplete = ({formClass,datepickerClass,onSubmit,props,GeneralListFunction}) => {
       // console.log('[PROPS] : ', props)
-
+      const {locale} = useIntl();
 
 //   const [date, setDate] = useState('');
   const [testDate, setTestDate] = useState('');
@@ -121,7 +122,7 @@ const [pickedToursValue, setPickedToursValue] = useState(false);
 
   console.log('[NewList] : ' , newList)
 
-  history.push(`/search_results_tours/${route_query}` , [...list, newList])
+  history.push(`/${locale}/search_results_tours/${route_query}` , [...list, newList])
   console.log('[HISTORY : ] ', history)
 
   GeneralListFunction(list,value)

@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {Container, Row, Col} from 'react-bootstrap'
 
 import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+import {useIntl} from 'react-intl'
 
 import {getGeneralGeo, getTopTours} from '../../../Redux/actions'
 import ArkturCollection from '../../Library/Images/ArkturCollection.jpg'
@@ -16,7 +17,7 @@ import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
 import './TopToursCSS.css'
 
 export const TopTours = () => {
-
+  const {locale} = useIntl();
     const dispatch = useDispatch();
     const toptours = useSelector(state => state.cities.gen_locs)
     const TopToursContents = useSelector(state => state.toptours.toptours)
@@ -48,7 +49,7 @@ console.log('[TOURTOURS]', toptours)
   const GetTourDetails = (e) =>{  
     let route_query;
     if(e.target.id){
-       route_query = `/toptours/?tour_id=${e.target.id}`
+       route_query = `/${locale}/toptours/?tour_id=${e.target.id}`
     }
     else {
       route_query = '/'

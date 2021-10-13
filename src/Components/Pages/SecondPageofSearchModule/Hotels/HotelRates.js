@@ -6,6 +6,7 @@ import {ValidateQuery} from '../../Helpers/helper'
 import moment from 'moment';
 // import ReactHtmlParser from 'react-html-parser'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+import {HotelBookButton} from '../../PageComponents/HotelBookButton/HotelBookButton'
 
 import 'moment/locale/uk'
 
@@ -53,24 +54,14 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
 
     // const filtered_new = filtered_hotelRooms.sort((c,d)=>(parseInt(c.sum,10)-parseInt(d.sum,10)))[0]
 
-    const addToHotelDetails = (e) => {
+    // const addToHotelDetails = (e) => {
 
-        e.preventDefault()
+    //     e.preventDefault()
       
-        // const outline = {
-        //     id: tariff.tour_id,
-        //     date: selection
-        // };
-      
-    //   setDetailsList([outline]);
-      
-        const route_hotel_query = `${location.search},hotel_name=${hotelName},hotel_id=${hotelTariff.hotel_id}`
-        history.push(`/hotel_details/${route_hotel_query}`)
-      }
+    //     const route_hotel_query = `${location.search},hotel_name=${hotelName},hotel_id=${hotelTariff.hotel_id}`
+    //     history.push(`/hotel_details/${route_hotel_query}`)
+    //   }
 
-    // console.log('[HOTEL_RATES_RATES_1]', filtered_new)
-
-    // console.log('[HOTEL_RATES_RATES]',hotelRooms)
    return(
 
     <div style={{gridColumn:'2', gridRow:'2'}}>
@@ -126,12 +117,17 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
              {/* {
               newobj2.min_rate?( */}
                
-                <button 
+                {/* <button 
                     type='submit'
                     class='availableButtonHotel'
                     onClick={addToHotelDetails}
                             >See Availability
-                </button>
+                </button> */}
+
+                <HotelBookButton 
+                  innerText={'See Availability'}
+                  hotel={hotelTariff}
+                  hotelsearch={location}/>
              {/* ): */}
                {/* <button  */}
             {/* //       class='onrequestButton'>

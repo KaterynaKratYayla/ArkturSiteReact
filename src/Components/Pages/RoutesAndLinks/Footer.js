@@ -39,7 +39,7 @@ const pages = ContentPages();
 												<div class='footerLinks'>
 													<h3>{item.sitepage_type_name}</h3>
 													<SitePagesList 
-													 sitepage_type={item}/>
+														 sitepage_type={item}/>
 												</div> 
 											  </Col>  
 						 					)

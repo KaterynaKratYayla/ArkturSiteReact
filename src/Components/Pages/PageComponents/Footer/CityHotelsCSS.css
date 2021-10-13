@@ -41,6 +41,9 @@
     padding-top:3vh;
     padding-right:3vh;
     padding-left:3vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .HotelContentWrapperSmallScreen{
@@ -54,7 +57,27 @@
 .HotelContentWrapper img{
     margin-bottom:2vh;
 }
+.HotelContentWrapper button{
+    height: 100%;
+    background: #009FE3;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 90%;
+    width: 25%;
+    text-align: center;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
 
+.HotelContentWrapper button:hover{
+    cursor:pointer;
+    background: #024461;
+    color: white;
+}
 .HotelContentWrapperSmallScreen img{
     margin-bottom:2vh;
 }

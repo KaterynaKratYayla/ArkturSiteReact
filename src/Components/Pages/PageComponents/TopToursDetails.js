@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import ReactHtmlParser from 'react-html-parser'
 // import ReactHtmlParser from 'react-html-parser'
 import {Container, Row, Col} from 'react-bootstrap'
+import {useIntl} from 'react-intl'
 
 import {Search} from '../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
 import {CartGallery} from '../../Library/PageDevices/CartGallery/CartGallery'
@@ -18,6 +19,8 @@ import './TopToursDetailsCSS.css'
 
 export const TopToursDetails = (props) =>{
 
+    const {locale} = useIntl();
+
     const [ttDetails, setTTDetails] = useState()  
     let location = useLocation();
     let history = useHistory();
@@ -30,7 +33,7 @@ export const TopToursDetails = (props) =>{
     console.log('Seach Details', search_data)
     
     useEffect ( () => {
-    axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=en`)
+    axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=${locale}`)
       .then( res => {
         setTTDetails(res.data)
         })

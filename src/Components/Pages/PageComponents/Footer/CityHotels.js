@@ -11,59 +11,71 @@ import {HotelContent} from '../../SecondPageofSearchModule/Hotels/HotelContent'
 import {ValidateQuery} from '../../Helpers/helper'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import { getHotelSearch } from '../../../../Redux/actions';
+import {HotelBookButton} from '../HotelBookButton/HotelBookButton'
 
 import './CityHotelsCSS.css'
 import { getByDisplayValue } from '@testing-library/dom';
 
-export const CityHotels = () => {
+// export const CityHotels = () => {
 
-    let location = useLocation();
-    let history = useHistory();
+//     let location = useLocation();
+//     let history = useHistory();
     
-    const [width, height] = useWindowWidthAndHeight()
+//     const [width, height] = useWindowWidthAndHeight()
     
-    console.log('HOTEL ITEM LOCATION', location.pathname)
+//     console.log('LOCATION_PATHNAME', location.pathname)
+//     console.log('LOCATION_SEARCH',location.search)
 
-    const filteredLinkCityName = location.pathname.substring(0,location.pathname.indexOf("-Hotels")).replace(/\//g,'');
-    console.log('TESTPATH',filteredLinkCityName)
+//     const filteredLinkCityName = location.pathname.substring(0,location.pathname.indexOf("Hotels")).replace(/\//g,'');
+//     console.log('TESTPATH',filteredLinkCityName)
         
-    const dispatch = useDispatch();
+//     const dispatch = useDispatch();
     
-    const citiesList = useSelector(state => state.cities.locs)
-    const general_smart_hotels = useSelector(state => state.hotels.general_hotels)
+//     const citiesList = useSelector(state => state.cities.locs)
+//     const general_smart_hotels = useSelector(state => state.hotels.general_hotels)
     
-    useEffect ( () => {
-       dispatch (getHotels ());
-    }, []);
-        console.log('[CITIESLIST] : ' , citiesList)
+//     useEffect ( () => {
+//        dispatch (getHotels ());
+//     }, []);
+//         console.log('[CITIESLIST] : ' , citiesList)
     
-    useEffect ( () => {
-       dispatch (getGeneralHotels ());
-      }, [])
+//     useEffect ( () => {
+//        dispatch (getGeneralHotels ());
+//       }, [])
 
-      console.log('HOTELLIST',general_smart_hotels)
+//       console.log('HOTELLIST',general_smart_hotels)
 
-      const filteredCities = general_smart_hotels.filter((hotel)=>{
-        return hotel.city_name.toLowerCase().includes(filteredLinkCityName.toLowerCase())
-      })
+//       const filteredCities = general_smart_hotels.filter((hotel)=>{
+//         return hotel.city_name.toLowerCase().includes(filteredLinkCityName.toLowerCase())
+//       })
 
-      console.log('filteredHotels',filteredCities)
+//       console.log('filteredHotels',filteredCities)
     
-        return(
-          <div class={`${width>1000?"HotelFooterPages":"HotelFooterPagesSmallScreen"}`}>
-            <h2>Hotels in {filteredLinkCityName.toUpperCase()}</h2>
-             <>
-                {
-                    filteredCities?filteredCities.map((filtered_hotel)=>{
-                      return(
-                            <div class={`${width>1000?'HotelContentWrapper':'HotelContentWrapperSmallScreen'}`}>
-                                <HotelContent hotel={filtered_hotel}/>
-                            </div>
-                        )
-                       }
-                    ):<h3>Sorry, we do not have hotels available in {filteredLinkCityName.toUpperCase()} at the moment</h3>
-                 }
-            </>
-        </div>
-        )
-    }
+//         return(
+//           <div class={`${width>1000?"HotelFooterPages":"HotelFooterPagesSmallScreen"}`}>
+            
+//             <h2>Hotels in {filteredLinkCityName.toUpperCase()}</h2>
+//              <>
+//                 {
+//                     filteredCities?filteredCities.map((filtered_hotel)=>{
+//                       return(
+//                             <div class={`${width>1000?'HotelContentWrapper':'HotelContentWrapperSmallScreen'}`}>
+//                                 <HotelContent hotel={filtered_hotel}/>
+//                                 <HotelBookButton innerText={'See details'}
+//                                                  hotel={filtered_hotel}
+//                                                  hotelsearch={location}/>
+//                             </div>
+//                         )
+//                        }
+//                     ):<h3>Sorry, we do not have hotels available in {filteredLinkCityName.toUpperCase()} at the moment</h3>
+//                  }
+//             </>
+//         </div>
+//         )
+//     }
+
+export const CityHotels =()=>{
+  return(
+    <h2>Hi Kate</h2>
+  )
+}

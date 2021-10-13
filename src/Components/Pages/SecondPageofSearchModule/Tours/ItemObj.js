@@ -4,6 +4,8 @@ import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 import { connect } from 'react-redux';
 import { Route, Switch, BrowserRouter, useHistory , useLocation} from "react-router-dom";
+import {useIntl} from 'react-intl'
+
 // import {TourDetails} from './tourDetails';
 import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import moment from 'moment';
@@ -20,6 +22,8 @@ moment.locale('uk')
 
 export const ItemObj = ({tariff, searchResults,tour_name}) => {
 
+  const {locale} = useIntl();
+  
   // console.log('CHECKING', tariff,searchResults,tour_name)
   const location = useLocation()
   const history = useHistory();
@@ -67,7 +71,7 @@ setDetailsList([outline]);
   // console.log('[DETAILS LIST] : ' , detailsList)
 
   const route_query = `${location.search},tour_name=${tour_name},tour_id=${tariff.tour_id},selection=${selection}`
-  history.push(`/tour_details/${route_query}`, [...detailsList, outline])
+  history.push(`/${locale}/tour_details/${route_query}`, [...detailsList, outline])
 }
 
   return (

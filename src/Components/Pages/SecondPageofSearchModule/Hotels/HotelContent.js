@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react'
 import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 import {getContent} from "../../../../Redux/actions/content"
+import {useIntl} from 'react-intl'
+
 // import { Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
-import './HotelItemsCSS.css'
 import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import {LoadingMessage} from '../../../Library/PageDevices/LoadingMessage'
 import {Star} from '../../../Library/Icons/star'
@@ -14,10 +15,15 @@ import 'moment/locale/uk'
 import { getHotelContent } from '../../../../Redux/actions'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
+import './HotelItemsCSS.css'
+
 moment.locale('uk')
 
 export const HotelContent = ({hotel,hotelTariff})=>{
-  console.log('[HOTEL_CONTENT]' , hotel)
+
+  const {locale} = useIntl();
+
+  // console.log('[HOTEL_CONTENT]' , hotel)
   const [result, setResult] = useState('')
   const [emptyContent, setEmptyContent] = useState(false)
   
@@ -34,7 +40,7 @@ export const HotelContent = ({hotel,hotelTariff})=>{
 // console.log('[HOTEL_HOTEL_CONTENTS]', hotelcontents)
 
   useEffect ( () => {
-    axios.get(`https://hotels-ua.biz/interface/hotelcontent?id=${hotel.hotel_id}&language=en`)
+    axios.get(`https://hotels-ua.biz/interface/hotelcontent?id=${hotel.hotel_id}&language=${locale}`)
       .then( res => {
         console.log('RES_DATA', res.data)
         setResult(res.data)

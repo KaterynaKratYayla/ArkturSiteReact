@@ -12,11 +12,12 @@ export const pagesResponse = ( res ) => ({
     payload: res
 });
 
-export const getPages = () => ( dispatch, getState ) => {
+export const getPages = (lang) => ( dispatch, getState ) => {
 
     dispatch({ type: GET_PAGES_REQ });
+    console.log('REDUX_LOCALE:',lang)
 
-    axios.get('https://hotels-ua.biz/interface/classifier?classifier=sitepage&language=en',  {
+    axios.get(`https://hotels-ua.biz/interface/classifier?classifier=sitepage&language=${lang}`,  {
     }) 
         .then( res => {
                   
