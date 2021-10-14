@@ -2,6 +2,7 @@ import React ,{useState, useEffect} from 'react';
 import axios from "axios"
 import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
+import {useIntl} from 'react-intl'
 import {ValidateQuery} from '../../Helpers/helper'
 import {Star} from '../../../Library/Icons/star'
 import { getHotelContent, getHotelSearch } from '../../../../Redux/actions';
@@ -13,6 +14,7 @@ import './HotelDetailsCSS.css'
 
 export const HotelDetails = () =>{
 
+    const {locale} = useIntl();
     const history = useHistory();
     const location = useLocation ();
     let search_data = ValidateQuery(location)
@@ -26,7 +28,7 @@ export const HotelDetails = () =>{
     console.log('[OCCUPANCY]',searchUpdate)
 
 useEffect (() =>{
-  dispatch(getHotelContent(search_data.hotel_id))
+  dispatch(getHotelContent(search_data.hotel_id,locale))
 },[search_data.hotel_id])
 
 useEffect(() =>{

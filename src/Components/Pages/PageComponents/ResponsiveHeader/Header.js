@@ -28,6 +28,7 @@ import { logout } from "../../../../Redux/actions/auth";// import { findByLabelT
 import ArkturDMClogo from '../../../Library/Images/ArkturDMClogo.svg';
 import {changeLang} from '../../../../Redux/actions/locale'
 import { LocalizationNavLink } from '../../../Library/Localization/LocalizationNavLink';
+import {LangSelectionTool} from '../../../Library/Localization/LangSelectionTool'
 
 import './header.css'
 // import './ResponsiveCSS.css'
@@ -60,9 +61,7 @@ export const TopMenu = () => {
 	<header class='wrapperMain'>	
 
 	   		<div className='topMenu'>
-			    <NavLink to='/uk'>UKR</NavLink>
-    			<NavLink to='/ru'>RUS</NavLink>
-    			<NavLink to='/en'>ENG</NavLink>
+
 				<div className='topMenu_right'>
 						{currentUser ? (
 						  <LocalizationNavLink exact to={`/${lang}/testcities`} activeClassName='active'>
@@ -80,7 +79,7 @@ export const TopMenu = () => {
 								sitePageType&&sitePageType.map((item)=>{
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
-										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Header") && item.sitepage_type_name.includes("UPPER")){
+										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Header")===true && item.sitepage_type_name.includes("UPPER")===true){
 											return(
 												<div>
 													{/* <h3>{item.sitepage_type_name}</h3> */}
@@ -130,7 +129,7 @@ export const TopMenu = () => {
 								sitePageType&&sitePageType.map((item)=>{
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
-										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Header") && item.sitepage_type_name.includes("MIDDLE")){
+										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Header")===true && item.sitepage_type_name.includes("MIDDLE")===true){
 											return(
 												<>
 												 { width > 1000 ?
@@ -153,9 +152,14 @@ export const TopMenu = () => {
 									  )									
 									})
 					   			}
+								
+								
 							</>	
-
-	
+				 <div style={{marginTop:'auto',
+							  marginBottom:'auto',
+							  marginRight:'2vw'}}>
+					<LangSelectionTool/>
+				 </div>
 			  </div>					
 
 		   <RouteSwitcher />

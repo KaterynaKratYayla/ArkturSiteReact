@@ -11,11 +11,11 @@ export const hotelContentResponse = ( res ) => ({
 
 // console.log('[CONTENTRESPONCE]' , contentResponse)
 
-export const getHotelContent = (id) => ( dispatch, getState ) => {
+export const getHotelContent = (id,lang) => ( dispatch, getState ) => {
 
     dispatch({ type: GET_HOTEL_CONTENT_REQ });
 
-    axios.get(`https://hotels-ua.biz/interface/hotelcontent?id=${id}&language=en`)
+    axios.get(`https://hotels-ua.biz/interface/hotelcontent?id=${id}&language=${lang}`)
       .then( res => {
         const filtered_res = res.data.filter((item,index,array) =>
         array.findIndex(t => t.content_name === item.content_name)===index)

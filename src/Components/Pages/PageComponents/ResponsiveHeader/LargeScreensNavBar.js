@@ -10,6 +10,7 @@ export const LargeScreensNavBar = ({sitepage_type}) =>{
             <NavComponent 
                 linkClassName='nav_big_link'
                 sitepage_type={sitepage_type}
+                navClass='wrapper_nav_big_link'
                 />
     </div>
         

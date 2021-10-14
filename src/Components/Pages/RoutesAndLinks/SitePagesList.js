@@ -36,24 +36,29 @@ export const SitePagesList = ({sitepage_type}) =>{
                   pages.length>0?pages.map((page)=>{
                       console.log('PAGE',page)
                    if(sitepage_type.sitepage_type_id === page.sitepage_type_id&&sitepage_type.sitepage_type_id!=='7'){
-                    // console.log('LOCALIZE3:', localizeRoutePath(`/${page.name}`))
-                    // console.log('LOCALIZE4:',localizeRoutePath(`/${page.name}/?id=${page.id}`))
+                    if(page.name.includes('Hotels')===true){
                       return(
                           <li key={page.id}>
                               <h2>
-                                   {/* {/* <Link to={`/${page.title.map((item1)=>item1.text.replace(/\s/g , '-'))}/?id=${page.id}`}> */}
-                                    {/* <Link to={`/en/${page.name.replace(/\s/g , '-')}`}> */}
-                                   
-                                    
-                                     {/* <LocalizationNavLink to={`/${page.name.replace(/\s/g , '-')}`}>   */}
-                                     <LocalizationNavLink to={`/sitepages/?name=${page.name.replace(/\s/g , '-').toLowerCase()},id=${page.id}`}> 
+                                     <LocalizationNavLink to={`/sitepages_hotels/?name=${page.name.replace(/\s/g , '-').toLowerCase()},id=${page.id}`}> 
                                          <FormattedMessage id={page.title.map((item1)=>item1.text)}/>  
                                     </LocalizationNavLink>  
-                                    {/* </LocalizationNavLink> */}
                               </h2>
                           </li>
                       )
                    }
+                   else{
+                    return(
+                        <li key={page.id}>
+                            <h2>
+                                   <LocalizationNavLink to={`/sitepages/?name=${page.name.replace(/\s/g , '-').toLowerCase()},id=${page.id}`}> 
+                                       <FormattedMessage id={page.title.map((item1)=>item1.text)}/>  
+                                  </LocalizationNavLink>  
+                            </h2>
+                        </li>
+                    )
+                   }
+                }
                   }):(null)
               }	
               </ul>

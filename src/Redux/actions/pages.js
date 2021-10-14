@@ -34,11 +34,11 @@ export const purePageResponse = ( res ) => ({
         payload: res
     });
     
-export const getPurePage = (id) => ( dispatch, getState ) => {
+export const getPurePage = (id,lang) => ( dispatch, getState ) => {
     
      dispatch({ type: GET_PurePage_REQ });
     
-  axios.get(`https://hotels-ua.biz/interface/sitepagecontent?id=${id}&language=en`,  {
+  axios.get(`https://hotels-ua.biz/interface/sitepagecontent?id=${id}&language=${lang}`,  {
      }) 
          .then( res => {
                       

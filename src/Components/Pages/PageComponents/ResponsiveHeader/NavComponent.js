@@ -39,15 +39,9 @@ export const NavComponent = ({onClick, navClass, linkClassName,sitepage_type})=>
                       return(
                           <li key={page.id}>
                               <h2>
-                                          {/* <Link to={`/en/${page.title.map((item1)=>item1.text)}/?id=${page.id}`}
-                                                onClick={onClick}>
-                                                  <FormattedMessage id={page.title.map((item1)=>item1.text)}/>
-                                          </Link>  */}
-                                          <LocalizationNavLink to={`/sitepages/?name=${page.name},id=${page.id}`} onClick={onClick}>
-                                           
-                                          {/* <Link to={`/en/${page.name}/?id=${page.id}`} */}
-                                                <FormattedMessage id={page.title.map((item1)=>item1.text)}/>
-                                          </LocalizationNavLink> 
+                                 <LocalizationNavLink to={`/sitepages/?name=${page.name},id=${page.id}`} onClick={onClick}>
+                                    <FormattedMessage id={page.title.map((item1)=>item1.text)}/>
+                                 </LocalizationNavLink> 
                               </h2>
                           </li>
                       )
