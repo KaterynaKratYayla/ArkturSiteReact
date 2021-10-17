@@ -11,13 +11,13 @@ export const contentResponse = ( res ) => ({
 
 // console.log('[CONTENTRESPONCE]' , contentResponse)
 
-export const getContent = (id) => ( dispatch, getState ) => {
+export const getContent = (id,locale) => ( dispatch, getState ) => {
 
     console.log('GET_STATE:', getState())
     dispatch({ type: GET_CONTENT_REQ });
 
     console.log('[GET_POSTS]' , id)
-    axios.get(`https://hotels-ua.biz/interface/content?id=${id}&language=en`)
+    axios.get(`https://hotels-ua.biz/interface/content?id=${id}&language=${locale}`)
       .then( res => {
         dispatch(contentResponse(res.data))
         console.log('[GET_CONTENT]:' , res.data)

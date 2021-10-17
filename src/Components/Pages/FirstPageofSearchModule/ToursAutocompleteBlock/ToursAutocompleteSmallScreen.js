@@ -3,7 +3,7 @@ import React, {useState,useEffect} from 'react'
 import {GuestItem} from '../../SecondPageofSearchModule/Tours/GuestItem';
 import moment from 'moment';
 import Autocomplete from 'react-autocomplete'
-import {useIntl} from 'react-intl'
+import {useIntl,FormattedMessage} from 'react-intl'
 import { useHistory } from "react-router-dom";
 import {useDispatch, useSelector} from 'react-redux'
 import {getGeo, getGeneralGeo} from "../../../../Redux/actions/cities"
@@ -18,7 +18,7 @@ import '../SearchResizersAndSwitchers/SwitcherFront.css';
 
 export const ToursAutocompleteSmallScreen = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
    
-  const {locale} = useIntl();
+  const {locale,messages} = useIntl();
 
 const [date, setDate] = useState('');
 const [testDate, setTestDate] = useState('');
@@ -192,7 +192,17 @@ return(
           </Space>
 
           <div  class='borderInnerWrapper2_inner'>
-            <button type='submit' onClick={addToList}>SEARCH</button>
+            <button type='submit' onClick={addToList}>
+            {
+                        messages&&messages.map((item)=>{
+                          if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '13'){
+                            return (
+                               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                            )
+                          }
+                        })
+                      }
+             </button>
           </div>
      </form> 
  

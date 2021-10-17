@@ -53,6 +53,10 @@ export const TopMenu = () => {
 
 	// const pages = ContentPages('uk');
 	console.log('[PAGES HEADER]', pages)
+
+		//////////////////////////////////////////////////////
+	// const current_locale = useSelector(state => state.localization.current_locale);
+	// const locales = useSelector(state => state.localization.locales);
 	
 	const sitePageType = SitePageType();
 	const sitePageRegion = SitePageRegion();

@@ -1,16 +1,23 @@
 import React,{useState, useEffect} from 'react';
+import {NavLink} from "react-router-dom";
 import {Select} from 'antd'
 import {useIntl} from 'react-intl'
 import { useDispatch} from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useHistory,useLocation } from "react-router-dom";
 
 import config from '../../../Redux/config'
-import {changeLang} from '../../../Redux/actions/locale'
+import {getLangResponse, changeLang} from '../../../Redux/actions/locale'
+import { localeData } from 'moment';
 
 
 export const LangSelectionTool = () =>{
 
-    const [selectedLang, setSelectedLang] = useState(config.defaultLang);
+    // const {pathname} = useLocation();
+    const {locale, messages} = useIntl();
+
+    // console.log('LANGSWITCHER', '[pathname]:', pathname,'[locale]:' , locale, '[messages]', messages)
+
+    // const [selectedLang, setSelectedLang] = useState(config.defaultLang);
 
     const history = useHistory();
     const { Option } = Select;
@@ -20,31 +27,60 @@ export const LangSelectionTool = () =>{
     const dispatch = useDispatch();
 
     const SelectRooms = (value) => {
-        setSelectedLang(value)
+        // setSelectedLang(value)
         history.push(`/${value}`)
-        dispatch(changeLang(selectedLang))
+        dispatch(getLangResponse(value))
+        
+        // dispatch(changeLang(value))
     }
 
+    // const getMatchingRoute = (language) =>{
+        //Get hte key of the route the user is currently on
+        // const[,route] = pathname.split(locale);
+        // const routeKey = Object.keys(messages).find(key=>messages[key] === route);
+
+        //Find the matching route for the new language
+
+        // console.log('TEST',routeKey)
+
+        // const matchingRoute = supportedLangs[language][routeKey];
+
+        //Return localized route
+        // console.log('TEST:', `/${language}` + matchingRoute)
+        // return `/${language}` + matchingRoute;
+    // }
+
     return(
-        <Select 
-            defaultValue={config.defaultLang}
-            onChange={SelectRooms}
-            bordered={true}
-            size='small'> 
-             <>
-                    {
-                        supportedLangs&&supportedLangs.map((item)=>{
-                            return (
-                                <Option  
-                                    // className='AvailableOptions' 
-                                    value={item}
-                                    key={item}> 
-                                            {item} 
-                                </Option>  
-                            )    
-                        })
-                    }
-            </>
-        </Select>
+        // <ul>
+        //     {Object.keys(supportedLangs).map(lang=>(
+        //         <li key={lang}>
+        //             <NavLink
+        //             to={getMatchingRoute(supportedLangs[lang])}
+        //                 >
+        //                 {supportedLangs[lang]}
+        //             </NavLink>
+        //         </li>
+        //     ))}
+        // </ul>
+         <Select  
+           defaultValue={locale}
+           onChange={SelectRooms}
+             bordered={true}
+             size='small'> 
+              <>
+                     { 
+                         supportedLangs&&supportedLangs.map((item)=>{ 
+                             return ( 
+                                 <Option   
+                                     // className='AvailableOptions'  
+                                     value={item} 
+                                     key={item}>  
+                                             {item}  
+                                 </Option>   
+                             )     
+                         }) 
+                     } 
+             </> 
+        </Select> 
     )
 }

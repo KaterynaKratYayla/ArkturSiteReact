@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 // import axios from "axios"
 import {useHistory , useLocation} from "react-router-dom"
+import {useIntl, FormattedMessage} from 'react-intl'
 import {ValidateQuery} from '../../Helpers/helper'
 // import {SearchInner} from '../../../Library/SearchPannel/SearchPannel'
 import moment from 'moment';
@@ -16,16 +17,17 @@ moment.locale('uk')
 
 export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})=>{
  
-  console.log('HOTEL_ROOMS_2',hotelTariff)
+  // console.log('HOTEL_ROOMS_2',hotelTariff)
     const location = useLocation()
     const history = useHistory();
+    const {locale, messages} = useIntl();
   
     let search_data = ValidateQuery(location)
     const [width, height] = useWindowWidthAndHeight()
 
     let min_rate = Number.MAX_VALUE;
 
-    console.log('[HOTELROOMS22]', hotelRooms)
+    // console.log('[HOTELROOMS22]', hotelRooms)
 
     let newobj2 = {};
 
@@ -50,7 +52,7 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
       }
     })
 
-    console.log('[MIN_RATE at]', hotelName , min_rate ,newobj2)
+    // console.log('[MIN_RATE at]', hotelName , min_rate ,newobj2)
 
     // const filtered_new = filtered_hotelRooms.sort((c,d)=>(parseInt(c.sum,10)-parseInt(d.sum,10)))[0]
 
@@ -125,7 +127,17 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
                 </button> */}
 
                 <HotelBookButton 
-                  innerText={'See Availability'}
+                  innerText={
+                    
+                      messages&&messages.map((item)=>{
+                        if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '16'){
+                          return (
+                             <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                          )
+                        }
+                      })
+                    }
+                  
                   hotel={hotelTariff}
                   hotelsearch={location}/>
              {/* ): */}

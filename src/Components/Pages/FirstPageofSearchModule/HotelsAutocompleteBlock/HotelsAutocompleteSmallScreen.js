@@ -6,7 +6,7 @@ import Autocomplete from 'react-autocomplete';
 import { DatePicker ,Space } from 'antd';
 import {HotelsPaxChoice} from './HotelsPaxChoice'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
-import {useIntl} from 'react-intl'
+import {useIntl,FormattedMessage} from 'react-intl'
 
 import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getPax} from "../../../../Redux/actions/paxchoice"
@@ -19,7 +19,7 @@ moment.locale('uk')
 
 export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass,onSubmit,props,GeneralListFunction}) =>{
      
-  const {locale} = useIntl();
+  const {locale,messages} = useIntl();
   
       const [stayDates, setStayDates] = useState([]);
       const [list , setList] = useState([]);
@@ -236,7 +236,17 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                 <div class='borderInnerWrapper2' style={{
                                                           marginTop:'2vh'}}>
                 
-                     <button type='submit' onClick={addToList}>SEARCH</button>
+                    <button type='submit' onClick={addToList}>
+                    {
+                        messages&&messages.map((item)=>{
+                          if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '13'){
+                            return (
+                               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                            )
+                          }
+                        })
+                      }
+                    </button>
                 </div>
     
               </form> 

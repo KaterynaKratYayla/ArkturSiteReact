@@ -1,5 +1,6 @@
 import React , {useEffect, useState} from 'react'
 import axios from "axios"
+import {useIntl,FormattedMessage} from 'react-intl'
 import {useDispatch, useSelector} from 'react-redux'
 import {getContent} from '../../../Redux/actions/content'
 import {getHotelContent} from '../../../Redux/actions/hotelcontent'
@@ -15,6 +16,7 @@ export const CartDetails = ({cart}) =>{
 
     console.log('CART', cart)
     const dispatch = useDispatch();
+    const {locale,messages} = useIntl();
 
     // const [sendCart, setSendCart] = useState([]);
     // const [tourContent, setTourContent] = useState([]);
@@ -27,11 +29,11 @@ export const CartDetails = ({cart}) =>{
     // console.log('[CARTCONTENT]',cartContent)
 
     useEffect(()=>{
-      dispatch(getHotelContent(cart.hotel_id))
+      dispatch(getHotelContent(cart.hotel_id,locale))
     },[])
 
     useEffect(()=>{
-        dispatch(getContent(cart.contract_id))
+        dispatch(getContent(cart.contract_id,locale))
       },[])
 
     const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)

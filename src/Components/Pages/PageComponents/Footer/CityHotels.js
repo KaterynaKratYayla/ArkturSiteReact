@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 import { useLocation, Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
+import {useIntl,FormattedMessage} from 'react-intl'
 import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import {getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getHotels} from '../../../../Redux/actions/hotels'
@@ -21,6 +22,7 @@ export const CityHotels = () => {
     let location = useLocation();
     let history = useHistory();
     
+    const {locale,messages} = useIntl();
     const [width, height] = useWindowWidthAndHeight()
 
     const search_details=ValidateQuery(location)
@@ -61,7 +63,15 @@ export const CityHotels = () => {
                       return(
                             <div class={`${width>1000?'HotelContentWrapper':'HotelContentWrapperSmallScreen'}`}>
                                 <HotelContent hotel={filtered_hotel}/>
-                                <HotelBookButton innerText={'See details'}
+                                <HotelBookButton innerText=  {
+                                                   messages&&messages.map((item)=>{
+                                                    if(item.sitepage_region_id === '6'&&item.sitepage_type_id === '16'){
+                                                      return (
+                                                        <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                                        )
+                                                      }
+                                                    })
+                                                   } 
                                                  hotel={filtered_hotel}
                                                  hotelsearch={location}/>
                             </div>

@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from 'react-redux'
 // import {getPosts} from "../../../../Redux/actions/list"
 // import { connect } from 'react-redux';
 import { useLocation, Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
+import {useIntl,FormattedMessage} from 'react-intl'
 // import {TourDetails} from './tourDetails';
 import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import {getGeneralHotels} from "../../../../Redux/actions/hotels"
@@ -49,6 +50,8 @@ const [hotelRate, setHotelRate] = useState([])
 const [filtered1, setFiltered1] = useState([]);
 const [geoindex, setGeoindex] = useState([]);
 const [timing,setTiming] = useState();
+
+const {locale,messages} = useIntl();
 
 // console.log('[TEST]', test)
  
@@ -146,7 +149,18 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                           color:'#003057',
                           fontFamily:'Arial',
                           fontSize:'30px',
-                          fontWeight:'bold'}}>Search Results</h3>
+                          fontWeight:'bold'}}>
+                      {
+                        messages&&messages.map((item)=>{
+                          if(item.sitepage_region_id === '6'&&item.sitepage_type_id === '25'){
+                            return (
+                               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                            )
+                          }
+                        })
+                      } 
+
+              </h3>
             </div>
 
               <div>            

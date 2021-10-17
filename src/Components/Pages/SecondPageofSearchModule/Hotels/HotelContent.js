@@ -71,23 +71,32 @@ export const HotelContent = ({hotel,hotelTariff})=>{
         <>
       {
        result.length>0?(result.map((trip) =>{
-         for(let key in trip){
-          if(key==="hotel_parameters"){
-
-            for(let key1 in trip[key]){
-                console.log('KEY1',trip[key])
-               return (
-                <li class={`${width>1000?'Li_HotelContent':'Li_HotelContentSmallScreen'}`}>
-                {/* // <li style={{gridColumn:'2', gridRow:'1'}}> */}
-                  <div class={`${width>1000?'HotelNameStarRating':'HotelNameStarRatingSmallScreen'}`}>
-                     <h3 style={{fontSize:'27px',
+        
+        if(trip.content_name ==='Title'){
+        return(
+          
+          <li class={`${width>1000?'Li_HotelContent':'Li_HotelContentSmallScreen'}`} style={{gridRow: '1',gridColumn:'1'}}>
+            <div class={`${width>1000?'HotelNameStarRating':'HotelNameStarRatingSmallScreen'}`}>
+                   <h3 style={{fontSize:'27px',
                                 color: '#001959',
                                 fontWeight: 'bold',
                                 marginRight:'2vw'}}>
-                                   {hotel.hotel_name} 
-                     </h3>
-                     <div>
-                     
+                                   {trip.text.toUpperCase()} 
+                   </h3>
+              </div>
+            </li>
+            )
+          }
+          
+          {
+            for(let key in trip){
+              if(key==="hotel_parameters"){
+                for(let key1 in trip[key]){
+                  console.log('KEY1',trip[key])
+            
+               return (
+                <li class={`${width>1000?'Li_HotelContent':'Li_HotelContentSmallScreen'}`} style={{gridRow: '1',gridColumn:'2/3'}}>
+                  <div class={`${width>1000?'HotelNameStarRating':'HotelNameStarRatingSmallScreen'}`}>                 
                       {
                         trip[key].category&&Array.from(trip[key].category).includes('*')?
                           Array.from(trip[key].category).map((star)=>
@@ -96,46 +105,19 @@ export const HotelContent = ({hotel,hotelTariff})=>{
 
                       }
                      </div>
-                    </div>
+                    
                     <div class={`${width>1000?null:'HotelAddressSmallScreen'}`}><span style={{fontWeight:'bold'}}>{hotel.city_name.toUpperCase()}</span> - {trip[key].address}</div>
-                    {/* <MyMapComponent
-                          isMarkerShown
-                          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
-                          loadingElement={<div style={{ height: `100%` }} />}
-                          containerElement={<div style={{ height: `400px` }} />}
-                          mapElement={<div style={{ height: `100%` }} />}
-                    /> */}
-                  {/* <ul> */}
-                    {/* { */}
-                      {/* // Object.values(trip[key]).length>0&&Object.values(trip[key]).map((value)=>{ */}
-                  
-                        {/* // return( */}
-                          {/* // <li class='HotelAddress'> */}
-                              {/* {value&&Array.from(value).includes('*')?Array.from(value).map((star)=><Star/>):value} */}
-                          {/* // </li> */}
-                        {/* // ) */}
-                      {/* // }) */}
-                    {/* // } */}
-                  {/* // </ul> */}
                 </li>
               
-               )
-              // }
-              
+               )              
              }
           }
-        }
-        // if(trip.content_name === 'Summary'){
-        //   return (
-        //       <li class='Li_HotelContent'>
-        //           {ReactHtmlParser(trip.text)}
-        //       </li>
-        //     )
-        //   }
-          
+      }
+    }
           if(trip.content_name === 'Image'){
             return (
             <li class={`${width>1000?'Li_Image':'Li_ImageSmallScreen'}`}
+            style={{gridRow: '2',gridColumn:'1'}}
             >
                   <img 
                       // class='imageSearchrender'
@@ -191,3 +173,22 @@ export const HotelContent = ({hotel,hotelTariff})=>{
 }
 
 
+ /* <MyMapComponent
+                          isMarkerShown
+                          googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                          loadingElement={<div style={{ height: `100%` }} />}
+                          containerElement={<div style={{ height: `400px` }} />}
+                          mapElement={<div style={{ height: `100%` }} />}
+                    /> 
+                   <ul> 
+                   {  */
+                      /* /* // Object.values(trip[key]).length>0&&Object.values(trip[key]).map((value)=>{ */
+/*                   
+                        /* // return( */
+                          /* // <li class='HotelAddress'> */
+                              /* {value&&Array.from(value).includes('*')?Array.from(value).map((star)=><Star/>):value} */
+                          /* // </li> */
+                        /* // ) */
+                      /* // }) */
+                    /* // } */
+                  /* // </ul> */

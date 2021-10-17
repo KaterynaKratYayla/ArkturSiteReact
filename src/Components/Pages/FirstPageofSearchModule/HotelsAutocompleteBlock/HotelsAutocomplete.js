@@ -6,7 +6,7 @@ import Autocomplete from 'react-autocomplete';
 import { DatePicker ,Space } from 'antd';
 import {HotelsPaxChoice} from './HotelsPaxChoice'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
-import {useIntl} from 'react-intl'
+import {useIntl,FormattedMessage} from 'react-intl';
 import {LocalizationRoute} from '../../../Library/Localization/LocalizationRoute'
 import {LocalizationSwitch} from '../../../Library/Localization/LocalizationSwitch'
 import {LocalizationNavLink} from '../../../Library/Localization/LocalizationNavLink'
@@ -17,12 +17,13 @@ import {getPax} from "../../../../Redux/actions/paxchoice"
 import '../SearchResizersAndSwitchers/Search.css';
 import '../SearchResizersAndSwitchers/SwitcherFront.css';
 import 'antd/dist/antd.css';
+import { ContentPages } from '../../PageComponents/ContentPages';
 
 moment.locale('uk')
 
 export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,GeneralListFunction}) =>{
      
-  const {locale} = useIntl();
+  const {locale,messages} = useIntl();
 
       const [stayDates, setStayDates] = useState([]);
       const [list , setList] = useState([]);
@@ -252,8 +253,18 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                   />
                 </div>
                 <div class='borderInnerWrapper2' style={{width:`${width*0.8/4}px`}}>
-                    <button type='submit' onClick={addToList}>SEARCH</button>
-
+                    <button type='submit' onClick={addToList}>
+                      {
+                        messages&&messages.map((item)=>{
+                          if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '13'){
+                            return (
+                               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                            )
+                          }
+                        })
+                      }
+                    </button>
+                                   
                 </div>
                 
     

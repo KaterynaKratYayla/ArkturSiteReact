@@ -7,7 +7,7 @@ const pages = useSelector(state => state.pages.pages)
 const dispatch = useDispatch();
    useEffect ( () => {
     dispatch (getPages (lang));
-  },[]);
+  },[lang]);
 
   if( !pages ){
     return <div> Loading...</div>
