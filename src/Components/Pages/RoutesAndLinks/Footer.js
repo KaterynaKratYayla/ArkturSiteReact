@@ -30,10 +30,11 @@ const pages = ContentPages();
 						    <>
 							  { 
 								sitePageType&&sitePageType.map((item)=>{
-									if(item.sitepage_type_id!=='7'){
+									if(item.sitepage_type_id!==7){
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
 										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Footer")){
+											console.log('ITEM',item, "ITEM1", item1)
 											return(
 											  <Col Col lg={true}>
 												<div class='footerLinks'>

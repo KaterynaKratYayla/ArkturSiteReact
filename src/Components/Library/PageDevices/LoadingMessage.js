@@ -37,7 +37,7 @@ return(
               <div className='LoadingText'>
                  {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === '6'&&item.sitepage_type_id === '18'){
+                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 18){
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )
@@ -49,7 +49,7 @@ return(
           ):( <h3 className='LoadingText'>
                   {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === '6'&&item.sitepage_type_id === '26'){
+                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 26){
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )

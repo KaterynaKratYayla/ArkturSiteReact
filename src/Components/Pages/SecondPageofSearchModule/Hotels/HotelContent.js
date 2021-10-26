@@ -19,8 +19,9 @@ import './HotelItemsCSS.css'
 
 moment.locale('uk')
 
-export const HotelContent = ({hotel,hotelTariff})=>{
+export const HotelContent = ({hotel,hotelTariff,cityName})=>{
 
+  console.log('NEWDATADATE',hotel,hotelTariff,cityName)
   const {locale} = useIntl();
 
   // console.log('[HOTEL_CONTENT]' , hotel)
@@ -30,11 +31,11 @@ export const HotelContent = ({hotel,hotelTariff})=>{
   const [width, height] = useWindowWidthAndHeight()
   // const [id, setId] = useState([])
 
-// const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
-// const dispatch = useDispatch();
+// const result = useSelector(state => state.hotelcontent.hotelcontent)
+const dispatch = useDispatch();
 
 // useEffect (() =>{
-//   dispatch(getHotelContent(hotel.hotel_id))
+//   dispatch(getHotelContent(hotel.hotel_id,locale))
 // },[hotel.hotel_id])
 
 // console.log('[HOTEL_HOTEL_CONTENTS]', hotelcontents)
@@ -50,17 +51,17 @@ export const HotelContent = ({hotel,hotelTariff})=>{
       setResult(undefined)
       console.log( '[axios error] : ' , error)
        });
-   }, []);
+   }, [hotel.hotel_id]);
 
-   console.log('[HOTEL_RESULT] : ' , result)
+  //  console.log('[HOTEL_RESULT] : ' , result)
 
   //   useEffect ( () => {
   //     dispatch (getContent (tour.tour_id));
   //   },[]);
 
-  //   if( !contents ){
-  //     return <div> Loading...</div>
-  // }
+    if( !result ){
+      return <div>Loading...</div>
+  }
 
    return(
      
@@ -73,6 +74,7 @@ export const HotelContent = ({hotel,hotelTariff})=>{
        result.length>0?(result.map((trip) =>{
         
         if(trip.content_name ==='Title'){
+
         return(
           
           <li class={`${width>1000?'Li_HotelContent':'Li_HotelContentSmallScreen'}`} style={{gridRow: '1',gridColumn:'1'}}>
@@ -81,7 +83,8 @@ export const HotelContent = ({hotel,hotelTariff})=>{
                                 color: '#001959',
                                 fontWeight: 'bold',
                                 marginRight:'2vw'}}>
-                                   {trip.text.toUpperCase()} 
+                                   {/* {trip.text.toUpperCase()}  */}
+                                   {hotel.localized_hotel_name.toUpperCase()}
                    </h3>
               </div>
             </li>
@@ -106,7 +109,7 @@ export const HotelContent = ({hotel,hotelTariff})=>{
                       }
                      </div>
                     
-                    <div class={`${width>1000?null:'HotelAddressSmallScreen'}`}><span style={{fontWeight:'bold'}}>{hotel.city_name.toUpperCase()}</span> - {trip[key].address}</div>
+                    <div class={`${width>1000?null:'HotelAddressSmallScreen'}`}><span style={{fontWeight:'bold'}}>{hotel.localized_city_name.toUpperCase()}</span> - {trip[key].address}</div>
                 </li>
               
                )              

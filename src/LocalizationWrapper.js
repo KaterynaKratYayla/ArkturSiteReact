@@ -45,7 +45,8 @@ export const LocalizationWrapper = (props) => {
        <IntlProvider
             locale={locale}
             // locale={switcher_locale}
-            messages={contentPages}
+            // messages={contentPages}
+            messages={localStorage.getItem(`${locale}_page_titles`) ? JSON.parse(localStorage.getItem(`${locale}_page_titles`)) : contentPages}
              >
                 <ScrollToTop />
                     {/* <RouteSwitcher/> */}

@@ -22,6 +22,7 @@ export const getPages = (lang) => ( dispatch, getState ) => {
         .then( res => {
                   
             console.log('[PAGES_INFO] : ' , res.data)
+            localStorage.setItem(`${lang}_page_titles`,JSON.stringify(res.data))
             dispatch(pagesResponse(res.data))
         })
         .catch( err => {

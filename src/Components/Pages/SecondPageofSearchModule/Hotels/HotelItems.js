@@ -15,6 +15,7 @@ import {HotelContent} from './HotelContent'
 import {HotelRates} from './HotelRates'
 import {ValidateQuery} from '../../Helpers/helper'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+import {getHotelCities} from '../../../../Redux/actions/hotelcities'
 
 import {Search} from '../../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
 import { LoadingMessage } from '../../../Library/PageDevices/LoadingMessage';
@@ -41,10 +42,11 @@ console.log('HOTEL ITEM LOCATION', location)
 
 // // const searchResults = search_data.query.replace(/_/g, " ")
 // console.log('[SEARCHRESULTS] : ' , searchResults , 'DATSENKO',search_data, search_data.title.replace(/_/g, " "))
-console.log('DATSENKO',search_data.city_id)
+console.log('DATSENKO',search_data)
 
 const dispatch = useDispatch();
-const generalHotelItems = useSelector(state => state.hotels.general_hotels)
+// const generalHotelItems = useSelector(state => state.hotels.general_hotels)
+const generalHotelItems = useSelector(state => state.hotelcities.hotel_cities)
 
 const [hotelRate, setHotelRate] = useState([])
 const [filtered1, setFiltered1] = useState([]);
@@ -56,9 +58,13 @@ const {locale,messages} = useIntl();
 // console.log('[TEST]', test)
  
   ///получаю из смарта тур имя, тур айди, сити имя, сити айди
+  // useEffect ( () => {
+  //   dispatch (getGeneralHotels ());
+  // }, [])
+
   useEffect ( () => {
-    dispatch (getGeneralHotels ());
-  }, [])
+    dispatch (getHotelCities(locale))
+  },[])
 
   console.log('[GENERAL_HOTELS] , ' , generalHotelItems)///получаю из смарта имя отеля, айди отеля, сити имя, сити айди 
 
@@ -68,10 +74,14 @@ const {locale,messages} = useIntl();
   ///иначе возвращается сити айди из классификатора contracts, равное айди из поиска
  
   const filtered_hotel_items = generalHotelItems.filter(function(item){
-      if(item.city_id.indexOf(search_data.id) === -1){
-        return item.hotel_id === search_data.id
+      // if(item.city_id.indexOf(search_data.id) === -1){
+        if(parseInt(item.city_id) !== parseInt(search_data.id)){
+          return parseInt(item.hotel_id) === parseInt(search_data.id)
+          // return parseInt(item.hotel_id)
+
       }
-      return item.city_id === search_data.id
+      return parseInt(item.city_id) === parseInt(search_data.id)
+      // return parseInt(item.city_id)
     })
 
     console.log('[FILTERED_GENERAL_HOTELS]', filtered_hotel_items)
@@ -81,8 +91,13 @@ const {locale,messages} = useIntl();
     return item1.hotel_id
   })
 
+  let filtered_city_name;
+  filtered_hotel_items.forEach((item1,index,array)=>{
+      filtered_city_name = item1.localized_city_name
+  })
+
   // console.log('[FILTERED GEO] : ', filtered)
-  console.log('[FILTERED_HOTEL_ID] : ', filtered_hotel_id)
+  // console.log('[FILTERED_CITY_NAME] : ', filtered_city_name)
 
   const currentMonth = moment().format('YYYY-MM');
   const today = moment().format('YYYY-MM-DD');
@@ -152,7 +167,7 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                           fontWeight:'bold'}}>
                       {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === '6'&&item.sitepage_type_id === '25'){
+                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 25){
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )
@@ -188,7 +203,7 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                               paddingBottom: '2vh'
                             }}>
                               {/* {filtered_hotel_items[0].city_name} : {filtered_hotel_items.length} properties found */}
-                                City Name : {filtered_hotel_items.length} properties found
+                              {filtered_city_name} : {filtered_hotel_items.length} properties found
                             </h2>
            
                                <ul className={`${width>1000?'HotelDescriptionUl':'HotelDescriptionUlSmallScreen'}`}
@@ -206,16 +221,18 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                                    searchResults = {search_data}
                                                    history={history}
                                                    hotelName={hotelTariff.hotel_name}
+                                                   cityName={filtered_city_name}
                                                 />                     
 
                                                 {
                                                   filtered_hotel_items.length > 0  && filtered_hotel_items?(filtered_hotel_items.map((hotel) => {
-                                                   if(hotel.hotel_id === hotelTariff.hotel_id){
+                                                   if(parseInt(hotel.hotel_id) === parseInt(hotelTariff.hotel_id)){
                                                      if(hotel){
                                                       return (
                                                           <HotelContent
                                                               hotel = {hotel}
                                                               hotelTariff = {hotelTariff}
+                                                              cityName={filtered_city_name}
                                                            />
                                                            
                                                           )

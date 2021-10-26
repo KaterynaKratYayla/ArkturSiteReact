@@ -242,7 +242,7 @@ const disabledDate = (current) =>{
                 <button type='submit' onClick={addToList}>
                 {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '13'){
+                          if(item.sitepage_region_id === 7&&item.sitepage_type_id === 13){
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )

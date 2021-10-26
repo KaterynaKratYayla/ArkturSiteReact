@@ -84,7 +84,7 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
                                <button type='submit' class='AddToCartTour' value={item1.smart_tariff_type_id} onClick={AddToBasket(Math.ceil(item3.sale*totalPax.counterAdults))}>
                                    {
                                     messages&&messages.map((item)=>{
-                                        if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '14'){
+                                        if(item.sitepage_region_id === 7&&item.sitepage_type_id === 14){
                                             return (
                                                 <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                                         )

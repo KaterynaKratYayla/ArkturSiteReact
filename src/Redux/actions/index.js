@@ -13,3 +13,4 @@ export * from './hotelrates';
 export * from './hotelroomschoice';
 export * from './availabilitychoice';
 export * from './hotelsearchdata';
+export * from './hotelcities'

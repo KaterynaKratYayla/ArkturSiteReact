@@ -6,6 +6,7 @@ import {useIntl,FormattedMessage} from 'react-intl'
 import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import {getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getHotels} from '../../../../Redux/actions/hotels'
+import {getHotelCities} from '../../../../Redux/actions/hotelcities'
 import moment from 'moment';
 // import ReactHtmlParser from 'react-html-parser'
 import {HotelContent} from '../../SecondPageofSearchModule/Hotels/HotelContent'
@@ -13,6 +14,8 @@ import {ValidateQuery} from '../../Helpers/helper'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import { getHotelSearch } from '../../../../Redux/actions';
 import {HotelBookButton} from '../HotelBookButton/HotelBookButton'
+import { LoadingMessage } from '../../../Library/PageDevices/LoadingMessage';
+import {WhiteHotels} from '../../../Library/Icons/hotels'
 
 import './CityHotelsCSS.css'
 import { getByDisplayValue } from '@testing-library/dom';
@@ -24,6 +27,7 @@ export const CityHotels = () => {
     
     const {locale,messages} = useIntl();
     const [width, height] = useWindowWidthAndHeight()
+    // const [loaded,setLoaded] = useState(false)
 
     const search_details=ValidateQuery(location)
     console.log('LOCATION_SEARCH',search_details)
@@ -33,39 +37,56 @@ export const CityHotels = () => {
         
     const dispatch = useDispatch();
     
-    const citiesList = useSelector(state => state.cities.locs)
+    const citiesList = useSelector(state => state.hotelcities.hotel_cities)
     const general_smart_hotels = useSelector(state => state.hotels.general_hotels)
-    
-    useEffect ( () => {
-       dispatch (getHotels ());
-    }, []);
-        console.log('[CITIESLIST] : ' , citiesList)
-    
+  
     useEffect ( () => {
        dispatch (getGeneralHotels ());
       }, [])
 
       console.log('HOTELLIST',general_smart_hotels)
 
-      const filteredCities = general_smart_hotels.filter((hotel)=>{
-        return hotel.city_name.toLowerCase().includes(filteredLinkCityName.toLowerCase()) === true; 
+      useEffect ( () => {
+        dispatch (getHotelCities(locale))
+      })
+      console.log('CITIES',citiesList)
+
+      const filteredCities = citiesList.filter((hotel)=>{
+        return hotel.eng_city_name.toLowerCase().includes(filteredLinkCityName.toLowerCase()) === true; 
       })
 
-      console.log('filteredHotels',filteredCities)
+      // console.log('filteredHotels',filteredCities)
+      let filtered_city_name;
+      filteredCities.forEach((item1)=>{
+          filtered_city_name = item1.localized_city_name
+      })
+
+      // console.log('LOCALIZED_CITY_NAME',filtered_city_name)
     
         return(
           <div class={`${width>1000?"HotelFooterPages":"HotelFooterPagesSmallScreen"}`}>
-            
-            <h2>Hotels in {filteredLinkCityName.toUpperCase()}</h2>
-             <>
-                {
+            {
+              !filteredCities||filteredCities.length===0?  
+                   (<div
+                      style={{
+                        position:'absolute', 
+                              left: '40%',
+                              transform: 'translate(0%, -50%)',
+                              margin:'0'
+                             }}
+                         ><LoadingMessage loadingMessageClass='RateLoading'/></div>) :
+              (
+               <>
+               <h2><WhiteHotels/> {filtered_city_name.toUpperCase()}</h2>
+               <>
+                 {
                     filteredCities?filteredCities.map((filtered_hotel)=>{
                       return(
                             <div class={`${width>1000?'HotelContentWrapper':'HotelContentWrapperSmallScreen'}`}>
                                 <HotelContent hotel={filtered_hotel}/>
                                 <HotelBookButton innerText=  {
                                                    messages&&messages.map((item)=>{
-                                                    if(item.sitepage_region_id === '6'&&item.sitepage_type_id === '16'){
+                                                    if(item.sitepage_region_id === 7 && item.sitepage_type_id === 16){
                                                       return (
                                                         <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                                                         )
@@ -79,13 +100,11 @@ export const CityHotels = () => {
                        }
                     ):<h3>Sorry, we do not have hotels available in {filteredLinkCityName.toUpperCase()} at the moment</h3>
                  }
+             </>
             </>
+            )
+          }
         </div>
         )
     }
 
-// export const CityHotels =()=>{
-//   return(
-//     <h2>Hi Kate</h2>
-//   )
-// }

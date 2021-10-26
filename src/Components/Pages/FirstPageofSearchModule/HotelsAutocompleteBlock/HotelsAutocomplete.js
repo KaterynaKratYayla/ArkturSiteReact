@@ -10,6 +10,9 @@ import {useIntl,FormattedMessage} from 'react-intl';
 import {LocalizationRoute} from '../../../Library/Localization/LocalizationRoute'
 import {LocalizationSwitch} from '../../../Library/Localization/LocalizationSwitch'
 import {LocalizationNavLink} from '../../../Library/Localization/LocalizationNavLink'
+import {getPages} from '../../../../Redux/actions/pages'
+import {changeLang} from '../../../../Redux/actions/locale'
+
 
 import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getPax} from "../../../../Redux/actions/paxchoice"
@@ -33,10 +36,11 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       const [totalPax, setTotalPax] = useState();
       const [pickedHotelValue, setPickedHotelValue] = useState(false);
       const [loaded,setLoaded]=useState(false);
-     
+      const [pagesFromLC, setPagesFromLC] = useState(localStorage.getItem('page_titles') ? JSON.parse(localStorage.getItem('pages_titles')) : []);    
+      
       const history = useHistory();
 
-      console.log('AAA',history)
+      // console.log('AAA',history)
       const [width, height] = useWindowWidthAndHeight();
     
       const dispatch = useDispatch();
@@ -44,21 +48,19 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       const smart_hotels = useSelector(state => state.hotels.hotels)
       const general_smart_hotels = useSelector(state => state.hotels.general_hotels)
       const totalPaxRedux = useSelector(state => state.paxchoice.pax)
+      const lang = useSelector(state=>state.locale.locale)
+      const pages = useSelector(state => state.pages.pages)
 
       console.log('TOTALPAXREDUX',totalPaxRedux)
-      // let empty_array = [];
 
-      // empty_array.length = 6;
-      // for(let i=0; i<empty_array.length; i++){
-      //   empty_array[i] = "*"
-        
-      // }
-   
-
-      // console.log(empty_array)
-
-      // let filledArray = new Array(10).fill('*');
+      useEffect ( () => {
+        dispatch (changeLang ());
+        }, [])
     
+      // const pages = ContentPages(lang);
+      useEffect ( () => {
+       dispatch (getPages (lang));
+     },[lang]);  
 
       let filledArray = new Array(10).fill(null).map(()=> ({'hello':'goodbye'}))
       console.log(filledArray)
@@ -256,7 +258,9 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                     <button type='submit' onClick={addToList}>
                       {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '13'){
+                          // if(item.id===76){
+                            if (item.sitepage_region_id ===7&&item.sitepage_type_id === 13){
+                              console.log('BUTTON',item)
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )

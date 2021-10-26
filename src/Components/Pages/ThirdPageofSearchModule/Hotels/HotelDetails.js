@@ -5,10 +5,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useIntl} from 'react-intl'
 import {ValidateQuery} from '../../Helpers/helper'
 import {Star} from '../../../Library/Icons/star'
-import { getHotelContent, getHotelSearch } from '../../../../Redux/actions';
+import { getHotelContent, getHotelSearch} from '../../../../Redux/actions';
 import {ContentBlock} from './ContentBlock'
 import {RatesBlock} from './RatesBlock/RatesBlock'
 import {InnerSearchBlock} from './InnerSearchBlock'
+import {getHotelCities} from '../../../../Redux/actions/hotelcities'
 
 import './HotelDetailsCSS.css' 
 
@@ -24,27 +25,47 @@ export const HotelDetails = () =>{
     const dispatch = useDispatch();
     const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
     const searchUpdate = useSelector(state=>state.hotelsearchdata.occupancy_search_data)
+    const citiesList = useSelector(state => state.hotelcities.hotel_cities)
 
     console.log('[OCCUPANCY]',searchUpdate)
 
 useEffect (() =>{
   dispatch(getHotelContent(search_data.hotel_id,locale))
-},[search_data.hotel_id])
+},[])
 
 useEffect(() =>{
     dispatch(getHotelSearch(search_data))
-})
+},[search_data])
 
-    console.log('[HOTEL_HOTEL_CONTENTS]', hotelcontents)
+  useEffect ( () => {
+    dispatch (getHotelCities(locale))
+  },[locale])
+
+    // console.log('[HOTEL_HOTEL_CONTENTS]', hotelcontents)
+    // console.log('CITIES', citiesList)
+
+    let filtered_hotel_name;
+    let filtered_city_name;
+    citiesList.forEach((hotel)=>{
+        if(parseInt(hotel.hotel_id) === parseInt(search_data.hotel_id)){
+            filtered_hotel_name = hotel.localized_hotel_name;
+            filtered_city_name = hotel.localized_city_name;
+        }
+      })      
+
+      console.log('NEWDATA',filtered_hotel_name, filtered_city_name)
 
     return (
         <div className='HotelDetailsWrapper'>
 
-            <h2>{search_data.hotel_name.replace('%20',' ')} in {search_data.title}</h2>
+            <h2>{filtered_hotel_name.replace('%20',' ')} , {filtered_city_name}</h2>
 
                 <ContentBlock 
                     hotelcontents={hotelcontents}
-                    search_data={search_data}/>
+                    search_data={search_data}
+                    localized_hotel_name={filtered_hotel_name}
+                    localized_city_name={filtered_city_name}
+                    />
 
                     <h3 style={{fontFamily: 'Arial',
                         color:'#102D69',

@@ -81,3 +81,6 @@ export const GET_LOCALE_ERR = "GET_LOCALE_ERR";
 export const GET_LANG_REQ = "GET_LANG_REQ";
 export const GET_LANG_RES = "GET_LANG_RES";
 export const GET_LANG_ERR = "GET_LANG_ERR";
+export const GET_HOTEL_CITIES_REQ = "GET_HOTEL_CITIES_REQ";
+export const GET_HOTEL_CITIES_RES = "GET_HOTEL_CITIES_RES";
+export const GET_HOTEL_CITIES_ERR = "GET_HOTEL_CITIES_ERR";

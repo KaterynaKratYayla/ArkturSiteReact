@@ -7,7 +7,7 @@ import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
 import './HotelDetailsCSS.css'
 
-export const ContentBlock = ({hotelcontents,search_data}) =>{
+export const ContentBlock = ({hotelcontents,search_data,localized_hotel_name,localized_city_name}) =>{
    
   console.log('[HOTELCONTENTS]', hotelcontents)
 const [photoHeight, setPhotoHeight] = useState('55vh')
@@ -35,7 +35,7 @@ console.log('WIDTH',width)
                               <div style={{fontFamily:'Arial',
                                             color: 'blue'}}>
                                 <span style={{fontWeight:'bold'}}>
-                                              {search_data.title.toUpperCase()}
+                                              {localized_city_name.toUpperCase()}
                                 </span> - {trip[key].address}
                               </div>
                            

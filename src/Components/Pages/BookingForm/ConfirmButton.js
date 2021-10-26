@@ -22,7 +22,7 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
             onClick={AddContacts}>
                     {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '17'){
+                          if(item.sitepage_region_id === 7&&item.sitepage_type_id === 17){
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )

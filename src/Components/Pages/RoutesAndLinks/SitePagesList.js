@@ -16,7 +16,7 @@ import { locales } from 'moment';
 
 
 export const SitePagesList = ({sitepage_type}) =>{
-    const {locale} = useIntl();
+    const {locale,messages} = useIntl();
 
     const dispatch=useDispatch();
 	const lang = useSelector(state=>state.locale.locale)
@@ -33,9 +33,9 @@ export const SitePagesList = ({sitepage_type}) =>{
           <>
             <ul>
               {
-                  pages.length>0?pages.map((page)=>{
+                  messages.length>0?messages.map((page)=>{
                       console.log('PAGE',page)
-                   if(sitepage_type.sitepage_type_id === page.sitepage_type_id&&sitepage_type.sitepage_type_id!=='7'){
+                   if(sitepage_type.sitepage_type_id === page.sitepage_type_id&&sitepage_type.sitepage_type_id!==7){
                     if(page.name.includes('Hotels')===true){
                       return(
                           <li key={page.id}>

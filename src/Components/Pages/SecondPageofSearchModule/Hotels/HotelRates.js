@@ -15,8 +15,10 @@ import './HotelItemsCSS.css'
 
 moment.locale('uk')
 
-export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})=>{
+export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName,cityName})=>{
  
+  console.log('PROPS_PROPS',key,hotelTariff,hotelRooms,searchResults,hotelName,cityName)
+  
   // console.log('HOTEL_ROOMS_2',hotelTariff)
     const location = useLocation()
     const history = useHistory();
@@ -130,7 +132,7 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
                   innerText={
                     
                       messages&&messages.map((item)=>{
-                        if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '16'){
+                        if(item.sitepage_region_id === 7&&item.sitepage_type_id === 16){
                           return (
                              <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                           )
@@ -139,7 +141,9 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName})
                     }
                   
                   hotel={hotelTariff}
-                  hotelsearch={location}/>
+                  hotelsearch={location}
+                  cityName={cityName}
+                  hotelName={hotelName}/>
              {/* ): */}
                {/* <button  */}
             {/* //       class='onrequestButton'>
