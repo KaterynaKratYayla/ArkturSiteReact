@@ -12,6 +12,7 @@ import Login from "./Components/Library/Authorization/Login";
 import Register from "./Components/Library/Authorization/Register";
 import {IntlProvider} from 'react-intl'
 import {LocalizationWrapper} from './LocalizationWrapper'
+import {LangSelectionTool} from './Components/Library/Localization/LangSelectionTool'
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -50,7 +51,7 @@ function App() {
   return (
     <BrowserRouter history={history}>
       <PaymentServiceProvider value={paymentService} >
-          
+      {/* <LangSelectionTool/> */}
           <Switch>
               <Route path={`/:locale(${supportedLangs})`} component={LocalizationWrapper}/>
               <Redirect to={config.defaultLang}/>

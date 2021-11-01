@@ -1,4 +1,5 @@
 import React from "react";
+import {useIntl} from 'react-intl'
 import { LiqPayPay } from "react-liqpay";
 
 console.log('[file]', 'src/Components/Library/LiqPay/Example.js');
@@ -6,6 +7,9 @@ console.log('[file]', 'src/Components/Library/LiqPay/Example.js');
 export const Pay = ({service_id, smart_order_id}) => {
     console.log('[file]:export const Pay', 'src/Components/Library/LiqPay/Pay.js');
     console.log('server_url: ', process.env.REACT_APP_SERVER_URL);
+
+    //ВОТ ДОБАВИЛА ИНФО О ЛОКАЛИ . можешь включить параметр locale в запрос ниже
+    const {locale} = useIntl();
 
     const CryptoJS = require("crypto-js");
 

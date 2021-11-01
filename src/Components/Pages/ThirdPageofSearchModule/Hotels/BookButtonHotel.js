@@ -1,7 +1,7 @@
 import React, {useState, useEffect}  from 'react'
 import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
-import {useIntl} from 'react-intl'
+import {useIntl,FormattedMessage} from 'react-intl'
 // import {getPax} from "../../../Redux/actions/paxchoice"
 // import axios from "axios"
 // import {CartDemo} from '../Cart/Cart'
@@ -12,7 +12,7 @@ export const BookButtonHotel = (props) =>{
     
     const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy} = props;
 
-    const {locale} = useIntl();
+    const {locale,messages} = useIntl();
     
     const [booking,setBooking] = useState([]);
     const location = useLocation();
@@ -44,7 +44,15 @@ export const BookButtonHotel = (props) =>{
             <button class='AddToBasketButton'
                 onClick={AddToBasket}> 
                     {/* value={item1.smart_tariff_type_id} onClick={AddToBasket(Math.ceil(item3.sale*totalPax.counterAdults))}> */}
-                    Book Now
+                    {
+                        messages&&messages.map((item)=>{
+                          if(item.sitepage_region_id === 7&&item.sitepage_type_id === 14){
+                            return (
+                               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                            )
+                          }
+                        })
+                      }
             </button>
        
 

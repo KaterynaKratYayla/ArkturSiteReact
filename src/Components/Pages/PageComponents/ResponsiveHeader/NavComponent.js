@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import {useSelector, useDispatch} from 'react-redux'
 // import { Link } from 'react-scroll';
 import {Link, NavLink} from 'react-router-dom'
@@ -9,6 +9,7 @@ import {changeLang} from '../../../../Redux/actions/locale'
 import {FormattedMessage} from 'react-intl';
 import {localizeRoutePath} from '../../Helpers/localizeRoutePath'
 import { LocalizationNavLink } from '../../../Library/Localization/LocalizationNavLink';
+import {getPages} from '../../../../Redux/actions/pages'
 import {useIntl} from 'react-intl'
 
 import './header.css'
@@ -16,9 +17,11 @@ import './header.css'
 export const NavComponent = ({onClick, navClass, linkClassName,sitepage_type})=>{
   // console.log("NAV_sitepage_type",sitepage_type)
   
-  const {locale} = useIntl();
-
+  const {locale,messages} = useIntl();
+  
   const lang = useSelector(state=>state.locale.locale)
+
+  const pages = useSelector(state => state.pages.pages)
 
   const dispatch = useDispatch();
 
@@ -26,28 +29,27 @@ export const NavComponent = ({onClick, navClass, linkClassName,sitepage_type})=>
 		dispatch (changeLang ());
 	  }, [])
 
-  const pages = ContentPages(lang);
+  // const pages = ContentPages(lang);
+  useEffect ( () => {
+   dispatch (getPages (lang));
+ },[lang]);  
 
-  console.log('PAGES',pages)
+ 
+ console.log('PAGES',pages)
+
     return(
     <div className={navClass}>
 
         <ul class={linkClassName}>
               {
-                  pages.length>0?pages.map((page)=>{
+                  messages.length>0?messages.map((page)=>{
                    if(sitepage_type.sitepage_type_id === page.sitepage_type_id&&sitepage_type.sitepage_type_id!=='7'){
                       return(
                           <li key={page.id}>
                               <h2>
-                                          {/* <Link to={`/en/${page.title.map((item1)=>item1.text)}/?id=${page.id}`}
-                                                onClick={onClick}>
-                                                  <FormattedMessage id={page.title.map((item1)=>item1.text)}/>
-                                          </Link>  */}
-                                          <LocalizationNavLink to={`/sitepages/?name=${page.name},id=${page.id}`} onClick={onClick}>
-                                           
-                                          {/* <Link to={`/en/${page.name}/?id=${page.id}`} */}
-                                                <FormattedMessage id={page.title.map((item1)=>item1.text)}/>
-                                          </LocalizationNavLink> 
+                                 <LocalizationNavLink to={`/sitepages/?name=${page.name},id=${page.id}`} onClick={onClick}>
+                                    <FormattedMessage id={page.title.map((item1)=>item1.text)}/>
+                                 </LocalizationNavLink> 
                               </h2>
                           </li>
                       )

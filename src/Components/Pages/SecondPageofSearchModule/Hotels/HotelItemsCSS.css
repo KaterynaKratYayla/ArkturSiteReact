@@ -1,5 +1,6 @@
 .HotelDescriptionUl{
     /* width: 65vw; */
+    
     margin-left: auto;
     margin-right: auto;
     margin-top: 5vh;
@@ -74,11 +75,15 @@
   }
 
   .Hotel_ItemContent {
-    display: flex;
+     /* display: flex;
     flex-direction: row-reverse;
     justify-content: flex-end;
-    justify-items: start;
+    justify-items: start; */
     padding: 0;
+    display:grid;
+    grid-template-columns: 30vw 20vw;
+    grid-template-rows: 30% 70%;
+    /* border-top:2px solid blue; */
   }
 
   .Hotel_ItemContentSmallScreen {
@@ -96,7 +101,7 @@
     text-align: justify;
     color: #001959;
     padding-left: 1vw;
-    min-width: 15vw;
+    /* min-width: 15vw; */
   }
 
   .Li_HotelContentSmallScreen{

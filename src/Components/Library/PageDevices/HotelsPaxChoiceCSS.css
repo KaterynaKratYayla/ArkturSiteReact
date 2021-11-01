@@ -1,0 +1,259 @@
+.ChoiceBlockWrapper{
+    display: grid;
+    grid-template-columns:repeat(2,20vw);
+    /* margin-top: 30px; */
+}
+
+.Icons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    /* font-weight: bold; */
+    color: #102D69;
+    font-family: "Arial";
+    font-size: 17px;
+}
+
+
+/* .BookingDetails{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-width: 45%;
+    min-height: 60vh;
+    border: 2px solid rgb(206, 207, 209);
+    border-radius: 6px;
+    margin-top: 2vw;
+}
+
+.BookingDetails h3{
+    text-align: center;
+    color: #005AEB;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: 'Arial Narrow';
+}
+
+.BookingChoice{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 1vw;
+} */
+
+/* .ChoiceBlock{
+    display:flex;
+    flex-direction:column;
+    padding-left: 3vw;
+}
+
+
+.ChoiceBlock h4{
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    font-size: 90%;
+    color: rgb(77, 75, 75);
+} */
+
+.HotelPaxChoiceWrapper{  
+    /* padding: 3vw; */
+    /* width: 25vw; */
+    display: flex;
+    flex-direction: row;
+    height: 25px;
+    font-Family: Tahoma;
+    /* font-size: 16px; */
+}
+
+
+.HotelPaxChoiceWrapper h4{ 
+    color: rgb(75, 73, 73);
+    font-size:15px;
+    font-family: 'Tahoma';
+    cursor: pointer;
+    margin: auto;
+}
+
+/* .PaxChoice{
+    display: flex;
+    flex-direction: row;
+    cursor: pointer;
+} */
+
+/* .PaxChoice h4{
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    font-size: 17px;
+    color: rgb(77, 75, 75);
+} */
+
+.HotelPaxResult{ 
+    /* border: 1px solid #d9d9d9; */
+    border-radius: 2px;
+    height: 32px;
+    width: 100%;
+    padding: 3px 11px;
+    background-color: white;
+}
+
+.HotelPaxResultSmallScreen{ 
+    border-bottom: 0.5px solid grey;
+    border-radius: 2px;
+    height: 32px;
+    width: 90%;
+    padding: 3px 11px;
+    background-color: white;
+}
+/* 
+.HotelPaxResult h4{
+    color: rgb(16, 45, 105);
+    font-family: 'Arial Narrow';
+    font-size: 16px;
+    cursor: pointer;
+} */
+
+.DropdownButton{
+    margin-top: 0.5vh;
+    background-color: white;
+    border: 2px solid rgb(177, 174, 174);
+    border-radius: 5px;
+    min-width: 200px;
+}
+
+.DropdownItem{
+    /* min-width: 200px; */
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    color: #102D69;
+}
+
+.DropdownItem:hover{  
+    background-color: #d7ebfc;
+    text-decoration: none;
+}
+
+/* .DescriptionTourDetails{
+    /* max-width: 50%; */
+    /* margin-left: 4vw; */
+/* }  */
+
+.PopUpNotActive{ 
+    display : none;
+}
+
+.PopUpActive{ 
+    display: block;
+    position: absolute;
+    background-color: white;
+    margin-top:2vw;
+    z-index: 1000;
+    width: 23vw;
+    border: 1px solid #d9d9d9;
+    border-radius: 6px;
+    transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    padding: 15px;
+    /* overflow: hidden; */
+}
+
+.PopUpButton{
+    background: #009FE3;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    font-size: 19px;
+    width: 19vw;
+    height: 50px;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 6px;
+}
+
+/* .BookingChoiceInner{
+    display:flex;
+    flex-direction:column;
+}
+
+.DateSelection{
+    font-size: 14px;
+    color:blue;
+    font-weight: bold;
+} */
+
+.Minus{
+    color: white;
+    background-Color: #009FE3;
+    border: 0.8vw solid #009FE3;
+    border-radius: 5vw;
+    font-size: 15px;
+    font-weight: bolder;
+    width: 40px;
+    height: 40px
+}
+
+.Plus {
+   color: white;
+   background-Color: #009FE3;
+   border: 0.8vw solid #009FE3;
+   border-radius: 5vw;
+   font-size: 15px;
+   font-weight: bolder;
+   width: 40px;
+   height: 40px
+}
+.DownOutlined{ 
+    color: #d9d9d9;
+    font-size: 13px;
+    padding-left: 5px;
+}
+
+/* .RadioWrapper{
+    margin-top: 20px;
+} */
+
+/* .RadioWrapper h5{
+    color: blue;
+    font-size: 19px;
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    min-width: 35vw;
+    margin-bottom: 15px;
+}
+
+.Radio{
+    margin-top: 20px;
+    min-width:35vw; 
+    display:flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.WrapperAddToBasket{
+    min-width:35vw;
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+}
+
+.WrapperAddToBasket h4{
+    width: 30vw;
+    height: 25px;
+    text-align: left;
+    margin-top: 25px;
+    margin-bottom: 8px;
+}
+
+.AddToBasketButton{
+    background: #009FE3;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 19px;
+    width: 8vw;
+    height: 40px;
+    text-align: center;
+    padding-bottom: 5px;
+    margin-top: 25px;
+    margin-bottom: 8px;   
+} */

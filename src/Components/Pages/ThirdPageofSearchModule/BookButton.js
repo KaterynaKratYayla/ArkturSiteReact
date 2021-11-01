@@ -1,7 +1,7 @@
 import React, {useState, useEffect}  from 'react'
 import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
-import {useIntl} from 'react-intl'
+import {useIntl,FormattedMessage} from 'react-intl'
 
 import {getPax} from "../../../Redux/actions/paxchoice"
 import axios from "axios"
@@ -13,7 +13,7 @@ import './TourDetailsCSS.css'
 export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoice,tour_room,hotel_id,tariff}) =>{
     
     // console.log("TARIFF",tariff[0],tour_room)
-    const {locale} = useIntl();
+    const {locale,messages} = useIntl();
     
     const [booking,setBooking] = useState([])
     const [rateTotal, setrateTotal] = useState()
@@ -81,7 +81,17 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
                                                       {'Cost Includes: ' + item.room_name + ' ' + item3.sale + 'UAH tour per person' + ' x ' + totalPax.counterAdults + ' adults'}
                                     </span>
                                 </div>
-                               <button type='submit' class='AddToCartTour' value={item1.smart_tariff_type_id} onClick={AddToBasket(Math.ceil(item3.sale*totalPax.counterAdults))}>Book Now</button>
+                               <button type='submit' class='AddToCartTour' value={item1.smart_tariff_type_id} onClick={AddToBasket(Math.ceil(item3.sale*totalPax.counterAdults))}>
+                                   {
+                                    messages&&messages.map((item)=>{
+                                        if(item.sitepage_region_id === 7&&item.sitepage_type_id === 14){
+                                            return (
+                                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                        )
+                                     }
+                                    })
+                                }
+                             </button>
                             </div>
                         )
                        }

@@ -84,7 +84,7 @@ a.active {
 .nav_big{
     display: flex;
     flex-direction: row;
-    justify-content: flex-start; 
+    justify-content: space-between; 
 }
 
 .middleMenuSmallScreen{
@@ -147,6 +147,11 @@ a.active {
     display: flex;
     flex-direction: row;
     justify-content:flex-start;
+}
+
+.wrapper_nav_big_link{
+    margin-top:auto;
+    margin-bottom:auto;
 }
 
 .nav_big_link h2{

@@ -1,10 +1,12 @@
 import React ,{useEffect, useState } from 'react'
+import {useIntl, FormattedMessage} from 'react-intl'
 import {LoadingOutlined} from '@ant-design/icons'
 
 import './LoadingMessage.css'
 
 export const LoadingMessage = ({loadingMessageClass,itemWidth}) => {
 
+const {locale,messages} = useIntl();
 const [show, setShow] = useState(true)
 
 useEffect (()=>{
@@ -33,11 +35,27 @@ return(
                       <LoadingOutlined className='LoadingOutlinedIcon'/>
               </div>
               <div className='LoadingText'>
-                  The content is being loaded... Thanks for waiting.                               
+                 {
+                        messages&&messages.map((item)=>{
+                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 18){
+                            return (
+                               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                            )
+                          }
+                        })
+                      }                               
               </div>   
             </>     
           ):( <h3 className='LoadingText'>
-                  Sorry, your search returned no result
+                  {
+                        messages&&messages.map((item)=>{
+                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 26){
+                            return (
+                               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                            )
+                          }
+                        })
+                      }   
               </h3>)
         }
 

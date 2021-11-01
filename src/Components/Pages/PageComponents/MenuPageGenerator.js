@@ -3,6 +3,7 @@ import {useLocation,useHistory} from 'react-router-dom'
 import {Helmet} from 'react-helmet'
 import {useDispatch, useSelector} from 'react-redux'
 import ReactHtmlParser from 'react-html-parser'
+import {useIntl} from 'react-intl'
 import axios from "axios"
 
 import {HomePage } from './HomePage'
@@ -20,6 +21,8 @@ export const PureContent = () => {
 
   const location = useLocation(); 
 
+  const {locale} = useIntl();
+
   let search_data = ValidateQuery(location)
 
   const [width, height] = useWindowWidthAndHeight();
@@ -30,8 +33,8 @@ export const PureContent = () => {
     const dispatch = useDispatch();
 
     useEffect ( () => {
-      dispatch (getPurePage (search_data.id));
-    },[]);
+      dispatch (getPurePage (search_data.id,locale));
+    },[search_data.id]);
 
       console.log('[PURE_PAGE]', purePage)
 

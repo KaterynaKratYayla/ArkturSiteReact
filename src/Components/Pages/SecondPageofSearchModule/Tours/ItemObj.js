@@ -4,7 +4,7 @@ import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
 import { connect } from 'react-redux';
 import { Route, Switch, BrowserRouter, useHistory , useLocation} from "react-router-dom";
-import {useIntl} from 'react-intl'
+import {useIntl, FormattedMessage} from 'react-intl'
 
 // import {TourDetails} from './tourDetails';
 import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
@@ -22,7 +22,7 @@ moment.locale('uk')
 
 export const ItemObj = ({tariff, searchResults,tour_name}) => {
 
-  const {locale} = useIntl();
+  const {locale,messages} = useIntl();
   
   // console.log('CHECKING', tariff,searchResults,tour_name)
   const location = useLocation()
@@ -110,7 +110,16 @@ setDetailsList([outline]);
           type='submmit'
           className='availableButtonSecondPage'
           onClick={addToDetails}
-          >VIEW DETAILS
+          >
+                     {
+                        messages&&messages.map((item)=>{
+                          if(item.sitepage_region_id === 7&&item.sitepage_type_id === 33){
+                            return (
+                               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                            )
+                          }
+                        })
+                      }
       </button> 
       <div style={{fontSize: '10px', color:"grey", fontStyle:'italic'}}>{tariff.tour_id}</div> 
     </div>

@@ -38,7 +38,7 @@ import config from '../../../Redux/config'
 const supportedLangs = config.supportedLangs.join('|')
 
 export const RouteSwitcher = (props) =>{
-	console.log('ROUTESWITCHER_PROPS',props)
+	// console.log('ROUTESWITCHER_PROPS',props)
 	// const {locale} = useIntl();
 
 	const dispatch=useDispatch();
@@ -64,16 +64,15 @@ console.log(localizeRoutePath('/'))
 		<LocalizationSwitch>
 		
 		  {/* <Switch> */}
-		   {/* <LocalizationRoute path='/helmet' component={Helmet} />  */}
+		    <LocalizationRoute path='/helmet' component={Helmet} /> 
 			<LocalizationRoute exact path='/sign_in' component={Login} />
 			<LocalizationRoute exact path='/sign_up' component={Register} />
 			<LocalizationRoute exact path='/payment_result' component={PaymentResult} />
 			<LocalizationRoute exact path='/forgroups' component={FORGROUPS} /> 
-		{/* /* <Route component={NotFound} /> */ }
+			{/* /* <Route component={NotFound} /> */ }
 			<LocalizationRoute exact path='/' component={HomePage} /> 
 			{/* <Route exact path='/hotels_in_ukraine' component={SingleHotel}/> */ } 
 			{/* <Route exact path='/testcities' component={TestCities} />  */} 
-		
 			{/* <LocalizationRoute path='/testcities' component={TestCities} /> */}
 			 {/* <Route exact path='/search_results' component={GuestItem}/>  */ }
 			<LocalizationRoute exact path='/search_results_tours' component={GuestItem}/>
@@ -84,20 +83,20 @@ console.log(localizeRoutePath('/'))
 			<LocalizationRoute exact path='/toptours' component={TopToursDetails} />
 			<LocalizationRoute exact path='/offlineSummary' component={OfflineSummary}/>
 
- 					{
- 					pages&&pages.map((page)=>{
-						  if(page.name.includes('Hotels'.toLowerCase())){
- 							return(  								
-								<LocalizationRoute exact path={`/sitepages_hotels`} component={CityHotels}/> 
-							) 
-		 	  			}
-						   else {
-							return(
-								<LocalizationRoute exact path={`/sitepages`} component={PureContent}/>
-							 )
-							}
-				    })
-				} 
+ 			{
+ 			  pages&&pages.map((page)=>{
+			    if(page.name.includes('Hotels')===true){
+ 					return(  								
+						<LocalizationRoute exact path={`/sitepages_hotels`} component={CityHotels}/> 
+						) 
+		 			}
+			    else {
+					return(
+						<LocalizationRoute exact path={`/sitepages`} component={PureContent}/>
+						 )
+					}
+			    })
+			} 
 			
 		 </LocalizationSwitch> 
 	  </>   

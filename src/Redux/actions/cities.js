@@ -63,4 +63,4 @@ export const getGeo = () => ( dispatch) => {
                 dispatch({ type: GET_GENERAL_GEO_ERR, error: err });
             })
         }
-    
+  

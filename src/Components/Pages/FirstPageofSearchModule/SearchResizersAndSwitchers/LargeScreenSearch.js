@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 // import { useHistory } from "react-router-dom";
 // import {useDispatch, useSelector} from 'react-redux';
 import moment from 'moment';
+import {useIntl, FormattedMessage} from 'react-intl';
 
 import {ToursAutocomplete} from '../ToursAutocompleteBlock/ToursAutocomplete'
 import {HotelsAutocomplete} from '../HotelsAutocompleteBlock/HotelsAutocomplete'
@@ -22,6 +23,7 @@ moment.locale('uk')
 
 export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
 
+  const {locale,messages} = useIntl();
   // const [list , setList] = useState([]);
   const [generalValue, setGeneralValue] = useState('');
   const [align, setAlign] = useState('HOTELS'); 
@@ -46,8 +48,31 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
     <div class='largeScreenSearch'>
       <div>
         <Switcher name={'align'} changeHandler={toggler} active={align} switcherWidth={`${width*0.2}px`}>
-          <SwitcherItem value='HOTELS'><Hotels/><h4> Hotels</h4></SwitcherItem>
-          <SwitcherItem value='TOURS'><Tours/><h4>Tours</h4></SwitcherItem>
+
+          <SwitcherItem value='HOTELS'><Hotels/><h4> 
+            {
+              messages&&messages.map((item)=>{
+               if(item.sitepage_region_id === 5&&item.sitepage_type_id === 34){
+                  return (
+                    <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                    )
+                   }
+                })
+             }
+             </h4>
+            </SwitcherItem>
+          <SwitcherItem value='TOURS'><Tours/><h4>
+            {
+              messages&&messages.map((item)=>{
+               if(item.sitepage_region_id === 5&&item.sitepage_type_id === 35){
+                  return (
+                    <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                    )
+                   }
+                })
+             }
+             </h4>
+            </SwitcherItem>
         </Switcher>  
       </div>
 

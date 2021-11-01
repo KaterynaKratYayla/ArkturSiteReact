@@ -1,26 +1,26 @@
 import React, {useState, useEffect, useCallback}  from 'react'
 // import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
-import {getPax} from "../../../../Redux/actions/paxchoice"
-import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+import {getPax} from "../../../Redux/actions/paxchoice"
+import {useWindowWidthAndHeight} from '../../Pages/Helpers/WindowResizeHook'
 
 import {PlusOutlined, MinusOutlined, DownOutlined} from '@ant-design/icons'
-import {Pax} from '../../../Library/Icons/pax.js'
+import {Pax} from '../Icons/pax.js'
 // import {RateChoiceBlock} from './RateChoiceBlock'
 
-import './HotelsAutocompleteCSS.css'
+import './HotelsPaxChoiceCSS.css'
 import 'antd/dist/antd.css';
 
-export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
+export const HotelsPaxChoice =({MakeVisible, paxListOpen,rooms,adults,children}) =>{
 
-  const totalPaxRedux = useSelector(state => state.paxchoice.pax)
+  const totalPaxRedux = useSelector(state => state.paxchoice.pax_inner_search)
   console.log('totalPaxRedux',totalPaxRedux)
 
 //   const [paxAmountNew, setPaxAmountNew] = useState([])
-  const [counterAdults, setCounterAdults] = useState(2)
-  const [counterChild, setCounterChild] = useState(0)
+  const [counterAdults, setCounterAdults] = useState(parseInt(adults))
+  const [counterChild, setCounterChild] = useState(parseInt(children))
   // const [counterInfant, setCounterInfant] = useState(0)
-  const [counterRooms, setCounterRooms] = useState(1)
+  const [counterRooms, setCounterRooms] = useState(parseInt(rooms))
 //   const [total, setTotal] = useState({counterAdults,counterChild,counterInfant})
 
  const dispatch = useDispatch();
@@ -104,7 +104,8 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
   }
    
      return(
-        <div style={{marginTop:'0.8vw'}}>
+        // <div style={{marginTop:'0.8vw'}}>
+        <div>
             <div class='HotelPaxChoiceWrapper' style={{width:`${width >=1000? null: width*0.8}px`}} >
                 <div class={`${width >= 1000? 'HotelPaxResult' : 'HotelPaxResultSmallScreen'}`} style={{width:`${width >=1000? null: width*0.8}px`}} onClick={MakeVisible}>
                   <h4 style={{display:'flex',flexDirection:'row',justifyContent:'center'}} onClick={TotalPax}>
