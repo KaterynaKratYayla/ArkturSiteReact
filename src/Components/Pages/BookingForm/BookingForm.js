@@ -1,6 +1,7 @@
 // import { Divider } from 'antd'
 import React from 'react'
 import {useHistory , useLocation} from "react-router-dom"
+import {useIntl, FormattedMessage} from 'react-intl'
 import moment from 'moment';
 
 import {ValidateQuery} from '../Helpers/helper'
@@ -22,6 +23,7 @@ export const BookingForm = (props) =>{
     let search_data = ValidateQuery(location)
     console.log('GUEST ITEM LOCATION', process.env.REACT_APP_PRIVATE_KEY)
   
+    const {locale, messages} = useIntl();
     const [width, height] = useWindowWidthAndHeight();
 
     const CryptoJS = require("crypto-js");
@@ -34,12 +36,23 @@ export const BookingForm = (props) =>{
     const canx_deadline_date=moment(search_data.start).subtract(7, 'days').calendar()
     console.log('DATE_DIFFERENCE',date_difference)
 
-
     return(
       <div class='FormWrapper'>
-        <h2>Secure booking — only takes 2 minutes!</h2>
+        <h2>
+          {
+          messages.map((item)=>{
+            if(item.sitepage_region_id === 6&&item.sitepage_type_id === 21){
+              return (
+               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+              )
+            }
+          })
+        }
+          {/* Secure booking — only takes 2 minutes! */}
+        </h2>
         <h3 class="HeadPolicies">
-            <span>{date_difference<7?("Your booking is for arrivals in less then 7 days. In case of cancellation, the fee will amount to 100% of the reservaton cost")
+            <span>{date_difference<7?(
+              "Your booking is for arrivals in less then 7 days. In case of cancellation, the fee will amount to 100% of the reservaton cost")
                   :(`Free cancellation before 12:00 pm on ${moment(canx_deadline_date).format('YYYY-MM-DD')} (E. Europe Standard Time).You can change or cancel this stay for a full refund if plans change. Because flexibility matters.`)}
             </span>
         </h3>

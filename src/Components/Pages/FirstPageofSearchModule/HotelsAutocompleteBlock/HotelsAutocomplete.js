@@ -65,6 +65,14 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       let filledArray = new Array(10).fill(null).map(()=> ({'hello':'goodbye'}))
       console.log(filledArray)
 
+      const placeholder_hotel = messages.map((item)=>{
+          if(item.sitepage_region_id === 8&&item.sitepage_type_id === 27){
+            return (
+               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+            )
+          }
+        })
+      
       // useEffect ( () => {
       //   dispatch (getPax ());
       // }, [])
@@ -180,9 +188,10 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                             }, 
                               
                           placeholder: 
+                          // `${placeholder_hotel}`,
                               'Please input country, city or hotel name' ,
                         
-                          }}
+                           }}
                            menuStyle={{
                                     fontFamily: 'Arial Narrow',
                                     fontWeight:'bold',
@@ -254,6 +263,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                      paxListOpen={paxListOpen}
                   />
                 </div>
+                
                 <div class='borderInnerWrapper2' style={{width:`${width*0.8/4}px`}}>
                     <button type='submit' onClick={addToList}>
                       {

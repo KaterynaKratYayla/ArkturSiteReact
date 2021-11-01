@@ -1,14 +1,8 @@
 import React, {useState,useEffect} from 'react'
+import {useIntl, FormattedMessage} from 'react-intl';
 import {GuestItem} from '../../SecondPageofSearchModule/Tours/GuestItem'
 import {HotelItems} from '../../SecondPageofSearchModule/Hotels/HotelItems'
 import {Switcher, SwitcherItem} from './Switcher'
-// import './SwitcherFront.css';
-// import moment from 'moment';
-// import Autocomplete from 'react-autocomplete'
-// import { useHistory } from "react-router-dom";
-// import {useDispatch, useSelector} from 'react-redux'
-// import {getGeo, getGeneralGeo} from "../../../../Redux/actions/cities"
-// import { DatePicker ,Space } from 'antd'
 import {HotelsAutocompleteSmallScreen} from '../HotelsAutocompleteBlock/HotelsAutocompleteSmallScreen'
 import {ToursAutocompleteSmallScreen} from '../ToursAutocompleteBlock/ToursAutocompleteSmallScreen'
 
@@ -24,6 +18,7 @@ export const SmallScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
   const [generalValue, setGeneralValue] = useState('');
   const [align, setAlign] = useState('HOTELS'); 
   const [generalList, setGeneralList] = useState([])
+  const {locale,messages} = useIntl();
 
   const [width, height] = useWindowWidthAndHeight();
 
@@ -43,8 +38,32 @@ export const SmallScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
     <div style={{width:`${width*0.9}px`,marginRight:'auto',marginLeft:'auto'}}>
       <div class='SwitcherSearchPannel'>
         <Switcher name={'align'} changeHandler={toggler} active={align} switcherWidth={`${width*0.9}px`}>
-          <SwitcherItem value='HOTELS'><Hotels/> Hotels</SwitcherItem>
-          <SwitcherItem value='TOURS'><Tours/> Tours</SwitcherItem>
+          {/* <SwitcherItem value='HOTELS'><Hotels/> Hotels</SwitcherItem>
+          <SwitcherItem value='TOURS'><Tours/> Tours</SwitcherItem> */}
+             <SwitcherItem value='HOTELS'><Hotels/><h4> 
+            {
+              messages&&messages.map((item)=>{
+               if(item.sitepage_region_id === 5&&item.sitepage_type_id === 34){
+                  return (
+                    <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                    )
+                   }
+                })
+             }
+             </h4>
+            </SwitcherItem>
+          <SwitcherItem value='TOURS'><Tours/><h4>
+            {
+              messages&&messages.map((item)=>{
+               if(item.sitepage_region_id === 5&&item.sitepage_type_id === 35){
+                  return (
+                    <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                    )
+                   }
+                })
+             }
+             </h4>
+            </SwitcherItem>
         </Switcher>  
       </div>
 

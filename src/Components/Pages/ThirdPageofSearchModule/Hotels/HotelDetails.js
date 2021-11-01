@@ -58,13 +58,13 @@ useEffect(() =>{
     return (
         <div className='HotelDetailsWrapper'>
 
-            <h2>{filtered_hotel_name.replace('%20',' ')} , {filtered_city_name}</h2>
+            <h2>{filtered_hotel_name} , {filtered_city_name}</h2>
 
                 <ContentBlock 
                     hotelcontents={hotelcontents}
                     search_data={search_data}
-                    localized_hotel_name={filtered_hotel_name}
-                    localized_city_name={filtered_city_name}
+                    // localized_hotel_name={filtered_hotel_name}
+                    // localized_city_name={filtered_city_name}
                     />
 
                     <h3 style={{fontFamily: 'Arial',
@@ -88,9 +88,9 @@ useEffect(() =>{
                         </button>
                     </h3> */}
 
-                <RatesBlock
+                {/* <RatesBlock
                     search_data={search_data}
-                />    
+                />     */}
 
         </div>
     )

@@ -35,8 +35,8 @@ console.log('WIDTH',width)
                               <div style={{fontFamily:'Arial',
                                             color: 'blue'}}>
                                 <span style={{fontWeight:'bold'}}>
-                                              {localized_city_name.toUpperCase()}
-                                </span> - {trip[key].address}
+                                              Hotel Address : 
+                                </span> {trip[key].address}
                               </div>
                            
                       </div>
