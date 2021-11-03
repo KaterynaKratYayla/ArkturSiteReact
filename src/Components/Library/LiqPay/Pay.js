@@ -6,7 +6,7 @@ console.log('[file]', 'src/Components/Library/LiqPay/Example.js');
 
 export const Pay = ({service_id, smart_order_id}) => {
     console.log('[file]:export const Pay', 'src/Components/Library/LiqPay/Pay.js');
-    console.log('server_url: ', process.env.REACT_APP_SERVER_URL);
+    console.log('server_url: ', process.env.REACT_APP_URL);
 
     //ВОТ ДОБАВИЛА ИНФО О ЛОКАЛИ . можешь включить параметр locale в запрос ниже
     const {locale} = useIntl();
@@ -72,7 +72,7 @@ export const Pay = ({service_id, smart_order_id}) => {
                               Payment for product`}*/
                 // TODO: send booking_entity_id
                 orderId={service_id}
-                result_url={process.env.REACT_APP_URL}
+                result_url={`${process.env.REACT_APP_URL}${locale}/payment_result`}
                 server_url={process.env.REACT_APP_SERVER_URL}
                 product_description="Online courses"
                 product_description_my="Online courses my"

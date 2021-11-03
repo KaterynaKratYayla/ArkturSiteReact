@@ -159,3 +159,6 @@
     font-weight: bold;
   }
 
+.contentLoadingWheel{
+  height: 3vw;
+}

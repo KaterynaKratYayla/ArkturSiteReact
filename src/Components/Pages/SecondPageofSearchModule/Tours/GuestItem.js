@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 // import {history} from '../../Front Page/History'
 import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
+import {useIntl, FormattedMessage} from 'react-intl'
 import {getPosts} from "../../../../Redux/actions/list"
 import { connect } from 'react-redux';
 import { useLocation, Route, Switch, BrowserRouter, useHistory } from "react-router-dom";
@@ -27,6 +28,7 @@ moment.locale('uk')
 export const GuestItem = ({tour, selector, list}) =>{
 
 ///получаю с помощью своиства истории (history) из компонента search результаты поиска - массив с одним объектом.
+const {locale, messages} = useIntl();
 let location = useLocation();
 let history = useHistory();
 
@@ -50,7 +52,7 @@ console.log('[TEST]', test)
 
   ///получаю из смарта тур имя, тур айди, сити имя, сити айди
   useEffect ( () => {
-    dispatch (getGeneralGeo ());
+    dispatch (getGeneralGeo (locale));
   }, [])
 
   console.log('[GENERAL_GEO] , ' , generalGeo)///получаю из смарта тур имя, тур айди, сити имя, сити айди
@@ -62,10 +64,14 @@ console.log('[TEST]', test)
   ///иначе возвращается сити айди из классификатора contracts, равное айди из поиска
 
   const filtered = generalGeo.filter(function(item){
-      if(item.city_id.indexOf(search_data.id) === -1){
-        return item.tour_id === search_data.id
+      // if(item.city_id.indexOf(parseInt(search_data.id)) === -1){
+        if(item.city_id === parseInt(search_data.id)){
+        // return parseInt(item.tour_id) === parseInt(search_data.id)
+        return parseInt(item.city_id)
       }
-      return item.city_id === search_data.id
+      // return parseInt(item.city_id) === parseInt(search_data.id)
+      // return parseInt(item.city_id)
+      return parseInt(item.tour_id) === parseInt(search_data.id)
     })
 
     console.log('[FILTERED]', filtered)
@@ -112,31 +118,6 @@ console.log('[TEST]', test)
 
     }, []);
 
-/*useEffect ( () => {
-  axios.get('http://smartbooker/interface/xmlsubj'
-  // axios.get('http://smartbooker/interface/price'
-  // axios.get('http://smartbooker.biz/interface/price'
-  // axios.get('https://hotels-ua.biz/interface/price'
-  , {
-
-  params:{
-    city_id: search_data.city_id,
-    date: currentMonth === search_data.date ? today : (search_data.date + '-01'),
-    window: 30,
-    tour_id: filtered_tour_id.length === 1? filtered_tour_id[0] : null ///если в ответ при поиске пришёл массив из более 1 айди тура (что может быть при поиске клиентом по городу, а не по туру), то, так как Смарт не принимает массив, данный параметр при передаче данных игнорируется (равен null). Иначе этот параметр в одном экземпляре и он тогда передаётся в Смарт и участвует в фильтрации
-      }
-    }
-  )
-    .then( res => {
-      setRate(res.data)
-      console.log('[SET_RATE]' , res.data)
-  })
-  .catch( error => {
-    setRate(undefined)
-    console.log( '[axios error] : ' , error)
-     });
- }, []);*/
-
  console.log('[search_data] : ' , search_data)
  console.log('[SET_RATE] : ' , rate)
 
@@ -153,7 +134,17 @@ console.log('[TEST]', test)
                   color:'#003057',
                   fontFamily:'Arial',
                   fontSize:'30px',
-                  fontWeight:'bold'}}>Search Results</h3>
+                  fontWeight:'bold'}}>
+                     {
+                        messages&&messages.map((item)=>{
+                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 25){
+                            return (
+                               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                            )
+                          }
+                        })
+                      } 
+                  </h3>
             </div>
 
               <div>
@@ -175,47 +166,57 @@ console.log('[TEST]', test)
                         filtered.length > 0  && filtered? (filtered.map((tour) => {
                           return (
                             <li key={tour.tour_id} className='descriptionLi'>
-                                <h3 style={{fontSize:'27px',
+                                {/* <h3 style={{fontSize:'27px',
                                              color: '#001959'}}>
                                                     {tour.tour_name}
-                                </h3>
+                                </h3> */}
 
-                                 <div class={`${width>1000?'TourDescriptionContent':'TourDescriptionContentSmallScreen'}`}>
-                                 {
+                                 {/* <div class={`${width>1000?'TourDescriptionContent':'TourDescriptionContentSmallScreen'}`}>  */}
+                                 {/* {
                                    <ItemContent
                                       tour = {tour}
                                    />
-                                 }
+                                 }  */}
 
                                  {
                                   rate? (rate.map((tariff) => {
-                                   if(tour.tour_id === tariff.tour_id){
+                                   if(parseInt(tour.tour_id) === parseInt(tariff.tour_id)){
                                     return (
+                                      <>
+                                      <h3 style={{fontSize:'27px',
+                                             color: '#001959'}}>
+                                                    {tour.tour_name}
+                                </h3>
+                                <div class={`${width>1000?'TourDescriptionContent':'TourDescriptionContentSmallScreen'}`}> 
+                                        <ItemContent
+                                           tour = {tour}
+                                        />
+                                      
                                     <ItemObj
-                                       key={tariff.tour_id}
+                                       key={parseInt(tariff.tour_id)}
                                        tariff = {tariff}
                                        searchResults = {search_data}
                                        history={history}
                                        tour_name={tour.tour_name}
                                      />
+                                     </div>
+                                     </>
                                     )
                                   }
-                                 }
-                                  )
-                                ):
+                                 })):
                                 (<button className="onrequestButton">Sold out</button>)
-                              }
-                              </div>
+                               }
+                              {/* </div> */}
                               </li>
                            )
-                          })) : (
+                          })
+                          ) : (
                        <div className='noResultSearch'>
                           Your
                            Search returned no results. Please change your parameters and try once again.
                       </div> )
                   }
               </>
-              {/* <hr /> */}
            </ul>
             )
            }
