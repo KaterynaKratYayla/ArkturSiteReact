@@ -22,15 +22,10 @@ export const ItemContent = ({tour})=>{
   const {locale} = useIntl();
 
   const [result, setResult] = useState('')
-  // const [id, setId] = useState([])
   const [width, height] = useWindowWidthAndHeight()
-// const contents = useSelector(state => state.content.content)
-// const dispatch = useDispatch();
-
-// console.log('[CONTENTS]', contents )
 
   useEffect ( () => {
-    axios.get(`https://hotels-ua.biz/interface/content?id=${tour.tour_id}&language=${locale === 'uk'? 'ua' :locale}`)
+    axios.get(`https://hotels-ua.biz/interface/content?id=${tour.tour_id}&language=${locale}`)
       .then( res => {
         setResult(res.data)
         })
@@ -47,9 +42,11 @@ export const ItemContent = ({tour})=>{
   //     dispatch (getContent (tour.tour_id));
   //   },[]);
 
-  //   if( !contents ){
-  //     return <div> Loading...</div>
-  // }
+    if( !result ){
+      return <div> <LoadingMessage noTextMessage={true}
+                                   loadingMessageClass={'contentLoadingWheel'}/>
+              </div>
+  }
 
    return(
      
@@ -92,31 +89,13 @@ export const ItemContent = ({tour})=>{
          }
        )) : (
         // <div>{tour.name}{tour.duration}</div> 
-        <LoadingMessage/>
+        <div>Content is not available</div>
        )
      }
       </>
      </ul>
-    {/* <div> */}
-      {/* HI CONTENT */}
+
     </div>
    )
 }
   
-// const mapStateToProps = (state, ownProps) => {
-//   const {content,loaded,errors} = state.content;
-
-//   return({
-//     data: state.content.content,
-//     loaded: state.content.loaded,
-//     errors: state.content.errors
-//   })
-// }
-
-// const mapDispatchToProps = (dispatch, ownProps) => ({
-//   getContent: () =>{
-//     displatch (getContent());
-//   }
-// })
-
-// export default connect (mapStateToProps, mapDispatchToProps)

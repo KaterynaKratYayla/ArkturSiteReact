@@ -4,7 +4,7 @@ import {LoadingOutlined} from '@ant-design/icons'
 
 import './LoadingMessage.css'
 
-export const LoadingMessage = ({loadingMessageClass,itemWidth}) => {
+export const LoadingMessage = ({loadingMessageClass,itemWidth,noTextMessage}) => {
 
 const {locale,messages} = useIntl();
 const [show, setShow] = useState(true)
@@ -36,6 +36,7 @@ return(
               </div>
               <div className='LoadingText'>
                  {
+                   !noTextMessage?(
                         messages&&messages.map((item)=>{
                           if(item.sitepage_region_id === 6&&item.sitepage_type_id === 18){
                             return (
@@ -43,11 +44,13 @@ return(
                             )
                           }
                         })
+                        ):null
                       }                               
               </div>   
             </>     
           ):( <h3 className='LoadingText'>
                   {
+                    !noTextMessage?(
                         messages&&messages.map((item)=>{
                           if(item.sitepage_region_id === 6&&item.sitepage_type_id === 26){
                             return (
@@ -55,7 +58,8 @@ return(
                             )
                           }
                         })
-                      }   
+                       ):null
+                    }   
               </h3>)
         }
 
