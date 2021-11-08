@@ -7,7 +7,7 @@ import { withPaymentService } from "../../HOC";
 import { compose } from "../../../Redux/helpers";
 import { CartDetails } from "../BookingForm/CartDetails";
 
-// import './CartDetailsSummary.css'
+import './CartDetailsSummary.css'
 
 class PaymentResult extends Component {
 
@@ -20,13 +20,13 @@ class PaymentResult extends Component {
         if (this.props.paymentInfo === null) {
             return (
                 <div>
-                    <div>Hi!</div>
+                    <div>Please wait...</div>
                 </div>
             );
         } else {
             console.log("work_with_payment, paymentInfo: ", this.props.paymentInfo);
             const orderId = this.props.paymentInfo[0].data.smart_service_id;
-            const isSuccess = this.props.paymentInfo[0].success ? "All is good" : "Please wait..";
+            const isSuccess = this.props.paymentInfo[0].success ? "Your reservation is confirmed and prepaid" : "Please wait..";
             const openInNewTab = (url) => {
                 const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
                 if (newWindow) newWindow.opener = null
@@ -36,14 +36,14 @@ class PaymentResult extends Component {
             const bytes  = CryptoJS.AES.decrypt(searchDataEncrypted, process.env.REACT_APP_PRIVATE_KEY);
             const searchData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
             return (
-                <div>
-                    <CartDetails cart={searchData}/>
-                    <div style={{display: 'flex', justifyContent: 'center'}}>
-                        <div style={{marginRight: '5px'}}>Hi!</div>
-                        <div style={{marginRight: '5px'}}>Your order id is {orderId}.</div>
-                        <div style={{marginRight: '5px'}}>{isSuccess}.</div>
-                        <div style={{marginRight: '5px'}}>Now you can</div>
-                        <button style={{
+                <div style={{marginLeft:'auto', marginRight:'auto', marginTop:'2vh', marginBottom:'3vh'}}>
+
+                     <div class='VoucherText'>
+                        <h4 style={{marginRight: '5px'}}>Thank you.</h4>
+                        <h4 style={{marginRight: '5px'}}>{isSuccess}.</h4>
+                        <h4 style={{marginRight: '5px'}}> Your booking ID is {orderId}.</h4>
+                        <h4 style={{marginRight: '5px'}}>Click here to </h4>
+                       <button style={{
                             backgroundColor: '#337ab7',
                             color: '#fff',
                             borderColor: '#2e6da4',
@@ -57,11 +57,36 @@ class PaymentResult extends Component {
                                 // openInNewTab(this.props.voucherData.data.voucherUrl);
                                 openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
                             }}
-                        >Get voucher</button>
-                    </div>
-                    {/*<div>{this.props.voucherData.data.voucherUrl}</div>*/}
+                          >Get voucher
+                        </button>
+                   </div>
+
+                    <CartDetails cart={searchData}
+                                 cartClass={'CartDetailsSummary'}/>
+                    {/* <div class='VoucherText'>
+                        <h4 style={{marginRight: '5px'}}>Thank you.</h4>
+                        <h4 style={{marginRight: '5px'}}>{isSuccess}.</h4>
+                        <h4 style={{marginRight: '5px'}}> Your booking ID is {orderId}.</h4>
+                        <h4 style={{marginRight: '5px'}}>Click here to </h4> */}
+                        {/* <button style={{
+                            backgroundColor: '#337ab7',
+                            color: '#fff',
+                            borderColor: '#2e6da4',
+                            border: '1px solid transparent',
+                            borderRadius: '4px',
+                            padding: '6px 12px',
+                            cursor: 'pointer'
+                        }}
+                            onClick={() => {
+                                // this.props.fetchPaymentVoucher(orderId);
+                                // openInNewTab(this.props.voucherData.data.voucherUrl);
+                                openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
+                            }}
+                        >Get voucher</button> */}
+                    {/* </div> */}
+                    {/* /*<div>{this.props.voucherData.data.voucherUrl}</div>*/ }
                 </div>
-            );
+            )
             /*if (this.props.voucherData !== null) {
                 return (
                     <div>

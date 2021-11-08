@@ -74,7 +74,7 @@ useEffect(() =>{
                         marginTop: '3vh',
                         }}>Availability</h3>
 
-                    <InnerSearchBlock search_data={search_data}/>
+                    <InnerSearchBlock search_data={search_data} hotelName={filtered_hotel_name}/>
                     {/* <h3  class="SearchDetails">
                         <h4>Check-in date : <span>{search_data.start}</span></h4>
                         <h4>Check-out date : <span>{search_data.end}</span></h4>

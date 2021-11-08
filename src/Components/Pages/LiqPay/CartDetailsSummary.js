@@ -5,6 +5,7 @@ import axios from "axios"
 import {getContent} from '../../../Redux/actions/content'
 import {getHotelContent} from '../../../Redux/actions/hotelcontent'
 import {LoadingMessage} from '../../Library/PageDevices/LoadingMessage'
+import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 import ReactHtmlParser from 'react-html-parser'
 
 import './CartDetailsSummary.css'
@@ -14,6 +15,7 @@ export const CartDetailsSummary = ({cart}) => {
     console.log('CART', cart)
 
     const dispatch = useDispatch();
+    const [width, height] = useWindowWidthAndHeight();
 
      useEffect(()=>{
       dispatch(getHotelContent(cart.hotel_id))
@@ -27,7 +29,8 @@ export const CartDetailsSummary = ({cart}) => {
     const tourcontents = useSelector(state => state.content.content)
 
     return (
-        <div class='CartDetails'>
+        <div class={`${width>1000?'CartDetailsSummary':'CartDetailsSmallScreenSummary'}`}>
+          {/* <div style={{marginLeft:'auto',marginRight:'auto'}}> */}
             <div style={{display: 'grid'}}>
                 <div>
                     <h2 style={{
@@ -84,7 +87,15 @@ export const CartDetailsSummary = ({cart}) => {
                                                 : null}
                                         </div>
                                     </>)
-                            }) : (<LoadingMessage/>)
+                            }) : (<div
+                                style={{
+                                  position:'absolute', 
+                                        left: '40%',
+                                        transform: 'translate(0%, -50%)',
+                                        margin:'0'
+                                       }}
+                                   ><LoadingMessage noTextMessage={true}
+                                   loadingMessageClass={'contentLoadingWheel'}/></div>)
                         }
                     </div>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
@@ -95,10 +106,12 @@ export const CartDetailsSummary = ({cart}) => {
                                         <div style={{order: '0'}}>
                                             {item.content_name === "Image" ? (
                                                 <CartGallery photos={item}/>
-                                            ) : null}
+                                            ) : <div><LoadingMessage noTextMessage={true}
+                                                         loadingMessageClass={'contentLoadingWheel'}/>
+                                                </div>}
                                         </div>
                                     </>)
-                            }) : (<LoadingMessage/>)
+                            }) : (null)
                         }
                     </div>
                     <div style={{display: 'flex', flexDirection: 'column'}}>

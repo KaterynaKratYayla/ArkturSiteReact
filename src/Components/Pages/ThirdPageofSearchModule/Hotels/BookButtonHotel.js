@@ -2,6 +2,7 @@ import React, {useState, useEffect}  from 'react'
 import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {useIntl,FormattedMessage} from 'react-intl'
+import { getHotelContent, getHotelSearch} from '../../../../Redux/actions';
 // import {getPax} from "../../../Redux/actions/paxchoice"
 // import axios from "axios"
 // import {CartDemo} from '../Cart/Cart'
@@ -11,7 +12,6 @@ import './BookButtonHotelCSS.css'
 export const BookButtonHotel = (props) =>{
     
     const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy} = props;
-
     const {locale,messages} = useIntl();
     
     const [booking,setBooking] = useState([]);
@@ -19,6 +19,20 @@ export const BookButtonHotel = (props) =>{
     const history = useHistory();
 
     const search_data = useSelector(state=>state.hotelsearchdata.hotel_search_data)
+    const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
+
+    const dispatch = useDispatch();
+
+    useEffect (() =>{
+      dispatch(getHotelContent(search_data.hotel_id,locale))
+    },[])
+
+    let hotel_name;
+    hotelcontents.forEach((item)=>{
+      if(item.content_name ==='Title')
+        hotel_name = item.text
+     }
+    )
 
     console.log('BOOKBUTTON', search_data)
  
@@ -32,7 +46,7 @@ export const BookButtonHotel = (props) =>{
             }
         setBooking([newBooking])
 
-        const route_hotel_query_form = `?service_type_id=${parseInt(1)},start=${search_data.start},end=${search_data.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${search_data.hotel_id},adults=${occupancy},children=${search_data.children},htlName=${search_data.hotel_name},amount=${totalsum}`
+        const route_hotel_query_form = `?service_type_id=${parseInt(1)},start=${search_data.start},end=${search_data.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${search_data.hotel_id},adults=${occupancy},children=${search_data.children},htlName=${hotel_name},amount=${totalsum}`
         history.push(`/${locale}/booking_form/${route_hotel_query_form}`, [...booking, newBooking])
     }
 

@@ -3,6 +3,7 @@ import axios from '../helpers/public.axios';
 
 import { GET_HOTELS_REQ, GET_HOTELS_RES , GET_HOTELS_ERR } from '../constants';
 import { GET_GENERAL_HOTELS_REQ, GET_GENERAL_HOTELS_RES , GET_GENERAL_HOTELS_ERR } from '../constants';
+import {GET_HOTEL_NAME_RES,GET_HOTEL_NAME_REQ,GET_HOTEL_NAME_ERR} from '../constants';
 
 
 export const hotelsResponse = ( res ) => ({
@@ -63,4 +64,16 @@ export const getHotels = () => ( dispatch) => {
                 dispatch({ type: GET_GENERAL_HOTELS_ERR, error: err });
             })
         }
+
+        export const hotelNameResponse = ( res ) => ({
+            type: GET_HOTEL_NAME_RES,
+            payload: res
+        });
+        
+        export const getHotelName = (name) => ( dispatch, getState ) => {
+        
+            dispatch({ type: GET_HOTEL_NAME_REQ });
+            dispatch(hotelNameResponse(name))
+
+            }
     
