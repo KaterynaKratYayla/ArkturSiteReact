@@ -12,7 +12,7 @@ import ReactHtmlParser from 'react-html-parser'
 
 import './CartDetails.css'
 
-export const CartDetails = ({cart}) =>{
+export const CartDetails = ({cart,cartClass}) =>{
 
     console.log('CART', cart)
     const dispatch = useDispatch();
@@ -61,7 +61,7 @@ export const CartDetails = ({cart}) =>{
   
 
     return(
-        <div class={`${width>1000?'CartDetails':'CartDetailsSmallScreen'}`}>
+        <div class={`${cartClass?cartClass:(width>1000?'CartDetails':'CartDetailsSmallScreen')}`}>
             <div style={{display:'flex', flexDirection:'column'}}>
                 <h2 style={{color:'#003057',
                         fontSize:'24px',
@@ -110,7 +110,14 @@ export const CartDetails = ({cart}) =>{
                                :null}
                             </div>
                         </>)
-                    }):(<LoadingMessage/>)
+                    }):(<div
+                        style={{
+                          position:'absolute', 
+                                left: '40%',
+                                transform: 'translate(0%, -50%)',
+                                margin:'0'
+                               }}
+                           ><LoadingMessage loadingMessageClass='RateLoading'/></div>)
                 }
             </div>
            {/* <div>{cart.start}</div> */}

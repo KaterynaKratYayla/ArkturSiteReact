@@ -211,7 +211,7 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                  
                  <Space direction="vertical">
                     <RangePicker
-                        size={'large'}
+                        size={'middle'}
                         disabledDate={disabledDate}
                         ranges={{
                         Today: [moment(), moment()],

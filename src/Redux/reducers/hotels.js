@@ -1,5 +1,6 @@
 import { GET_HOTELS_REQ, GET_HOTELS_RES , GET_HOTELS_ERR } from '../constants';
 import { GET_GENERAL_HOTELS_REQ, GET_GENERAL_HOTELS_RES , GET_GENERAL_HOTELS_ERR } from '../constants';
+import {GET_HOTEL_NAME_REQ,GET_HOTEL_NAME_RES,GET_HOTEL_NAME_ERR} from '../constants';
 
 const initState = {
 		hotels: [],
@@ -9,6 +10,10 @@ const initState = {
 		general_hotels: [],
 		general_hotels_loaded: false,
 		general_hotels_errors: [],
+
+		hotel_name: '',
+		hotel_name_loaded: false,
+		hotel_name_errors: [],
 	}
 	
 	
@@ -53,6 +58,26 @@ const initState = {
 	                    ...state,
 	                    general_hotels_errors: [...state.errors, action.error ]
 	                })
+
+					
+					case GET_HOTEL_NAME_REQ:
+						return({
+							...state,
+							hotel_name_loaded: false
+						})
+			
+					case GET_HOTEL_NAME_RES:
+						return({
+							...state,
+							hotel_name_loaded: true,
+							hotel_name: action.payload
+						})
+						
+						case GET_HOTEL_NAME_ERR:
+							return({
+								...state,
+								hotel_name_errors: [...state.errors, action.error ]
+							})
 	
 	              
 	        default:

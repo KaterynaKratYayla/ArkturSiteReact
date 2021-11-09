@@ -13,7 +13,7 @@ import moment from 'moment';
 import 'antd/dist/antd.css';
 import './HotelDetailsCSS.css';
 
-export const InnerSearchBlock = ({search_data}) =>{
+export const InnerSearchBlock = ({search_data,hotelName}) =>{
 
     const {locale,messages} = useIntl();
 

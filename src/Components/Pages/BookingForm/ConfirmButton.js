@@ -31,7 +31,7 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                       }
        </button>
        {
-          clicked === true?(
+          clicked === true&&smart_order_id?(
               <>
                <OnlineSummary
                     name={name}
@@ -40,25 +40,19 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                     email={email}
                     app_service_id = {app_service_id}
                     />
-               </>     
-            
-            ):null
-       }
-       {
-        clicked === true?(
-            <>
-                {/*<button
-                    class='ActivePmnt'>
-                        Please proceed to PrivatBank terminal for payment
-                </button>*/}
-                <SaveReference customer_reference = {customer_reference} />
-                <Pay
+                    <SaveReference customer_reference = {customer_reference} />
+                   <Pay
                     service_id = {app_service_id}
                     smart_order_id = {smart_order_id}
                 />
-            </>
-            ):null
-      }
+               </>     
+            ):(
+              clicked === true&&!smart_order_id?(
+                <OfflineSummary wait={2000}/>
+              ):null
+            )
+       }
+       
     </>  
   
  )

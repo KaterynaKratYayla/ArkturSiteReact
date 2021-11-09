@@ -13,6 +13,7 @@ import ArkturDMClogo from '../../Library/Images/ArkturDMClogo.svg'
 export const HomePage = () => {
     
     const {locale,messages} = useIntl();
+    console.log('server_url: ', process.env.REACT_APP_URL);
     
     const images = [
         "https://arktur.ua/sites/default/files/public/image/slider/Lavra_shutterstock_1545799133_small.jpg",

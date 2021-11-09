@@ -242,7 +242,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                  
                  <Space direction="vertical">
                     <RangePicker
-                        size={'large'}
+                        size={'middle'}
                         disabledDate={disabledDate}
                         // ranges={{
                         // Today: [moment(), moment()],
