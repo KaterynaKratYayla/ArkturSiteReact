@@ -5,12 +5,13 @@ import {useIntl, FormattedMessage} from 'react-intl'
 
 import {OnlineSummary} from './OnlineSummary'
 import {OfflineSummary} from './OfflineSummary'
+import {IncompleteSendEmail} from './IncompleteSendEmail'
 import { Pay } from '../../Library/LiqPay/Pay'
 import SaveReference from '../../Library/Notifications/SaveReference'
 
 import './ConfirmButton.css'
 
-export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_service_id, smart_order_id, customer_reference, clicked}) =>{
+export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_service_id, smart_order_id, customer_reference, clicked, cart}) =>{
 
     const {locale, messages} = useIntl();
 
@@ -45,15 +46,25 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                     service_id = {app_service_id}
                     smart_order_id = {smart_order_id}
                 />
-               </>     
+               </>
             ):(
               clicked === true&&!smart_order_id?(
+              <>
                 <OfflineSummary wait={2000}/>
+                <IncompleteSendEmail
+                    name={name}
+                    surname={surname}
+                    phone={phone}
+                    email={email}
+                    app_service_id = {app_service_id}
+                    cart={cart}
+                />
+                </>
               ):null
             )
        }
-       
-    </>  
-  
+
+    </>
+
  )
 }

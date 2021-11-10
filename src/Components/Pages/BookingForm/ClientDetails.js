@@ -83,9 +83,9 @@ export const ClientDetails = ({cart}) => {
 
     }, []);
 
-    
+
     let app_service_id = new Object();
-    
+
     if(sendCart){
         for(let key in sendCart.data){
             app_service_id = sendCart.data[key]
@@ -299,10 +299,11 @@ export const ClientDetails = ({cart}) => {
                 phone={phoneInput}
                 email={emailInput}
                 AddContacts = {AddContacts}
-                app_service_id = {app_service_id.service_id} 
+                app_service_id = {app_service_id.service_id}
                 smart_order_id ={app_service_id.booking_id}
                 customer_reference = {app_service_id.customer_reference}
                 clicked={clicked}
+                cart={cart}
                 />
 
         </form>
