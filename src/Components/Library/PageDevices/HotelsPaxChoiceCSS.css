@@ -146,9 +146,9 @@
     display: block;
     position: absolute;
     background-color: white;
-    margin-top:2vw;
+    margin-top:5vh;
     z-index: 1000;
-    width: 23vw;
+    /* width: 23vw; */
     border: 1px solid #d9d9d9;
     border-radius: 6px;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);

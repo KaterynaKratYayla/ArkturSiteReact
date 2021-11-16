@@ -3,6 +3,7 @@ import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {useIntl,FormattedMessage} from 'react-intl'
 import { getHotelContent, getHotelSearch} from '../../../../Redux/actions';
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 // import {getPax} from "../../../Redux/actions/paxchoice"
 // import axios from "axios"
 // import {CartDemo} from '../Cart/Cart'
@@ -13,6 +14,7 @@ export const BookButtonHotel = (props) =>{
     
     const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy} = props;
     const {locale,messages} = useIntl();
+    const [width, height] = useWindowWidthAndHeight()
     
     const [booking,setBooking] = useState([]);
     const location = useLocation();
@@ -55,7 +57,7 @@ export const BookButtonHotel = (props) =>{
         /* style={{display: 'flex', */
                 /* justifyContent: 'flex-end', */
                      /* alignItems: 'center'}}> */
-            <button class='AddToBasketButton'
+            <button class={width>=768? "AddToBasketButton": "AddToBasketButtonSmallScreen"}
                 onClick={AddToBasket}> 
                     {/* value={item1.smart_tariff_type_id} onClick={AddToBasket(Math.ceil(item3.sale*totalPax.counterAdults))}> */}
                     {

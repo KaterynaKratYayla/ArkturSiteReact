@@ -106,8 +106,8 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,rooms,adults,children})
      return(
         // <div style={{marginTop:'0.8vw'}}>
         <div>
-            <div class='HotelPaxChoiceWrapper' style={{width:`${width >=1000? null: width*0.8}px`}} >
-                <div class={`${width >= 1000? 'HotelPaxResult' : 'HotelPaxResultSmallScreen'}`} style={{width:`${width >=1000? null: width*0.8}px`}} onClick={MakeVisible}>
+            <div class='HotelPaxChoiceWrapper' style={{width:`${width >=1000? null:'100%'}`}} >
+                <div class={`${width >= 1000? 'HotelPaxResult' : 'HotelPaxResultSmallScreen'}`} style={{width:`${width >=1000? null: '100%'}`}} onClick={MakeVisible}>
                   <h4 style={{display:'flex',flexDirection:'row',justifyContent:'center'}} onClick={TotalPax}>
 
                      <Pax />
@@ -119,7 +119,7 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,rooms,adults,children})
 
                   </h4>
                 </div>
-                  <div class={paxListOpen === false? 'PopUpNotActive' : 'PopUpActive'} style={{width:`${width >=1000? null: width*0.8}px`}}>
+                  <div class={paxListOpen === false? 'PopUpNotActive' : 'PopUpActive'} style={{width:`${width >=1000? '23vw':'45%'}`}}>
                     <div style={{display: 'grid', 
                                  gridTemplateRows: 'repeat(3, 6vh)',
                                  rowGap: '10px'

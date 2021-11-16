@@ -87,7 +87,7 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
 
     return(
       <div>
-        <h3 class="SearchDetails">
+        <h3 class={`${width>768?"SearchDetails":"SearchDetailsSmallScreen"}`}>
             <h4><span>Check-in date : </span>
             {search_data.start==='null'?(
              <Space direction="vertical">
@@ -136,7 +136,7 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
             <h4>
                 <button 
                     type='submmit'
-                    className='availableButton'
+                    class={`${width>768?"availableButton":"availableButtonSmallScreen"}`}
                     onClick={changeSearchDetails}
                     >
                      {

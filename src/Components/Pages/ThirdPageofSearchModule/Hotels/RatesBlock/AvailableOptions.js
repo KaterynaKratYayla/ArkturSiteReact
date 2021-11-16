@@ -51,18 +51,20 @@ export const AvailableOptions = (props) =>{
                fontWeight:'bold',
                display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'}}>
+              alignItems: 'center',
+              backgroundColor:'white'}}>
                   {currency} {sum*selectedAvailability}
       </h5> 
 
       <h5 style={{display: 'flex',
               justifyContent: 'center',
-              alignItems: 'center'}}>
+              alignItems: 'center',
+              backgroundColor:'white'}}>
        <Select 
            defaultValue={selectedAvailability}
            onChange={SelectRooms}
            bordered={true}
-           size='large'> 
+           size='middle'> 
              <>
                {
                 empty_array&&empty_array.map((item)=>{
@@ -80,9 +82,10 @@ export const AvailableOptions = (props) =>{
       </Select>
      </h5>
     
-    <div style={{display: 'flex',
-                    justifyContent: 'flex-end',
-                    alignItems: 'center'}}>
+    <h5 style={{display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'middle',
+                    backgroundColor:'white'}}>
       <BookButtonHotel 
         selectedAvailability={selectedAvailability}
         room_id={room_id}
@@ -92,7 +95,7 @@ export const AvailableOptions = (props) =>{
         contract_id={contract_id}
         occupancy={occupancy}
       />
-      </div>
+      </h5>
   </>
  )
 }
