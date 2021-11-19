@@ -205,13 +205,14 @@ a.active {
 }
 
 .hamburger-btn{
-    width: 15%;
+    /* width: 15%; */
+    width:20vw;
     background-color:#DCE5EE;
     margin-top: 1vh;
     border: none;
     display:block;
     position: relative;
-    left:80%;
+    left:50%;
 }
 
 .MenuButtonIcon{

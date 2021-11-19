@@ -60,7 +60,8 @@ export const LargeScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
                                   return(
                                   <li className = 'Details'>
                                     <h5 className='RoomTypeColumn'>
-                                                {item.room_name === '0'? 'Regular' : item.room_name} {item.room_type_name} {item.room_id}
+                                                {item.room_name === '0'? 'Regular' : item.room_name} {item.room_type_name} 
+                                                {/* {item.room_id} */}
                                     </h5>                       
                                     <>
                                       {
