@@ -1,0 +1,28 @@
+{
+  "files": {
+    "main.css": "/static/css/main.893f677c.chunk.css",
+    "main.js": "/static/js/main.47c50f06.chunk.js",
+    "main.js.map": "/static/js/main.47c50f06.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.511cbf11.js",
+    "runtime-main.js.map": "/static/js/runtime-main.511cbf11.js.map",
+    "static/css/2.24069773.chunk.css": "/static/css/2.24069773.chunk.css",
+    "static/js/2.538fe16d.chunk.js": "/static/js/2.538fe16d.chunk.js",
+    "static/js/2.538fe16d.chunk.js.map": "/static/js/2.538fe16d.chunk.js.map",
+    "static/js/3.44434184.chunk.js": "/static/js/3.44434184.chunk.js",
+    "static/js/3.44434184.chunk.js.map": "/static/js/3.44434184.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/2.24069773.chunk.css.map": "/static/css/2.24069773.chunk.css.map",
+    "static/css/main.893f677c.chunk.css.map": "/static/css/main.893f677c.chunk.css.map",
+    "static/js/2.538fe16d.chunk.js.LICENSE.txt": "/static/js/2.538fe16d.chunk.js.LICENSE.txt",
+    "static/media/ArkturCollection.c58b58e3.jpg": "/static/media/ArkturCollection.c58b58e3.jpg",
+    "static/media/ArkturDMClogo.ef358c4d.svg": "/static/media/ArkturDMClogo.ef358c4d.svg",
+    "static/media/ArkturDMClogoICO.cb78f4da.ico": "/static/media/ArkturDMClogoICO.cb78f4da.ico"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.511cbf11.js",
+    "static/css/2.24069773.chunk.css",
+    "static/js/2.538fe16d.chunk.js",
+    "static/css/main.893f677c.chunk.css",
+    "static/js/main.47c50f06.chunk.js"
+  ]
+}
