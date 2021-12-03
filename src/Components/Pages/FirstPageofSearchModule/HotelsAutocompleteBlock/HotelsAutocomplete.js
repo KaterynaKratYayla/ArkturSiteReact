@@ -13,9 +13,9 @@ import {LocalizationNavLink} from '../../../Library/Localization/LocalizationNav
 import {getPages} from '../../../../Redux/actions/pages'
 import {changeLang} from '../../../../Redux/actions/locale'
 
-
 import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getPax} from "../../../../Redux/actions/paxchoice"
+import {PlaceHolderStrings} from '../../../Library/Localization/placeholders'
 
 import '../SearchResizersAndSwitchers/Search.css';
 import '../SearchResizersAndSwitchers/SwitcherFront.css';
@@ -23,6 +23,7 @@ import 'antd/dist/antd.css';
 import { ContentPages } from '../../PageComponents/ContentPages';
 
 moment.locale('uk')
+
 
 export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,GeneralListFunction}) =>{
      
@@ -51,6 +52,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       const lang = useSelector(state=>state.locale.locale)
       const pages = useSelector(state => state.pages.pages)
 
+      // console.log('PLACEHOLDER', placeHolderString)
       console.log('TOTALPAXREDUX',totalPaxRedux)
 
       useEffect ( () => {
@@ -65,17 +67,9 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       let filledArray = new Array(10).fill(null).map(()=> ({'hello':'goodbye'}))
       console.log(filledArray)
 
-      const placeholder_hotel = messages.map((item)=>{
-          if(item.sitepage_region_id === 8&&item.sitepage_type_id === 27){
-            return (
-               <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
-            )
-          }
-        })
-      
-      // useEffect ( () => {
-      //   dispatch (getPax ());
-      // }, [])
+      const placeholder = PlaceHolderStrings();
+
+      // console.log('PLACEHOLDER',placeholder)
 
       console.log('TOTALPAX', totalPaxRedux)
 
@@ -187,11 +181,10 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                                                           
                             }, 
                               
-                          placeholder: 
-                          // `${placeholder_hotel}`,
-                              'Please input country, city or hotel name' ,
+                          placeholder: placeholder.placeHolderString ,
                         
                            }}
+
                            menuStyle={{
                                     fontFamily: 'Arial Narrow',
                                     fontWeight:'bold',
@@ -251,6 +244,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                         onChange={onChange}
                         bordered={false}
                         className={datepickerClass}
+                        placeholder={[placeholder.placeHolderStartDate,placeholder.placeHolderEndDate]}
 
                     />
                 </Space>

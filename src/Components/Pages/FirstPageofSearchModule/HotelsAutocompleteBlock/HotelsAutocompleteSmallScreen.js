@@ -7,6 +7,7 @@ import { DatePicker ,Space } from 'antd';
 import {HotelsPaxChoice} from './HotelsPaxChoice'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import {useIntl,FormattedMessage} from 'react-intl'
+import {PlaceHolderStrings} from '../../../Library/Localization/placeholders'
 
 import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getPax} from "../../../../Redux/actions/paxchoice"
@@ -42,6 +43,8 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
 
       let filledArray = new Array(10).fill(null).map(()=> ({'hello':'goodbye'}))
       console.log(filledArray)
+
+      const placeholder = PlaceHolderStrings();
 
       console.log('TOTALPAX', totalPaxRedux)
 
@@ -154,8 +157,7 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                                                           
                             }, 
                               
-                          placeholder: 
-                              'Please input country, city or hotel name' ,
+                            placeholder: placeholder.placeHolderString ,
                         
                           }}
                            menuStyle={{
@@ -220,6 +222,7 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                         onChange={onChange}
                         bordered={false}
                         className={datepickerClass}
+                        placeholder={[placeholder.placeHolderStartDate,placeholder.placeHolderEndDate]}
                     />
                 </Space>
               

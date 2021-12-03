@@ -13,6 +13,8 @@ import './ConfirmButton.css'
 
 export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_service_id, smart_order_id, customer_reference, clicked, cart}) =>{
 
+  console.log('CONFIRMBUTTON_CART',cart)
+  
     const {locale, messages} = useIntl();
 
     return(
@@ -45,6 +47,8 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                    <Pay
                     service_id = {app_service_id}
                     smart_order_id = {smart_order_id}
+                    cart={cart}
+                    client={name + ' ' + surname}
                 />
                </>
             ):(

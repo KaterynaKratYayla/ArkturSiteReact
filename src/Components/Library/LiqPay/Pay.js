@@ -4,9 +4,10 @@ import { LiqPayPay } from "react-liqpay";
 
 console.log('[file]', 'src/Components/Library/LiqPay/Example.js');
 
-export const Pay = ({service_id, smart_order_id}) => {
+export const Pay = ({service_id, smart_order_id,cart,client}) => {
     console.log('[file]:export const Pay', 'src/Components/Library/LiqPay/Pay.js');
-    console.log('server_url: ', process.env.REACT_APP_URL);
+    console.log('BUTTON_CART',cart)
+    // console.log('server_url: ', process.env.REACT_APP_URL);
 
     //ВОТ ДОБАВИЛА ИНФО О ЛОКАЛИ . можешь включить параметр locale в запрос ниже
     const {locale} = useIntl();
@@ -35,17 +36,36 @@ export const Pay = ({service_id, smart_order_id}) => {
     localStorage.setItem('service_id', service_id);
 
     const payInfo = {
-        amount: 1,
-        currency: 'UAH',
-        title: 'PAY'
+        // amount: 1,
+        // currency: 'UAH',
+        // title: 'PAY'
+        client: client,
+        start: cart.start,
+        service:cart.htlName.replace('%20',' '), 
+        adults:cart.adults,
+        children:cart.children,
+        amount:cart.amount,
+        units:cart.numberofunits,
+        currency: 'UAH'
     }
 
     // Описание платежа, которое выводится на странице ввода деталей платёжной карты
-    const paymentDescription = () => `title: ${payInfo.title}
+    // const paymentDescription = () => `title: ${payInfo.title}
+    // amount: ${payInfo.amount}
+    // currency: ${payInfo.currency}`;
+
+      const paymentDescription = () => 
+   `client: ${payInfo.client}
+    start: ${payInfo.start}
+    service: ${payInfo.service}
+    adults: ${payInfo.adults}
+    children: ${payInfo.children}
     amount: ${payInfo.amount}
+    units:${payInfo.units}
     currency: ${payInfo.currency}`;
 
     const ButtonComponent = () => (
+        
         <button style={{
             backgroundColor: '#337ab7',
             color: '#fff',
@@ -55,8 +75,11 @@ export const Pay = ({service_id, smart_order_id}) => {
             padding: '6px 12px',
             cursor: 'pointer'
         }}>
-            {`${payInfo.title} ${payInfo.amount} ${payInfo.currency}`}
+            
+            Proceed to payment
+            {/* {`${payInfo.title} ${payInfo.amount} ${payInfo.currency}`} */}
         </button>
+        
     )
 
     return (
