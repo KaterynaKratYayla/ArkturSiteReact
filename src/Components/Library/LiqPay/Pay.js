@@ -11,6 +11,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
 
     //ВОТ ДОБАВИЛА ИНФО О ЛОКАЛИ . можешь включить параметр locale в запрос ниже
     const {locale} = useIntl();
+    console.log('locale: ', locale)
 
     const CryptoJS = require("crypto-js");
 
@@ -103,6 +104,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
                 extra={[<ButtonComponent key="1"/>]}
                 amount={payInfo.amount}
                 currency={payInfo.currency}
+                language={locale}
             />
         </div>
     );
