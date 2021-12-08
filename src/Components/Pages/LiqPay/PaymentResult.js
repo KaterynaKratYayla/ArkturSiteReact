@@ -42,25 +42,9 @@ class PaymentResult extends Component {
             const bytes  = CryptoJS.AES.decrypt(searchDataEncrypted, process.env.REACT_APP_PRIVATE_KEY);
             const searchData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
             if (isPaymentAbsent === "absent") {
-                const clientDataEncrypted = localStorage.getItem('clientData');
-                const bytes  = CryptoJS.AES.decrypt(clientDataEncrypted, process.env.REACT_APP_PRIVATE_KEY);
-                const clientData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
                 const lastLocation = localStorage.getItem('lastLocation');
                 return (
                     <Redirect to={lastLocation} />
-                    /*<ConfirmButton
-                        name={clientData.name}
-                        surname={clientData.surname}
-                        phone={clientData.phone}
-                        email={clientData.email}
-                        AddContacts = {clientData.AddContacts}
-                        app_service_id = {clientData.app_service_id}
-                        // smart_order_id ={clientData.app_service_id.booking_id}
-                        smart_order_id ={clientData.smart_order_id}
-                        customer_reference = {clientData.customer_reference}
-                        clicked={clientData.clicked}
-                        cart={clientData.cart}
-                    />*/
                 )
             } else {
                 return (
