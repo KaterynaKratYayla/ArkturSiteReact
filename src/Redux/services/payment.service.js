@@ -34,7 +34,7 @@ export default class PaymentService {
                     "site_service_id" : 1,		// index of the service in the site
                     "smart_service_id" : service_id,	// booking_entity.id in Smart
                     "site_client_id" : 3,		// it must be BUYER only
-                    "smart_client_id" : 5817	// it must be BUYER only
+                    "smart_client_id" : 1426	// it must be BUYER only
                 }
         };
         return axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
