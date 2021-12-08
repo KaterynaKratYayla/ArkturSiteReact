@@ -300,7 +300,8 @@ export const ClientDetails = ({cart}) => {
                 email={emailInput}
                 AddContacts = {AddContacts}
                 app_service_id = {app_service_id.service_id}
-                smart_order_id ={app_service_id.booking_id}
+                // smart_order_id ={app_service_id.booking_id}
+                smart_order_id ={app_service_id.smart_reference}
                 customer_reference = {app_service_id.customer_reference}
                 clicked={clicked}
                 cart={cart}
