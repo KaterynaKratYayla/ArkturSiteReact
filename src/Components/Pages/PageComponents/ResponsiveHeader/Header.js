@@ -35,6 +35,7 @@ import './header.css'
 
 export const TopMenu = () => {
 
+	const {locale} = useIntl();
 	const { user: currentUser } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 	const logOut = () => {
@@ -44,11 +45,11 @@ export const TopMenu = () => {
 	const [width, height] = useWindowWidthAndHeight();
 
 	const lang = useSelector(state=>state.locale.locale)
-  
+
 	useEffect ( () => {
 		  dispatch (changeLang ());
 		}, [])
-  
+
 	const pages = ContentPages(lang);
 
 	// const pages = ContentPages('uk');
@@ -57,12 +58,12 @@ export const TopMenu = () => {
 		//////////////////////////////////////////////////////
 	// const current_locale = useSelector(state => state.localization.current_locale);
 	// const locales = useSelector(state => state.localization.locales);
-	
+
 	const sitePageType = SitePageType();
 	const sitePageRegion = SitePageRegion();
 
 	return (
-	<header class='wrapperMain'>	
+	<header class='wrapperMain'>
 
 	   		<div className='topMenu'>
 
@@ -72,14 +73,14 @@ export const TopMenu = () => {
 							  <div style={{display:'flex',
 							    	 flexDirection: 'row'}}>
 								  <UserOutlined className='UserOutlinedIcon'/>
-								
+
 								  <div>MY ACCOUNT</div>
 							</div>
 						  </LocalizationNavLink>
 						) : true}
 
 							<>
-							  { 
+							  {
 								sitePageType&&sitePageType.map((item)=>{
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
@@ -87,21 +88,21 @@ export const TopMenu = () => {
 											return(
 												<div>
 													{/* <h3>{item.sitepage_type_name}</h3> */}
-													  <NavComponent  
+													  <NavComponent
 													   sitepage_type={item}
 													   linkClassName={"Upper"}/>
-												</div> 
+												</div>
 						 					)
 						   				  }
 										})
-									  )									
+									  )
 									})
 					   			}
-							</>	
+							</>
 
 
 
-				  
+
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
 					{currentUser ? (
 						<LocalizationNavLink exact to={`/`} activeClassName='active' onClick={logOut}>LOG OUT</LocalizationNavLink>
@@ -110,11 +111,11 @@ export const TopMenu = () => {
 							{/* <FormattedMessage id='common.name'/> */}
 								SIGN In
 							</LocalizationNavLink>
-					)}					
-				</div>	
+					)}
+				</div>
 
 				<LocalizationNavLink exact to={`/`}><HomeOutlined className='HomeIcon'/></LocalizationNavLink>
-					
+
 				</div>
 
 			</div>
@@ -123,13 +124,13 @@ export const TopMenu = () => {
 					{/* <div class='middleMenu_left'> */}
 			   <LocalizationNavLink exact to='/' >
 					<img class='ArkturDMClogo'
-  					    src={ArkturDMClogo} 
+  					    src={ArkturDMClogo}
 					 	alt='Arktur DMC logo'/>
-			   </LocalizationNavLink>	 
+			   </LocalizationNavLink>
 
 
 			   <>
-							  { 
+							  {
 								sitePageType&&sitePageType.map((item)=>{
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
@@ -137,37 +138,37 @@ export const TopMenu = () => {
 											return(
 												<>
 												 { width > 1000 ?
-				
-													<LargeScreensNavBar 
+
+													<LargeScreensNavBar
 															// pages={pages}/>
 															sitepage_type={item}/>
 													:
-													<SmallScreensNavBar 
+													<SmallScreensNavBar
 															navClass="nav-small"
 															linkClassName = "nav-small-link"
 															// pages={pages}
 															sitepage_type={item}
 															width={width}/>
-													} 
+													}
 												</>
 						 					)
 						   				  }
 										})
-									  )									
+									  )
 									})
 					   			}
-								
-								
-							</>	
+
+
+							</>
 				 <div style={{marginTop:'auto',
 							  marginBottom:'auto',
 							  marginRight:'2vw'}}>
 					<LangSelectionTool/>
 				 </div>
-			  </div>					
+			  </div>
 
 		   <RouteSwitcher />
-		</header> 
-		
+		</header>
+
 	)
  }
