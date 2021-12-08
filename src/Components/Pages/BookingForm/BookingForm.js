@@ -22,7 +22,11 @@ export const BookingForm = (props) =>{
 
     let search_data = ValidateQuery(location)
     console.log('GUEST ITEM LOCATION', process.env.REACT_APP_PRIVATE_KEY)
-  
+    console.log('location: ', location)
+    const lastLocation = location.pathname + location.search;
+    localStorage.setItem('lastLocation', lastLocation);
+    console.log('lastLocation: ', lastLocation);
+
     const {locale, messages} = useIntl();
     const [width, height] = useWindowWidthAndHeight();
 
