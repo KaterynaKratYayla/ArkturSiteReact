@@ -112,10 +112,12 @@ export const ClientDetails = ({cart}) => {
         axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
             .then(response => {
                 console.log('RESPONSE', response)
-                setUserData(response.data[0].data)
-                setNameInput(response.data[0].data['name'])
-                setSurnameInput(response.data[0].data['surname'])
-                setEmailInput(response.data[0].data['email'])
+                if (response.data[0].data['id'] !== "1426") {
+                    setUserData(response.data[0].data)
+                    setNameInput(response.data[0].data['name'])
+                    setSurnameInput(response.data[0].data['surname'])
+                    setEmailInput(response.data[0].data['email'])
+                }
             })
             .catch(error =>{
                 setUserData(undefined)
