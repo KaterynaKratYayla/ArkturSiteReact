@@ -9,14 +9,18 @@ import {ConfirmButton} from './ConfirmButton'
 import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 
 import './BookingForm.css'
+import {useSelector} from "react-redux";
 // import {SwitcherItem} from './Switcher'
 // import {Switcher} from './Switcher'
 
 export const ClientDetails = ({cart}) => {
 
     const history = useHistory();
+    const { user: currentUser } = useSelector((state) => state.auth);
+    console.log('currentUser: ', currentUser);
 
     const [sendCart, setSendCart] = useState([{}]);
+    const [userData, setUserData] = useState(null);
 
     const [nameInput, setNameInput]= useState('');
     const [surnameInput, setSurnameInput] = useState('');
@@ -43,7 +47,8 @@ export const ClientDetails = ({cart}) => {
         const ActionRQ = {
                 "username":"Serodynringa",
                 "password":"%tmMJZbABm6cB@tY",
-                "user_id" :1426,
+                // "user_id" : currentUser ? currentUser.id : 1426,
+                "user_id" : 1426,
                 "action":"AddToCartRQ",
                 "data" :
                     {
@@ -91,6 +96,35 @@ export const ClientDetails = ({cart}) => {
             app_service_id = sendCart.data[key]
         }
     }
+
+    useEffect(() => {
+        const ActionRQ = {
+            "username":"Serodynringa",
+            "password":"%tmMJZbABm6cB@tY",
+            "user_id" : currentUser ? currentUser.id : 1426,
+            "action":"GetUserInfoRQ",
+            "data" :
+                {
+                    "smart_client_id" : currentUser ? currentUser.id : 1426	// it must be BUYER only
+                }
+        };
+
+        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+            .then(response => {
+                console.log('RESPONSE', response)
+                setUserData(response.data[0].data)
+                setNameInput(response.data[0].data['name'])
+                setSurnameInput(response.data[0].data['surname'])
+                setEmailInput(response.data[0].data['email'])
+            })
+            .catch(error =>{
+                setUserData(undefined)
+                console.log('[axios error]: ', error)
+            });
+
+    }, []);
+
+    console.log('userData', userData);
 
     // if( !sendCart){
     //     return <div> Loading...</div>
