@@ -36,6 +36,7 @@ import './header.css'
 
 export const TopMenu = () => {
 
+	const {locale} = useIntl();
 	const { user: currentUser } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 	const logOut = () => {
@@ -47,6 +48,7 @@ export const TopMenu = () => {
 	const lang = useSelector(state=>state.locale.locale)
 	const currency = useSelector(state=>state.currency.currencies)
   
+
 	useEffect ( () => {
 		  dispatch (changeLang ());
 		}, [])
@@ -63,7 +65,7 @@ export const TopMenu = () => {
 		//////////////////////////////////////////////////////
 	// const current_locale = useSelector(state => state.localization.current_locale);
 	// const locales = useSelector(state => state.localization.locales);
-	
+
 	const sitePageType = SitePageType();
 	const sitePageRegion = SitePageRegion();
 
@@ -78,14 +80,14 @@ export const TopMenu = () => {
 							  <div style={{display:'flex',
 							    	 flexDirection: 'row'}}>
 								  <UserOutlined className='UserOutlinedIcon'/>
-								
+
 								  <div>MY ACCOUNT</div>
 							</div>
 						  </LocalizationNavLink>
 						) : true}
 
 							<>
-							  { 
+							  {
 								sitePageType&&sitePageType.map((item)=>{
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
@@ -100,14 +102,14 @@ export const TopMenu = () => {
 						 					)
 						   				  }
 										})
-									  )									
+									  )
 									})
 					   			}
-							</>	
+							</>
 
 
 
-				  
+
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
 					{currentUser ? (
 						<LocalizationNavLink exact to={`/`} activeClassName='active' onClick={logOut}>LOG OUT</LocalizationNavLink>
@@ -116,11 +118,11 @@ export const TopMenu = () => {
 							{/* <FormattedMessage id='common.name'/> */}
 								SIGN In
 							</LocalizationNavLink>
-					)}					
-				</div>	
+					)}
+				</div>
 
 				<LocalizationNavLink exact to={`/`}><HomeOutlined className='HomeIcon'/></LocalizationNavLink>
-					
+
 				</div>
 
 			</div>
@@ -129,13 +131,13 @@ export const TopMenu = () => {
 					{/* <div class='middleMenu_left'> */}
 			   <LocalizationNavLink exact to='/' >
 					<img class='ArkturDMClogo'
-  					    src={ArkturDMClogo} 
+  					    src={ArkturDMClogo}
 					 	alt='Arktur DMC logo'/>
-			   </LocalizationNavLink>	 
+			   </LocalizationNavLink>
 
 
 			   <>
-							  { 
+							  {
 								sitePageType&&sitePageType.map((item)=>{
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
@@ -143,37 +145,37 @@ export const TopMenu = () => {
 											return(
 												<>
 												 { width > 1000 ?
-				
-													<LargeScreensNavBar 
+
+													<LargeScreensNavBar
 															// pages={pages}/>
 															sitepage_type={item}/>
 													:
-													<SmallScreensNavBar 
+													<SmallScreensNavBar
 															navClass="nav-small"
 															linkClassName = "nav-small-link"
 															// pages={pages}
 															sitepage_type={item}
 															width={width}/>
-													} 
+													}
 												</>
 						 					)
 						   				  }
 										})
-									  )									
+									  )
 									})
 					   			}
-								
-								
-							</>	
+
+
+							</>
 				 <div style={{marginTop:'auto',
 							  marginBottom:'auto',
 							  marginRight:'2vw'}}>
 					<LangSelectionTool/>
 				 </div>
-			  </div>					
+			  </div>
 
 		   <RouteSwitcher />
-		</header> 
-		
+		</header>
+
 	)
  }

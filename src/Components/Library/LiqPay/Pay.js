@@ -23,11 +23,11 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
         "data" :
             {
                 "site_order_id" : 1,		// index of the order in the site (by default = 1)
-                "smart_order_id" : smart_order_id,	// booking.id in Smart - for control
+                "smart_order_id" : smart_order_id,	// twid_reference in Smart - for control
                 "site_service_id" : 1,		// index of the service in the site
                 "smart_service_id" : service_id,	// booking_entity.id in Smart
                 "site_client_id" : 3,		// it must be BUYER only
-                "smart_client_id" : 5817	// it must be BUYER only
+                "smart_client_id" : 1426	// it must be BUYER only
             }
     }
 
@@ -35,6 +35,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
     localStorage.setItem('orderData', ciphertext);
 
     localStorage.setItem('service_id', service_id);
+    localStorage.setItem('smart_order_id', smart_order_id);
 
     const payInfo = {
         // amount: 1,
@@ -42,7 +43,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
         // title: 'PAY'
         client: client,
         start: cart.start,
-        service:cart.htlName.replace('%20',' '), 
+        service:cart.htlName.replace('%20',' '),
         adults:cart.adults,
         children:cart.children,
         amount:cart.amount,
@@ -55,7 +56,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
     // amount: ${payInfo.amount}
     // currency: ${payInfo.currency}`;
 
-      const paymentDescription = () => 
+      const paymentDescription = () =>
    `client: ${payInfo.client}
     start: ${payInfo.start}
     service: ${payInfo.service}
@@ -66,7 +67,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
     currency: ${payInfo.currency}`;
 
     const ButtonComponent = () => (
-        
+
         <button style={{
             backgroundColor: '#337ab7',
             color: '#fff',
@@ -76,11 +77,11 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
             padding: '6px 12px',
             cursor: 'pointer'
         }}>
-            
+
             Proceed to payment
             {/* {`${payInfo.title} ${payInfo.amount} ${payInfo.currency}`} */}
         </button>
-        
+
     )
 
     return (
@@ -95,7 +96,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
                               Payment for product
                               Payment for product`}*/
                 // TODO: send booking_entity_id
-                orderId={service_id}
+                orderId={smart_order_id}
                 result_url={`${process.env.REACT_APP_URL}/${locale}/payment_result`}
                 server_url={process.env.REACT_APP_SERVER_URL}
                 product_description="Online courses"

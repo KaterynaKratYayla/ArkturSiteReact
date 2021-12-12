@@ -6,8 +6,10 @@ import {setPaymenInfo, fetchPaymentInfo, fetchPaymentVoucher} from "../../../Red
 import { withPaymentService } from "../../HOC";
 import { compose } from "../../../Redux/helpers";
 import { CartDetails } from "../BookingForm/CartDetails";
+import {ConfirmButton} from '../BookingForm/ConfirmButton'
 
 import './CartDetailsSummary.css'
+import {Redirect} from "react-router";
 
 class PaymentResult extends Component {
 
@@ -25,7 +27,11 @@ class PaymentResult extends Component {
             );
         } else {
             console.log("work_with_payment, paymentInfo: ", this.props.paymentInfo);
-            const orderId = this.props.paymentInfo[0].data.smart_service_id;
+            // const orderId = this.props.paymentInfo[0].data.smart_service_id;
+            const orderId = this.props.paymentInfo[0].data.smart_order_id;
+            const warnings = this.props.paymentInfo[0].warnings;
+            const isPaymentAbsent = this.props.paymentInfo[0].warnings[0].payment;
+            console.log("work_with_payment, paymentInfo: isPaymentAbsent ", isPaymentAbsent);
             const isSuccess = this.props.paymentInfo[0].success ? "Your reservation is confirmed and prepaid" : "Please wait..";
             const openInNewTab = (url) => {
                 const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
@@ -35,35 +41,41 @@ class PaymentResult extends Component {
             const searchDataEncrypted = localStorage.getItem('search_data');
             const bytes  = CryptoJS.AES.decrypt(searchDataEncrypted, process.env.REACT_APP_PRIVATE_KEY);
             const searchData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-            return (
-                <div style={{marginLeft:'auto', marginRight:'auto', marginTop:'2vh', marginBottom:'3vh'}}>
+            if (isPaymentAbsent === "absent") {
+                const lastLocation = localStorage.getItem('lastLocation');
+                return (
+                    <Redirect to={lastLocation} />
+                )
+            } else {
+                return (
+                    <div style={{marginLeft: 'auto', marginRight: 'auto', marginTop: '2vh', marginBottom: '3vh'}}>
 
-                     <div class='VoucherText'>
-                        <h4 style={{marginRight: '5px'}}>Thank you.</h4>
-                        <h4 style={{marginRight: '5px'}}>{isSuccess}.</h4>
-                        <h4 style={{marginRight: '5px'}}> Your booking ID is {orderId}.</h4>
-                        <h4 style={{marginRight: '5px'}}>Click here to </h4>
-                       <button style={{
-                            backgroundColor: '#337ab7',
-                            color: '#fff',
-                            borderColor: '#2e6da4',
-                            border: '1px solid transparent',
-                            borderRadius: '4px',
-                            padding: '6px 12px',
-                            cursor: 'pointer'
-                        }}
-                            onClick={() => {
-                                // this.props.fetchPaymentVoucher(orderId);
-                                // openInNewTab(this.props.voucherData.data.voucherUrl);
-                                openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
+                        <div class='VoucherText'>
+                            <h4 style={{marginRight: '5px'}}>Thank you.</h4>
+                            <h4 style={{marginRight: '5px'}}>{isSuccess}.</h4>
+                            <h4 style={{marginRight: '5px'}}> Your booking ID is {orderId}.</h4>
+                            <h4 style={{marginRight: '5px'}}>Click here to </h4>
+                            <button style={{
+                                backgroundColor: '#337ab7',
+                                color: '#fff',
+                                borderColor: '#2e6da4',
+                                border: '1px solid transparent',
+                                borderRadius: '4px',
+                                padding: '6px 12px',
+                                cursor: 'pointer'
                             }}
-                          >Get voucher
-                        </button>
-                   </div>
+                                    onClick={() => {
+                                        // this.props.fetchPaymentVoucher(orderId);
+                                        // openInNewTab(this.props.voucherData.data.voucherUrl);
+                                        openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
+                                    }}
+                            >Get voucher
+                            </button>
+                        </div>
 
-                    <CartDetails cart={searchData}
-                                 cartClass={'CartDetailsSummary'}/>
-                    {/* <div class='VoucherText'>
+                        <CartDetails cart={searchData}
+                                     cartClass={'CartDetailsSummary'}/>
+                        {/* <div class='VoucherText'>
                         <h4 style={{marginRight: '5px'}}>Thank you.</h4>
                         <h4 style={{marginRight: '5px'}}>{isSuccess}.</h4>
                         <h4 style={{marginRight: '5px'}}> Your booking ID is {orderId}.</h4>
@@ -83,10 +95,11 @@ class PaymentResult extends Component {
                                 openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
                             }}
                         >Get voucher</button> */}
-                    {/* </div> */}
-                    {/* /*<div>{this.props.voucherData.data.voucherUrl}</div>*/ }
-                </div>
-            )
+                        {/* </div> */}
+                        {/* /*<div>{this.props.voucherData.data.voucherUrl}</div>*/}
+                    </div>
+                )
+            }
             /*if (this.props.voucherData !== null) {
                 return (
                     <div>

@@ -11,6 +11,7 @@ import CheckButton from "react-validation/build/button";
 import { login } from "../../../Redux/actions/auth";
 import Register from "./Register";
 import './Login.css';
+import {useIntl} from "react-intl";
 
 const required = (value) => {
   if (!value) {
@@ -63,6 +64,7 @@ const Login = (props) => {
     const password = e.target.value;
     setPassword(password);
   };
+  const {locale} = useIntl();
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -117,7 +119,7 @@ const Login = (props) => {
 
   if (isLoggedIn) {
     // return <Redirect to="/profile" />;
-    return <Redirect to="/" />;
+    return <Redirect to={`/${locale}/`} />;
   }
 
   return (
@@ -182,7 +184,7 @@ const Login = (props) => {
               </div>
 
               <div className="form-group text-center">
-                <Link to={"/sign_up"} >
+                <Link to={`/${locale}/sign_up`} >
                   Sign Up
                 </Link>
               </div>

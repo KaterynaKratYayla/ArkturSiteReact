@@ -11,6 +11,7 @@ import { isEmail } from "validator";
 import {login, register} from "../../../Redux/actions/auth";
 import {Link} from "react-router-dom";
 import Login from "./Login";
+import {useIntl} from "react-intl";
 
 const required = (value) => {
   if (!value) {
@@ -90,6 +91,7 @@ const vpassword = (value) => {
 };
 
 const Register = () => {
+  const {locale} = useIntl();
   const form = useRef();
   const checkBtn = useRef();
 
@@ -270,7 +272,7 @@ const Register = () => {
               </div>
 
               <div className="form-group text-center">
-                <Link to={"/sign_in"} >
+                <Link to={`/${locale}/sign_in`} >
                   Login
                 </Link>
               </div>
