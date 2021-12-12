@@ -11,6 +11,7 @@ import { DatePicker ,Space } from 'antd'
 
 import {Hotels} from '../../../Library/Icons/hotels'
 import {Tours} from '../../../Library/Icons/tours'
+import {PlaceHolderStrings} from '../../../Library/Localization/placeholders'
 
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import '../SearchResizersAndSwitchers/Search.css';
@@ -35,6 +36,7 @@ const geo = useSelector(state => state.cities.locs)
 const geoGeneral = useSelector(state => state.cities.gen_locs)
 
 const [width, height] = useWindowWidthAndHeight();
+const placeholder = PlaceHolderStrings();
 
 // const dateFormat = 'DD-MM-YYYY'
 
@@ -152,8 +154,8 @@ return(
                                     marginBottom: '1vh'
                                   }, 
                                     
-                                placeholder: 
-                                    'Country, city or tour name' }}
+                                placeholder: placeholder.placeHolderTour,
+                               }}
                   items={geo}
                   shouldItemRender={(item, value) => 
                     value!== ""? item.name.toLowerCase().includes(value.toLowerCase()): null}
@@ -180,7 +182,7 @@ return(
                            picker="month" 
                            disabledDate={disabledDate} 
                           //  format={dateFormat} 
-                           placeholder='Choose month'
+                          placeholder={placeholder.placeHolderMonth}
                            bordered={true}
                            className={datepickerClass}
                            style={{
@@ -195,7 +197,7 @@ return(
             <button type='submit' onClick={addToList}>
             {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '13'){
+                          if(item.sitepage_region_id === 7&&item.sitepage_type_id === 13){
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )

@@ -16,11 +16,11 @@ export const HomePage = () => {
     console.log('server_url: ', process.env.REACT_APP_URL);
     
     const images = [
-        "https://arktur.ua/sites/default/files/public/image/slider/Lavra_shutterstock_1545799133_small.jpg",
-        "https://arktur.ua/sites/default/files/public/image/slider/Azov%20sea_small.jpg",
-        "https://arktur.ua/sites/default/files/public/image/slider/carpathians_shutterstock_750654637_small.jpg",
-        "https://arktur.ua/sites/default/files/public/image/slider/Odesa%20Opera%20House_shutterstock_179655773_small.jpg",
-        "https://arktur.ua/sites/default/files/public/image/slider/KamenetsCastle_shutterstock_1621762234_small.jpg"
+        "arktur.ua/sites/default/files/public/image/slider/Lavra_shutterstock_1545799133_small.jpg",
+        "arktur.ua/sites/default/files/public/image/slider/Azov%20sea_small.jpg",
+        "arktur.ua/sites/default/files/public/image/slider/carpathians_shutterstock_750654637_small.jpg",
+        "arktur.ua/sites/default/files/public/image/slider/Odesa%20Opera%20House_shutterstock_179655773_small.jpg",
+        "arktur.ua/sites/default/files/public/image/slider/KamenetsCastle_shutterstock_1621762234_small.jpg"
     
       ]
 

@@ -104,10 +104,15 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
   }
    
      return(
-        <div style={{marginTop:'0.8vw'}}>
-            <div class='HotelPaxChoiceWrapper' style={{width:`${width >=1000? null: width*0.8}px`}} >
-                <div class={`${width >= 1000? 'HotelPaxResult' : 'HotelPaxResultSmallScreen'}`} style={{width:`${width >=1000? null: width*0.8}px`}} onClick={MakeVisible}>
-                  <h4 style={{display:'flex',flexDirection:'row',justifyContent:'center'}} onClick={TotalPax}>
+        <div>
+            <div class='FrontHotelPaxChoiceWrapper' style={{width:`${width >=1000? null: width*0.8}px`}} >
+                {/* <div class={`${width >= 1000? 'FrontHotelPaxResult' : 'FrontHotelPaxResultSmallScreen'}`} style={{width:`${width >=1000? null: width*0.8}px`}} onClick={MakeVisible}> */}
+                <div class={`${width >= 1000? 'FrontHotelPaxResult' : 'FrontHotelPaxResultSmallScreen'}`} onClick={MakeVisible}>  
+                  <h4 style={{display:'flex',
+                              flexDirection:'row',
+                              justifyContent:'center'}} 
+                    
+                              onClick={TotalPax}>
 
                      <Pax />
                       <div style={{paddingLeft:'1vw'}}> {counterAdults} Adults</div>, 

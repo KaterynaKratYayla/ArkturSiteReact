@@ -82,7 +82,7 @@ console.log(localizeRoutePath('/'))
 			<LocalizationRoute exact path='/booking_form' component={BookingForm}/>
 			<LocalizationRoute exact path='/toptours' component={TopToursDetails} />
 			<LocalizationRoute exact path='/offlineSummary' component={OfflineSummary}/>
-
+		
  			{
  			  pages&&pages.map((page)=>{
 			    if(page.name.includes('Hotels')===true){

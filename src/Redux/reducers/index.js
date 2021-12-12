@@ -19,7 +19,9 @@ import hotelroomschoice from './hotelroomschoice'
 import availabilitychoice from './availabilitychoice'
 import hotelsearchdata from './hotelsearchdata'
 import locale from './locale'
-import hotelcities from './hotelcities'
+import hotelcities from './hotelcities';
+import currency from './currency';
+import promocode from './promocode'
 
 
 //{combineReducers} - это библиотека из редакса для комбинации нескольких редьюсеров
@@ -43,7 +45,9 @@ const root_reducer = combineReducers({
 	availabilitychoice,
 	hotelsearchdata,
 	locale,
-	hotelcities
+	hotelcities,
+	currency,
+	promocode
 });
 
 export default root_reducer;

@@ -1,0 +1,17 @@
+.PCPopUpNotActive{
+    display:none;
+}
+
+.PCPopUpActive{
+    display: block;
+    position: absolute;
+    background-color: white;
+    margin-top:1vw;
+    z-index: 1000;
+}
+
+/* .PromoCode h4{
+    font-size:14px;
+    color:rgb(136, 6, 6);
+    font-weight:bold;
+}  */

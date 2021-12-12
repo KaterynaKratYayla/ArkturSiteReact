@@ -74,7 +74,7 @@ useEffect (() => {
                 width={getWidth() * props.slides.length}
                   >
                     {props.slides.map((slide,index) => (
-                        <Slide key={index} content={slide} />  //was slide+index
+                        <Slide key={index} content={'https://'+slide} />  //was slide+index
                         ))} 
  
              </SliderContent> 

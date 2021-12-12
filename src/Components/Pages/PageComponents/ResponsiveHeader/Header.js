@@ -29,6 +29,7 @@ import ArkturDMClogo from '../../../Library/Images/ArkturDMClogo.svg';
 import {changeLang} from '../../../../Redux/actions/locale'
 import { LocalizationNavLink } from '../../../Library/Localization/LocalizationNavLink';
 import {LangSelectionTool} from '../../../Library/Localization/LangSelectionTool'
+import {getCurrency} from '../../../../Redux/actions/currency'
 
 import './header.css'
 // import './ResponsiveCSS.css'
@@ -44,10 +45,15 @@ export const TopMenu = () => {
 	const [width, height] = useWindowWidthAndHeight();
 
 	const lang = useSelector(state=>state.locale.locale)
+	const currency = useSelector(state=>state.currency.currencies)
   
 	useEffect ( () => {
 		  dispatch (changeLang ());
 		}, [])
+
+	useEffect ( () => {
+		dispatch (getCurrency());
+	  }, [])
   
 	const pages = ContentPages(lang);
 
@@ -63,10 +69,10 @@ export const TopMenu = () => {
 
 	return (
 	<header class='wrapperMain'>	
-
 	   		<div className='topMenu'>
-
+			    
 				<div className='topMenu_right'>
+				<a href='mailto:inquiry@arktur.ua'>inquiry@arktur.ua</a>
 						{currentUser ? (
 						  <LocalizationNavLink exact to={`/${lang}/testcities`} activeClassName='active'>
 							  <div style={{display:'flex',
@@ -85,12 +91,12 @@ export const TopMenu = () => {
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
 										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Header")===true && item.sitepage_type_name.includes("UPPER")===true){
 											return(
-												<div>
-													{/* <h3>{item.sitepage_type_name}</h3> */}
+												// <div>
+													/* <h3>{item.sitepage_type_name}</h3> */
 													  <NavComponent  
 													   sitepage_type={item}
 													   linkClassName={"Upper"}/>
-												</div> 
+												// </div> 
 						 					)
 						   				  }
 										})

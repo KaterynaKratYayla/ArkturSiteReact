@@ -11,6 +11,8 @@ import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
 import {getPurePage} from '../../../Redux/actions'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {ValidateQuery} from '../Helpers/helper'
+import Slider from '../../Library/Slider/Slider'
+import {CartGallery} from '../../Library/PageDevices/CartGallery/CartGallery'
 
 import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 
@@ -62,9 +64,19 @@ export const PureContent = () => {
              )
            }
 
+           if(page.content_name === "Image"){
+             return(
+              <CartGallery photos={page}
+               photoHeight={'55vh'}
+              />
+
+              // <Slider slides={page.text}/>
+             )
+           }
+
            if(page.content_name === "Body"){
              return (
-               <div  style={{maxWidth:`${width}px`,overflow:'hidden'}}>{ReactHtmlParser(page.text)}</div>
+               <div style={{maxWidth:`${width}px`,overflow:'hidden',order:'1'}}>{ReactHtmlParser(page.text)}</div>
              )
            }
 

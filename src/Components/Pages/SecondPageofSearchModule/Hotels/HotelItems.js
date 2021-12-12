@@ -110,6 +110,7 @@ const {locale,messages} = useIntl();
         "password":"%tmMJZbABm6cB@tY",
         "user_id" :1426, 
         "action":"GetPriceHotelRQ",
+        "refpartner":search_data.refpartner?search_data.refpartner:null,
         "data" : 
             {       
               "start" : search_data.start, // date of arrival  
@@ -130,7 +131,8 @@ const {locale,messages} = useIntl();
             }
         };
     
-    axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+    // axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+    axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
         .then(response => 
           {
           
@@ -249,47 +251,7 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                              )):
                                             null
                                                 }
-                                                                                
-
-                                       {/* {
-                                         filtered_hotel_items.length > 0  && filtered_hotel_items? (filtered_hotel_items.map((hotel) => {
-                                          return ( 
-                                            <li key={hotel.hotel_id} className='HotelDescriptionLi'>
-                                               {
-                                                 <HotelContent
-                                                    hotel = {hotel} 
-                                                  />
-                                               } 
-                                                {      
-                                              hotelRate? (hotelRate.map((hotelTariff) => {
-                                               if(hotel.hotel_id === hotelTariff.hotel_id){
-  
-                                                return (
-                                                 <HotelRates
-                                                   key={hotelTariff.hotel_id}
-                                                   hotelTariff = {hotelTariff}
-                                                   hotelRooms = {hotelTariff.rooms}
-                                                   searchResults = {search_data}
-                                                   history={history}
-                                                   hotel_name={hotel.hotel_name}
-                                                 />
-                                                )
-                                                
-                                              }
-                                             }
-                                              )
-                                            ):
-                                            (<button className="onrequestButton">Sold out</button>)
-                                          }
-                                          
-                                          </li>
-                                        )
-                                       }
-                                       )) : (
-                                      <div className='noResultSearch'>
-                                          Your Search returned no results. Please change your parameters and try once again.
-                                     </div> )           
-                              }                      */}
+           
                              
                               </>
                            </ul>

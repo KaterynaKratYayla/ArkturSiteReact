@@ -1,18 +1,3 @@
-/* .TourDetailsWrapper{
-    display: flex;
-    flex-direction: column;
-    max-width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.TourDetailsWrapper h2{
-    color: #102D69;
-    font-family: "Arial";
-    font-size: 22px;
-    font-weight: bold;
-} */
-
 .ChoiceBlockWrapper{
     display: grid;
     grid-template-columns:repeat(2,20vw);
@@ -67,12 +52,14 @@
     font-family: 'Arial Narrow';
     font-weight: bold;
     font-size: 90%;
+    /* font-family: 'Tahoma'; */
+    /* font-size:14px; */
     color: rgb(77, 75, 75);
 }
 
-.HotelPaxChoiceWrapper{
+.FrontHotelPaxChoiceWrapper{
     /* padding: 3vw; */
-    width: 25vw;
+    /* width: 25vw; */
     display: flex;
     flex-direction: row;
     height: 25px;
@@ -81,50 +68,32 @@
 }
 
 
-.HotelPaxChoiceWrapper h4{
+.FrontHotelPaxChoiceWrapper h4{
     font-family: 'Tahoma';
-    font-size: 90%;
+    font-size: 14px;
     color: rgb(75, 73, 73);
     cursor: pointer;
 }
 
-/* .PaxChoice{
-    display: flex;
-    flex-direction: row;
-    cursor: pointer;
-} */
-
-/* .PaxChoice h4{
-    font-family: 'Arial Narrow';
-    font-weight: bold;
-    font-size: 17px;
-    color: rgb(77, 75, 75);
-} */
-
-.HotelPaxResult{
+.FrontHotelPaxResult{
     /* border: 1px solid #d9d9d9; */
     border-radius: 2px;
-    height: 32px;
-    width: 90%;
+    /* height: 32px; */
+    /* width: 90%; */
     padding: 3px 11px;
     background-color: white;
 }
 
-.HotelPaxResultSmallScreen{
+.FrontHotelPaxResultSmallScreen{
     border-bottom: 0.5px solid grey;
     border-radius: 2px;
-    height: 32px;
-    width: 90%;
+    /* height: 32px; */
+    /* width: 90%; */
     padding: 3px 11px;
     background-color: white;
+    display:flex;
+    justify-content: center;
 }
-/* 
-.HotelPaxResult h4{
-    color: rgb(16, 45, 105);
-    font-family: 'Arial Narrow';
-    font-size: 16px;
-    cursor: pointer;
-} */
 
 .DropdownButton{
     margin-top: 0.5vh;
@@ -163,6 +132,7 @@
     margin-top:2vw;
     z-index: 1000;
     width: 23vw;
+    /* width:inherit; */
     border: 1px solid #d9d9d9;
     border-radius: 6px;
     transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);

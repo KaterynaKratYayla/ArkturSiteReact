@@ -71,7 +71,7 @@ export const ClientDetails = ({cart}) => {
                     }
             };
 
-        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+        axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
             .then(response => {
                 console.log('RESPONSE', response)
                 setSendCart(response.data[0])

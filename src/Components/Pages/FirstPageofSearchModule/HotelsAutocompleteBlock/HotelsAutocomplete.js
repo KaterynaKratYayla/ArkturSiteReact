@@ -12,6 +12,7 @@ import {LocalizationSwitch} from '../../../Library/Localization/LocalizationSwit
 import {LocalizationNavLink} from '../../../Library/Localization/LocalizationNavLink'
 import {getPages} from '../../../../Redux/actions/pages'
 import {changeLang} from '../../../../Redux/actions/locale'
+import {PromoCode} from './PromoCode'
 
 import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getPax} from "../../../../Redux/actions/paxchoice"
@@ -19,6 +20,7 @@ import {PlaceHolderStrings} from '../../../Library/Localization/placeholders'
 
 import '../SearchResizersAndSwitchers/Search.css';
 import '../SearchResizersAndSwitchers/SwitcherFront.css';
+
 import 'antd/dist/antd.css';
 import { ContentPages } from '../../PageComponents/ContentPages';
 
@@ -34,6 +36,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       const [hotelsvalue, setHotelsValue] = useState('');
       const [open, setOpen] = useState(false);
       const [paxListOpen, setPaxListOpen] = useState(false);
+      const [promoCodeOpen, setPromoCodeOpen] = useState(false);
       const [totalPax, setTotalPax] = useState();
       const [pickedHotelValue, setPickedHotelValue] = useState(false);
       const [loaded,setLoaded]=useState(false);
@@ -51,6 +54,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       const totalPaxRedux = useSelector(state => state.paxchoice.pax)
       const lang = useSelector(state=>state.locale.locale)
       const pages = useSelector(state => state.pages.pages)
+      const promoCode = useSelector(state => state.promocode.promocode)
 
       // console.log('PLACEHOLDER', placeHolderString)
       console.log('TOTALPAXREDUX',totalPaxRedux)
@@ -144,7 +148,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
 
       GeneralListFunction(list,hotelsvalue)
 
-      let route_query = `?title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
+      let route_query = `?${promoCode?'refpartner='+promoCode+',':''}title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
 
       history.push(`/${locale}/search_results_hotels/${route_query}`,[...list, hotelNewList])
       console.log('[HISTORY : ] ', history)
@@ -156,11 +160,15 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       setPaxListOpen(!paxListOpen)
     }
 
+    const MakeCodeVisible = () =>{
+      setPromoCodeOpen(!promoCodeOpen)
+    }
+
       return(
             <div>
               <form className={formClass} onSubmit={onSubmit}> 
-                    <div style={{width:`${width*0.8/4}px`}}>
-                     
+                    {/* <div style={{width:`${width*0.8/4}px`}}> */}
+                     <div style={{gridColumn:'1'}}>
                        <Autocomplete
                          {...props}
                          
@@ -168,17 +176,15 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
     
                            inputProps={{
                              style: 
-                            { width: `${width*0.8/4}px`,
+                            { 
+                              // width: `${width*0.8/4}px`,
                               height: '45px', 
                               fontFamily: 'Tahoma', 
                               fontSize: '16px',
                               border:'none',
                               marginTop: '0.2vw',
-                              textAlign:"center"
-                              // marginLeft: '2vw'
-                              // flex: '0',
-                              // display:'block'
-                                                          
+                              textAlign:"center",
+                              position:"relative"          
                             }, 
                               
                           placeholder: placeholder.placeHolderString ,
@@ -194,11 +200,13 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                                     boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
                                     background: 'rgba(255, 255, 255)',
                                     padding: '3px',
-                                    position: 'fixed',
-                                    overflow: 'auto',
-                                    maxHeight: '30%',
-                                    zIndex:'1000',
-                                    border:'2px solid grey'
+                                    position:'absolute',
+                                    overflow:'scroll',
+                                    maxHeight: '30vh',
+                                    zIndex:'2000',
+                                    border:'2px solid grey',
+                                    left:'10',
+                                    top:'5'
                                    }
                                   }
                           
@@ -230,17 +238,16 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                         
                         />
               </div>  
-               
-            <div style={{width:`${width*0.8/4}px`, borderLeft:'0.5px solid grey'}}>
-                 
+
+               <div style={{gridColumn:'2',
+                            borderLeft:'0.5px solid grey',
+                            display:'flex',
+                            alignItems:'center'}}>
+
                  <Space direction="vertical">
                     <RangePicker
                         size={'middle'}
                         disabledDate={disabledDate}
-                        // ranges={{
-                        // Today: [moment(), moment()],
-                        //     'This Month': [moment().startOf('month'), moment().endOf('month')],
-                        //         }}
                         onChange={onChange}
                         bordered={false}
                         className={datepickerClass}
@@ -251,15 +258,33 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
               
             </div> 
 
-               <div style={{width:`${width*0.8/4}px`,borderLeft:'0.5px solid grey'}}>
+            <div style={{gridColumn:'3',
+                         borderLeft:'0.5px solid grey',
+                         display:'flex',
+                         alignItems:'center',
+                         overflow:'hidden'}}>
+
                   <HotelsPaxChoice 
                      MakeVisible={MakeVisible}
                      paxListOpen={paxListOpen}
                   />
-                </div>
-                
-                <div class='borderInnerWrapper2' style={{width:`${width*0.8/4}px`}}>
-                    <button type='submit' onClick={addToList}>
+             </div>
+            
+            <div style={{gridColumn:'4',
+                         borderLeft:'0.5px solid grey',
+                         cursor:'pointer',
+                         display:'flex',
+                         alignItems:'center',
+                         justifyContent:'center'
+                         }}>
+            <PromoCode
+                   MakeCodeVisible={MakeCodeVisible}
+                   promoCodeOpen={promoCodeOpen}
+             />
+             </div>
+       
+                {/* <div class='borderInnerWrapper2' style={{width:`${width*0.8/4}px`}}> */}
+            <button style={{gridColumn:'5'}} type='submit' onClick={addToList}>
                       {
                         messages&&messages.map((item)=>{
                           // if(item.id===76){
@@ -271,12 +296,12 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                           }
                         })
                       }
-                    </button>
+             </button>
                                    
-                </div>
+                {/* </div> */}
                 
     
-              </form> 
+            </form> 
            </div>
           )
         }

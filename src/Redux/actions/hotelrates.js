@@ -19,6 +19,7 @@ export const getHotelRates = (search_data) => ( dispatch, getState ) => {
             "password":"%tmMJZbABm6cB@tY",
             "user_id" :1426, 
             "action":"GetPriceHotelRQ",
+            "refpartner":search_data.refpartner?search_data.refpartner:null,
             "data" : 
                 {       
                   "start" : search_data.start, // date of arrival  
@@ -40,7 +41,7 @@ export const getHotelRates = (search_data) => ( dispatch, getState ) => {
                 }
             };
         
-        axios.post('http://smartbooker.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+        axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
             .then(response => {
               for(let key in response.data.data){
                 if(key === 'hotels'){

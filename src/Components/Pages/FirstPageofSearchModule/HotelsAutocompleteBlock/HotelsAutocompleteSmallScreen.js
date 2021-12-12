@@ -150,11 +150,8 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                               borderLeft: 'none',
                               borderRight:'none',
                               marginTop: '0.2vw',
-                              textAlign:'center'
-                              // marginLeft: '2vw'
-                              // flex: '0',
-                              // display:'block'
-                                                          
+                              textAlign:'center',
+                              position:'relative'                                                          
                             }, 
                               
                             placeholder: placeholder.placeHolderString ,
@@ -172,11 +169,13 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                                     boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
                                     background: 'rgba(255, 255, 255)',
                                     padding: '3px',
-                                    position: 'fixed',
-                                    overflow: 'auto',
-                                    maxHeight: '30%',
-                                    zIndex:'1000',
-                                    border:'2px solid grey'
+                                    position:'absolute',
+                                    overflow:'scroll',
+                                    maxHeight: '30vh',
+                                    zIndex:'2000',
+                                    border:'2px solid grey',
+                                    left:'10',
+                                    top:'5'
                                    }
                                   }
                           
@@ -242,7 +241,7 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                     <button type='submit' onClick={addToList}>
                     {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === '7'&&item.sitepage_type_id === '13'){
+                          if(item.sitepage_region_id === 7&&item.sitepage_type_id === 13){
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )

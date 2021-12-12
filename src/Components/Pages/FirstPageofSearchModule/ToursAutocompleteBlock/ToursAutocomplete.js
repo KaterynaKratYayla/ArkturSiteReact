@@ -14,6 +14,7 @@ import {getTopTours} from "../../../../Redux/actions/toptours"
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import {Hotels} from '../../../Library/Icons/hotels'
 import {Tours} from '../../../Library/Icons/tours'
+import {PlaceHolderStrings} from '../../../Library/Localization/placeholders'
 
 import '../SearchResizersAndSwitchers/Search.css';
 import '../SearchResizersAndSwitchers/SwitcherFront.css';
@@ -46,6 +47,7 @@ const [pickedToursValue, setPickedToursValue] = useState(false);
 //   const [width, height] = useWindowWidthAndHeight();
 
   // const dateFormat = 'DD-MM-YYYY'
+  const placeholder = PlaceHolderStrings();
 
   useEffect ( () => {
      dispatch (getGeo ());
@@ -165,8 +167,7 @@ const disabledDate = (current) =>{
                           
                         }, 
                           
-                      placeholder: 
-                          'Please input country, city or tour name' ,
+                      placeholder: placeholder.placeHolderTour,
                     
                       }}
                        menuStyle={{
@@ -217,23 +218,19 @@ const disabledDate = (current) =>{
                  {/* </Col>             */}
               
               {/* <Col md={1}> */}
-        <div>
+        <div class='MonthPicker'>
 
              {/* <DatePicker /> */}
              
              <Space direction="vertical">
-                 <DatePicker size={'large'} 
+                 <DatePicker size='small' 
                              onChange={onChange} 
                              picker="month" 
                             //  format={dateFormat} 
-                             placeholder='Choose month'
+                             placeholder={placeholder.placeHolderMonth}
                              bordered={false}
                              className={datepickerClass}
                              disabledDate={disabledDate}
-                            //  dropdownClassName='dropdownDatePicker'
-                            //  style={{
-                            //    fontFamily:'Tahoma', 
-                            //    paddingTop: '0.8vw'}}
                                />
                </Space>
           

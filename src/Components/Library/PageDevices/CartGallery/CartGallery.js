@@ -41,7 +41,9 @@ export const CartGallery = ({photos,photoHeight,photoWidth,smallImageHeight}) =>
                          display:'grid',
                          gridTemplateColumns:'repeat(4,25%)',
                          rowGap:'0',
-                         width:`${width>768?'40%':'100%'}`
+                         width:`${width>768?'40%':'100%'}`,
+                         height:`${photoHeight}`,
+                         overflow:'scroll'
                         //  justifyContent:'space-evenly'
                         }}>
                         {
