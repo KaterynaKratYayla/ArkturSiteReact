@@ -19,6 +19,24 @@
     /* z-index: 1040;     */
 }
 
+.WhiteLableTopMenu{
+    background-position:center;
+   	background-size:cover;
+    border-bottom: 10px solid rgb(38,71,141);
+	width:100%;
+    top: 0;
+    left: 0;
+    height: 55vh;
+    margin-bottom:8vh;
+    /* margin-left: auto;
+    margin-right: auto; */
+}
+
+/* FOR WHITELABLES COMPANIES LIKE ROTARY WHEN I DO NOT WANT TO SHOW OUR MENU */
+.NotVisibleMenu{
+    display:none;
+}
+
 .topMenu_right{
     display: flex;
     flex-direction: row;

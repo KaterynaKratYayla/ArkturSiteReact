@@ -1,4 +1,5 @@
 import React from 'react'
+import { useSelector } from "react-redux";
 import '../PageComponents/ResponsiveHeader/header.css'
 import Slider from '../../Library/Slider/Slider'
 import {Search} from '../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
@@ -7,6 +8,8 @@ import {useIntl,FormattedMessage} from 'react-intl'
 import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {TopTours} from './TopTours'
 
+import RotaryHeader from '../../Library/Icons/RotaryHeader_2.svg'
+
 import ArkturDMClogo from '../../Library/Images/ArkturDMClogo.svg'
 
 
@@ -14,6 +17,8 @@ export const HomePage = () => {
     
     const {locale,messages} = useIntl();
     console.log('server_url: ', process.env.REACT_APP_URL);
+
+    const promoCode = useSelector(state => state.promocode.promocode)
     
     const images = [
         "arktur.ua/sites/default/files/public/image/slider/Lavra_shutterstock_1545799133_small.jpg",
@@ -33,7 +38,7 @@ export const HomePage = () => {
 
            <h2 style={{
                         marginTop: '5vh', 
-                    //    paddingTop: '1vh',
+                       display:`${promoCode === '1497'?'none':'block'}`,
                        paddingBottom: '1vh',
                        color: 'rgb(122,6,8)', 
                        fontSize: '25px', 
@@ -50,8 +55,9 @@ export const HomePage = () => {
                           }
                         })
                       }   </h2>
-
-           <Slider slides={images}/>
+           {
+             promoCode === '1497'? null : <Slider slides={images}/>
+           }
            <Search />
            <TopTours/>
        </div>

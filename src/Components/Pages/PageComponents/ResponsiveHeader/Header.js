@@ -29,7 +29,10 @@ import ArkturDMClogo from '../../../Library/Images/ArkturDMClogo.svg';
 import {changeLang} from '../../../../Redux/actions/locale'
 import { LocalizationNavLink } from '../../../Library/Localization/LocalizationNavLink';
 import {LangSelectionTool} from '../../../Library/Localization/LangSelectionTool'
+import {LangSelectionFlags} from '../../../Library/Localization/LangSelectionFlags'
 import {getCurrency} from '../../../../Redux/actions/currency'
+import RotaryHeader from '../../../Library/Icons/RotaryHeader_2.svg'
+import logoRotary from '../../../Library/Icons/logoRotary.svg'
 
 import './header.css'
 // import './ResponsiveCSS.css'
@@ -47,7 +50,7 @@ export const TopMenu = () => {
 
 	const lang = useSelector(state=>state.locale.locale)
 	const currency = useSelector(state=>state.currency.currencies)
-  
+    const promoCode = useSelector(state => state.promocode.promocode)
 
 	useEffect ( () => {
 		  dispatch (changeLang ());
@@ -69,11 +72,33 @@ export const TopMenu = () => {
 	const sitePageType = SitePageType();
 	const sitePageRegion = SitePageRegion();
 
+    const headerClass = (promoCode === '1497'? 'WhiteLableTopMenu' : 'topMenu');
+	const backGroundImg = (promoCode === '1497'? `url(${RotaryHeader}` : null);
+	const rotaryLogo = (promoCode === '1497'? `url(${logoRotary}` : null);
+	const topMenuRight = (promoCode === '1497'? 'NotVisibleMenu' : 'topMenu_right');
+	const middleMenu =  (promoCode === '1497'? 'NotVisibleMenu' : `${width>1000?'middleMenu':'middleMenuSmallScreen'}`);
+
 	return (
-	<header class='wrapperMain'>	
-	   		<div className='topMenu'>
-			    
-				<div className='topMenu_right'>
+	<header class='wrapperMain'>
+	{/* onClick={WhiteLabling}>	 */}
+	   		<div className={headerClass} style={{backgroundImage:backGroundImg}}>
+			
+			 {
+				promoCode === '1497'? 
+				    <div style={{display:'flex', flexDirection:'row-reverse', justifyContent:'space-between',maxWidth:'80%'}}>
+						<LocalizationNavLink exact to={`/`}>
+							<div style={{display:'flex',justifyContent:'flex-end',width:'75%',marginTop:'2vh'}}>
+									<img src={logoRotary}/>
+							</div> 
+
+						</LocalizationNavLink>
+						<div style={{marginLeft:'4vw',marginTop:'3vh'}}>
+						  <LangSelectionFlags/>
+						</div>
+					</div>
+				 : null
+			 }
+			  <div className={topMenuRight}>
 				<a href='mailto:inquiry@arktur.ua'>inquiry@arktur.ua</a>
 						{currentUser ? (
 						  <LocalizationNavLink exact to={`/${lang}/testcities`} activeClassName='active'>
@@ -127,14 +152,13 @@ export const TopMenu = () => {
 
 			</div>
 
-	 		<div className={`${width>1000?'middleMenu':'middleMenuSmallScreen'}`}>
-					{/* <div class='middleMenu_left'> */}
+	 		{/* <div className={`${width>1000?'middleMenu':'middleMenuSmallScreen'}`}> */}
+			  <div className={middleMenu}>
 			   <LocalizationNavLink exact to='/' >
 					<img class='ArkturDMClogo'
   					    src={ArkturDMClogo}
 					 	alt='Arktur DMC logo'/>
 			   </LocalizationNavLink>
-
 
 			   <>
 							  {

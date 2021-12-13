@@ -15,10 +15,6 @@ export const LangSelectionTool = () =>{
     // const {pathname} = useLocation();
     const {locale, messages} = useIntl();
 
-    // console.log('LANGSWITCHER', '[pathname]:', pathname,'[locale]:' , locale, '[messages]', messages)
-
-    // const [selectedLang, setSelectedLang] = useState(config.defaultLang);
-
     const history = useHistory();
     const { Option } = Select;
 
@@ -51,17 +47,6 @@ export const LangSelectionTool = () =>{
     // }
 
     return(
-        // <ul>
-        //     {Object.keys(supportedLangs).map(lang=>(
-        //         <li key={lang}>
-        //             <NavLink
-        //             to={getMatchingRoute(supportedLangs[lang])}
-        //                 >
-        //                 {supportedLangs[lang]}
-        //             </NavLink>
-        //         </li>
-        //     ))}
-        // </ul>
          <Select  
            defaultValue={locale}
            onChange={SelectRooms}
