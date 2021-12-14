@@ -22,12 +22,9 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
         "action":"GetPaymentInfoRQ",
         "data" :
             {
-                "site_order_id" : 1,		// index of the order in the site (by default = 1)
-                "smart_order_id" : smart_order_id,	// twid_reference in Smart - for control
+                "booking_reference" : smart_order_id,	// twid_reference in Smart - for control
                 "site_service_id" : 1,		// index of the service in the site
-                "smart_service_id" : service_id,	// booking_entity.id in Smart
-                "site_client_id" : 3,		// it must be BUYER only
-                "smart_client_id" : 1426	// it must be BUYER only
+                "service_number": 1,		// На будущее, когда в заказе будет разрешено несколько сервисов - booking_entity.ref_serv_smart
             }
     }
 
