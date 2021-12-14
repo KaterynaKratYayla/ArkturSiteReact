@@ -20,7 +20,7 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
 
 
   useEffect (() =>{
-    axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
     .then(res => {
       let tour_capacity
       res.data[0].tariff.forEach((item)=>{

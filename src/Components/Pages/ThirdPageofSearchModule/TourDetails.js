@@ -40,7 +40,7 @@ import './TourDetailsCSS.css'
     const [width, height] = useWindowWidthAndHeight()
 
     useEffect ( () => {
-      axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=${locale}`)
+      axios.get(`${process.env.REACT_APP_SMART_URL}interface/content?id=${search_data.tour_id}&language=${locale}`)
         .then( res => {
           setDetails(res.data)
           })
@@ -70,7 +70,7 @@ import './TourDetailsCSS.css'
           };
 
           // axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
-          axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+          axios.post(`${process.env.REACT_APP_SMART_URL}interface/xmlsubj/`, JSON.stringify({ActionRQ}))
               // axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
               .then( res => {
                   setrateDetails(res.data)
@@ -103,7 +103,7 @@ import './TourDetailsCSS.css'
           };
 
           // axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
-          axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+          axios.post(`${process.env.REACT_APP_SMART_URL}interface/xmlsubj/`, JSON.stringify({ActionRQ}))
               // axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
               .then( res => {
                   const filtered = res.data[0].rate.filter((item1,index,array) =>

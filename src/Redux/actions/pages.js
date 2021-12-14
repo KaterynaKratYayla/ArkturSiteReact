@@ -17,7 +17,7 @@ export const getPages = (lang) => ( dispatch, getState ) => {
     dispatch({ type: GET_PAGES_REQ });
     console.log('REDUX_LOCALE:',lang)
 
-    axios.get(`https://hotels-ua.biz/interface/classifier?classifier=sitepage&language=${lang}`,  {
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=sitepage&language=${lang}`,  {
     }) 
         .then( res => {
                   
@@ -39,7 +39,7 @@ export const getPurePage = (id,lang) => ( dispatch, getState ) => {
     
      dispatch({ type: GET_PurePage_REQ });
     
-  axios.get(`https://hotels-ua.biz/interface/sitepagecontent?id=${id}&language=${lang}`,  {
+  axios.get(`${process.env.REACT_APP_SMART_URL}interface/sitepagecontent?id=${id}&language=${lang}`,  {
      }) 
          .then( res => {
                       
@@ -62,7 +62,7 @@ export const getPurePage = (id,lang) => ( dispatch, getState ) => {
     
         dispatch({ type: GET_PageTYPE_REQ });
     
-        axios.get('https://hotels-ua.biz/interface/classifier?classifier=sitepage&language=en',  {
+        axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=sitepage&language=en`,  {
         }) 
             .then( res => {
                       
@@ -96,7 +96,7 @@ export const getPurePage = (id,lang) => ( dispatch, getState ) => {
     
             dispatch({ type: GET_PageREGION_REQ });
         
-            axios.get('https://hotels-ua.biz/interface/classifier?classifier=sitepage&language=en',  {
+            axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=sitepage&language=en`,  {
             }) 
                 .then( res => {
                           
@@ -127,7 +127,7 @@ export const getPurePage = (id,lang) => ( dispatch, getState ) => {
             
                 dispatch({ type: GET_hotelPAGESfooter_REQ });
             
-                axios.get('https://hotels-ua.biz/interface/classifier?classifier=sitepage&language=en',  {
+                axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=sitepage&language=en`,  {
                 }) 
                     .then( res => {
                               
