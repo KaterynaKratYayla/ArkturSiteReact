@@ -25,6 +25,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
                 "booking_reference" : smart_order_id,	// twid_reference in Smart - for control
                 "site_service_id" : 1,		// index of the service in the site
                 "service_number": 1,		// На будущее, когда в заказе будет разрешено несколько сервисов - booking_entity.ref_serv_smart
+                "smart_service_id" : service_id,	// booking_entity.id in Smart
             }
     }
 
