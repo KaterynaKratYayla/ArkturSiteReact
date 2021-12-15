@@ -15,6 +15,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
 
     const CryptoJS = require("crypto-js");
 
+    // TODO: Взять откуда-то site_order_id, site_service_id и smart_service_number
     const orderData = {
         "username":"Serodynringa",
         "password":"%tmMJZbABm6cB@tY",
@@ -22,10 +23,11 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
         "action":"GetPaymentInfoRQ",
         "data" :
             {
-                "booking_reference" : smart_order_id,	// twid_reference in Smart - for control
+                "site_order_id": 1,        // index of the order in the site (by default = 1) - в БД нет
+                "smart_reference" : smart_order_id,	// twid_reference in Smart - for control
                 "site_service_id" : 1,		// index of the service in the site
-                "service_number": 1,		// На будущее, когда в заказе будет разрешено несколько сервисов - booking_entity.ref_serv_smart
                 "smart_service_id" : service_id,	// booking_entity.id in Smart
+                "smart_service_number": 1,		// На будущее, когда в заказе будет разрешено несколько сервисов - booking_entity.ref_serv_smart
             }
     }
 
