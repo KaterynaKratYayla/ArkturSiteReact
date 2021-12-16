@@ -28,7 +28,9 @@ class PaymentResult extends Component {
         } else {
             console.log("work_with_payment, paymentInfo: ", this.props.paymentInfo);
             // const orderId = this.props.paymentInfo[0].data.smart_service_id;
-            const orderId = this.props.paymentInfo[0].data.smart_order_id;
+            // const orderId = this.props.paymentInfo[0].data.smart_order_id;
+            // const orderId = this.props.paymentInfo[0].data.booking_reference;
+            const orderId = this.props.paymentInfo[0].data.smart_reference;
             const warnings = this.props.paymentInfo[0].warnings;
             const isPaymentAbsent = this.props.paymentInfo[0].warnings[0].payment;
             console.log("work_with_payment, paymentInfo: isPaymentAbsent ", isPaymentAbsent);
