@@ -114,6 +114,17 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
           return current < moment().subtract(1,'days')
         }
 
+        // const CryptoJS = require("crypto-js"); 
+        // const key = 'kate'
+
+        // // console.log('AES',process.env.REACT_APP_PRIVATE_KEY)
+
+        // if (promoCode){
+        //   const encodedRef = CryptoJS.AES.encrypt(('refpartner='+promoCode+','), key /*process.env.REACT_APP_PRIVATE_KEY*/); 
+        //   localStorage.setItem('encodedRef', encodedRef); 
+        //   console.log('encodedRef',encodedRef) 
+        // }
+
       const addToList = () => {
 
        if (pickedHotelValue === false){

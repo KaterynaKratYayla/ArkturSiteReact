@@ -3,6 +3,7 @@ import { GET_PurePage_REQ, GET_PurePage_RES , GET_PurePage_ERR } from '../consta
 import { GET_PageTYPE_REQ, GET_PageTYPE_RES, GET_PageTYPE_ERR} from '../constants';
 import { GET_PageREGION_REQ, GET_PageREGION_RES, GET_PageREGION_ERR} from '../constants';
 import { GET_hotelPAGESfooter_REQ, GET_hotelPAGESfooter_RES, GET_hotelPAGESfooter_ERR} from '../constants';
+import {GET_PhotoGalleryPage_REQ, GET_PhotoGalleryPage_RES, GET_PhotoGalleryPage_ERR} from '../constants';
 
 const initState = {
 	pages: [],
@@ -23,6 +24,10 @@ const initState = {
 
     hotelPagesFooter: [],
     hotelPagesFooter_loaded: false,
+    errors: [],
+
+    galleryPage: [],
+    galleryPage_loaded: false,
     errors: []
 }
 
@@ -124,6 +129,25 @@ const reducer = ( state = initState, action ) => {
                                 ...state,
                                 errors: [...state.errors, action.error ]
                               })
+
+                              case GET_PhotoGalleryPage_REQ:
+                                return({
+                                    ...state,
+                                    galleryPage_loaded: false
+                                 })
+                
+                            case GET_PhotoGalleryPage_RES:
+                                return({
+                                    ...state,
+                                    galleryPage_loaded: true,
+                                    galleryPage: action.payload
+                                  })
+                
+                            case GET_PhotoGalleryPage_ERR:
+                                return({
+                                    ...state,
+                                    errors: [...state.errors, action.error ]
+                                  })
             
         default:
 			return state;

@@ -3,7 +3,7 @@ import {NavLink, Link} from 'react-router-dom'
 import {useIntl} from 'react-intl'
 import {localizePath} from '../../Pages/Helpers/localizeRoutePath'
 
-export const LocalizationNavLink = ({to, onClick=null, children}) =>{
+export const LocalizationNavLink = ({to, onClick, children}) =>{
 
     console.log('children',children)
     const {locale} = useIntl();

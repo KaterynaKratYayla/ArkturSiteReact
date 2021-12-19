@@ -96,3 +96,6 @@ export const GET_CURRENCY_ERR = "GET_CURRENCY_ERR";
 export const GET_PROMOCODE_REQ = "GET_PROMOCODE_REQ";
 export const GET_PROMOCODE_RES = "GET_PROMOCODE_RES";
 export const GET_PROMOCODE_ERR = "GET_PROMOCODE_ERR";
+export const GET_PhotoGalleryPage_REQ = "GET_PhotoGalleryPage_REQ";
+export const GET_PhotoGalleryPage_RES = "GET_PhotoGalleryPage_RES";
+export const GET_PhotoGalleryPage_ERR = "GET_PhotoGalleryPage_ERR";

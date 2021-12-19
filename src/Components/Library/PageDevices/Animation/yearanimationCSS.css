@@ -1,0 +1,111 @@
+:root {
+    --duration: 5s;
+    --ease: linear; 
+    --main-bg-color: rgb(235,214,188);  
+   }
+
+.svgContainer{
+    height: 50%;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--main-bg-color);
+  border-radius: 5px;
+}
+
+.digit circle {
+     animation: dash var(--duration) var(--ease) alternate infinite;
+     animation-name: circle-draw;
+     stroke-dashoffset: -1;
+     stroke-dasharray: 1 1;
+     stroke-linejoin: round;
+     stroke-linecap: round;
+     /* stroke-dashoffset: -1.2; */
+     /* stroke-dasharray: 1 1.2; */
+     /* stroke-opacity: 0.5; */
+      }
+
+.digit path {
+    /* stroke: var(--color); */
+   stroke-dashoffset: -1;
+    stroke-dasharray: 550;
+    animation: stroke var(--duration) var(--ease) alternate infinite ;
+    animation-name: path-draw;   
+    stroke-linejoin: round;
+     /*stroke-linecap: round;
+     stroke-dashoffset: -4;
+    /* stroke-dasharray: 1 1.2;*/
+}
+
+.digit{
+  transform: scale(0.9);
+    animation-name: digit;
+    animation: digit var(--duration) ease alternate infinite;
+    animation-delay: calc((var(--i) * 1s));;
+        }
+
+svg:nth-child(1){
+ --x-offset: 150%;
+}
+svg:nth-child(2){
+--x-offset: 50%;
+    }
+svg:nth-child(3){
+--x-offset: -50%;
+}
+
+svg:nth-child(4){
+--x-offset: -150%;
+}
+
+svg:nth-child(even){
+/*--y-offset: 6%;*/
+--y-offset: calc(-25% + 8%)
+}
+
+svg:nth-child(odd){
+/*--y-offset: -38%; */
+--y-offset: calc(25% - 8%)
+}
+
+@keyframes digit{
+    from, 25% {
+        transform: translate(var(--x-offset,0), var(--y-offset,0)) scale(1) ;
+    }
+    50% {
+        transform: translate(0%, var(--y-offset)) scale(1) ;
+    }
+    75%, to{
+        transform: none scale(1) ;
+     }
+    }
+
+.digits {
+    display: flex;
+    flex-direction: row;
+    /* animation: sin var(--duration) infinite */
+}
+
+
+@keyframes path-draw {
+        0%, 43% {
+            stroke-dashoffset: 550;
+        }
+        90%, 100% {
+            stroke-dashoffset: 0;
+        }
+} 
+
+@keyframes circle-draw {
+        0% {
+            stroke-dasharray: 0 1 0.3 0.3; stroke-dashoffset: 1;
+        }
+       18%, 55%{
+        stroke-dasharray: 1 1; stroke-dashoffset: -2;
+        }
+        70% , 100% {
+            stroke-dashoffset: -3;
+        }
+}

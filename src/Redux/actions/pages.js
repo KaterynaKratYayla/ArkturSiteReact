@@ -5,6 +5,7 @@ import { GET_PurePage_REQ, GET_PurePage_RES, GET_PurePage_ERR} from '../constant
 import { GET_PageTYPE_REQ, GET_PageTYPE_RES, GET_PageTYPE_ERR} from '../constants';
 import { GET_PageREGION_REQ, GET_PageREGION_RES, GET_PageREGION_ERR} from '../constants';
 import { GET_hotelPAGESfooter_REQ, GET_hotelPAGESfooter_RES, GET_hotelPAGESfooter_ERR} from '../constants';
+import { GET_PhotoGalleryPage_REQ, GET_PhotoGalleryPage_RES, GET_PhotoGalleryPage_ERR} from '../constants';
 
 
 export const pagesResponse = ( res ) => ({
@@ -143,3 +144,26 @@ export const getPurePage = (id,lang) => ( dispatch, getState ) => {
                         dispatch({ type: GET_hotelPAGESfooter_ERR, error: err });
                     })
                 }
+
+
+ export const photoGalleryPageResponse = ( res ) => ({
+                    type: GET_PhotoGalleryPage_RES,
+                    payload: res
+                });
+               
+ export const getPhotoGalleryPage = (id,lang) => ( dispatch, getState ) => {
+            
+    // console.log('AAAaa',id)
+                 dispatch({ type: GET_PhotoGalleryPage_REQ });
+                
+              axios.get(`https://hotels-ua.biz/interface/sitepagecontent?id=${id}&language=${lang}`,  {
+                 }) 
+                     .then( res => {
+                        //  console.log('[AAA_GALLERY] : ' , res.data)
+                         dispatch(photoGalleryPageResponse(res.data))
+                      })
+                      .catch( err => {
+                        dispatch({ type: GET_PhotoGalleryPage_ERR, error: err });
+                      })
+                  }
+                
