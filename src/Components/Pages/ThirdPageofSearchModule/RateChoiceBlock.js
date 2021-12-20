@@ -50,7 +50,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id,totalPax}) =>{
  
 
       useEffect (() =>{
-        axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
+        axios.get(`${process.env.REACT_APP_SMART_URL}interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
         .then(res => {
           setChoiceDetailsNew(res.data)               
       

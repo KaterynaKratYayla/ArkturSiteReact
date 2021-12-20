@@ -32,7 +32,7 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,rooms,adults,children})
   }, [counterAdults,counterChild,counterRooms])
 
 //   useEffect (() =>{
-//     axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
+//     axios.get(`${process.env.REACT_APP_SMART_URL}interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
 //     .then(res => {
 //       let tour_capacity
 //       res.data[0].tariff.forEach((item)=>{

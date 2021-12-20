@@ -10,7 +10,7 @@ export const getHotelCities = (lang) => ( dispatch, getState ) => {
 
     dispatch({ type: GET_HOTEL_CITIES_REQ });
 
-    axios.get(`https://hotels-ua.biz/interface/classifier?classifier=hotelaccommodationdetails&language=${lang}`,  {
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=hotelaccommodationdetails&language=${lang}`,  {
     }) 
         .then( res => {
             const newobj = res.data.map((item)=>{

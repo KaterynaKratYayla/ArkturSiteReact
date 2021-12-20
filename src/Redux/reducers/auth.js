@@ -9,9 +9,17 @@ import {
 console.log("user: ", localStorage.getItem("user"));
 const user = JSON.parse(localStorage.getItem("user"));
 
+const notRegisteredUser = {
+  id: 1426,
+  company_id: 1361,
+  company_name: "hotelsukraine.com.ua"
+};
+
 const initialState = user
   ? { isLoggedIn: true, user }
-  : { isLoggedIn: false, user: null };
+  : { isLoggedIn: false,
+      user: notRegisteredUser
+    };
 
 export default function (state = initialState, action) {
   const { type, payload } = action;
@@ -37,13 +45,13 @@ export default function (state = initialState, action) {
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        user: notRegisteredUser,
       };
     case LOGOUT:
       return {
         ...state,
         isLoggedIn: false,
-        user: null,
+        user: notRegisteredUser,
       };
     default:
       return state;

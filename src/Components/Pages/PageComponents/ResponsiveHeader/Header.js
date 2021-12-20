@@ -100,7 +100,7 @@ export const TopMenu = () => {
 			 }
 			  <div className={topMenuRight}>
 				<a href='mailto:inquiry@arktur.ua'>inquiry@arktur.ua</a>
-						{currentUser ? (
+						{currentUser.id !== 1426 ? (
 						  <LocalizationNavLink exact to={`/${lang}/testcities`} activeClassName='active'>
 							  <div style={{display:'flex',
 							    	 flexDirection: 'row'}}>
@@ -136,7 +136,7 @@ export const TopMenu = () => {
 
 
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
-					{currentUser ? (
+					{currentUser.id !== 1426 ? (
 						<LocalizationNavLink exact to={`/`} activeClassName='active' onClick={logOut}>LOG OUT</LocalizationNavLink>
 					) : (
 						<LocalizationNavLink exact to={`/sign_in`} activeClassName='active'>

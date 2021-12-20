@@ -25,7 +25,7 @@ export const ItemContent = ({tour})=>{
   const [width, height] = useWindowWidthAndHeight()
 
   useEffect ( () => {
-    axios.get(`https://hotels-ua.biz/interface/content?id=${tour.tour_id}&language=${locale}`)
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/content?id=${tour.tour_id}&language=${locale}`)
       .then( res => {
         setResult(res.data)
         })

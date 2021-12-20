@@ -16,7 +16,7 @@ export const OccupancyRates = ({choiceDetailsNew,hotelChoice,tour_id,selectionDe
     console.log('OCCUPANCY', choiceDetailsNew, hotelChoice)
 
     useEffect (() =>{
-        axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
+        axios.get(`${process.env.REACT_APP_SMART_URL}interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
         .then(res => {
     
         const hotelChoice = res.data[0].hotels.map((item)=>{

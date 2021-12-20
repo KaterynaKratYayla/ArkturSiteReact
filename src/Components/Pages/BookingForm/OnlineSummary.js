@@ -44,7 +44,7 @@ export const OnlineSummary = ({name,surname,phone,email,app_service_id}) =>{
                     }
                 };
 
-        axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+        axios.post(`${process.env.REACT_APP_SMART_URL}interface/xmlsubj/`, JSON.stringify({ActionRQ}))
             .then(response => setModifyClientsRQ_Add(response.data));
     }, []);
 

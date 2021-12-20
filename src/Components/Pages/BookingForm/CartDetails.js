@@ -47,7 +47,7 @@ export const CartDetails = ({cart,cartClass}) =>{
     console.log('CONTENT',content)
 
        // useEffect ( () => {
-    //     axios.get(`https://hotels-ua.biz/interface/content?id=${cart.contract_id}&language=en`) //former cart.tour_id
+    //     axios.get(`${process.env.REACT_APP_SMART_URL}interface/content?id=${cart.contract_id}&language=en`) //former cart.tour_id
     //       .then( res => {
     //         setTourContent(res.data)
     //         })
