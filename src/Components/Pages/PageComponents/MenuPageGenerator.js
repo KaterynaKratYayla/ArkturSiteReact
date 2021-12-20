@@ -13,7 +13,6 @@ import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {ValidateQuery} from '../Helpers/helper'
 import Slider from '../../Library/Slider/Slider'
 import {CartGallery} from '../../Library/PageDevices/CartGallery/CartGallery'
-import {SeveralPhotoBlocks} from '../../Library/PageDevices/CartGallery/SeveralPhotoBlocks'
 import { LocalizationNavLink } from '../../Library/Localization/LocalizationNavLink';
 
 import {ContentPages} from '../PageComponents/ContentPages'
@@ -76,13 +75,20 @@ export const PureContent = () => {
            }
 
            if(page.content_name === "Image"){
-            
+             if(search_data.id === '18'){
+               return(
+                 <Slider slides={page.text}/>
+               )
+             }
+
+            else{
              return(
               <CartGallery photos={page}
                photoHeight={'55vh'}
               />
               )
              }
+            }
            
 
            if(page.content_name === "Body"){
@@ -114,7 +120,7 @@ export const PureContent = () => {
              }
              else {
              return (
-               <div style={{maxWidth:`${width}px`,overflow:'hidden',order:'1'}}>{ReactHtmlParser(page.text)}</div>
+               <div style={{maxWidth:`${width}px`,overflow:'hidden',order:'1',marginTop:'2vh'}}>{ReactHtmlParser(page.text)}</div>
              )
            }
           }

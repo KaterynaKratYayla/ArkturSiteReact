@@ -8,4 +8,6 @@ export default {
     //Localization
     supportedLangs:['en','uk','ru','tr'],
     defaultLang:'en'
+
+    
 }

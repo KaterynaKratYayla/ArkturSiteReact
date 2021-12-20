@@ -74,6 +74,17 @@
     padding-bottom: 2vh;
 }
 
+.purecontentPage h4{
+    color: royalblue;
+    font-size: 18px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: Arial;
+    margin-bottom: 0.4vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+}
+
 .purecontentPage .inner{
     font-size: 17px;
     font-weight: bold;
