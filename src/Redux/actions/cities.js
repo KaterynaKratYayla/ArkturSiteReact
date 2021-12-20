@@ -14,14 +14,14 @@ export const getGeo = () => ( dispatch) => {
 
     dispatch({ type: GET_GEO_REQ });
 
-    axios.get('https://hotels-ua.biz/interface/classifier?classifier=contract',  {
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=contract`,  {
     }) 
         .then( res => {
             const newArray1 = res.data.map(function(b){
               return {
                 id: b.tour_id,
                 name: b.tour_name
-              } 
+              }
             })
    
                const newArray2 = res.data.map(function(q){
@@ -52,7 +52,7 @@ export const getGeo = () => ( dispatch) => {
     
         dispatch({ type: GET_GENERAL_GEO_REQ });
     
-        axios.get('https://hotels-ua.biz/interface/classifier?classifier=contract',  {
+        axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=contract`,  {
         }) 
             .then( res => {
                       

@@ -11,7 +11,7 @@ export const getTopTours = () => ( dispatch, getState ) => {
 
     dispatch({ type: GET_TOPTOURS_REQ });
 
-    axios.get('https://hotels-ua.biz/interface/toptours',  {
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/toptours`,  {
     }) 
         .then( res => {
                   

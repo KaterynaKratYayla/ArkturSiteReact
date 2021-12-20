@@ -15,7 +15,7 @@ export const getHotelContent = (id,lang) => ( dispatch, getState ) => {
 
     dispatch({ type: GET_HOTEL_CONTENT_REQ });
 
-    axios.get(`https://hotels-ua.biz/interface/hotelcontent?id=${id}&language=${lang}`)
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/hotelcontent?id=${id}&language=${lang}`)
       .then( res => {
         const filtered_res = res.data.filter((item,index,array) =>
         array.findIndex(t => t.content_name === item.content_name)===index)

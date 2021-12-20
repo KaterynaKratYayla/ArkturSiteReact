@@ -10,7 +10,7 @@ export const getCurrency = () => ( dispatch, getState ) => {
 
     dispatch({ type: GET_CURRENCY_REQ });
 
-    axios.get(`https://hotels-ua.biz/interface/classifier?classifier=currency`,  {
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=currency`,  {
     }) 
         .then( res => {
             

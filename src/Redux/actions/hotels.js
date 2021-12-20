@@ -15,7 +15,7 @@ export const getHotels = () => ( dispatch) => {
 
     dispatch({ type: GET_HOTELS_REQ });
 
-    axios.get('https://hotels-ua.biz/interface/classifier?classifier=hotelaccommodation',  {
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=hotelaccommodation`,  {
     }) 
         .then( res => {
             const hotelsArray1 = res.data.map(function(b){
@@ -53,7 +53,7 @@ export const getHotels = () => ( dispatch) => {
     
         dispatch({ type: GET_GENERAL_HOTELS_REQ });
     
-        axios.get('https://hotels-ua.biz/interface/classifier?classifier=hotelaccommodation',  {
+        axios.get(`${process.env.REACT_APP_SMART_URL}interface/classifier?classifier=hotelaccommodation`,  {
         }) 
             .then( res => {
                       

@@ -105,7 +105,7 @@ console.log('[TEST]', test)
         };
 
         // axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
-        axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+        axios.post(`${process.env.REACT_APP_SMART_URL}interface/xmlsubj/`, JSON.stringify({ActionRQ}))
         // axios.post('http://smartbooker/interface/xmlsubj/', JSON.stringify({ActionRQ}))
             .then( res => {
                 setRate(res.data)

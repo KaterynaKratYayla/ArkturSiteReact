@@ -41,7 +41,7 @@ export const getHotelRates = (search_data) => ( dispatch, getState ) => {
                 }
             };
         
-        axios.post('https://hotels-ua.biz/interface/xmlsubj/', JSON.stringify({ActionRQ}))
+        axios.post(`${process.env.REACT_APP_SMART_URL}interface/xmlsubj/`, JSON.stringify({ActionRQ}))
             .then(response => {
               for(let key in response.data.data){
                 if(key === 'hotels'){

@@ -33,7 +33,7 @@ export const TopToursDetails = (props) =>{
     console.log('Seach Details', search_data)
     
     useEffect ( () => {
-    axios.get(`https://hotels-ua.biz/interface/content?id=${search_data.tour_id}&language=${locale}`)
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/content?id=${search_data.tour_id}&language=${locale}`)
       .then( res => {
         setTTDetails(res.data)
         })

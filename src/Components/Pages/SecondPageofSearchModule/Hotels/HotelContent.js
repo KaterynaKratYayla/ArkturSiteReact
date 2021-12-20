@@ -41,7 +41,7 @@ const dispatch = useDispatch();
 // console.log('[HOTEL_HOTEL_CONTENTS]', hotelcontents)
 
   useEffect ( () => {
-    axios.get(`https://hotels-ua.biz/interface/hotelcontent?id=${hotel.hotel_id}&language=${locale}`)
+    axios.get(`${process.env.REACT_APP_SMART_URL}interface/hotelcontent?id=${hotel.hotel_id}&language=${locale}`)
       .then( res => {
         console.log('RES_DATA', res.data)
         setResult(res.data)
