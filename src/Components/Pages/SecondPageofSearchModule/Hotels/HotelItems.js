@@ -103,12 +103,14 @@ const {locale,messages} = useIntl();
   const today = moment().format('YYYY-MM-DD');
 
   console.log('[TODAY MONTH]' , currentMonth, '[TODAY DATE]', today, '[TEST_DATE] : ' , search_data.date + '-01')
+	const { user: currentUser } = useSelector((state) => state.auth);
 
   useEffect(() => {
     const ActionRQ = {
         "username":"Serodynringa",
         "password":"%tmMJZbABm6cB@tY",
-        "user_id" :1426, 
+        // "user_id" :1426,
+        "user_id" :currentUser.id,
         "action":"GetPriceHotelRQ",
         "refpartner":search_data.refpartner?search_data.refpartner:null,
         "data" : 

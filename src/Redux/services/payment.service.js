@@ -23,7 +23,7 @@ export default class PaymentService {
             });
     };
 
-    getPaymentVoucher = (service_id) => {
+    /* getPaymentVoucher = (service_id) => {
         console.log("work_with_payment: getPaymentVoucher ");
         const ActionRQ = {
             "username":"Serodynringa",
@@ -50,5 +50,5 @@ export default class PaymentService {
             .catch(error =>{
                 console.log('[axios error]: ', error)
             });
-    };
+    }; */
 }

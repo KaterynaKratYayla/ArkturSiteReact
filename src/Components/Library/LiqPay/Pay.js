@@ -1,6 +1,7 @@
 import React from "react";
 import {useIntl} from 'react-intl'
 import { LiqPayPay } from "react-liqpay";
+import {useSelector} from "react-redux";
 
 console.log('[file]', 'src/Components/Library/LiqPay/Example.js');
 
@@ -12,6 +13,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
     //ВОТ ДОБАВИЛА ИНФО О ЛОКАЛИ . можешь включить параметр locale в запрос ниже
     const {locale} = useIntl();
     console.log('locale: ', locale)
+	const { user: currentUser } = useSelector((state) => state.auth);
 
     const CryptoJS = require("crypto-js");
 
@@ -19,7 +21,8 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
     const orderData = {
         "username":"Serodynringa",
         "password":"%tmMJZbABm6cB@tY",
-        "user_id" :1426,
+        // "user_id" :1426,
+        "user_id" :currentUser.id,
         "action":"GetPaymentInfoRQ",
         "data" :
             {

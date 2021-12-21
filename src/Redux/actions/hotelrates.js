@@ -1,5 +1,6 @@
 
 import axios from '../helpers/public.axios';
+import {useSelector} from "react-redux";
 
 import { GET_HOTEL_RATES_REQ, GET_HOTEL_RATES_RES , GET_HOTEL_RATES_ERR } from '../constants';
 
@@ -13,11 +14,13 @@ export const hotelRatesResponse = ( res ) => ({
 export const getHotelRates = (search_data) => ( dispatch, getState ) => {
 
     dispatch({ type: GET_HOTEL_RATES_REQ });
+    const { user: currentUser } = useSelector((state) => state.auth);
 
     const ActionRQ = {
            "username":"Serodynringa",
             "password":"%tmMJZbABm6cB@tY",
-            "user_id" :1426, 
+            // "user_id" :1426,
+            "user_id" :currentUser.id,
             "action":"GetPriceHotelRQ",
             "refpartner":search_data.refpartner?search_data.refpartner:null,
             "data" : 
