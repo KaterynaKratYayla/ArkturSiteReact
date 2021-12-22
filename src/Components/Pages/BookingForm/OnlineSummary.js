@@ -17,7 +17,7 @@ export const OnlineSummary = ({name,surname,phone,email,app_service_id}) =>{
                 "username":"Serodynringa",
                 "password":"%tmMJZbABm6cB@tY",
                 // "user_id" :1426,
-                "user_id" :currentUser.id,
+                "user_id" :currentUser.user_id,
                 "action":"ModifyClientsRQ",
                 "data" :
                     {

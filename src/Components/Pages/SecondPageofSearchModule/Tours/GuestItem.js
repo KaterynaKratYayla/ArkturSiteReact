@@ -95,7 +95,7 @@ console.log('[TEST]', test)
             "username":"Serodynringa",
             "password":"%tmMJZbABm6cB@tY",
             // "user_id" :1426,
-            "user_id" :currentUser.id,
+            "user_id" :currentUser.user_id,
             "action":"GetPriceTourRQ",
             "data" :
                 {

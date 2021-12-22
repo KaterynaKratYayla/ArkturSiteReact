@@ -5,7 +5,7 @@ import {useSelector} from "react-redux";
 
 console.log('[file]', 'src/Components/Library/LiqPay/Example.js');
 
-export const Pay = ({service_id, smart_order_id,cart,client}) => {
+export const Pay = ({service_id, smart_order_id,cart,client, service_number}) => {
     console.log('[file]:export const Pay', 'src/Components/Library/LiqPay/Pay.js');
     console.log('BUTTON_CART',cart)
     // console.log('server_url: ', process.env.REACT_APP_URL);
@@ -22,7 +22,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
         "username":"Serodynringa",
         "password":"%tmMJZbABm6cB@tY",
         // "user_id" :1426,
-        "user_id" :currentUser.id,
+        "user_id" :currentUser.user_id,
         "action":"GetPaymentInfoRQ",
         "data" :
             {
@@ -30,7 +30,7 @@ export const Pay = ({service_id, smart_order_id,cart,client}) => {
                 "smart_reference" : smart_order_id,	// twid_reference in Smart - for control
                 "site_service_id" : 1,		// index of the service in the site
                 "smart_service_id" : service_id,	// booking_entity.id in Smart
-                "smart_service_number": 1,		// На будущее, когда в заказе будет разрешено несколько сервисов - booking_entity.ref_serv_smart
+                "smart_service_number": service_number,		// На будущее, когда в заказе будет разрешено несколько сервисов - booking_entity.ref_serv_smart
             }
     }
 
