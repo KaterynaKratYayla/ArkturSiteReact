@@ -60,17 +60,14 @@ svg:nth-child(4){
 --x-offset: -150%;
 }
 
-svg:nth-child(1){
- --y-offset: calc(25% - 8%)
+svg:nth-child(even){
+/*--y-offset: 6%;*/
+--y-offset: calc(-25% + 8%)
 }
-svg:nth-child(2){
-  --y-offset: calc(-25% + 8%)
- }
-svg:nth-child(3){
- --y-offset: calc(25% - 8%)
-}
-svg:nth-child(4){
- --y-offset: calc(25% - 8%)
+
+svg:nth-child(odd){
+/*--y-offset: -38%; */
+--y-offset: calc(25% - 8%)
 }
 
 @keyframes digit{

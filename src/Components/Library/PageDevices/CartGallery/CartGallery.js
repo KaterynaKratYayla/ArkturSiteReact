@@ -20,16 +20,18 @@ export const CartGallery = ({photos,photoHeight,photoWidth,smallImageHeight}) =>
 
     return(
         <div 
-            style={{width:'96%',display:'flex',flexDirection:`${width>768?'row':'column'}`}}
+            style={{width:'96%',height:'55vh',display:'flex',flexDirection:`${width>768?'row':'column'}`}}
             >
-            <div style={{width:`${width>768?'60%':'100%'}`}}>
+            <div style={{width:`${width>768?'60%':'100%'}`,display:'flex',justifyContent:'center'}}>
                   <img 
                       src={picked}
                       style={{padding:'5px',
                               marginLeft:'auto',
                               marginRight:'auto',
-                              width:`${photoWidth?photoWidth:'100%'}`,
-                              height:`${photoHeight}`,
+                            //   width:`${photoWidth?photoWidth:'100%'}`,
+                            maxHeight:'100%',
+                            objectFit:'cover',
+                            //   height:`${photoHeight}`,
                               borderRadius:'0.7vw'
                    }}/>
             </div>
@@ -42,7 +44,7 @@ export const CartGallery = ({photos,photoHeight,photoWidth,smallImageHeight}) =>
                          gridTemplateColumns:'repeat(4,25%)',
                          rowGap:'0',
                          width:`${width>768?'40%':'100%'}`,
-                         height:`${photoHeight}`,
+                        //  height:`${photoHeight}`,
                          overflow:'scroll'
                         //  justifyContent:'space-evenly'
                         }}>
@@ -50,13 +52,10 @@ export const CartGallery = ({photos,photoHeight,photoWidth,smallImageHeight}) =>
                            photos.text.map((image,index,array)=>{
                              return(
                                   <div> 
-                                         {/* {(index > 1 && index <=5)? */}
                                              <img src={'https://'+image} 
                                                   class={activeIndex === index?'CartPickedImage':'CartNotPickedImage'}
                                                   style={{height:`${smallImageHeight?smallImageHeight:null}`}}
-                                                // width={width*0.5}
                                                   onClick={pickAction(index)}/>
-                                                  {/* :null} */}
                                    </div>
                                    )
                                 })
