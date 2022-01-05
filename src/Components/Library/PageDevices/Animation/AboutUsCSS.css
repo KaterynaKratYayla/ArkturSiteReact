@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400|Poppins:300,400,800&display=swap');
+
+.WrapperAboutUs{
+    display: flex;
+    flex-direction: column;
+}
+
+*{
+    margin:0;
+    padding:0;
+}
+
+
+.container {
+    min-width: 100%;
+    /* height: 100%; */
+    height:30%;
+    background: #065ca3;
+    /* #6194c0; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:1vw;
+    border-radius: 10px;
+  }
+    .box {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+    }
+      .title {
+        /* width: 100%; */
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 60px;
+      }
+  
+       .container .title .block {
+          /* width: 0%; */
+          height: inherit;
+          background: #ffb510;
+          position: absolute;
+          /* position: relative; */
+          animation: mainBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
+          display: flex;
+          border-radius: 10px;
+        }
+  
+        h1 {
+          font-family: 'Poppins';
+          color: #fff;
+          font-size: 32px;
+          -webkit-animation: mainFadeIn 2s forwards;
+          -o-animation: mainFadeIn 2s forwards;
+          animation: mainFadeIn 2s forwards;
+          animation-delay: 1.6s;
+          opacity: 0;
+          display: flex;
+          align-items: baseline;
+          position: relative;
+        }
+              
+          h1 span {
+            /* width:0px; */
+            /* height: 0px; */
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            background: #ffb510;
+            -webkit-animation: load 0.6s cubic-bezier(.74, .06, .4, .92) forwards;
+            animation: popIn 0.8s cubic-bezier(.74, .06, .4, .92) forwards;
+            animation-delay: 2s;
+            margin-left: 5px;
+            margin-top: -10px;
+            position: absolute;
+            bottom: 13px;
+            right: -12px;
+          }      
+      
+  
+      .role {
+        width: 100%;
+        position: relative;
+        /* position:absolute; */
+        display: flex;
+        align-items: center;
+        /* height: 20px; */
+        /* margin-top: 0.5vh; */
+      }
+
+        .role .block {
+          width: 0%;
+          /* height: inherit; */
+          line-height:12px;
+          /* background: #e91e63; */
+          background: #8d98f3;
+          position: absolute;
+          animation: secBlock 2s cubic-bezier(.74, .06, .4, .92) forwards;
+          animation-delay: 2s;
+          display: flex;
+          border-radius: 10px;
+        }
+  
+        .role p {
+          animation: secFadeIn 2s forwards;
+          animation-delay: 3.2s;
+          opacity: 0;
+           font-weight: 400;
+          font-family: 'Lato';
+          color: #ffffff;
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 5px;
+        }
+  
+  @keyframes mainBlock {
+    0% {
+      width: 0%;
+      left: 0;
+  
+    }
+    50% {
+      width: 100%;
+      left: 0;
+  
+    }
+    100% {
+      width: 0;
+      left: 100%;
+    }
+  }
+  
+  @keyframes secBlock {
+    0% {
+      width: 0%;
+      left: 0;
+  
+    }
+    50% {
+      width: 100%;
+      left: 0;
+  
+    }
+    100% {
+      width: 0;
+      left: 100%;
+    }
+  }
+  
+  @keyframes mainFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  
+  @keyframes popIn {
+    0% {
+      width: 0px;
+      height: 0px;
+      background: #e9d856;
+      border: 0px solid #ddd;
+      opacity: 0;
+    }
+    50% {
+      width: 10px;
+      height: 10px;
+      background: #e9d856;
+      opacity: 1;
+      bottom: 45px;
+    }
+     65% {
+        width: 7px;
+      height: 7px;
+        bottom: 0px;
+        width: 15px
+     }
+     80% {
+        width: 10px;
+      height: 10px;
+        bottom: 20px
+     }
+    100% {
+      width: 7px;
+      height: 7px;
+      background: #e9d856;
+      border: 0px solid #222;
+      bottom: 10px;
+  
+    }
+  }
+  
+  @keyframes secFadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0.5;
+    }
+  }
+
+  .desc {
+    background: #f7eea9;
+    position:relative;
+    left: -1000vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     animation: top 0.8s forwards;
+     animation-delay: 4s;
+     margin-bottom:2vh;
+     animation-timing-function:linear;
+    padding:2vh 3vw;
+    border-radius: 10px;
+  }
+
+  @keyframes top {
+    0% {
+      opacity: 0;
+       left:0;
+       top:60%;
+    }
+    100% {
+      opacity: 1;
+       left:50%;
+       top: 60%;
+       transform: translateX(-50%); 
+    }
+  }
+
+
+.Advantages{
+    display:grid;
+    grid-template-columns: repeat(5, 20%);
+    align-items: center;
+    background-color: #003057;
+    padding: 0 10px;
+    min-height: 20vh;
+    border-radius: 10px;
+    margin-bottom: 2vh;
+
+    position:relative;
+    left: -1000vw;
+     animation: top 0.8s forwards;
+     animation-delay: 4s;
+     animation-timing-function:linear;
+    }
+
+.Wrap{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:0.5vw 1vw 0.5vw 1vw;
+    color: white;
+    /* position:absolute; */
+    /* top:0; */
+} 
+
+.Wrap div{
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.Advantages div{
+    display:flex;
+    justify-content: center;
+    align-self: flex-start;
+}
+
+.purecontentPage .Advantages div{
+    color:white;
+    min-height: 0;
+    text-align: center;
+}
+
+.purecontentPage .Advantages div.Numbers{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.MainText{
+    position:relative;
+    left: -1000vw;
+     animation: top 0.8s forwards;
+     animation-delay: 4s;
+     animation-timing-function:linear;
+}

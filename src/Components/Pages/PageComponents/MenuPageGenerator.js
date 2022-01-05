@@ -14,6 +14,7 @@ import {ValidateQuery} from '../Helpers/helper'
 import Slider from '../../Library/Slider/Slider'
 import {CartGallery} from '../../Library/PageDevices/CartGallery/CartGallery'
 import { LocalizationNavLink } from '../../Library/Localization/LocalizationNavLink';
+import {AboutUs} from '../../Library/PageDevices/Animation/AboutUs'
 
 import {ContentPages} from '../PageComponents/ContentPages'
 
@@ -117,6 +118,11 @@ export const PureContent = () => {
                   </>
                 )
               
+             }
+             else if(search_data.id === '1'){
+              return(
+                <AboutUs text={page.text}/>
+              )
              }
              else {
              return (
