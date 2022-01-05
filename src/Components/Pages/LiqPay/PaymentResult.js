@@ -43,6 +43,13 @@ class PaymentResult extends Component {
             const searchDataEncrypted = localStorage.getItem('search_data');
             const bytes  = CryptoJS.AES.decrypt(searchDataEncrypted, process.env.REACT_APP_PRIVATE_KEY);
             const searchData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+
+            // Хотел расшиврофать state и восстановить его в Redux
+            /* const stateEncrypted = localStorage.getItem('state');
+            const stateEncryptedBytes  = CryptoJS.AES.decrypt(stateEncrypted, process.env.REACT_APP_PRIVATE_KEY);
+            const state = JSON.parse(stateEncryptedBytes.toString(CryptoJS.enc.Utf8));
+            console.log('state: ', state); */
+
             if (isPaymentAbsent === "absent") {
                 const lastLocation = localStorage.getItem('lastLocation');
                 return (

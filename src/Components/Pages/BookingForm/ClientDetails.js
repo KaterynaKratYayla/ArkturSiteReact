@@ -1,7 +1,7 @@
-import React, {useState,useEffect} from 'react'
+import React, {useState,useEffect, useRef} from 'react'
 import axios from 'axios'
 // import '../PageComponents/ResponsiveHeader/header.css'
-import { useHistory} from "react-router-dom";
+import { useLocation, useHistory} from "react-router-dom";
 import { Radio } from 'antd';
 
 import {ClientTitles} from '../../Library/StaticJsonData/ClientTitles'
@@ -15,12 +15,13 @@ import {useSelector} from "react-redux";
 
 export const ClientDetails = ({cart}) => {
 
-    const history = useHistory();
     const { user: currentUser } = useSelector((state) => state.auth);
-    console.log('currentUser: ', currentUser);
+    console.log('currentUser: ClientDetails.js', currentUser);
+    const {promocode} = useSelector((state) => state.promocode);
+    console.log('promocode:', promocode);
 
     const [sendCart, setSendCart] = useState([{}]);
-    const [userData, setUserData] = useState(null);
+    // const [userData, setUserData] = useState(null);
 
     const [nameInput, setNameInput]= useState('');
     const [surnameInput, setSurnameInput] = useState('');
@@ -36,6 +37,10 @@ export const ClientDetails = ({cart}) => {
 
     const [bookerTravels, setbookerTravels] = useState(0);
 
+    const responseErrorIndex = useRef(0);
+
+    const [responseError, setResponseError] = useState(responseErrorIndex);
+
     // const [testHook, setTestHook] = useState([{}])
 
     // const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([{}]);
@@ -47,8 +52,9 @@ export const ClientDetails = ({cart}) => {
         const ActionRQ = {
                 "username":"Serodynringa",
                 "password":"%tmMJZbABm6cB@tY",
-                // "user_id" : currentUser ? currentUser.id : 1426,
-                "user_id" : 1426,
+                // "user_id" : currentUser ? currentUser.user_id : 1426,
+                // "user_id" : 1426,
+                "user_id" : currentUser.user_id,
                 "action":"AddToCartRQ",
                 "data" :
                     {
@@ -78,7 +84,12 @@ export const ClientDetails = ({cart}) => {
 
         axios.post(`${process.env.REACT_APP_SMART_URL}interface/xmlsubj/`, JSON.stringify({ActionRQ}))
             .then(response => {
-                console.log('RESPONSE', response)
+                console.log('RESPONSE ClientDetails.js', response)
+                if (response.data[0].errors[0] === 'Duplicate entry') {
+                    responseErrorIndex.current += 1;
+                    setResponseError(responseErrorIndex.current);
+                    console.log('RESPONSE responseErrorIndex', responseError);
+                }
                 setSendCart(response.data[0])
               })
             .catch(error =>{
@@ -86,7 +97,7 @@ export const ClientDetails = ({cart}) => {
                 console.log('[axios error]: ', error)
               });
 
-    }, []);
+    }, [responseError]); // (Долбим) Посылаем запросы, пока Твид не выдаст twid_reference
 
 
     let app_service_id = new Object();
@@ -97,19 +108,15 @@ export const ClientDetails = ({cart}) => {
         }
     }
 
-
-    useEffect(() => {
+    /* useEffect(() => {
         const ActionRQ = {
             "username":"Serodynringa",
             "password":"%tmMJZbABm6cB@tY",
-            "user_id" : currentUser.id,
-            "action":"GetUserInfoRQ",
-            "data" :
-                {
-                    "smart_client_id" : currentUser.id	// it must be BUYER only
-                }
+            "user_id" : currentUser.user_id,
+            "refpartner": promocode !== "" ? promocode : 0,
+            "action":"GetUserInfoRQ"
         };
-        if (currentUser.id !== 1426){
+        if (currentUser.user_id !== 1426){
             axios.post(`${process.env.REACT_APP_SMART_URL}interface/xmlsubj/`, JSON.stringify({ActionRQ}))
                 .then(response => {
                     console.log('RESPONSE', response)
@@ -125,7 +132,16 @@ export const ClientDetails = ({cart}) => {
         }
     }, []);
 
-    console.log('userData', userData);
+    console.log('userData', userData); */
+
+    // TODO: Пока нету поля currentUser.phone
+    useEffect(() => {
+        if (currentUser.user_id !== 1426){
+            setNameInput(currentUser.name)
+            setSurnameInput(currentUser.surname)
+            setEmailInput(currentUser.email)
+        }
+    }, []);
 
     // if( !sendCart){
     //     return <div> Loading...</div>
@@ -133,6 +149,7 @@ export const ClientDetails = ({cart}) => {
 
 
     console.log('SENDCART',sendCart)
+    console.log('app_service_id',app_service_id)
 
     // console.log('NEWARRAY', app_service_id.service_id)
 
@@ -340,6 +357,7 @@ export const ClientDetails = ({cart}) => {
                 customer_reference = {app_service_id.customer_reference}
                 clicked={clicked}
                 cart={cart}
+                service_number={app_service_id.service_number}
                 />
 
         </form>

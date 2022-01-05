@@ -52,12 +52,14 @@ import './TourDetailsCSS.css'
      }, []);
 
     console.log('[DETAILED CONTENT]', details)
+    const { user: currentUser } = useSelector((state) => state.auth);
 
       useEffect(() => {
           const ActionRQ = {
               "username":"Serodynringa",
               "password":"%tmMJZbABm6cB@tY",
-              "user_id" :1426,
+              // "user_id" :1426,
+              "user_id" :currentUser.user_id,
               "action":"GetPriceTourRQ",
               "data" :
                   {
@@ -90,7 +92,8 @@ import './TourDetailsCSS.css'
           const ActionRQ = {
               "username":"Serodynringa",
               "password":"%tmMJZbABm6cB@tY",
-              "user_id" :1426,
+              // "user_id" :1426,
+              "user_id" :currentUser.user_id,
               "action":"GetPriceTourRQ",
               "data" :
                   {

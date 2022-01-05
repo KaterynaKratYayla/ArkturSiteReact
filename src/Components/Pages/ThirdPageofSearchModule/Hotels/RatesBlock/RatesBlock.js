@@ -19,6 +19,8 @@ export const RatesBlock = ({search_data}) =>{
     const dispatch = useDispatch();
     const hotelratesRatesBlock = useSelector(state => state.hotelrates.hotelrates)
     // const pickedHotelRooms = useSelector(state=>state.availabilitychoice.avail_rooms)
+    const { user: currentUser } = useSelector((state) => state.auth);
+    const userId = currentUser.user_id;
 
     // console.log('PICKEDHOTELROOMS',pickedHotelRooms)
 
@@ -30,7 +32,7 @@ export const RatesBlock = ({search_data}) =>{
     const [width, height] = useWindowWidthAndHeight();
 
   useEffect ( () => {
-    dispatch (getHotelRates(search_data));
+    dispatch (getHotelRates(search_data, userId));
   }, [search_data])
 
 

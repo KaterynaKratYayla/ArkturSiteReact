@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import axios from 'axios'
+import {useSelector} from "react-redux";
 
 // import {OfflineSummary} from './OfflineSummary'
 
@@ -7,6 +8,7 @@ export const IncompleteSendEmail = ({name,surname,phone,email,app_service_id,car
 
     // TODO: Передать сюда объект cart
     console.log('IncompleteSendEmail-cart: ', cart)
+	const { user: currentUser } = useSelector((state) => state.auth);
 
     // const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([]);
 
@@ -14,7 +16,8 @@ export const IncompleteSendEmail = ({name,surname,phone,email,app_service_id,car
         const ActionRQ = {
             "username":"Serodynringa",
             "password":"%tmMJZbABm6cB@tY",
-            "user_id" :1426,
+            // "user_id" :1426,
+            "user_id" :currentUser.user_id,
             "action":"ModifyClientsRQ",
             "data" :
                 {
