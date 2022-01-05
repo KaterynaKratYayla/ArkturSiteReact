@@ -29,3 +29,4 @@ yarn-error.log*
 .eslintcache
 /.project
 /.idea/*
+/dist
