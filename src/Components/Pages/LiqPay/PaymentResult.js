@@ -43,7 +43,6 @@ class PaymentResult extends Component {
             const searchDataEncrypted = localStorage.getItem('search_data');
             const bytes  = CryptoJS.AES.decrypt(searchDataEncrypted, process.env.REACT_APP_PRIVATE_KEY);
             const searchData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-
             // Хотел расшиврофать state и восстановить его в Redux
             /* const stateEncrypted = localStorage.getItem('state');
             const stateEncryptedBytes  = CryptoJS.AES.decrypt(stateEncrypted, process.env.REACT_APP_PRIVATE_KEY);
@@ -56,35 +55,35 @@ class PaymentResult extends Component {
                     <Redirect to={lastLocation} />
                 )
             } else {
-                return (
-                    <div style={{marginLeft: 'auto', marginRight: 'auto', marginTop: '2vh', marginBottom: '3vh'}}>
+            return (
+                <div style={{marginLeft:'auto', marginRight:'auto', marginTop:'2vh', marginBottom:'3vh'}}>
 
-                        <div class='VoucherText'>
-                            <h4 style={{marginRight: '5px'}}>Thank you.</h4>
-                            <h4 style={{marginRight: '5px'}}>{isSuccess}.</h4>
-                            <h4 style={{marginRight: '5px'}}> Your booking ID is {orderId}.</h4>
-                            <h4 style={{marginRight: '5px'}}>Click here to </h4>
-                            <button style={{
-                                backgroundColor: '#337ab7',
-                                color: '#fff',
-                                borderColor: '#2e6da4',
-                                border: '1px solid transparent',
-                                borderRadius: '4px',
-                                padding: '6px 12px',
-                                cursor: 'pointer'
+                     <div class='VoucherText'>
+                        <h4 style={{marginRight: '5px'}}>Thank you.</h4>
+                        <h4 style={{marginRight: '5px'}}>{isSuccess}.</h4>
+                        <h4 style={{marginRight: '5px'}}> Your booking ID is {orderId}.</h4>
+                        <h4 style={{marginRight: '5px'}}>Click here to </h4>
+                       <button style={{
+                            backgroundColor: '#337ab7',
+                            color: '#fff',
+                            borderColor: '#2e6da4',
+                            border: '1px solid transparent',
+                            borderRadius: '4px',
+                            padding: '6px 12px',
+                            cursor: 'pointer'
+                        }}
+                            onClick={() => {
+                                // this.props.fetchPaymentVoucher(orderId);
+                                // openInNewTab(this.props.voucherData.data.voucherUrl);
+                                openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
                             }}
-                                    onClick={() => {
-                                        // this.props.fetchPaymentVoucher(orderId);
-                                        // openInNewTab(this.props.voucherData.data.voucherUrl);
-                                        openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
-                                    }}
-                            >Get voucher
-                            </button>
-                        </div>
+                          >Get voucher
+                        </button>
+                   </div>
 
-                        <CartDetails cart={searchData}
-                                     cartClass={'CartDetailsSummary'}/>
-                        {/* <div class='VoucherText'>
+                    <CartDetails cart={searchData}
+                                 cartClass={'CartDetailsSummary'}/>
+                    {/* <div class='VoucherText'>
                         <h4 style={{marginRight: '5px'}}>Thank you.</h4>
                         <h4 style={{marginRight: '5px'}}>{isSuccess}.</h4>
                         <h4 style={{marginRight: '5px'}}> Your booking ID is {orderId}.</h4>
@@ -104,10 +103,10 @@ class PaymentResult extends Component {
                                 openInNewTab(this.props.paymentInfo[0].data.voucherUrl);
                             }}
                         >Get voucher</button> */}
-                        {/* </div> */}
-                        {/* /*<div>{this.props.voucherData.data.voucherUrl}</div>*/}
-                    </div>
-                )
+                    {/* </div> */}
+                    {/* /*<div>{this.props.voucherData.data.voucherUrl}</div>*/ }
+                </div>
+            )
             }
             /*if (this.props.voucherData !== null) {
                 return (

@@ -26,7 +26,7 @@ export const BookingForm = (props) =>{
     const lastLocation = location.pathname + location.search;
     localStorage.setItem('lastLocation', lastLocation);
     console.log('lastLocation: ', lastLocation);
-
+  
     const {locale, messages} = useIntl();
     const [width, height] = useWindowWidthAndHeight();
 

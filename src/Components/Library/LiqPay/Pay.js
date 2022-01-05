@@ -39,7 +39,6 @@ export const Pay = ({service_id, smart_order_id,cart,client, service_number}) =>
                 "smart_service_number": service_number,		// На будущее, когда в заказе будет разрешено несколько сервисов - booking_entity.ref_serv_smart
             }
     }
-
     // Хотел зашиврофать state и восстановить его позже в Redux
 	/* const { state } = useSelector((state) => state);
     // console.log('state: ', state);
@@ -83,7 +82,6 @@ export const Pay = ({service_id, smart_order_id,cart,client, service_number}) =>
     currency: ${payInfo.currency}`;
 
     const ButtonComponent = () => (
-
         <button style={{
             backgroundColor: '#337ab7',
             color: '#fff',
@@ -93,11 +91,9 @@ export const Pay = ({service_id, smart_order_id,cart,client, service_number}) =>
             padding: '6px 12px',
             cursor: 'pointer'
         }}>
-
             Proceed to payment
             {/* {`${payInfo.title} ${payInfo.amount} ${payInfo.currency}`} */}
         </button>
-
     )
 
     return (

@@ -30,7 +30,6 @@ import { logout } from "../../../Redux/actions/auth";// import { findByLabelText
 import {useIntl} from 'react-intl'
 
 import {NotFound} from '../PageComponents/MenuPageGenerator'
-
 import {localizeRoutePath} from '../Helpers/localizeRoutePath' 
 import {LocalizationRoute} from '../../Library/Localization/LocalizationRoute'
 import {LocalizationSwitch} from '../../Library/Localization/LocalizationSwitch'
@@ -85,7 +84,7 @@ console.log(localizeRoutePath('/'))
 			<LocalizationRoute exact path='/toptours' component={TopToursDetails} />
 			<LocalizationRoute exact path='/offlineSummary' component={OfflineSummary}/>
 			<LocalizationRoute exact path='/test' component={NotFound}/>
-		
+
  			{
  			  pages&&pages.map((page)=>{
 			    if(page.name.includes('Hotels')===true){

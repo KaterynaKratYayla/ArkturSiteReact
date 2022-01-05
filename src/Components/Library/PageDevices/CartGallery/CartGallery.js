@@ -20,7 +20,7 @@ export const CartGallery = ({photos,photoHeight,photoWidth,smallImageHeight}) =>
 
     return(
         <div 
-            style={{width:'96%',height:`${width>768?'55vh':'85vh'}`,display:'flex',flexDirection:`${width>768?'row':'column'}`}}
+            style={{width:'96%',height:'55vh',display:'flex',flexDirection:`${width>768?'row':'column'}`}}
             >
             <div style={{width:`${width>768?'60%':'100%'}`,display:'flex',justifyContent:'center'}}>
                   <img 
@@ -29,10 +29,7 @@ export const CartGallery = ({photos,photoHeight,photoWidth,smallImageHeight}) =>
                               marginLeft:'auto',
                               marginRight:'auto',
                             //   width:`${photoWidth?photoWidth:'100%'}`,
-                            // width:'100%',
                             maxHeight:'100%',
-                            // height:'65vh',
-                            // maxHeight:'65vh',
                             objectFit:'cover',
                             //   height:`${photoHeight}`,
                               borderRadius:'0.7vw'

@@ -10,30 +10,28 @@ export const OnlineSummary = ({name,surname,phone,email,app_service_id}) =>{
     const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([]);
 	const { user: currentUser } = useSelector((state) => state.auth);
 
-    
-
     useEffect(() => {
         const ActionRQ = {
-                "username":"Serodynringa",
-                "password":"%tmMJZbABm6cB@tY",
+            "username":"Serodynringa",
+            "password":"%tmMJZbABm6cB@tY",
                 // "user_id" :1426,
                 "user_id" :currentUser.user_id,
-                "action":"ModifyClientsRQ",
-                "data" :
-                    {
-                        "service_id" : app_service_id,
-                        "service_number" : 1,
-                        "clients" :
-                            [
-                                {
-                                    "operation" : "add",
-                                    "client_type" : "buyer",
-                                    "site_client_id" : 1,
-                                    "name" : name,
-                                    "surname" : surname,
-                                    "phone" : phone,
-                                    "email" : email
-                                },
+            "action":"ModifyClientsRQ",
+            "data" :
+                {
+                    "service_id" : app_service_id,
+                    "service_number" : 1,
+                    "clients" :
+                        [
+                            {
+                                "operation" : "add",
+                                "client_type" : "buyer",
+                                "site_client_id" : 1,
+                                "name" : name,
+                                "surname" : surname,
+                                "phone" : phone,
+                                "email" : email
+                            },
                                 {
                                     "operation" : "add",
                                     "client_type" : "client",

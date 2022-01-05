@@ -21,7 +21,7 @@ export const getGeo = () => ( dispatch) => {
               return {
                 id: b.tour_id,
                 name: b.tour_name
-              }
+              } 
             })
    
                const newArray2 = res.data.map(function(q){

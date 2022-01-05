@@ -89,7 +89,7 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
       <div>
         <h3 class={`${width>768?"SearchDetails":"SearchDetailsSmallScreen"}`}>
             <h4><span>Check-in date : </span>
-            {search_data.start==='null'?(
+            {!search_data.start?(
              <Space direction="vertical">
                     <DatePicker 
                         disabledDate={disabledDate}
@@ -108,7 +108,7 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
             </h4>
             <h4><span>Check-out date :</span>
             {
-            search_data.end==='null'?(
+            !search_data.end?(
             <Space direction="vertical">
                     <DatePicker 
                         disabledDate={disabledDate}

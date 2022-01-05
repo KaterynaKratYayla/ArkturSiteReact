@@ -9,7 +9,6 @@ import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {TopTours} from './TopTours'
 
 import RotaryHeader from '../../Library/Icons/RotaryHeader_2.svg'
-
 import ArkturDMClogo from '../../Library/Images/ArkturDMClogo.svg'
 
 
@@ -17,9 +16,8 @@ export const HomePage = () => {
     
     const {locale,messages} = useIntl();
     console.log('server_url: ', process.env.REACT_APP_URL);
-
-    const promoCode = useSelector(state => state.promocode.promocode)
     
+    const promoCode = useSelector(state => state.promocode.promocode)
     const images = [
         "arktur.ua/sites/default/files/public/image/slider/Lavra_shutterstock_1545799133_small.jpg",
         "arktur.ua/sites/default/files/public/image/slider/Azov%20sea_small.jpg",
@@ -55,6 +53,7 @@ export const HomePage = () => {
                           }
                         })
                       }   </h2>
+
            {
              promoCode === '1497'? null : <Slider slides={images}/>
            }

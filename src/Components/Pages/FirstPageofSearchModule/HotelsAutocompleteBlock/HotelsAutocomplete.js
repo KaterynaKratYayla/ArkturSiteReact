@@ -12,6 +12,7 @@ import {LocalizationSwitch} from '../../../Library/Localization/LocalizationSwit
 import {LocalizationNavLink} from '../../../Library/Localization/LocalizationNavLink'
 import {getPages} from '../../../../Redux/actions/pages'
 import {changeLang} from '../../../../Redux/actions/locale'
+
 import {PromoCode} from './PromoCode'
 
 import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
@@ -20,12 +21,10 @@ import {PlaceHolderStrings} from '../../../Library/Localization/placeholders'
 
 import '../SearchResizersAndSwitchers/Search.css';
 import '../SearchResizersAndSwitchers/SwitcherFront.css';
-
 import 'antd/dist/antd.css';
 import { ContentPages } from '../../PageComponents/ContentPages';
 
 moment.locale('uk')
-
 
 export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,GeneralListFunction}) =>{
      
@@ -72,7 +71,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       console.log(filledArray)
 
       const placeholder = PlaceHolderStrings();
-
+      
       // console.log('PLACEHOLDER',placeholder)
 
       console.log('TOTALPAX', totalPaxRedux)
@@ -113,7 +112,6 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
           // console.log('CURRENT',current)
           return current < moment().subtract(1,'days')
         }
-
         // const CryptoJS = require("crypto-js"); 
         // const key = 'kate'
 
@@ -174,12 +172,12 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
     const MakeCodeVisible = () =>{
       setPromoCodeOpen(!promoCodeOpen)
     }
-
       return(
             <div>
-              <form className={formClass} onSubmit={onSubmit}> 
+              <form className={formClass} onSubmit={onSubmit} style={{position:'relative'}}> 
                     {/* <div style={{width:`${width*0.8/4}px`}}> */}
                      <div style={{gridColumn:'1'}}>
+                     
                        <Autocomplete
                          {...props}
                          
@@ -194,14 +192,13 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                               fontSize: '16px',
                               border:'none',
                               marginTop: '0.2vw',
-                              textAlign:"center",
-                              position:"relative"          
+                              textAlign:"center"        
+                                                          
                             }, 
                               
                           placeholder: placeholder.placeHolderString ,
                         
                            }}
-
                            menuStyle={{
                                     fontFamily: 'Arial Narrow',
                                     fontWeight:'bold',
@@ -216,8 +213,10 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                                     maxHeight: '30vh',
                                     zIndex:'2000',
                                     border:'2px solid grey',
-                                    left:'10',
-                                    top:'5'
+                                    left:'0',
+                                    top:'5',
+                                    marginTop:'3vw',
+                                    width:`${width/5}px`
                                    }
                                   }
                           
@@ -249,12 +248,12 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                         
                         />
               </div>  
-
+               
                <div style={{gridColumn:'2',
                             borderLeft:'0.5px solid grey',
                             display:'flex',
                             alignItems:'center'}}>
-
+                 
                  <Space direction="vertical">
                     <RangePicker
                         size={'middle'}
@@ -274,13 +273,12 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                          display:'flex',
                          alignItems:'center',
                          overflow:'hidden'}}>
-
                   <HotelsPaxChoice 
                      MakeVisible={MakeVisible}
                      paxListOpen={paxListOpen}
                   />
-             </div>
-            
+                </div>
+                
             <div style={{gridColumn:'4',
                          borderLeft:'0.5px solid grey',
                          cursor:'pointer',
@@ -307,12 +305,12 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                           }
                         })
                       }
-             </button>
+                    </button>
                                    
                 {/* </div> */}
                 
     
-            </form> 
+              </form> 
            </div>
           )
         }

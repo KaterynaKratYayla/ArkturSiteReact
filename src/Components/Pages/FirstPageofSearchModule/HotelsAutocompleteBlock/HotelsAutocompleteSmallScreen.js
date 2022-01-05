@@ -45,7 +45,6 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
       console.log(filledArray)
 
       const placeholder = PlaceHolderStrings();
-
       console.log('TOTALPAX', totalPaxRedux)
 
       const {RangePicker} = DatePicker; 
@@ -152,6 +151,7 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                               marginTop: '0.2vw',
                               textAlign:'center',
                               position:'relative'                                                          
+                                                          
                             }, 
                               
                             placeholder: placeholder.placeHolderString ,

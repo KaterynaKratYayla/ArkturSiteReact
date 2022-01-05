@@ -15,7 +15,7 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
 
   console.log('CONFIRMBUTTON_CART',cart)
   console.log('smart_order_id',smart_order_id)
-  
+
     const {locale, messages} = useIntl();
 
     return(

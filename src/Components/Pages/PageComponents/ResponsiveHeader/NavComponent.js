@@ -41,7 +41,6 @@ export const NavComponent = ({onClick, navClass, linkClassName,sitepage_type})=>
     <div className={navClass}>
 
         {/* <LocalizationNavLink to={`/test`}>Test</LocalizationNavLink> */}
-
         <ul class={linkClassName}>
               {
                   messages.length>0?messages.map((page)=>{

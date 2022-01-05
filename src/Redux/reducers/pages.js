@@ -144,10 +144,10 @@ const reducer = ( state = initState, action ) => {
                                   })
                 
                             case GET_PhotoGalleryPage_ERR:
-                                return({
-                                    ...state,
-                                    errors: [...state.errors, action.error ]
-                                  })
+                            return({
+                                ...state,
+                                errors: [...state.errors, action.error ]
+                              })
             
         default:
 			return state;

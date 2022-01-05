@@ -51,15 +51,14 @@ export const TopMenu = () => {
 	const lang = useSelector(state=>state.locale.locale)
 	const currency = useSelector(state=>state.currency.currencies)
     const promoCode = useSelector(state => state.promocode.promocode)
-
+  
 	useEffect ( () => {
 		  dispatch (changeLang ());
 		}, [])
-
+  
 	useEffect ( () => {
 		dispatch (getCurrency());
 	  }, [])
-  
 	const pages = ContentPages(lang);
 
 	// const pages = ContentPages('uk');
@@ -68,10 +67,9 @@ export const TopMenu = () => {
 		//////////////////////////////////////////////////////
 	// const current_locale = useSelector(state => state.localization.current_locale);
 	// const locales = useSelector(state => state.localization.locales);
-
+	
 	const sitePageType = SitePageType();
 	const sitePageRegion = SitePageRegion();
-
     const headerClass = (promoCode === '1497'? 'WhiteLableTopMenu' : 'topMenu');
 	const backGroundImg = (promoCode === '1497'? `url(${RotaryHeader}` : null);
 	const rotaryLogo = (promoCode === '1497'? `url(${logoRotary}` : null);
@@ -79,10 +77,10 @@ export const TopMenu = () => {
 	const middleMenu =  (promoCode === '1497'? 'NotVisibleMenu' : `${width>1000?'middleMenu':'middleMenuSmallScreen'}`);
 
 	return (
-	<header class='wrapperMain'>
+	<header class='wrapperMain'>	
 	{/* onClick={WhiteLabling}>	 */}
 	   		<div className={headerClass} style={{backgroundImage:backGroundImg}}>
-			
+
 			 {
 				promoCode === '1497'? 
 				    <div style={{display:'flex', flexDirection:'row-reverse', justifyContent:'space-between',maxWidth:'80%'}}>
@@ -105,14 +103,14 @@ export const TopMenu = () => {
 							  <div style={{display:'flex',
 							    	 flexDirection: 'row'}}>
 								  <UserOutlined className='UserOutlinedIcon'/>
-
+								
 								  <div>MY ACCOUNT</div>
 							</div>
 						  </LocalizationNavLink>
 						) : true}
 
 							<>
-							  {
+							  { 
 								sitePageType&&sitePageType.map((item)=>{
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
@@ -127,14 +125,14 @@ export const TopMenu = () => {
 						 					)
 						   				  }
 										})
-									  )
+									  )									
 									})
 					   			}
-							</>
+							</>	
 
 
 
-
+				  
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
 					{currentUser.user_id !== 1426 ? (
 						<LocalizationNavLink exact to={`/`} activeClassName='active' onClick={logOut}>LOG OUT</LocalizationNavLink>
@@ -143,11 +141,11 @@ export const TopMenu = () => {
 							{/* <FormattedMessage id='common.name'/> */}
 								SIGN In
 							</LocalizationNavLink>
-					)}
-				</div>
+					)}					
+				</div>	
 
 				<LocalizationNavLink exact to={`/`}><HomeOutlined className='HomeIcon'/></LocalizationNavLink>
-
+					
 				</div>
 
 			</div>
@@ -156,12 +154,13 @@ export const TopMenu = () => {
 			  <div className={middleMenu}>
 			   <LocalizationNavLink exact to='/' >
 					<img class='ArkturDMClogo'
-  					    src={ArkturDMClogo}
+  					    src={ArkturDMClogo} 
 					 	alt='Arktur DMC logo'/>
-			   </LocalizationNavLink>
+			   </LocalizationNavLink>	 
+
 
 			   <>
-							  {
+							  { 
 								sitePageType&&sitePageType.map((item)=>{
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
@@ -169,37 +168,37 @@ export const TopMenu = () => {
 											return(
 												<>
 												 { width > 1000 ?
-
-													<LargeScreensNavBar
+				
+													<LargeScreensNavBar 
 															// pages={pages}/>
 															sitepage_type={item}/>
 													:
-													<SmallScreensNavBar
+													<SmallScreensNavBar 
 															navClass="nav-small"
 															linkClassName = "nav-small-link"
 															// pages={pages}
 															sitepage_type={item}
 															width={width}/>
-													}
+													} 
 												</>
 						 					)
 						   				  }
 										})
-									  )
+									  )									
 									})
 					   			}
-
-
-							</>
+								
+								
+							</>	
 				 <div style={{marginTop:'auto',
 							  marginBottom:'auto',
 							  marginRight:'2vw'}}>
 					<LangSelectionTool/>
 				 </div>
-			  </div>
+			  </div>					
 
 		   <RouteSwitcher />
-		</header>
-
+		</header> 
+		
 	)
  }

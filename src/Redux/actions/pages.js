@@ -144,8 +144,6 @@ export const getPurePage = (id,lang) => ( dispatch, getState ) => {
                         dispatch({ type: GET_hotelPAGESfooter_ERR, error: err });
                     })
                 }
-
-
  export const photoGalleryPageResponse = ( res ) => ({
                     type: GET_PhotoGalleryPage_RES,
                     payload: res
@@ -166,4 +164,4 @@ export const getPurePage = (id,lang) => ( dispatch, getState ) => {
                         dispatch({ type: GET_PhotoGalleryPage_ERR, error: err });
                       })
                   }
-                
+

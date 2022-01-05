@@ -122,7 +122,7 @@ import './TourDetailsCSS.css'
 
       }, []);
 
-        
+
 
      function selectedPeriod (value) {
 

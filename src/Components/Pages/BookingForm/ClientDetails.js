@@ -40,7 +40,6 @@ export const ClientDetails = ({cart}) => {
     const responseErrorIndex = useRef(0);
 
     const [responseError, setResponseError] = useState(responseErrorIndex);
-
     // const [testHook, setTestHook] = useState([{}])
 
     // const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([{}]);
@@ -107,7 +106,6 @@ export const ClientDetails = ({cart}) => {
             app_service_id = sendCart.data[key]
         }
     }
-
     /* useEffect(() => {
         const ActionRQ = {
             "username":"Serodynringa",

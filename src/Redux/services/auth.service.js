@@ -30,6 +30,7 @@ const login = (username, password) => {
     });
 };
 
+
 const logout = () => {
   localStorage.removeItem("user");
 };
@@ -39,5 +40,4 @@ const authService = {
   login,
   logout,
 };
-
 export default authService;

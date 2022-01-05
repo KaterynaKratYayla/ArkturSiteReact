@@ -137,7 +137,7 @@ const {locale,messages} = useIntl();
     axios.post(`${process.env.REACT_APP_SMART_URL}interface/xmlsubj/`, JSON.stringify({ActionRQ}))
         .then(response => 
           {
-          
+          console.log('TESTTEST',response)
           for(let key in response.data.data){
             if(key === 'hotels'){
               setHotelRate(response.data.data[key])
@@ -253,8 +253,9 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                              )):
                                             null
                                                 }
-           
+                                                                                
 
+                             
                               </>
                            </ul>
                          </>
