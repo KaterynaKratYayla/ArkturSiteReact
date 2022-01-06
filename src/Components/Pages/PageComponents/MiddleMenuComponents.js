@@ -4,14 +4,15 @@ import '../PageComponents/ResponsiveHeader/header.css'
 // import Slider from '../../Front Page/slider/slider'
 // import Search from './searchfront'
 import {Helmet} from 'react-helmet'
-import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
+// import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 
 export const HOTELS = () => {
 	 return (
         <div>
          <Helmet>
            <title>Hotels in Ukraine</title>
-           <link rel='shortcut icon' href={ArkturDMClogoICO} />
+           {/* <link rel='shortcut icon' href={ArkturDMClogoICO} /> */}
+           <link rel='shortcut icon' href='../../Library/Images/ArkturDMClogoICO.ico' />
          </Helmet>
           <h3>Hotels</h3>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../PageComponents/ResponsiveHeader/header.css'
 import {Helmet} from 'react-helmet'
-import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
+// import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 
 
 //Call: +38 044 498 4880 / inquiry@arktur.ua / COVID-19 / ABOUT US / CONTACT US / SIGN IN / FOR GROUPS / LOGIN / TRANSLATE
@@ -14,7 +14,8 @@ export const CONTACTUS = () => {
         <div>
            <Helmet>
                <title>Contact Arktur DMC</title>
-               <link rel='shortcut icon' href={ArkturDMClogoICO} />
+               {/* <link rel='shortcut icon' href={ArkturDMClogoICO} /> */}
+               <link rel='shortcut icon' href='../../Library/Images/ArkturDMClogoICO.ico' />
            </Helmet>
          <h2> Our Contact details</h2>
         </div>
@@ -27,7 +28,8 @@ export const SIGNIN = () => {
       <div>
        <Helmet>
          <title>Arktur DMC Partners</title>
-         <link rel='shortcut icon' href={ArkturDMClogoICO} />
+         {/* <link rel='shortcut icon' href={ArkturDMClogoICO} /> */}
+         <link rel='shortcut icon' href='../../Library/Images/ArkturDMClogoICO.ico' />
        </Helmet>
          <h2>Sign In</h2>
       </div>

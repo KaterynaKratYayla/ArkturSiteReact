@@ -9,7 +9,7 @@ import axios from "axios"
 import {HomePage } from './HomePage'
 import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
 import {getPurePage,getPhotoGalleryPage} from '../../../Redux/actions'
-import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
+// import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {ValidateQuery} from '../Helpers/helper'
 import Slider from '../../Library/Slider/Slider'
 import {CartGallery} from '../../Library/PageDevices/CartGallery/CartGallery'
@@ -67,7 +67,8 @@ export const PureContent = () => {
                <>
                 <Helmet>
                     <title>{page.text}</title>
-                    <link rel='shortcut icon' href={ArkturDMClogoICO} />
+                    {/* <link rel='shortcut icon' href={ArkturDMClogoICO} /> */}
+                    <link rel='shortcut icon' href='../../Library/Images/ArkturDMClogoICO.ico' />
                 </Helmet>           
                
                <h2>{page.text}</h2>

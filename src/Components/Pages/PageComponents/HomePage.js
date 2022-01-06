@@ -5,7 +5,7 @@ import Slider from '../../Library/Slider/Slider'
 import {Search} from '../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
 import {Helmet} from 'react-helmet'
 import {useIntl,FormattedMessage} from 'react-intl'
-import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
+// import ArkturDMClogoICO from '../../Library/Images/ArkturDMClogoICO.ico'
 import {TopTours} from './TopTours'
 
 import RotaryHeader from '../../Library/Icons/RotaryHeader_2.svg'
@@ -31,7 +31,8 @@ export const HomePage = () => {
        <div>
            <Helmet>
                <title>Arktur DMC</title>
-               <link rel='shortcut icon' href={ArkturDMClogoICO} />
+               {/* <link rel='shortcut icon' href={ArkturDMClogoICO} /> */}
+               <link rel='shortcut icon' href='../../Library/Images/ArkturDMClogoICO.ico' />
            </Helmet>
 
            <h2 style={{
