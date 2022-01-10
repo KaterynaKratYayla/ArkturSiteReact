@@ -1,4 +1,15 @@
 const path = require( 'path' );
+const global = require( 'global' );
+
+const isServer = !(
+  typeof global.window !== 'undefined' &&
+  global.window.document &&
+  global.window.document.createElement
+);
+
+if (isServer) {
+  global.window = {};
+}
 
 // ignore `.scss` imports
 require( 'ignore-styles' );

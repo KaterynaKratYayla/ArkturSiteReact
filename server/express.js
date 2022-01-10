@@ -9,8 +9,8 @@ const { StaticRouter, matchPath } = require( 'react-router-dom' );
 const app = express();
 
 // import App component
-const { App } = require( '../src/components/app' );
-// const { App } = require( '../src/App' );
+// const { App } = require( '../src/components/app' );
+const { App } = require( '../src/App' );
 
 // import routes
 const routes = require( './routes' );
@@ -23,12 +23,22 @@ app.use( '*', async ( req, res ) => {
 
     // get matched route
     const matchRoute = routes.find( route => matchPath( req.originalUrl, route ) );
+    console.log('routes: ', routes);
+    console.log('matchRoute: ', matchRoute);
+    console.log('component: ', matchRoute.component);
+    console.log('typeof matchRoute.component.fetchData: ', typeof matchRoute.component.fetchData);
 
     // fetch data of the matched component
     let componentData = null;
     if( typeof matchRoute.component.fetchData === 'function' ) {
         componentData = await matchRoute.component.fetchData();
     }
+
+    // fetch data of the matched component
+    /* let componentData = null;
+    if( typeof matchRoute.component === 'Function' ) {
+        componentData = await matchRoute.component;
+    } */
 
     // read `index.html` file
     let indexHTML = fs.readFileSync( path.resolve( __dirname, '../dist/index.html' ), {
@@ -41,6 +51,11 @@ app.use( '*', async ( req, res ) => {
             <App />
         </StaticRouter>
     );
+
+    // get HTML string from the `App` component
+    /* let appHTML = ReactDOMServer.renderToString(
+        <App />
+    ); */
 
     // populate `#app` element with `appHTML`
     indexHTML = indexHTML.replace( '<div id="root"></div>', `<div id="root">${ appHTML }</div>` );

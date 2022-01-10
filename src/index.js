@@ -7,7 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import store from "./Redux/redux/store";
 
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <React.StrictMode>
       <Provider store={store}>
           <App />

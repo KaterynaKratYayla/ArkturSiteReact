@@ -13,7 +13,7 @@ module.exports = env => {
     console.log('Development: ', env.development); // 'local'
     console.log('Production: ', env.production); // true
 
-    return{
+    return {
         // webpack optimization mode
         mode: ( 'development' === process.env.NODE_ENV ? 'development' : 'production' ),
 
