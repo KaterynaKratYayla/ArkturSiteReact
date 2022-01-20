@@ -1,0 +1,21 @@
+.WrapperTermsConditions{
+   display:grid;
+   grid-template-columns:20% 80%;
+   width:50%;
+}
+
+.TermsConditions{
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    color:blue;
+    font-size: 17px;
+}
+
+.TermsConditions:hover{
+    font-family: 'Arial Narrow';
+    font-weight: bold;
+    /* color:rgb(48, 48, 189); */
+    text-decoration: underline;
+    font-size: 17px;
+    cursor:pointer;
+}

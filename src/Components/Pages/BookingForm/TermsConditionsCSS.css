@@ -1,0 +1,12 @@
+.TermsNotVisible{
+    display:none;
+}
+
+.TermsVisible{
+    display:block;
+    position:fixed;
+    background-color: white;
+    z-index: 5000;
+    top:0;
+    overflow:scroll;
+}
