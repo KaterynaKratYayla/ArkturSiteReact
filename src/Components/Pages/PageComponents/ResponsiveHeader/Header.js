@@ -1,10 +1,10 @@
 import React, {useState, useEffect} from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import {Route, NavLink, Link, BrowserRouter, Switch} from 'react-router-dom'
+import {Route, NavLink, Link, BrowserRouter, Switch, useLocation} from 'react-router-dom'
 import {Router} from 'react-router'
 import {useIntl} from 'react-intl'
 import {FormattedMessage} from 'react-intl';
-import {UserOutlined} from '@ant-design/icons'
+import {UserOutlined,PhoneTwoTone} from '@ant-design/icons'
 
 import {NavComponent} from './NavComponent'
 import {RouteSwitcher} from '../../RoutesAndLinks/RouteSwitcher'
@@ -14,6 +14,7 @@ import {TOURS} from '../DropDownTours'
 import { PureContent } from '../MenuPageGenerator'
 import { Search } from '../../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
 import {TopToursDetails} from '../TopToursDetails'
+
 // import Helmet from '../../Helmet'
 
 import {HomeOutlined} from '@ant-design/icons'
@@ -21,7 +22,6 @@ import {ContentPages,SitePageType,SitePageRegion} from '../ContentPages'
 import {LargeScreensNavBar} from './LargeScreensNavBar'
 import SmallScreensNavBar from './SmallScreensNavBar'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
-import {useLocation} from 'react-router-dom'
 import Login from "../../../Library/Authorization/Login";
 import Register from "../../../Library/Authorization/Register";
 import { logout } from "../../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
@@ -30,9 +30,13 @@ import {changeLang} from '../../../../Redux/actions/locale'
 import { LocalizationNavLink } from '../../../Library/Localization/LocalizationNavLink';
 import {LangSelectionTool} from '../../../Library/Localization/LangSelectionTool'
 import {LangSelectionFlags} from '../../../Library/Localization/LangSelectionFlags'
-import {getCurrency} from '../../../../Redux/actions/currency'
+import {getCurrency,getPickedCurrencyResponse} from '../../../../Redux/actions/currency'
 import RotaryHeader from '../../../Library/Icons/RotaryHeader_2.svg'
 import logoRotary from '../../../Library/Icons/logoRotary.svg'
+import {CurrencySelectionTool} from '../../PageComponents/CurrencySelectionTool/CurrencySelectionTool'
+import {ValidateQuery} from '../../Helpers/helper'
+import {PhoneIcon} from '../../../Library/Icons/phoneicon'
+import {EmailIcon} from '../../../Library/Icons/email'
 
 import './header.css'
 // import './ResponsiveCSS.css'
@@ -41,10 +45,22 @@ export const TopMenu = () => {
 
 	const {locale} = useIntl();
 	const { user: currentUser } = useSelector((state) => state.auth);
+
+	let path ;
+	const location = useLocation();
+	if(location.search){
+	   path = ValidateQuery(location)
+	}
+	else path = {selected_currency:'UAH',default:true}
+
+	// console.log('[A_PATH]',path)
+
 	const dispatch = useDispatch();
 	const logOut = () => {
 		dispatch(logout());
 	};
+
+	dispatch(getPickedCurrencyResponse(path.selected_currency))
 
 	const [width, height] = useWindowWidthAndHeight();
 
@@ -64,6 +80,8 @@ export const TopMenu = () => {
 
 	// const pages = ContentPages('uk');
 	console.log('[PAGES HEADER]', pages)
+
+	const pickedCurrency = useSelector(state=>state.currency.pickedCurrency)
 
 		//////////////////////////////////////////////////////
 	// const current_locale = useSelector(state => state.localization.current_locale);
@@ -99,7 +117,22 @@ export const TopMenu = () => {
 				 : null
 			 }
 			  <div className={topMenuRight}>
-				<a href='mailto:inquiry@arktur.ua'>inquiry@arktur.ua</a>
+				{width > 1000?
+				  <>
+				   <div>
+				       <EmailIcon/>
+					   <a href='mailto:inquiry@arktur.ua'>
+				          inquiry@arktur.ua
+					   </a>
+					</div>
+					<div style={{marginRight:'5vw'}}>
+						<PhoneIcon/>
+						<span style={{color:'white',fontSize:'12px',fontFamily:'Arial'}}>+38 093 326 68 02</span>
+					</div>
+				  </>
+					:
+					<EmailIcon/>
+				}
 						{currentUser.user_id !== 1426 ? (
 						  <LocalizationNavLink exact to={`/${lang}/testcities`} activeClassName='active'>
 							  <div style={{display:'flex',
@@ -111,7 +144,9 @@ export const TopMenu = () => {
 						  </LocalizationNavLink>
 						) : true}
 
-							<>
+						<>
+      					{ width > 1000 ?
+						   <>
 							  {
 								sitePageType&&sitePageType.map((item)=>{
 									return (
@@ -120,20 +155,30 @@ export const TopMenu = () => {
 											return(
 												// <div>
 													/* <h3>{item.sitepage_type_name}</h3> */
-													  <NavComponent  
-													   sitepage_type={item}
-													   linkClassName={"Upper"}/>
-												// </div> 
+													// <>
+													// { width > 1000 ?
+															<LargeScreensNavBar
+																// pages={pages}/>
+																sitepage_type={item}
+																linkClassName={"Upper"}
+																/>
+														// :null
+													// }
+													// </>
+													//   <NavComponent  
+													//    sitepage_type={item}
+													//    linkClassName={"Upper"}/>
+												
 						 					)
 						   				  }
 										})
 									  )
 									})
 					   			}
-							</>
-
-
-
+							</> : 
+							<PhoneIcon />
+						}
+					</>
 
 				<div style={{marginTop:'auto',marginBottom:'auto'}}>
 					{currentUser.user_id !== 1426 ? (
@@ -141,8 +186,8 @@ export const TopMenu = () => {
 					) : (
 						<LocalizationNavLink exact to={`/sign_in`} activeClassName='active'>
 							{/* <FormattedMessage id='common.name'/> */}
-								SIGN In
-							</LocalizationNavLink>
+								SIGNIN
+				  	</LocalizationNavLink>
 					)}
 				</div>
 
@@ -154,46 +199,104 @@ export const TopMenu = () => {
 
 	 		{/* <div className={`${width>1000?'middleMenu':'middleMenuSmallScreen'}`}> */}
 			  <div className={middleMenu}>
-			   <LocalizationNavLink exact to='/' >
+			   <LocalizationNavLink exact to={`/`} >
 					<img class='ArkturDMClogo'
   					    src={ArkturDMClogo}
 					 	alt='Arktur DMC logo'/>
 			   </LocalizationNavLink>
-
-			   <>
+			     <>
+					{width > 1000 ?
+			              <>
 							  {
 								sitePageType&&sitePageType.map((item)=>{
 									return (
 									  sitePageRegion&&sitePageRegion.map((item1)=>{
 										if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Header")===true && item.sitepage_type_name.includes("MIDDLE")===true){
 											return(
-												<>
-												 { width > 1000 ?
+												// <>
+												 /* { width > 1000 ? */
 
 													<LargeScreensNavBar
 															// pages={pages}/>
-															sitepage_type={item}/>
-													:
-													<SmallScreensNavBar
-															navClass="nav-small"
-															linkClassName = "nav-small-link"
-															// pages={pages}
 															sitepage_type={item}
-															width={width}/>
-													}
-												</>
+															linkClassName='nav_big_link'
+															navClass='wrapper_nav_big_link'/>
+												// 	:
+												// 	<SmallScreensNavBar
+												// 			navClass="nav-small"
+												// 			linkClassName = "nav-small-link"
+												// 			// pages={pages}
+												// 			sitepage_type={item}
+												// 			width={width}/>
+												// 	}
+												// </>
 						 					)
 						   				  }
 										})
 									  )
 									})
 					   			}
-
-
 							</>
+					   :
+							// <>
+							//   {
+							// 	sitePageType&&sitePageType.map((item)=>{
+							// 		return (
+							// 		  sitePageRegion&&sitePageRegion.map((item1,index,array)=>{
+									   
+							// 			if(item.sitepage_region_id === item1.sitepage_region_id && item1.sitepage_region_name.includes("Header")===true){
+							// 				return(
+							// 						<SmallScreensNavBar
+							// 								navClass="nav-small"
+							// 								linkClassName = "nav-small-link"
+							// 								// pages={pages}
+							// 								sitepage_type={item}
+							// 								width={width}/>
+							// 			        	)
+							// 			         }
+												
+							// 		         }
+							// 		      )
+							// 		   )
+							// 	    }
+								
+							//       )
+                            //     }
+                            //  </>
+							<>
+							  {
+								sitePageRegion&&sitePageRegion.map((item)=>{
+									console.log('SITEPAGEREGION_KK',item)
+				
+										if(item.sitepage_region_id === 4){
+											return(
+													<SmallScreensNavBar
+															navClass="nav-small"
+															linkClassName = "nav-small-link"
+															// pages={pages}
+															sitepage_type={item}
+															width={width}/>
+													
+										        	)
+										         }
+												
+									         }
+									      )
+									   
+								}
+                             </>
+					}
+				</>
+											
+
 				 <div style={{marginTop:'auto',
 							  marginBottom:'auto',
-							  marginRight:'2vw'}}>
+							  marginRight:'2vw',
+							  display:'flex',
+							  flexDirection:'row',
+							  justifyContent:'space-around'
+							  }}>
+				    <CurrencySelectionTool path={path}/>
 					<LangSelectionTool/>
 				 </div>
 			  </div>

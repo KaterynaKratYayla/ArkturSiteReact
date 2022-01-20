@@ -18,15 +18,14 @@ export const CartDetails = ({cart,cartClass}) =>{
     const dispatch = useDispatch();
     const {locale,messages} = useIntl();
 
-    // const [sendCart, setSendCart] = useState([]);
-    // const [tourContent, setTourContent] = useState([]);
+    const currencies = useSelector(state=>state.currency.currencies)
 
-    // const dispatch = useDispatch();
-    // const cartContent = useSelector(state => state.content.content)
-    //     useEffect ( () => {
-    //     dispatch (getContent (cart.tour_id));
-    //   }, [])
-    // console.log('[CARTCONTENT]',cartContent)
+    let exchangeRate;
+
+    currencies.forEach((curr)=>{
+      if(curr.name === cart.selected_currency)
+        exchangeRate = parseInt(curr.value)
+    })
 
     useEffect(()=>{
       dispatch(getHotelContent(cart.hotel_id,locale))
@@ -130,7 +129,7 @@ export const CartDetails = ({cart,cartClass}) =>{
                     <h5>Adults</h5><div>{cart.adults}</div>
                     <h5>Children</h5><div>{cart.children}</div>
                     <h5>Infants</h5><div>{cart.infants>0?cart.infants:0}</div>
-                    <h5>Total Cost of the Booking</h5><div>{cart.amount}</div>
+                    <h5>Total Cost of the Booking</h5><div>{cart.selected_currency} {Math.round(cart.amount/exchangeRate)}</div>
                     <h5>Additional details</h5><div class='TaxDetails'>VAT is included. Hotel City Tax , if applicable, is NOT included and must be paid at the hotel directly</div>
                 </div>
         </div>

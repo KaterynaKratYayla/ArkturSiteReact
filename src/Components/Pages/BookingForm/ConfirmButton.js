@@ -11,7 +11,7 @@ import SaveReference from '../../Library/Notifications/SaveReference'
 
 import './ConfirmButton.css'
 
-export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_service_id, smart_order_id, customer_reference, clicked, cart, service_number}) =>{
+export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_service_id, smart_order_id, customer_reference, clicked, cart, service_number,termsTicked}) =>{
 
   console.log('CONFIRMBUTTON_CART',cart)
   console.log('smart_order_id',smart_order_id)
@@ -43,6 +43,7 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                     phone={phone}
                     email={email}
                     app_service_id = {app_service_id}
+                    cart={cart}
                     />
                     <SaveReference customer_reference = {customer_reference} />
                    <Pay

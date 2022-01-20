@@ -1,5 +1,6 @@
 
 import axios from '../helpers/public.axios';
+import {lettersOnlyString} from '../../Components/Pages/Helpers/regex'
 
 import { GET_HOTELS_REQ, GET_HOTELS_RES , GET_HOTELS_ERR } from '../constants';
 import { GET_GENERAL_HOTELS_REQ, GET_GENERAL_HOTELS_RES , GET_GENERAL_HOTELS_ERR } from '../constants';
@@ -21,14 +22,14 @@ export const getHotels = () => ( dispatch) => {
             const hotelsArray1 = res.data.map(function(b){
               return {
                 id: b.hotel_id,
-                name: b.hotel_name
+                name: lettersOnlyString(b.hotel_name)
               } 
             })
    
                const hotelsArray2 = res.data.map(function(q){
                  return {
                    id: q.city_id,
-                   name: q.city_name
+                   name: lettersOnlyString(q.city_name)
                    }
                })
                   

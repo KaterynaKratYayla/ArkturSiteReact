@@ -8,9 +8,12 @@ import {HotelsPaxChoice} from './HotelsPaxChoice'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import {useIntl,FormattedMessage} from 'react-intl'
 import {PlaceHolderStrings} from '../../../Library/Localization/placeholders'
+import createHistory from 'history/createBrowserHistory';
+import {ClearInput} from '../../../Library/PageDevices/ClearInput';
 
 import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getPax} from "../../../../Redux/actions/paxchoice"
+import {lettersOnlyString} from '../../Helpers/regex'
 
 import '../SearchResizersAndSwitchers/Search.css';
 import '../SearchResizersAndSwitchers/SwitcherFront.css';
@@ -18,28 +21,35 @@ import 'antd/dist/antd.css';
 
 moment.locale('uk')
 
-export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass,onSubmit,props,GeneralListFunction}) =>{
+export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass,onSubmit,props,GeneralListFunction,searchProps}) =>{
      
   const {locale,messages} = useIntl();
   
       const [stayDates, setStayDates] = useState([]);
       const [list , setList] = useState([]);
-      const [hotelsvalue, setHotelsValue] = useState('');
+      const [pickedStartDate, setPickedStartDate] = useState(searchProps?true:false)
+      const [pickedEndDate, setPickedEndDate] = useState(searchProps?true:false)
+      const [hotelsvalue, setHotelsValue] = useState(searchProps?searchProps.title:'');
       const [open, setOpen] = useState(false);
       const [paxListOpen, setPaxListOpen] = useState(false);
       const [totalPax, setTotalPax] = useState();
-      const [pickedHotelValue, setPickedHotelValue] = useState(false);
+      const [pickedHotelValue, setPickedHotelValue] = useState(searchProps?true:false);
+      const [crossVisible, setCrossVisible] = useState(false);
       const [loaded,setLoaded]=useState(false);
      
       const history = useHistory();
+      const browserhistory = createHistory();
 
       const [width, height] = useWindowWidthAndHeight();
+
+      const pickedcurrency = useSelector(state=>state.currency.pickedcurrency)
 
       const dispatch = useDispatch();
       // const store = useStore();
       const smart_hotels = useSelector(state => state.hotels.hotels)
       const general_smart_hotels = useSelector(state => state.hotels.general_hotels)
       const totalPaxRedux = useSelector(state => state.paxchoice.pax)   
+      const promoCode = useSelector(state => state.promocode.promocode)
 
       let filledArray = new Array(10).fill(null).map(()=> ({'hello':'goodbye'}))
       console.log(filledArray)
@@ -50,6 +60,8 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
 
       const {RangePicker} = DatePicker; 
     
+      const dateFormat = 'YYYY-MM-DD';
+
       useEffect ( () => {
          dispatch (getHotels ());
       }, []);
@@ -65,6 +77,8 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
         setStayDates(dateStrings)
         console.log('From: ', dates[0], ', to: ', dates[1]);
         console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+        setPickedStartDate(true)
+        setPickedEndDate(true)
           }
     
       const optionChecker = (e) => {
@@ -78,14 +92,17 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
     
         const disabledDate = (current) =>{
           // Can not select days before today 
-          return current < moment().subtract(1,'days').endOf('day');
+          return current < moment().subtract(1,'days')
           // return current < moment().endOf('day');
         }
 
       const addToList = () => {
 
-       if (pickedHotelValue === false){
+       if (pickedHotelValue === false || hotelsvalue === ''){
           alert ("Please choose your hotel")
+        }
+        else if (pickedStartDate === false && pickedEndDate === false){
+          alert("Please pick up your dates of stay")
         }
        else {
     
@@ -110,16 +127,19 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
     
       setList([...list, hotelNewList]);
       setStayDates('');
-      setHotelsValue('');
+      // setHotelsValue('');
     
-      let route_query = `?title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
-    
+      // let route_query = `?title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
+      let route_query = `?${localStorage.getItem('promocode')?'refpartner='+localStorage.getItem('promocode')+',':''}selected_currency=${pickedcurrency},title=${lettersOnlyString(hotelsvalue)},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
+
       console.log('[hotelNewList] : ' , list, hotelsvalue)
     
       history.push(`/${locale}/search_results_hotels/${route_query}` , [...list, hotelNewList])
       console.log('[HISTORY : ] ', history)
     
       GeneralListFunction(list,hotelsvalue)
+
+      browserhistory.go(0)
      }
     }
         
@@ -127,11 +147,35 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
       setPaxListOpen(!paxListOpen)
     }
 
+    const VisibleCross = () =>{
+      if(hotelsvalue !== ''){
+        setCrossVisible(true)
+      }
+    }
+
+    const NotVisibleCross = () =>{
+        setCrossVisible(false)
+      }
+
+      const clearInput = () =>{
+          setHotelsValue('')
+        }
+
       return(
             <div class={wrapper}>
               <form className={formClass} onSubmit={onSubmit}> 
                     {/* <div style={{width:'25%'}}> */}
                      
+                    <div style={{gridColumn:'1', 
+                                  display:'flex',
+                                  flexDirection:'row-reverse',
+                                  justifyContent:'space-around'
+                                  }}
+                            onMouseEnter={VisibleCross}
+                            onMouseLeave={NotVisibleCross}
+                          >
+                           <ClearInput makevisible={crossVisible}
+                                       clearInput={clearInput}/>
                        <Autocomplete
                          {...props}
                          
@@ -206,10 +250,28 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                         onMenuVisibilityChange={isOpen =>setOpen(false)}
                         
                         />
-              {/* </div>   */}
+              </div>  
                
             {/* <div style={{width:'25%'}}> */}
                  
+          {
+            searchProps?
+            <Space direction="vertical">
+                    <RangePicker
+                        size={'middle'}
+                        disabledDate={disabledDate}
+                        ranges={{
+                        Today: [moment(), moment()],
+                            'This Month': [moment().startOf('month'), moment().endOf('month')],
+                                }}
+                        onChange={onChange}
+                        defaultValue={[moment(searchProps.start, dateFormat),moment(searchProps.end, dateFormat)]} format={dateFormat}
+                        bordered={false}
+                        className={datepickerClass}
+                        placeholder={[placeholder.placeHolderStartDate,placeholder.placeHolderEndDate]}
+                    />
+                </Space>
+                :
                  <Space direction="vertical">
                     <RangePicker
                         size={'middle'}
@@ -224,7 +286,8 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                         placeholder={[placeholder.placeHolderStartDate,placeholder.placeHolderEndDate]}
                     />
                 </Space>
-              
+           
+              }
             {/* </div>  */}
 
                {/* <div style={{width:'25%'}}> */}
@@ -232,6 +295,7 @@ export const HotelsAutocompleteSmallScreen = ({wrapper,formClass,datepickerClass
                   <HotelsPaxChoice 
                      MakeVisible={MakeVisible}
                      paxListOpen={paxListOpen}
+                     searchProps={searchProps}
                   />
                 </div>
                 {/* </div> */}

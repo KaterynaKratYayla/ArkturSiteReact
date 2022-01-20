@@ -12,10 +12,11 @@ import {HotelBookButton} from '../../PageComponents/HotelBookButton/HotelBookBut
 import 'moment/locale/uk'
 
 import './HotelItemsCSS.css'
+import { useSelector } from 'react-redux';
 
 moment.locale('uk')
 
-export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName,cityName})=>{
+export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName,cityName,date_difference,adults,pickedCurrency})=>{
  
   console.log('PROPS_PROPS',key,hotelTariff,hotelRooms,searchResults,hotelName,cityName)
   
@@ -26,6 +27,15 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName,c
   
     let search_data = ValidateQuery(location)
     const [width, height] = useWindowWidthAndHeight()
+
+    const currencies = useSelector(state=>state.currency.currencies)
+
+    let exchangeRate;
+
+    currencies.forEach((curr)=>{
+      if(curr.name === pickedCurrency)
+        exchangeRate = parseInt(curr.value)
+    })
 
     let min_rate = Number.MAX_VALUE;
 
@@ -98,13 +108,29 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName,c
                     gridRow:'2'}}>
                             {hotelTariff.hotel_id}
         </div> 
-        <h3 style={{fontSize:'14px',
-                 color: 'blue',
-                 fontWeight: 'bold',
+        <h3 style={{
                  gridColumn:'2',
                  gridRow:'1',
-                 textAlign:'end'}}>
-                            {hotelTariff.currency} {newobj2.min_rate}
+                 textAlign:'end',
+                 display:'flex',
+                 flexDirection:'column',
+                 justifyContent:'flex-end'}}>
+
+                            <div style={{
+                                          fontSize:'12px',
+                                          color: 'grey',
+                                          fontWeight: 'bold',
+                                          marginBottom:'1vh'}}>
+                                                Total for {date_difference} days, {adults} adults
+                            </div>
+                            
+                            <div style={{
+                                          fontSize:'14px',
+                                          color: 'blue',
+                                          fontWeight: 'bold'}}>
+                                                {pickedCurrency} {Math.round(newobj2.min_rate/exchangeRate)}
+                                                {/* {hotelTariff.currency} {newobj2.min_rate} */}
+                            </div>
          </h3>
         <h4 style={{fontSize:'12px',
                  color: 'grey',

@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import { useSelector,useDispatch} from 'react-redux'
+import {useLocation} from "react-router-dom"
 import { getHotelRates } from '../../../../../Redux/actions'
 import { HotelRateGridTitles } from '../../../../Library/StaticJsonData/HotelRateGridTitles'
 import {BookButtonHotel} from '../BookButtonHotel'
@@ -15,6 +16,8 @@ import {useWindowWidthAndHeight} from '../../../Helpers/WindowResizeHook'
 import './RatesBlockCSS.css'
 
 export const RatesBlock = ({search_data}) =>{
+
+  const location = useLocation();
    
     const dispatch = useDispatch();
     const hotelratesRatesBlock = useSelector(state => state.hotelrates.hotelrates)
@@ -23,6 +26,8 @@ export const RatesBlock = ({search_data}) =>{
     const userId = currentUser.user_id;
 
     // console.log('PICKEDHOTELROOMS',pickedHotelRooms)
+
+    // const storedPromoCode = localStorage.getItem('promocode')
 
     // for (let key in OccupancyTypes){
     //   console.log('KEY_TEST', key)

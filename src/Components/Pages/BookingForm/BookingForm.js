@@ -8,19 +8,25 @@ import {ValidateQuery} from '../Helpers/helper'
 import {ClientDetails} from './ClientDetails'
 import {CartDetails} from './CartDetails'
 import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+import {getPickedCurrencyResponse} from '../../../Redux/actions/currency'
 
 import './BookingForm.css'
+import { useDispatch } from 'react-redux';
 
 moment.locale('en')
 
 export const BookingForm = (props) =>{
     const location = useLocation()
     const history = useHistory();
+    const dispatch= useDispatch();
 
     // console.log('HISTORY',history)
     // console.log('LOCATION', location.state)
 
     let search_data = ValidateQuery(location)
+
+    dispatch(getPickedCurrencyResponse(search_data.selected_currency))
+
     console.log('GUEST ITEM LOCATION', process.env.REACT_APP_PRIVATE_KEY)
     console.log('location: ', location)
     const lastLocation = location.pathname + location.search;

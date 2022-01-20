@@ -13,9 +13,18 @@ import ReactHtmlParser from 'react-html-parser'
 
 moment.locale('uk')
   
-  export const MinRate = ({selection, datesArray}) =>{
+  export const MinRate = ({selection, datesArray,pickedCurrency}) =>{
 
     console.log('[SELECTION]' , selection, datesArray)
+
+    const currencies = useSelector(state=>state.currency.currencies)
+
+    let exchangeRate;
+
+    currencies.forEach((curr)=>{
+      if(curr.name === pickedCurrency)
+        exchangeRate = parseInt(curr.value)
+    })
    
                     const minRateValue = datesArray.filter(function(item){
                         if(selection === item.date){
@@ -31,7 +40,7 @@ moment.locale('uk')
                       console.log('[SORTED ARRAY] : ' , minRateValue[0])
 
     return(
-      <div className='minimumRate_details'>Rates from {minRateValue[0].price} UAH</div>
+      <div className='minimumRate_details'>Rates from {minRateValue[0].price/exchangeRate} {pickedCurrency}</div>
     )
   }
   

@@ -2,6 +2,7 @@ import React, {useState,useEffect} from 'react'
 import { useSelector,useDispatch} from 'react-redux'
 import { getHotelRates } from '../../../../../Redux/actions'
 import { HotelRateGridTitles } from '../../../../Library/StaticJsonData/HotelRateGridTitles'
+import {locale} from 'react-intl'
 import {BookButtonHotel} from '../BookButtonHotel'
 // import {getRoomsChoice} from '../../../../Redux/actions/hotelroomschoice'
 // import {getAvail} from '../../../../../Redux/actions/availabilitychoice'
@@ -22,6 +23,10 @@ export const LargeScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
     for (let key in OccupancyTypes){
       console.log('KEY_TEST', key)
     }
+
+  //  if(!hotelratesRatesBlock){
+  //    return <div>...Loading</div>
+  //  }
 
     let empty_array = [];
 
@@ -138,6 +143,7 @@ export const LargeScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
                                                                             // room_subcategory_name={item.room_subcategory_name}
                                                                             occupancy={item4.pax}
                                                                             sum={item4.sum}
+                                                                            pickedCurrency={search_data.selected_currency}
                                                                             tariff_id={item3.tariff_id}
                                                                             availability={item3.availability}
 
@@ -161,7 +167,7 @@ export const LargeScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
                       )
                     })
                    )
-                  }):null 
+                  }):null
                 } 
               </ul> 
             </div>

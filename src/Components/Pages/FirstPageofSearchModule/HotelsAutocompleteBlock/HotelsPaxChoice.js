@@ -11,16 +11,16 @@ import {Pax} from '../../../Library/Icons/pax.js'
 import './HotelsAutocompleteCSS.css'
 import 'antd/dist/antd.css';
 
-export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
+export const HotelsPaxChoice =({MakeVisible, paxListOpen,searchProps}) =>{
 
   const totalPaxRedux = useSelector(state => state.paxchoice.pax)
   console.log('totalPaxRedux',totalPaxRedux)
 
 //   const [paxAmountNew, setPaxAmountNew] = useState([])
-  const [counterAdults, setCounterAdults] = useState(2)
-  const [counterChild, setCounterChild] = useState(0)
+  const [counterAdults, setCounterAdults] = useState(searchProps?parseInt(searchProps.adults):1)
+  const [counterChild, setCounterChild] = useState(searchProps?parseInt(searchProps.children):0)
   // const [counterInfant, setCounterInfant] = useState(0)
-  const [counterRooms, setCounterRooms] = useState(1)
+  const [counterRooms, setCounterRooms] = useState(searchProps?parseInt(searchProps.rooms):1)
 //   const [total, setTotal] = useState({counterAdults,counterChild,counterInfant})
 
  const dispatch = useDispatch();
@@ -30,42 +30,6 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen}) =>{
  useEffect ( () => {
     dispatch (getPax (counterAdults,counterChild,counterRooms));
   }, [counterAdults,counterChild,counterRooms])
-
-//   useEffect (() =>{
-//     axios.get(`${process.env.REACT_APP_SMART_URL}interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
-//     .then(res => {
-//       let tour_capacity
-//       res.data[0].tariff.forEach((item)=>{
-//              item.rooms.forEach((item1)=>{
-//               tour_capacity = item1.rates.map((item2)=>{
-//                     let min = item2.rate_details.sort((a,b)=>(a.min_adult-b.min_adult))[0].min_adult
-//                     let max = item2.rate_details[0].max_adult
-//                            for(let i=0;i<item2.rate_details.length; i++){
-//                             if(item2.rate_details[i].max_adult>max){
-//                              max=item2.rate_details[i].max_adult
-//                            }
-//                          }
-//                          return (min+max)
-//               }).join('').split('').sort((a,b)=>(a-b))
-//              })       
-//        })
-
-//          setPaxAmountNew(tour_capacity)              
-  
-//     })
-//     .catch(error =>{
-//       setPaxAmountNew(undefined)
-//       console.log('[axios error]: ', error)
-//     });
-//   },[]); 
-
-//   console.log('PAX AMOUNT NEW', paxAmountNew[0], paxAmountNew[paxAmountNew.length-1])
-
-//     if( !paxAmountNew ){
-//       return <div> Loading...</div>
-//   }
-
-  // console.log('CHECKING' , pax)
 
   const TotalPax = () =>{
     dispatch (getPax (counterAdults,counterChild,counterRooms))

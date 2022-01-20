@@ -64,7 +64,7 @@ export const IncompleteSendEmail = ({name,surname,phone,email,app_service_id,car
 
     return(
         <>
-            <div>Email sent.</div>
+            {/* <div>Email sent.</div> */}
         </>
     )
 

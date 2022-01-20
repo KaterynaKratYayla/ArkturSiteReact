@@ -21,7 +21,7 @@ import 'antd/dist/antd.css';
 
 moment.locale('uk')
 
-export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
+export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,searchProps}) => {
 
   const {locale,messages} = useIntl();
   // const [list , setList] = useState([]);
@@ -83,7 +83,8 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
               formClass={formClass}
               onSubmit={onSubmit}
               datepickerClass={datepickerClass}
-              GeneralListFunction={GeneralListFunction}/>
+              GeneralListFunction={GeneralListFunction}
+              searchProps={searchProps}/>
              
             <>  
               {
@@ -103,7 +104,8 @@ export const LargeScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
               formClass={formClass}
               onSubmit={onSubmit}
               datepickerClass={datepickerClass}
-              GeneralListFunction={GeneralListFunction}/>
+              GeneralListFunction={GeneralListFunction}
+              searchProps={searchProps}/>
                
             <>       
               {generalList.length > 0 && (
