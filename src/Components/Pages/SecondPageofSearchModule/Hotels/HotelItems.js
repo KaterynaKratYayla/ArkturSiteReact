@@ -16,8 +16,12 @@ import {HotelRates} from './HotelRates'
 import {ValidateQuery} from '../../Helpers/helper'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import {getHotelCities} from '../../../../Redux/actions/hotelcities'
+import {getPickedCurrencyResponse} from '../../../../Redux/actions/currency'
+import {getPromoCode} from '../../../../Redux/actions/promocode'
+import {getRoute} from '../../../../Redux/actions/routes'
 
 import {Search} from '../../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
+import {InnerSearchBlock} from '../../ThirdPageofSearchModule/Hotels/InnerSearchBlock'
 import { LoadingMessage } from '../../../Library/PageDevices/LoadingMessage';
 // import 'moment/locale/uk'
 
@@ -47,6 +51,12 @@ console.log('DATSENKO',search_data)
 const dispatch = useDispatch();
 // const generalHotelItems = useSelector(state => state.hotels.general_hotels)
 const generalHotelItems = useSelector(state => state.hotelcities.hotel_cities)
+
+dispatch(getRoute(search_data))
+dispatch(getPickedCurrencyResponse(search_data.selected_currency))
+dispatch(getPromoCode(search_data.refpartner))
+
+// console.log('[PICKEDCURRENCY]',pickedCurrency)
 
 const [hotelRate, setHotelRate] = useState([])
 const [filtered1, setFiltered1] = useState([]);
@@ -102,9 +112,13 @@ const {locale,messages} = useIntl();
   const currentMonth = moment().format('YYYY-MM');
   const today = moment().format('YYYY-MM-DD');
 
+  const date_difference = moment(search_data.end).diff(moment(search_data.start),'days')
+  console.log('[DATE DIFFERENCE]',date_difference)
+
   console.log('[TODAY MONTH]' , currentMonth, '[TODAY DATE]', today, '[TEST_DATE] : ' , search_data.date + '-01')
 	const { user: currentUser } = useSelector((state) => state.auth);
 
+  console.log('USER',currentUser.user_id,search_data.refpartner)
   useEffect(() => {
     const ActionRQ = {
         "username":"Serodynringa",
@@ -160,7 +174,8 @@ console.log('GEN_HOTEL_RATE',hotelRate)
         
         {/* <h3>Search Results</h3> */}
             <div>
-              {/* <Search /> */}
+              {/* <InnerSearchBlock search_data={search_data}/> */}
+              <Search searchProps={search_data}/>
             </div>
             <div class='searchrendering_Wrapper'>
             <div>
@@ -171,7 +186,7 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                           fontWeight:'bold'}}>
                       {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 25){
+                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 25&&item.id===88){
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )
@@ -204,10 +219,24 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                               marginRight: 'auto',
                               textAlign: 'center',
                               paddingTop:'2vh',
-                              paddingBottom: '2vh'
+                              paddingBottom: '2vh',
+                              fontSize:'25px',
+                              maxWidth:'80%',
+                              fontStyle:'Italic'
                             }}>
                               {/* {filtered_hotel_items[0].city_name} : {filtered_hotel_items.length} properties found */}
-                              {filtered_city_name} : {filtered_hotel_items.length} properties found
+                                {
+                                  search_data.refpartner === '1497'?
+                                  
+                                    messages&&messages.map((item)=>{
+                                      if(item.id === 132){
+                                        return (
+                                           <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                        )
+                                      }
+                                    }) :
+                                   <span>{filtered_city_name} : {hotelRate.length} properties found</span>
+                                }
                             </h2>
            
                                <ul className={`${width>1000?'HotelDescriptionUl':'HotelDescriptionUlSmallScreen'}`}
@@ -226,6 +255,9 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                                    history={history}
                                                    hotelName={hotelTariff.hotel_name}
                                                    cityName={filtered_city_name}
+                                                   date_difference={date_difference}
+                                                   adults={search_data.adults}
+                                                   pickedCurrency={search_data.selected_currency}
                                                 />                     
 
                                                 {

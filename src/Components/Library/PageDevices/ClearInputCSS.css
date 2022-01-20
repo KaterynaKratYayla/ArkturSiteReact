@@ -1,0 +1,21 @@
+.visibleCross{
+    display:block;
+    font-size:20px;
+    /* width:1vw;
+    height:1vw; */
+    cursor:pointer;
+    align-self: center;
+    margin-bottom:0.5vw;
+    position:fixed;
+    margin-left:-3vw;
+    z-index:10000;
+
+}
+
+.visibleCross:hover{
+    font-size:24px;
+}
+
+.notVisibleCross{
+    display: none;
+}

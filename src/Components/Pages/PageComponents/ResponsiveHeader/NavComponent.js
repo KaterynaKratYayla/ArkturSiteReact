@@ -15,7 +15,7 @@ import {useIntl} from 'react-intl'
 import './header.css'
 
 export const NavComponent = ({onClick, navClass, linkClassName,sitepage_type})=>{
-  // console.log("NAV_sitepage_type",sitepage_type)
+  console.log("NAV_sitepage_type",sitepage_type)
   
   const {locale,messages} = useIntl();
   
@@ -45,7 +45,10 @@ export const NavComponent = ({onClick, navClass, linkClassName,sitepage_type})=>
         <ul class={linkClassName}>
               {
                   messages.length>0?messages.map((page)=>{
-                   if(sitepage_type.sitepage_type_id === page.sitepage_type_id&&sitepage_type.sitepage_type_id!=='7'){
+                    // console.log('TESTING1', page)
+                    // console.log('TESTING2',sitepage_type)
+                   if(sitepage_type.sitepage_type_id === page.sitepage_type_id&&sitepage_type.sitepage_type_id!==7){
+                    //  console.log('TESTING',page)
                       return(
                           <li key={page.id}>
                               <h2>
@@ -56,7 +59,18 @@ export const NavComponent = ({onClick, navClass, linkClassName,sitepage_type})=>
                           </li>
                       )
                    }
-                  }):(null)
+                  else if(!sitepage_type.sitepage_type_id && page.sitepage_region_id===4){
+                   return(
+                    <li key={page.id}>
+                        <h2>
+                           <LocalizationNavLink to={`/sitepages/?name=${page.name},id=${page.id}`} onClick={onClick}>
+                              <FormattedMessage id={page.title.map((item1)=>item1.text)}/>
+                           </LocalizationNavLink> 
+                        </h2>
+                    </li>
+                   )
+                  }
+                 }):(null)
               }	
               </ul>
 

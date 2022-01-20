@@ -1,11 +1,11 @@
 import { GET_PAX_REQ ,GET_PAX_RES, GET_PAX_ERR,GET_PAX_INNER_REQ ,GET_PAX_INNER_RES, GET_PAX_INNER_ERR} from '../constants'
 
 const initState = {
-	pax: {adults:2,children:0,rooms:1},
+	pax: {adults:1,children:0,rooms:1},
     pax_loaded: true,
     errors: [],
 
-    pax_inner_search: {adults:2,children:0,rooms:1},
+    pax_inner_search: {adults:1,children:0,rooms:1},
     pax_inner_search_loaded: true,
     errors_inner_search: []
 }

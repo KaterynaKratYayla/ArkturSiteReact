@@ -1,5 +1,6 @@
 .FormWrapper{
     margin: 3vh 10vw 5vh 10vw;
+    position:relative;
 }
 
 .FormWrapper h2{

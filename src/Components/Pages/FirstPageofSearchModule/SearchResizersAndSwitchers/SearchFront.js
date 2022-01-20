@@ -12,9 +12,9 @@ import './SmallScreenSearchCSS.css'
 
 // moment.locale('uk')
 
-export const Search = (props) => {
-      // console.log('[PROPS] : ', props)
-      const genProps = props
+export const Search = ({searchProps}) => {
+    //   console.log('[PROPS] : ', props)
+    //   const genProps = props
 
   const history = useHistory();
 
@@ -31,7 +31,7 @@ export const Search = (props) => {
             formClass='mySearch'
             autocompleteClass='Autocomplete'
             datepickerClass='datePicker'
-            props={genProps}
+            searchProps={searchProps}
             width={width}
             />
             :
@@ -41,7 +41,7 @@ export const Search = (props) => {
            formClass='mySearch_inner'
            autocompleteClass={null}
            datepickerClass='datePicker_inner'
-           props={genProps}
+           props={searchProps}
            width={width}
            />
           }                                   

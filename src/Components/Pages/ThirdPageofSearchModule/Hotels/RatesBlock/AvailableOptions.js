@@ -11,9 +11,15 @@ import './RatesBlockCSS.css'
 
 export const AvailableOptions = (props) =>{
 
-    const {currency,index,rooms,room_id,room_name,sum,tariff_id,availability,occupancy,contract_id} = props;
-    
+    const {currency,index,rooms,room_id,room_name,sum,tariff_id,availability,occupancy,contract_id,pickedCurrency} = props;
+    const currencies = useSelector(state=>state.currency.currencies)
     console.log('PROPS', props)
+    let exchangeRate;
+
+    currencies.forEach((curr)=>{
+      if(curr.name === pickedCurrency)
+        exchangeRate = parseInt(curr.value)
+    })
 
     const [selectedAvailability, setSelectedAvailability] = useState(parseInt(rooms,10))
     const [totalsum,setTotalSum] = useState(selectedAvailability*sum)
@@ -53,7 +59,8 @@ export const AvailableOptions = (props) =>{
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor:'white'}}>
-                  {currency} {sum*selectedAvailability}
+                  {/* {currency} {sum*selectedAvailability} */}
+                  {pickedCurrency} {Math.round(sum*selectedAvailability/exchangeRate)}
       </h5> 
 
       <h5 style={{display: 'flex',
@@ -94,6 +101,7 @@ export const AvailableOptions = (props) =>{
         tariff_id={tariff_id}
         contract_id={contract_id}
         occupancy={occupancy}
+        pickedCurrency={pickedCurrency}
       />
       </h5>
   </>

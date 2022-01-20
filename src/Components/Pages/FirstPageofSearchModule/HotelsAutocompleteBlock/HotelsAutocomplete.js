@@ -13,10 +13,14 @@ import {LocalizationNavLink} from '../../../Library/Localization/LocalizationNav
 import {getPages} from '../../../../Redux/actions/pages'
 import {changeLang} from '../../../../Redux/actions/locale'
 import {PromoCode} from './PromoCode'
+import createHistory from 'history/createBrowserHistory';
 
 import {getHotels, getGeneralHotels} from "../../../../Redux/actions/hotels"
 import {getPax} from "../../../../Redux/actions/paxchoice"
 import {PlaceHolderStrings} from '../../../Library/Localization/placeholders'
+import {getCurrency,getPickedCurrencyResponse} from '../../../../Redux/actions/currency'
+import {lettersOnlyString} from '../../Helpers/regex'
+import {ClearInput} from '../../../Library/PageDevices/ClearInput'
 
 import '../SearchResizersAndSwitchers/Search.css';
 import '../SearchResizersAndSwitchers/SwitcherFront.css';
@@ -27,22 +31,29 @@ import { ContentPages } from '../../PageComponents/ContentPages';
 moment.locale('uk')
 
 
-export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,GeneralListFunction}) =>{
+export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,GeneralListFunction,searchProps}) =>{
      
   const {locale,messages} = useIntl();
 
-      const [stayDates, setStayDates] = useState([]);
+  // console.log('REGEX',lettersOnlyString(searchProps.title))
+
+      const [stayDates, setStayDates] = useState(searchProps?[searchProps.start,searchProps.end]:[]);
+      const [pickedStartDate, setPickedStartDate] = useState(searchProps?true:false)
+      const [pickedEndDate, setPickedEndDate] = useState(searchProps?true:false)
       const [list , setList] = useState([]);
-      const [hotelsvalue, setHotelsValue] = useState('');
+      const [hotelsvalue, setHotelsValue] = useState(searchProps?searchProps.title:'');
       const [open, setOpen] = useState(false);
       const [paxListOpen, setPaxListOpen] = useState(false);
       const [promoCodeOpen, setPromoCodeOpen] = useState(false);
+      const [crossVisible, setCrossVisible] = useState(false);
       const [totalPax, setTotalPax] = useState();
-      const [pickedHotelValue, setPickedHotelValue] = useState(false);
+      const [pickedHotelValue, setPickedHotelValue] = useState(searchProps?true:false);
       const [loaded,setLoaded]=useState(false);
       const [pagesFromLC, setPagesFromLC] = useState(localStorage.getItem('page_titles') ? JSON.parse(localStorage.getItem('pages_titles')) : []);    
       
       const history = useHistory();
+
+      const pickedcurrency = useSelector(state=>state.currency.pickedcurrency)
 
       // console.log('AAA',history)
       const [width, height] = useWindowWidthAndHeight();
@@ -58,6 +69,8 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
 
       // console.log('PLACEHOLDER', placeHolderString)
       console.log('TOTALPAXREDUX',totalPaxRedux)
+
+      const browserhistory = createHistory();
 
       useEffect ( () => {
         dispatch (changeLang ());
@@ -92,8 +105,11 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
      
       function onChange(dates, dateStrings) {
         setStayDates(dateStrings)
+        // setPickedStayDates(true)
         console.log('[DATES :]', 'From: ', dates[0], ', to: ', dates[1]);
         console.log('[STAYDATES :]','From: ', dateStrings[0], ', to: ', dateStrings[1]);
+        setPickedStartDate(true)
+        setPickedEndDate(true)
           }
     
       const optionChecker = (e) => {
@@ -104,6 +120,8 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
             setOpen(true)
           }
         }
+
+        const dateFormat = 'YYYY-MM-DD';
     
         ////FOR DATEPICKER (RANGEDATEPICKER) TO DISABLE CHOICE OF DATES THAT ARE BEFORE TODAY
         
@@ -127,11 +145,17 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
 
       const addToList = () => {
 
-       if (pickedHotelValue === false){
+      // if(searchProps){
+      //   history.go(0)
+      // }
+
+      if (pickedHotelValue === false || hotelsvalue === ''){
           alert ("Please choose your hotel")
         }
-       else {
-    
+      else if (pickedStartDate === false && pickedEndDate === false){
+        alert("Please pick up your dates of stay")
+      }
+      else {
         const filteredHotels = smart_hotels.filter(function(item){
             return item.name === hotelsvalue
         })
@@ -144,26 +168,32 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
         })
         
         console.log('FILTERED_HOTEL_ID', filtered_hotelcity_id )
-    
-        const hotelNewList = {
+        
+       const hotelNewList = {
           id: filteredHotels[0].id,
           title: hotelsvalue,
           date: stayDates
-      };
+        };
     
       setList([...list, hotelNewList]);
-      setStayDates('');
-      setHotelsValue('');
+      // setStayDates('');
+      // setHotelsValue('');
     
       console.log('[hotelNewList] : ' , list, hotelsvalue)
 
       GeneralListFunction(list,hotelsvalue)
 
-      let route_query = `?${promoCode?'refpartner='+promoCode+',':''}title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
+      // console.log('PROMOCODE_LC',window.localStorage.getItem('promocode'))
 
-      history.push(`/${locale}/search_results_hotels/${route_query}`,[...list, hotelNewList])
-      console.log('[HISTORY : ] ', history)
-     
+      //  let route_query = `?${localStorage.getItem('promocode')?'refpartner='+localStorage.getItem('promocode')+',':''}selected_currency=${pickedcurrency},title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
+       let route_query = `?${promoCode?'refpartner='+promoCode+',':''}selected_currency=${pickedcurrency},title=${hotelsvalue},start=${stayDates[0]},end=${stayDates[1]},id=${filteredHotels[0].id},city_id=${filtered_hotelcity_id[0].city_id},adults=${totalPaxRedux.adults},children=${totalPaxRedux.children},rooms=${totalPaxRedux.rooms}`
+        
+       history.push(`/${locale}/search_results_hotels/${route_query}`,[...list, hotelNewList])
+        console.log('[HISTORY : ] ', history)
+
+        browserhistory.go(0)
+       
+      // }     
      }
     }
         
@@ -175,11 +205,35 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
       setPromoCodeOpen(!promoCodeOpen)
     }
 
+    const VisibleCross = () =>{
+      if(hotelsvalue !== ''){
+        setCrossVisible(true)
+      }
+    }
+
+    const NotVisibleCross = () =>{
+        setCrossVisible(false)
+      }
+
+      const clearInput = () =>{
+          setHotelsValue('')
+        }
+
       return(
             <div>
               <form className={formClass} onSubmit={onSubmit}> 
                     {/* <div style={{width:`${width*0.8/4}px`}}> */}
-                     <div style={{gridColumn:'1'}}>
+                     <div style={{gridColumn:'1', 
+                                  display:'flex',
+                                  flexDirection:'row-reverse',
+                                  justifyContent:'space-around'
+                                  }}
+                            onMouseEnter={VisibleCross}
+                            onMouseLeave={NotVisibleCross}
+                          >
+                           <ClearInput makevisible={crossVisible}
+                                       clearInput={clearInput}/>
+                      
                        <Autocomplete
                          {...props}
                          
@@ -254,19 +308,34 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                             borderLeft:'0.5px solid grey',
                             display:'flex',
                             alignItems:'center'}}>
-
+               {
+                searchProps?
                  <Space direction="vertical">
                     <RangePicker
                         size={'middle'}
                         disabledDate={disabledDate}
+                        allowClear={false}
+                        onChange={onChange}
+                        defaultValue={[moment(searchProps.start, dateFormat),moment(searchProps.end, dateFormat)]} format={dateFormat}
+                        bordered={false}
+                        className={datepickerClass}
+                        placeholder={[placeholder.placeHolderStartDate,placeholder.placeHolderEndDate]}
+                        allowEmpty={[false,false]}
+                    />
+                </Space>
+                   :
+                <Space direction="vertical">
+                     <RangePicker
+                        size={'middle'}
+                        disabledDate={disabledDate}
+                        allowClear={false}
                         onChange={onChange}
                         bordered={false}
                         className={datepickerClass}
                         placeholder={[placeholder.placeHolderStartDate,placeholder.placeHolderEndDate]}
-
-                    />
+                      />
                 </Space>
-              
+              }
             </div> 
 
             <div style={{gridColumn:'3',
@@ -278,6 +347,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
                   <HotelsPaxChoice 
                      MakeVisible={MakeVisible}
                      paxListOpen={paxListOpen}
+                     searchProps={searchProps}
                   />
              </div>
             
@@ -291,6 +361,7 @@ export const HotelsAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gen
             <PromoCode
                    MakeCodeVisible={MakeCodeVisible}
                    promoCodeOpen={promoCodeOpen}
+                   refpartner={searchProps?searchProps.refpartner:''}
              />
              </div>
        

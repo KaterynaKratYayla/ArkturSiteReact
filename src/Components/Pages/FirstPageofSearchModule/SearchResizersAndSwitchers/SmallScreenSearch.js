@@ -13,7 +13,7 @@ import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import './SwitcherFront.css'
 import './SmallScreenSearchCSS.css'
 
-export const SmallScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,props}) => {
+export const SmallScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteClass,datepickerClass,searchProps}) => {
    
   const [generalValue, setGeneralValue] = useState('');
   const [align, setAlign] = useState('HOTELS'); 
@@ -76,7 +76,8 @@ export const SmallScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
               datepickerClass={datepickerClass}
               wrapper={wrapper}
               innerWrapper={innerWrapper}
-              GeneralListFunction={GeneralListFunction}/>
+              GeneralListFunction={GeneralListFunction}
+              searchProps={searchProps}/>
              
             <>  
               {
@@ -97,7 +98,8 @@ export const SmallScreenSearch = ({wrapper,innerWrapper,formClass,autocompleteCl
               wrapper={wrapper}
               onSubmit={onSubmit}
               datepickerClass={datepickerClass}
-              GeneralListFunction={GeneralListFunction}/>
+              GeneralListFunction={GeneralListFunction}
+              searchProps={searchProps}/>
                
             <>       
               {generalList.length > 0 && (

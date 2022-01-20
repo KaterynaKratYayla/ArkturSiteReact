@@ -12,7 +12,7 @@ import './BookButtonHotelCSS.css'
 
 export const BookButtonHotel = (props) =>{
     
-    const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy} = props;
+    const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy,pickedCurrency} = props;
     const {locale,messages} = useIntl();
     const [width, height] = useWindowWidthAndHeight()
     
@@ -44,11 +44,12 @@ export const BookButtonHotel = (props) =>{
             tariff_id:tariff_id,
             room_id:room_id,
             amount:totalsum,
+            pickedCurrency:pickedCurrency,
             rooms:selectedAvailability
             }
         setBooking([newBooking])
 
-        const route_hotel_query_form = `?service_type_id=${parseInt(1)},start=${search_data.start},end=${search_data.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${search_data.hotel_id},adults=${occupancy},children=${search_data.children},htlName=${hotel_name},amount=${totalsum}`
+        const route_hotel_query_form = `?selected_currency=${pickedCurrency},service_type_id=${parseInt(1)},start=${search_data.start},end=${search_data.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${search_data.hotel_id},adults=${occupancy},children=${search_data.children},htlName=${hotel_name},amount=${totalsum}`
         history.push(`/${locale}/booking_form/${route_hotel_query_form}`, [...booking, newBooking])
     }
 

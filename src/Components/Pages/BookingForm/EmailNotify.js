@@ -4,10 +4,10 @@ import {useSelector} from "react-redux";
 
 // import {OfflineSummary} from './OfflineSummary'
 
-export const IncompleteSendEmail = ({name,surname,phone,email,app_service_id,cart}) =>{
+export const EmailNotify = ({name,surname,phone,email,app_service_id,cart}) =>{
 
     // TODO: Передать сюда объект cart
-    console.log('IncompleteSendEmail-cart: ', cart)
+    console.log('EmailNotify', cart)
 	const { user: currentUser } = useSelector((state) => state.auth);
 
     // const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([]);

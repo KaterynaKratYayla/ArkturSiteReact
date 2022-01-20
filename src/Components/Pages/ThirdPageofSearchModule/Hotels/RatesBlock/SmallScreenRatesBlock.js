@@ -122,6 +122,7 @@ export const SmallScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
                                                                             sum={item4.sum}
                                                                             tariff_id={item3.tariff_id}
                                                                             availability={item3.availability}
+                                                                            pickedCurrency={search_data.selected_currency}
 
                                                                             />
                                                     </h5>

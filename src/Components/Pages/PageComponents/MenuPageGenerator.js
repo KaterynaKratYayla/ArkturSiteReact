@@ -45,6 +45,8 @@ export const PureContent = () => {
 
     const pages = ContentPages(locale);
 
+    // const pickedcurrency = useSelector(state=>state.currency.pickedcurrency)
+
     useEffect ( () => {
       dispatch (getPurePage (search_data.id,locale));
     },[search_data.id]);

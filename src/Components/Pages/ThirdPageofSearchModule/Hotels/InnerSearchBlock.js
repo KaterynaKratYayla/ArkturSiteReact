@@ -17,16 +17,18 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
 
     const {locale,messages} = useIntl();
 
-    const [startDate, setStartDate] = useState(search_data.start);
-    const [endDate, setEndDate] = useState(search_data.end);
+    const [startDate, setStartDate] = useState(search_data.start?search_data.start:'');
+    const [endDate, setEndDate] = useState(search_data.end?search_data.end:'');
     const [paxListOpen, setPaxListOpen] = useState(false);
     const [newList,setNewList] = useState(search_data);
     const [clicked, setClicked] = useState(false);
-    const [pickedStartValue, setPickedStartValue] = useState(false);
-    const [pickedEndValue, setPickedEndValue] = useState(false);
+    const [pickedStartValue, setPickedStartValue] = useState(search_data.start?true:false);
+    const [pickedEndValue, setPickedEndValue] = useState(search_data.end?true:false);
     const [width, height] = useWindowWidthAndHeight()
 
     const totalPaxRedux = useSelector(state => state.paxchoice.pax)
+    const hotelratesRatesBlock = useSelector(state => state.hotelrates.hotelrates)
+
     const dispatch = useDispatch();
 
     const dateFormat = 'YYYY-MM-DD';
@@ -66,13 +68,15 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
 
         else if (pickedStartValue === true && pickedEndValue === true){
           const List = {
+            refpartner: search_data.refpartner,
+            selected_currency: search_data.selected_currency,
             start: startDate,
             end: endDate,
             city_id: search_data.city_id,
             hotel_id: search_data.hotel_id,
             adults: String(totalPaxRedux.adults),
             children: String(totalPaxRedux.children),
-            rooms: String(totalPaxRedux.rooms)
+            rooms: String(totalPaxRedux.rooms),
           }
           
           setNewList(List)
@@ -83,6 +87,10 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
     //     return <RatesBlock
     //     search_data={newList}
     //  /> 
+
+      //  if(!hotelratesRatesBlock){
+      //    alert('Sorry, our hotel is fully booked. Please choose other dates')
+      //  }
       }
 
     return(
@@ -168,7 +176,8 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
                  <RatesBlock 
                     search_data={search_data}/>
                         )
-            }        
+            }    
+
       </div>
     )
 }

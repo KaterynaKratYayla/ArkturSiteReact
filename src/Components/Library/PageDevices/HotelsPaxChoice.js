@@ -111,9 +111,9 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,rooms,adults,children})
                   <h4 style={{display:'flex',flexDirection:'row',justifyContent:'center'}} onClick={TotalPax}>
 
                      <Pax />
-                      <div style={{paddingLeft:'1vw'}}> {counterAdults} Adults</div>, 
-                      <div style={{paddingLeft:'1vw'}}> {counterChild} Children</div>,
-                      <div style={{paddingLeft:'1vw'}}> {counterRooms} Rooms </div>
+                      <div style={{paddingLeft:'1vw',fontSize:'14px'}}> {counterAdults} Adults</div>, 
+                      <div style={{paddingLeft:'1vw',fontSize:'14px'}}> {counterChild} Children</div>,
+                      <div style={{paddingLeft:'1vw',fontSize:'14px'}}> {counterRooms} Rooms </div>
                       {/* {counterInfant} Infants,  */}
                       <DownOutlined className='DownOutlined'/>
 
@@ -126,20 +126,20 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,rooms,adults,children})
                                  }}>
                     <div style={{display: 'grid',  
                                  gridTemplateColumns: '25% 17% 16% 17% 25%'}}>
-                        <h4>Adults</h4>
-                        <h4><MinusOutlined className='Minus' onClick={deduct}/></h4>
-                        <h4>{counterAdults}</h4>  
-                        <h4><PlusOutlined className='Plus' onClick={add}/></h4>
-                        <h4>12+ y.o.</h4>
+                        <h4 style={{fontSize:'14px',fontFamily:'Arial'}}>Adults</h4>
+                        <MinusOutlined className='MinusInner' style={{color:'white'}} onClick={deduct}/>
+                        <h4 style={{fontSize:'14px',fontFamily:'Arial'}}>{counterAdults}</h4>  
+                        <PlusOutlined className='Plus' style={{color:'white'}} onClick={add}/>
+                        <h4 style={{fontSize:'14px',fontFamily:'Arial'}}>12+ y.o.</h4>
                     </div>
 
                     <div style={{display: 'grid',  
                                  gridTemplateColumns: '25% 17% 16% 17% 25%'}}>
-                        <h4>Children</h4>
-                        <h4><MinusOutlined className='Minus' onClick={deductChild}/></h4>
-                        <h4>{counterChild}</h4>
-                        <h4><PlusOutlined className='Plus' onClick={addChild}/></h4>
-                        <h4>2-11 y.o.</h4>
+                        <h4 style={{fontSize:'14px',fontFamily:'Arial'}}>Children</h4>
+                        <MinusOutlined className='MinusInner' style={{color:'white'}} onClick={deductChild}/>
+                        <h4 style={{fontSize:'14px',fontFamily:'Arial'}}>{counterChild}</h4>
+                        <PlusOutlined className='Plus' style={{color:'white'}} onClick={addChild}/>
+                        <h4 style={{fontSize:'14px',fontFamily:'Arial'}}>2-11 y.o.</h4>
                     </div>
 
                     {/* <div style={{display: 'grid',  
@@ -153,16 +153,16 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,rooms,adults,children})
 
                     <div style={{display: 'grid',  
                                  gridTemplateColumns: '25% 17% 16% 17% 25%'}}>
-                        <h4>Rooms</h4>
-                        <h4><MinusOutlined className='Minus' onClick={deductRooms}/></h4>
-                        <h4>{counterRooms}</h4>
-                        <h4><PlusOutlined className='Plus' onClick={addRooms}/></h4>
+                        <h4 style={{fontSize:'14px',fontFamily:'Arial'}}>Rooms</h4>
+                        <MinusOutlined className='MinusInner' style={{color:'white'}} onClick={deductRooms}/>
+                        <h4 style={{fontSize:'14px',fontFamily:'Arial'}}>{counterRooms}</h4>
+                        <PlusOutlined className='Plus' style={{color:'white'}} onClick={addRooms}/>
 
                     </div>
 
                   </div>
 
-                  <div onClick={TotalPax} style={{textAlign:'center'}}>
+                  <div onClick={TotalPax} style={{textAlign:'center', position:'relative',zIndex:'3000'}}>
                   
                     <button class="PopUpButton" onClick={MakeVisible}>
                             Confirm

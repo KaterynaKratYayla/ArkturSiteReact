@@ -3,14 +3,14 @@ import {NavComponent} from './NavComponent'
 
 import './header.css'
 
-export const LargeScreensNavBar = ({sitepage_type}) =>{
+export const LargeScreensNavBar = ({sitepage_type,linkClassName,navClass}) =>{
 
     return(
         <div class='nav_big'>
             <NavComponent 
-                linkClassName='nav_big_link'
+                linkClassName={linkClassName}
                 sitepage_type={sitepage_type}
-                navClass='wrapper_nav_big_link'
+                navClass={navClass}
                 />
     </div>
         
