@@ -339,7 +339,7 @@ export const ClientDetails = ({cart}) => {
 
                         </div>
                    </div>
-                    ):null
+                    ):React.Fragment
                 }
             </>
 

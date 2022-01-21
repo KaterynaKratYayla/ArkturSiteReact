@@ -111,5 +111,5 @@ export const ListItem = (props) => {
        </div>
       )
      }
-      return null;
+      return React.Fragment;
     }

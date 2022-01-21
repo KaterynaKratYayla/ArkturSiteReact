@@ -49,7 +49,7 @@ export const CartGalleryShortVersion = ({photos}) => {
                                          {(index > 1 && index <=5)?
                                              <img src={'https://'+image} 
                                                   class={activeIndex === index?'PickedImage':'NotPickedImage'}
-                                                  onClick={pickAction(index)}/>:null}
+                                                  onClick={pickAction(index)}/>:React.Fragment}
                                    </div>
                                    )
                                 })

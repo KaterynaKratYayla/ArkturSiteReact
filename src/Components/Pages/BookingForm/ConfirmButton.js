@@ -66,7 +66,7 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                     cart={cart}
                 />
                 </>
-              ):null
+              ):React.Fragment
             )
        }
 

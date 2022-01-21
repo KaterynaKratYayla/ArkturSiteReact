@@ -29,7 +29,7 @@ console.log('WIDTH',width)
                                 trip[key].category&&Array.from(trip[key].category).includes('*')?
                                 Array.from(trip[key].category).map((star)=>
                                     <span style={{marginLeft:'0.1vw', marginRight:'0.1vw'}}><Star/></span>
-                                ):null
+                                ):React.Fragment
 
                             }
                               <div style={{fontFamily:'Arial',
@@ -71,7 +71,7 @@ console.log('WIDTH',width)
                   )
             } 
           }
-         )):(null)
+         )):(React.Fragment)
         }
       </>
     </div>

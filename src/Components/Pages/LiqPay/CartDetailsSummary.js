@@ -68,7 +68,7 @@ export const CartDetailsSummary = ({cart}) => {
                                                         padding: '0.5vh'
                                                     }}>{ReactHtmlParser(item.text)}</div>
                                                 </>
-                                                : null}
+                                                : React.Fragment}
                                         </div>
 
                                         <div style={{
@@ -84,7 +84,7 @@ export const CartDetailsSummary = ({cart}) => {
                                                         padding: '0.5vh'
                                                     }}>{ReactHtmlParser(item.text)}</div>
                                                 </>
-                                                : null}
+                                                : React.Fragment}
                                         </div>
                                     </>)
                             }) : (<div
@@ -111,7 +111,7 @@ export const CartDetailsSummary = ({cart}) => {
                                                 </div>}
                                         </div>
                                     </>)
-                            }) : (null)
+                            }) : (React.Fragment)
                         }
                     </div>
                     <div style={{display: 'flex', flexDirection: 'column'}}>
@@ -181,7 +181,7 @@ const CartGallery = ({photos}) => {
                                 {(index > 1 && index <= 5) ?
                                     <img src={'https://' + image}
                                          class={activeIndex === index ? 'PickedImage' : 'NotPickedImage'}
-                                         onClick={pickAction(index)}/> : null}
+                                         onClick={pickAction(index)}/> : React.Fragment}
                             </div>
                         )
                     })

@@ -56,7 +56,7 @@ export const HomePage = () => {
                       }   </h2>
 
            {
-             promoCode === '1497'? null : <Slider slides={images}/>
+             promoCode === '1497'? React.Fragment : <Slider slides={images}/>
            }
            <Search />
            <TopTours/>

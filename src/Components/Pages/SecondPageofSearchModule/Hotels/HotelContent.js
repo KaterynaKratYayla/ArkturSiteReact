@@ -104,7 +104,7 @@ const dispatch = useDispatch();
                         trip[key].category&&Array.from(trip[key].category).includes('*')?
                           Array.from(trip[key].category).map((star)=>
                               <span style={{marginLeft:'0.1vw', marginRight:'0.1vw'}}><Star/></span>
-                          ):null
+                          ):React.Fragment
 
                       }
                      </div>

@@ -70,7 +70,7 @@ export const OccupancyRates = ({choiceDetailsNew,hotelChoice,tour_id,selectionDe
             // })
             
                          
-                        }):(null)
+                        }):(React.Fragment)
                     } 
 
               </div>

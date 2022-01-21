@@ -170,7 +170,7 @@ export const RateChoiceBlock =({selectionDetails,tour_id,totalPax}) =>{
                           }
                                           
                       })
-                       :(null)
+                       :(React.Fragment)
                     }
             </>
               

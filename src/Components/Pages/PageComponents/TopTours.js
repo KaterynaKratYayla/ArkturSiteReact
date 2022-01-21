@@ -159,7 +159,7 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                                 class="TopToursImage"
                                                 width={`${width*0.6/3}px`}
                                                 src={'http://' + tour.main_photo[1]}/>
-                                                ):null
+                                                ):React.Fragment
                                             // (<LoadingMessage itemWidth={`${width*0.6/3}px`}/>)
                                             }
                                         </div> 
@@ -172,13 +172,13 @@ const LargeScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                               style={{width:`${width*0.6/3}px`}}> 
                                                 {tour.tour_name.toUpperCase()} 
                                           </h4> 
-                                      </div> ):null
+                                      </div> ):React.Fragment
                                     }
                                 </li> 
                             )}
                          })) 
                      : 
-                      (null) 
+                      (React.Fragment) 
                     } 
                   
                 </ul> 
@@ -243,7 +243,7 @@ const MediumScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                                 class="TopToursImage"
                                                 width={`${width*0.5/2}px`}
                                                 src={'http://' + tour.main_photo[0]}/>
-                                            ):null
+                                            ):React.Fragment
                                             // (<LoadingMessage itemWidth={`${width*0.5/2}px`}/>)
                                          }
                                         </div> 
@@ -254,7 +254,7 @@ const MediumScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                           style={{width:`${width*0.5/2}px`}}> 
                                                 {tour.tour_name.toUpperCase()} 
                                           </h4> 
-                                      </div> ):null
+                                      </div> ):React.Fragment
                                     }
                                 </li> 
                             ) 
@@ -319,7 +319,7 @@ const SmallScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                             class="SmallerTopToursImage"
                                             style={{width:width}}
                                             src={'http://' + tour.main_photo[0]}/>
-                                            ):null
+                                            ):React.Fragment
                                             // (<LoadingMessage itemWidth={`${width}px`}/>
                                             // )
                                          }
@@ -331,7 +331,7 @@ const SmallScreenTopTours = ({TopToursContents,GetTourDetails,TourTypes}) =>{
                                       <h4 id={tour.tour_id}>
                                            {tour.tour_name}
                                       </h4>
-                                    </div>):null
+                                    </div>):React.Fragment
                                   }
                               </li>
                           )

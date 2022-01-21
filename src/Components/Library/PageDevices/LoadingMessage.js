@@ -44,7 +44,7 @@ return(
                             )
                           }
                         })
-                        ):null
+                        ):React.Fragment
                       }                               
               </div>   
             </>     
@@ -58,7 +58,7 @@ return(
                             )
                           }
                         })
-                       ):null
+                       ):React.Fragment
                     }   
               </h3>)
         }

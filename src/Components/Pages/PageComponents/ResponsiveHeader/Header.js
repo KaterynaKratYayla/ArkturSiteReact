@@ -94,7 +94,7 @@ export const TopMenu = () => {
 						  <LangSelectionFlags/>
 						</div>
 					</div>
-				 : null
+				 : React.Fragment
 			 }
 			  <div className={topMenuRight}>
 				<a href='mailto:inquiry@arktur.ua'>inquiry@arktur.ua</a>

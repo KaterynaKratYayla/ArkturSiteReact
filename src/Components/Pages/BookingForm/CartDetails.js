@@ -82,7 +82,7 @@ export const CartDetails = ({cart,cartClass}) =>{
                             <div style={{order:'0'}}>
                                 {item.content_name === "Image"?(
                                     <CartGalleryShortVersion photos={item}/>
-                              ):null}
+                              ):React.Fragment}
                             </div>
                             <div style={{order:'1',
                                         display: 'flex',
@@ -94,7 +94,7 @@ export const CartDetails = ({cart,cartClass}) =>{
                                                 padding: '0.5vh'
                                                 }}>{ReactHtmlParser(item.text)}</div>
                                </>
-                               :null}
+                               :React.Fragment}
                             </div>
 
                             <div style={{order:'2',
@@ -107,7 +107,7 @@ export const CartDetails = ({cart,cartClass}) =>{
                                                 padding: '0.5vh'
                                                 }}>{ReactHtmlParser(item.text)}</div>
                                </>
-                               :null}
+                               :React.Fragment}
                             </div>
                         </>)
                     }):(<div

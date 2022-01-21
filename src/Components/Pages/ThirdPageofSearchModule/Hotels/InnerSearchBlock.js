@@ -159,7 +159,7 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
                     search_data={search_data}
                 />    
             )
-            :null */}
+            :React.Fragment */}
             {
              clicked === true?
                 (<RatesBlock 

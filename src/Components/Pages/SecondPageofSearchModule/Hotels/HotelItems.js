@@ -244,14 +244,14 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                                        }
                                                       }
                                                      )
-                                                    ):null
+                                                    ):React.Fragment
                                                   }
                                                 </li>
                                                  )
                                                 }
                                               }
                                              )):
-                                            null
+                                             React.Fragment
                                                 }
                                                                                 
 

@@ -59,7 +59,7 @@ export const SitePagesList = ({sitepage_type}) =>{
                     )
                    }
                 }
-                  }):(null)
+                  }):(React.Fragment)
               }	
               </ul>
               

@@ -55,7 +55,7 @@ export const NavComponent = ({onClick, navClass, linkClassName,sitepage_type})=>
                           </li>
                       )
                    }
-                  }):(null)
+                  }):(React.Fragment)
               }	
               </ul>
 

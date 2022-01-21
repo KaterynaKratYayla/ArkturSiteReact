@@ -5,7 +5,7 @@
   "scripts": {
     "start": "NODE_ENV=development webpack serve",
     "build": "NODE_ENV=production webpack",
-    "start:ssr": "node server"
+    "start:ssr": "node --trace-warnings server"
   },
   "dependencies": {
     "@emotion/core": "^11.0.0",

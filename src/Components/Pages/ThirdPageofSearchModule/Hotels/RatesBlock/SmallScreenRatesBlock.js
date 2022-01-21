@@ -143,7 +143,7 @@ export const SmallScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
                       )
                     })
                    )
-                  }):null 
+                  }):React.Fragment 
                 } 
               </ul> 
             </div>
