@@ -4,15 +4,15 @@
     /* margin-top: 30px; */
 }
 
-.Icons{
+/* .Icons{
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     /* font-weight: bold; */
-    color: #102D69;
+    /* color: #102D69;
     font-family: "Arial";
     font-size: 17px;
-}
+} */ 
 
 
 /* .BookingDetails{
@@ -61,15 +61,15 @@
     display: flex;
     flex-direction: row;
     height: 25px;
-    font-Family: Tahoma;
+    font-Family: 'Arial';
     /* font-size: 16px; */
 }
 
 
 .HotelPaxChoiceWrapper h4{ 
     color: rgb(75, 73, 73);
-    font-size:15px;
-    font-family: 'Tahoma';
+    font-size:12px;
+    font-family: 'Arial';
     cursor: pointer;
     margin: auto;
 }
@@ -147,7 +147,7 @@
     position: absolute;
     background-color: white;
     margin-top:5vh;
-    z-index: 1000;
+    z-index: 3000;
     /* width: 23vw; */
     border: 1px solid #d9d9d9;
     border-radius: 6px;
@@ -167,6 +167,7 @@
     text-align: center;
     margin-top: 25px;
     margin-bottom: 6px;
+    
 }
 
 /* .BookingChoiceInner{
@@ -180,8 +181,8 @@
     font-weight: bold;
 } */
 
-.Minus{
-    color: white;
+.MinusInner{
+    /* color: #ffffff; */
     background-Color: #009FE3;
     border: 0.8vw solid #009FE3;
     border-radius: 5vw;

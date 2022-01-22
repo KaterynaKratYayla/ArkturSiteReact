@@ -10,6 +10,7 @@ import {ContentBlock} from './ContentBlock'
 import {RatesBlock} from './RatesBlock/RatesBlock'
 import {InnerSearchBlock} from './InnerSearchBlock'
 import {getHotelCities} from '../../../../Redux/actions/hotelcities'
+import {getPickedCurrencyResponse} from '../../../../Redux/actions/currency'
 
 import './HotelDetailsCSS.css' 
 
@@ -26,6 +27,8 @@ export const HotelDetails = () =>{
     const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
     const searchUpdate = useSelector(state=>state.hotelsearchdata.occupancy_search_data)
     const citiesList = useSelector(state => state.hotelcities.hotel_cities)
+
+    dispatch(getPickedCurrencyResponse(search_data.selected_currency))
 
     console.log('[OCCUPANCY]',searchUpdate)
 
@@ -74,7 +77,8 @@ useEffect(() =>{
                         marginTop: '3vh',
                         }}>Availability</h3>
 
-                    <InnerSearchBlock search_data={search_data} hotelName={filtered_hotel_name}/>
+                    <InnerSearchBlock search_data={search_data} 
+                                      hotelName={filtered_hotel_name}/>
                     {/* <h3  class="SearchDetails">
                         <h4>Check-in date : <span>{search_data.start}</span></h4>
                         <h4>Check-out date : <span>{search_data.end}</span></h4>

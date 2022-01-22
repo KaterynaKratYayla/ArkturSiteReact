@@ -42,7 +42,7 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    padding: 3vw;    
+    padding: 4vw;    
     text-align: center;
     /* position: fixed; */
 }
@@ -113,6 +113,7 @@ a.active {
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
+    width:100%;
 }
 
 .middleMenuSmallScreen{
@@ -214,7 +215,7 @@ a.active {
 
 .nav-small-link a{
     font-family: 'Tahoma';
-    font-size: 3vh;
+    font-size: 2vh;
     /* font-weight: bold; */
     /* font-style: italic; */
     color: #003057;

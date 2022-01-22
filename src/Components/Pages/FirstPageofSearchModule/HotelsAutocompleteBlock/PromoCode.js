@@ -3,32 +3,49 @@ import React, {useState, useEffect, useCallback}  from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {getPromoCode} from "../../../../Redux/actions/promocode"
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
+import {useLocation} from 'react-router-dom'
 
 import {PlusOutlined, MinusOutlined, DownOutlined} from '@ant-design/icons'
 import {Pax} from '../../../Library/Icons/pax.js'
 // import {RateChoiceBlock} from './RateChoiceBlock'
+import {ValidateQuery} from '../../Helpers/helper'
 
 import './PromoCodeCSS.css'
 import 'antd/dist/antd.css';
 
-export const PromoCode =({MakeCodeVisible, promoCodeOpen}) =>{
+export const PromoCode =({MakeCodeVisible, promoCodeOpen,refpartner}) =>{
 
-  const [code,setCode] = useState()
+  let path ;
+	const location = useLocation();
+	
+  if(location.search){
+	   path = ValidateQuery(location)
+	}
+	else path = {refpartner:'',default:true}
 
-  const PromoCode = useSelector(state => state.promocode.promocode)
+  console.log('PATH_PATH',path)
+
+  // const [code,setCode] = useState(path.refpartner)
+  const [code,setCode] = useState(path.refpartner?path.refpartner:'')
+
+  // const PromoCode = useSelector(state => state.promocode.promocode)
 
  const dispatch = useDispatch();
 
  const [width, height] = useWindowWidthAndHeight();
 
 //  useEffect ( () => {
-//     dispatch (getPromoCode ());
+    // dispatch (getPromoCode (refpartner));
 //   }, [])
-
 
   const SetInput = (e) =>{
     setCode(e.target.value)
-    dispatch (getPromoCode (e.target.value))
+    // localStorage.setItem('promocode', e.target.value)
+    // dispatch (getPromoCode (path.refpartner?path.refpartner:e.target.value))
+    dispatch (getPromoCode(e.target.value))
+    // if(code === ''&&localStorage.getItem('promocode')){
+    //   localStorage.removeItem('promocode')
+    // }
   }
    
      return(
@@ -46,8 +63,8 @@ export const PromoCode =({MakeCodeVisible, promoCodeOpen}) =>{
                      style={{width:`${width >=1000? null: width*0.8}px`}}
                      placeholder='Partner ID/Promo Code'
                      onInput={SetInput}
-                     value={!PromoCode?'':PromoCode}
-                     />
+                     value={code}
+                  />
       </div>
     )
 } 

@@ -21,6 +21,8 @@ export const SitePagesList = ({sitepage_type}) =>{
     const dispatch=useDispatch();
 	const lang = useSelector(state=>state.locale.locale)
 
+    const pickedcurrency = useSelector(state=>state.currency.pickedcurrency)
+
 	useEffect ( () => {
 		dispatch (changeLang ());
 	  }, [])
@@ -40,7 +42,7 @@ export const SitePagesList = ({sitepage_type}) =>{
                       return(
                           <li key={page.id}>
                               <h2>
-                                     <LocalizationNavLink to={`/sitepages_hotels/?name=${page.name.replace(/\s/g , '-').toLowerCase()},id=${page.id}`}> 
+                                     <LocalizationNavLink to={`/sitepages_hotels/?name=${page.name.replace(/\s/g , '-').toLowerCase()},id=${page.id},selected_currency=${pickedcurrency}`}> 
                                          <FormattedMessage id={page.title.map((item1)=>item1.text)}/>  
                                     </LocalizationNavLink>  
                               </h2>

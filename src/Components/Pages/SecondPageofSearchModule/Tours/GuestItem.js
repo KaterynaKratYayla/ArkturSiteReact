@@ -17,6 +17,7 @@ import {ItemObj} from './ItemObj'
 import {ValidateQuery} from '../../Helpers/helper'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 import {LoadingMessage} from '../../../Library/PageDevices/LoadingMessage'
+import {getPickedCurrencyResponse} from '../../../../Redux/actions/currency'
 
 import {Search} from '../../FirstPageofSearchModule/SearchResizersAndSwitchers/SearchFront'
 // import 'moment/locale/uk'
@@ -53,6 +54,7 @@ console.log('[TEST]', test)
   ///получаю из смарта тур имя, тур айди, сити имя, сити айди
   useEffect ( () => {
     dispatch (getGeneralGeo (locale));
+    dispatch(getPickedCurrencyResponse(search_data.selected_currency))
   }, [])
 
   console.log('[GENERAL_GEO] , ' , generalGeo)///получаю из смарта тур имя, тур айди, сити имя, сити айди
@@ -124,12 +126,9 @@ console.log('[TEST]', test)
  console.log('[SET_RATE] : ' , rate)
 
     return(
+
       <div>
 
-        {/* <h3>Search Results</h3> */}
-            <div>
-              {/* <Search /> */}
-            </div>
             <div class='TourSearchrendering_Wrapper'>
             <div>
               <h3 style={{marginTop:'2vw', 
@@ -168,17 +167,7 @@ console.log('[TEST]', test)
                         filtered.length > 0  && filtered? (filtered.map((tour) => {
                           return (
                             <li key={tour.tour_id} className='descriptionLi'>
-                                {/* <h3 style={{fontSize:'27px',
-                                             color: '#001959'}}>
-                                                    {tour.tour_name}
-                                </h3> */}
 
-                                 {/* <div class={`${width>1000?'TourDescriptionContent':'TourDescriptionContentSmallScreen'}`}>  */}
-                                 {/* {
-                                   <ItemContent
-                                      tour = {tour}
-                                   />
-                                 }  */}
 
                                  {
                                   rate? (rate.map((tariff) => {
@@ -200,6 +189,7 @@ console.log('[TEST]', test)
                                        searchResults = {search_data}
                                        history={history}
                                        tour_name={tour.tour_name}
+                                       pickedCurrency={search_data.selected_currency}
                                      />
                                      </div>
                                      </>

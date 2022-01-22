@@ -2,6 +2,7 @@
 export const MenuBar = () =>{
     return(
         <svg 
+            width="60%"
             aria-hidden="true" 
             focusable="false" 
             data-prefix="fas" 

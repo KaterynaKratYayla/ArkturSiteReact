@@ -20,7 +20,7 @@ import './SearchItems.css'
 
 moment.locale('uk')
 
-export const ItemObj = ({tariff, searchResults,tour_name}) => {
+export const ItemObj = ({tariff, searchResults,tour_name,pickedCurrency}) => {
 
   const {locale,messages} = useIntl();
   
@@ -105,6 +105,7 @@ setDetailsList([outline]);
        <MinRate 
           selection={selection}
           datesArray={tariff.rate}
+          pickedCurrency={pickedCurrency}
         />
       <button 
           type='submmit'

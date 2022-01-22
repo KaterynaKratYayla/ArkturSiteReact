@@ -4,6 +4,7 @@ import {Select} from 'antd'
 import {useIntl} from 'react-intl'
 import { useDispatch} from "react-redux";
 import { useHistory,useLocation } from "react-router-dom";
+import createHistory from 'history/createBrowserHistory';
 
 import config from '../../../Redux/config'
 import {getLangResponse, changeLang} from '../../../Redux/actions/locale'
@@ -12,6 +13,7 @@ import { localeData } from 'moment';
 
 export const LangSelectionTool = () =>{
 
+    const browserhistory = createHistory();
     // const {pathname} = useLocation();
     const {locale, messages} = useIntl();
 
@@ -26,7 +28,7 @@ export const LangSelectionTool = () =>{
         // setSelectedLang(value)
         history.push(`/${value}`)
         dispatch(getLangResponse(value))
-        
+        browserhistory.go(0)  
         // dispatch(changeLang(value))
     }
 

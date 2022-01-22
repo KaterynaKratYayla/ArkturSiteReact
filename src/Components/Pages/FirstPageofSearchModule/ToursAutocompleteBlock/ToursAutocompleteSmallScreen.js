@@ -38,6 +38,8 @@ const geoGeneral = useSelector(state => state.cities.gen_locs)
 const [width, height] = useWindowWidthAndHeight();
 const placeholder = PlaceHolderStrings();
 
+const pickedcurrency = useSelector(state=>state.currency.pickedcurrency)
+
 // const dateFormat = 'DD-MM-YYYY'
 
 useEffect ( () => {
@@ -106,7 +108,7 @@ const optionChecker = (e) => {
   setDate('');
   setValue('');
 
-  let route_query = `?title=${value},date=${testDate},id=${filtered[0].id},city_id=${filtered_city_id[0].city_id}`
+  let route_query = `?selected_currency=${pickedcurrency},title=${value},date=${testDate},id=${filtered[0].id},city_id=${filtered_city_id[0].city_id}`
 
   console.log('[NewList] : ' , newList)
 

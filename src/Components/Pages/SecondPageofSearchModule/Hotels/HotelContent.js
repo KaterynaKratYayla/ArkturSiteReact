@@ -33,6 +33,7 @@ export const HotelContent = ({hotel,hotelTariff,cityName})=>{
 
 // const result = useSelector(state => state.hotelcontent.hotelcontent)
 const dispatch = useDispatch();
+let mainPhoto;
 
 // useEffect (() =>{
 //   dispatch(getHotelContent(hotel.hotel_id,locale))
@@ -53,7 +54,7 @@ const dispatch = useDispatch();
        });
    }, [hotel.hotel_id]);
 
-  //  console.log('[HOTEL_RESULT] : ' , result)
+   console.log('[HOTEL_RESULT] : ' , result)
 
   //   useEffect ( () => {
   //     dispatch (getContent (tour.tour_id));
@@ -62,6 +63,21 @@ const dispatch = useDispatch();
     if( !result ){
       return <div>Loading...</div>
   }
+
+  result.forEach((item)=>{
+    if(item.content_name === "Image"){
+      item.text.forEach((item1,index,array)=>{
+           if(item1.includes('facade'.toLowerCase())=== true||item1.includes('fasade'.toLowerCase()) === true){
+             mainPhoto=item1
+           }
+           
+         })
+      }
+  })
+
+  console.log('MAINPHOTO',mainPhoto)
+
+  // console.log('TESTING','https:' + mainPhoto)
 
    return(
      
@@ -120,7 +136,7 @@ const dispatch = useDispatch();
           if(trip.content_name === 'Image'){
             return (
             <li class={`${width>1000?'Li_Image':'Li_ImageSmallScreen'}`}
-            style={{gridRow: '2',gridColumn:'1'}}
+              style={{gridRow: '2',gridColumn:'1'}}
             >
                   <img 
                       // class='imageSearchrender'
@@ -129,7 +145,10 @@ const dispatch = useDispatch();
                       height: `${width>1000?'14vw':'100%'}`,
                       borderRadius: '5px'  
                       }}
-                      src={'http://' + trip.text[2]}/> 
+                      src={mainPhoto!==undefined?'https://'+mainPhoto:'https://'+trip.text[2]}      
+                        
+                        // 'http://' + trip.text[2]
+                        /> 
               </li>
             )
           }

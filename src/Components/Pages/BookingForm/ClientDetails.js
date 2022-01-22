@@ -2,14 +2,17 @@ import React, {useState,useEffect, useRef} from 'react'
 import axios from 'axios'
 // import '../PageComponents/ResponsiveHeader/header.css'
 import { useLocation, useHistory} from "react-router-dom";
-import { Radio } from 'antd';
+import { Radio ,Checkbox} from 'antd';
+import {useSelector} from "react-redux";
 
 import {ClientTitles} from '../../Library/StaticJsonData/ClientTitles'
 import {ConfirmButton} from './ConfirmButton'
 import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+import {TermsConditions} from './TermsConditions'
 
 import './BookingForm.css'
-import {useSelector} from "react-redux";
+import './ClientDetailsCSS.css'
+
 // import {SwitcherItem} from './Switcher'
 // import {Switcher} from './Switcher'
 
@@ -27,9 +30,12 @@ export const ClientDetails = ({cart}) => {
     const [surnameInput, setSurnameInput] = useState('');
     const [phoneInput, setPhoneInput] = useState('');
     const [emailInput, setEmailInput] = useState('');
+    const [pattern, setPattern] = useState(false)
     const [bookingId, setBookingId] = useState('');
     // const [options, setMyOption] = useState('');
     const [align, setAlign] = useState('');
+    const [termsTicked, setTermsTicked] = useState(false)
+    const [readTerms, setReadTerms] = useState(false)
 
     const [list , setList] = useState({});
 
@@ -55,6 +61,7 @@ export const ClientDetails = ({cart}) => {
                 // "user_id" : currentUser ? currentUser.user_id : 1426,
                 // "user_id" : 1426,
                 "user_id" : currentUser.user_id,
+                "refpartner":cart.refpartner,
                 "action":"AddToCartRQ",
                 "data" :
                     {
@@ -99,6 +106,18 @@ export const ClientDetails = ({cart}) => {
 
     }, [responseError]); // (Долбим) Посылаем запросы, пока Твид не выдаст twid_reference
 
+    const AgreedFunc = () =>{
+        setTermsTicked(!termsTicked)
+    }
+
+    const ReadTermsFunc = () =>{
+        setReadTerms(!readTerms)
+    }
+
+    
+    const closeTermsConditions = () =>{
+        setReadTerms(false)   
+    }
 
     let app_service_id = new Object();
 
@@ -147,7 +166,7 @@ export const ClientDetails = ({cart}) => {
     //     return <div> Loading...</div>
     // }
 
-
+   console.log('CART',cart)
     console.log('SENDCART',sendCart)
     console.log('app_service_id',app_service_id)
 
@@ -173,9 +192,15 @@ export const ClientDetails = ({cart}) => {
         return setSurnameInput (e.target.value)
         }
 
-    function PhoneInputFunc (e) {
-       console.log(e.target.value)
-         return setPhoneInput (e.target.value)
+    // const phonepattern="^(\+[0-9]{10}|\+[0-9]{12})$"
+
+    const phonepattern = /[0-9]/g
+
+    const PhoneInputFunc = (e) => {
+    //    if(e.target.value.match(phonepattern)){
+         setPhoneInput (e.target.value)
+        //  setPattern(true)
+        // }
        }
 
     function EmailInputFunc (e) {
@@ -190,6 +215,10 @@ export const ClientDetails = ({cart}) => {
 
     const onSubmit = (e) =>{
         list? setClicked(true):setClicked(false)
+        if(termsTicked === false){
+            alert('Please agree to Terms and Conditions')
+            setClicked(false)
+        }
         e.preventDefault();
     }
 
@@ -201,8 +230,11 @@ export const ClientDetails = ({cart}) => {
             surname: surnameInput,
             phone: phoneInput,
             email: emailInput
-        }
+         }
+        
             setList(newList);
+    
+    // else alert('Please update phone number. Digits only')
 
             // if(!ModifyClientsRQ_Add){
             //     history.push('\offlineSummary')
@@ -262,9 +294,10 @@ export const ClientDetails = ({cart}) => {
                         type='tel'
                         value={phoneInput}
                         onChange={PhoneInputFunc}
-                        placeholder={`+380444907137`}
+                        placeholder={`Please input phone number`}
                         required
-                        pattern="^(\+[0-9]{10}|\+[0-9]{12})$"
+                        // pattern="^(\+[0-9]{10}|\+[0-9]{12})$"
+                        // pattern="(/[0-9]/g)"
                     />
             </div>
 
@@ -344,6 +377,22 @@ export const ClientDetails = ({cart}) => {
                     ):null
                 }
             </>
+         
+          <div class='WrapperTermsConditions'>
+             <Checkbox onChange={AgreedFunc}
+                       defaultChecked={false}
+                       disabled={clicked === false? false: true}/>
+              <div class='TermsConditions'
+                  onClick={ReadTermsFunc}>
+                             I Agree to Terms and Conditions
+              </div>
+         </div>
+          {
+            readTerms === true?
+             <TermsConditions readTerms={readTerms}
+                              closeTermsConditions={closeTermsConditions}/>:
+             null
+          }
 
            <ConfirmButton
                 name={nameInput}
@@ -358,6 +407,7 @@ export const ClientDetails = ({cart}) => {
                 clicked={clicked}
                 cart={cart}
                 service_number={app_service_id.service_number}
+                termsTicked={termsTicked}
                 />
 
         </form>

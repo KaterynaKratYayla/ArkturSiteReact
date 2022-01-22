@@ -36,6 +36,8 @@ export const ToursAutocomplete = ({formClass,datepickerClass,onSubmit,props,Gene
 //   const [myID, setmyID] = useState('');
 //   const [loading,setLoading]=useState(false)
 const [pickedToursValue, setPickedToursValue] = useState(false);
+
+const pickedcurrency = useSelector(state=>state.currency.pickedcurrency)
  
   const history = useHistory();
 
@@ -120,7 +122,7 @@ const [pickedToursValue, setPickedToursValue] = useState(false);
 //   setDate('');
   setValue('');
 
-  let route_query = `?title=${value},date=${testDate},id=${filtered[0].id},city_id=${filtered_city_id[0].city_id}`
+  let route_query = `?selected_currency=${pickedcurrency},title=${value},date=${testDate},id=${filtered[0].id},city_id=${filtered_city_id[0].city_id}`
 
   console.log('[NewList] : ' , newList)
 
