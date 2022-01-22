@@ -19,7 +19,6 @@ export const EmailNotify = ({name,surname,phone,email,app_service_id,cart}) =>{
             // "user_id" :1426,
             "user_id" :currentUser.user_id,
             "action":"ModifyClientsRQ",
-            "refpartner":cart.refpartner?cart.refpartner:null,
             "data" :
                 {
                     "service_id" : app_service_id,

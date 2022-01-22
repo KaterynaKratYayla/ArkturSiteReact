@@ -11,8 +11,6 @@ export const OnlineSummary = ({name,surname,phone,email,app_service_id,cart}) =>
     const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([]);
 	const { user: currentUser } = useSelector((state) => state.auth);
 
-    const locale = useIntl();
-
     
     useEffect(() => {
         const ActionRQ = {
