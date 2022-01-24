@@ -19,6 +19,7 @@ export const IncompleteSendEmail = ({name,surname,phone,email,app_service_id,car
             // "user_id" :1426,
             "user_id" :currentUser.user_id,
             "refpartner":cart.refpartner?cart.refpartner:null,
+            // "refpartner":null,
             "action":"ModifyClientsRQ",
             "data" :
                 {

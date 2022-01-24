@@ -235,7 +235,18 @@ console.log('GEN_HOTEL_RATE',hotelRate)
                                         )
                                       }
                                     }) :
-                                   <span>{filtered_city_name} : {hotelRate.length} properties found</span>
+                                   <span>{filtered_city_name} : {hotelRate.length} 
+                                   <span style={{marginRight:'5px'}}></span>
+                                      {
+                                         messages&&messages.map((item)=>{
+                                          if(item.id === 161){
+                                            return (
+                                              <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                            )
+                                          }
+                                        })
+                                      } 
+                                   </span>
                                 }
                             </h2>
            

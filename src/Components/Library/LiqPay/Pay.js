@@ -1,5 +1,5 @@
 import React from "react";
-import {useIntl} from 'react-intl'
+import {useIntl,FormattedMessage} from 'react-intl'
 import { LiqPayPay } from "react-liqpay";
 import {useSelector} from "react-redux";
 import {useLocation} from "react-router-dom"
@@ -13,7 +13,7 @@ export const Pay = ({service_id, smart_order_id,cart,client, service_number}) =>
     // console.log('server_url: ', process.env.REACT_APP_URL);
 
     //ВОТ ДОБАВИЛА ИНФО О ЛОКАЛИ . можешь включить параметр locale в запрос ниже
-    const {locale} = useIntl();
+    const {locale, messages} = useIntl();
     console.log('locale: ', locale)
 	const { user: currentUser } = useSelector((state) => state.auth);
     const location = useLocation();
@@ -94,7 +94,15 @@ export const Pay = ({service_id, smart_order_id,cart,client, service_number}) =>
             cursor: 'pointer'
         }}>
 
-            Proceed to payment
+            {
+              messages&&messages.map((item)=>{
+                 if(item.id === 165){
+                     return (
+                         <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                        )
+                      }
+                    })
+              } 
             {/* {`${payInfo.title} ${payInfo.amount} ${payInfo.currency}`} */}
         </button>
 

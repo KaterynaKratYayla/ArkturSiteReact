@@ -85,7 +85,7 @@
 .Details{
     display: grid;
     grid-template-columns: 30% 5% 29% 12% 12% 12%;
-    grid-auto-rows: minmax(4vw,auto);
+    /* grid-auto-rows: minmax(4vw,auto); */
     list-style: none; 
 }
 
@@ -118,6 +118,13 @@
     border-left:none;
 }
 
+/* .RatesGridHeader:nth-child(2){
+    overflow-wrap:break-word;
+} */
+/* 
+.RatesGridHeader:nth-child(3){
+    border-left: 2px solid rgb(109, 109, 196);
+} */
 .WrapperAvailableOptions{
     display:grid;
     grid-column:4/-1;

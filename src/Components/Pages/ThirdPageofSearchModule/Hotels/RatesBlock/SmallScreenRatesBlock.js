@@ -1,5 +1,6 @@
 import React, {useState,useEffect} from 'react'
 import { useSelector,useDispatch} from 'react-redux'
+import {useIntl} from 'react-intl'
 import { getHotelRates } from '../../../../../Redux/actions'
 import { HotelRateGridTitles } from '../../../../Library/StaticJsonData/HotelRateGridTitles'
 import {BookButtonHotel} from '../BookButtonHotel'
@@ -23,7 +24,12 @@ export const SmallScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
       console.log('KEY_TEST', key)
     }
 
+    let tariff_policy;
     let empty_array = [];
+
+    const {locale} = useIntl();
+
+    const HotelRateGridTitles = HotelRateGridTitles(locale);
 
   // useEffect ( () => {
   //   dispatch (getHotelRates(search_data));
@@ -90,13 +96,21 @@ export const SmallScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
                                                                     item.tariffs&&item.tariffs.map((tariff)=>{
                                                                         
                                                                       if(tariff.tariff_id === item3.tariff_id){
+                                                                        tariff_policy = tariff.tariff_nrf;
                                                                         return(
                                                                          <h5 style={{fontSize: '17px',
                                                                              color:'blue',
                                                                              fontFamily:'Arial',
                                                                              fontWeight:'bold',
+                                                                             display:'flex',
+                                                                             flexDirection:'row'
                                                                              }}>
-                                                                                  {tariff.tariff_type_name}
+                                                                                  <span>{tariff.tariff_type_name}</span>
+                                                                                  <span style={{color:'darkred',
+                                                                                                marginLeft:'5px',
+                                                                                                fontStyle:'italic'}}>
+                                                                                                       {tariff.tariff_nrf === '1'? 'Non Refundable':null}
+                                                                                  </span>
                                                                          </h5>
                                                                         
                                                                         )
@@ -124,7 +138,9 @@ export const SmallScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
                                                                             availability={item3.availability}
                                                                             pickedCurrency={search_data.selected_currency}
                                                                             refpartner={search_data.refpartner?search_data.refpartner:null}
-
+                                                                            tariff_policy={tariff_policy}
+                                                                            start={search_data.start}
+                                                                            end={search_data.end}
                                                                             />
                                                     </h5>
                                                 </div>

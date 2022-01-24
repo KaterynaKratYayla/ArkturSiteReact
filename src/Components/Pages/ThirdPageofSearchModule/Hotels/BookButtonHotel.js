@@ -12,7 +12,7 @@ import './BookButtonHotelCSS.css'
 
 export const BookButtonHotel = (props) =>{
     
-    const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy,pickedCurrency,refpartner} = props;
+    const {selectedAvailability,room_id,room_name,totalsum,tariff_id,contract_id,occupancy,pickedCurrency,refpartner,tariff_policy,start,end} = props;
     const {locale,messages} = useIntl();
     const [width, height] = useWindowWidthAndHeight()
     
@@ -20,13 +20,13 @@ export const BookButtonHotel = (props) =>{
     const location = useLocation();
     const history = useHistory();
 
-    const search_data = useSelector(state=>state.hotelsearchdata.hotel_search_data)
+    const redux_search_data = useSelector(state=>state.hotelsearchdata.hotel_search_data)
     const hotelcontents = useSelector(state => state.hotelcontent.hotelcontent)
 
     const dispatch = useDispatch();
 
     useEffect (() =>{
-      dispatch(getHotelContent(search_data.hotel_id,locale))
+      dispatch(getHotelContent(redux_search_data.hotel_id,locale))
     },[])
 
     let hotel_name;
@@ -36,7 +36,7 @@ export const BookButtonHotel = (props) =>{
      }
     )
 
-    console.log('BOOKBUTTON', search_data)
+    // console.log('BOOKBUTTON', search_data)
  
      const AddToBasket=(e)=>{
 
@@ -49,7 +49,7 @@ export const BookButtonHotel = (props) =>{
             }
         setBooking([newBooking])
 
-        const route_hotel_query_form = `?${refpartner!==null?'refpartner='+refpartner:''}selected_currency=${pickedCurrency},service_type_id=${parseInt(1)},start=${search_data.start},end=${search_data.end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${search_data.hotel_id},adults=${occupancy},children=${search_data.children},htlName=${hotel_name},amount=${totalsum}`
+        const route_hotel_query_form = `?${refpartner!==null?'refpartner='+refpartner+',':''}selected_currency=${pickedCurrency},service_type_id=${parseInt(1)},start=${start},end=${end},contract_id=${contract_id},tariff_id=${tariff_id},room_id=${room_id},numberofunits=${selectedAvailability},hotel_id=${redux_search_data.hotel_id},adults=${occupancy},children=${redux_search_data.children},htlName=${hotel_name},amount=${totalsum},nrf=${tariff_policy}`
         history.push(`/${locale}/booking_form/${route_hotel_query_form}`, [...booking, newBooking])
     }
 

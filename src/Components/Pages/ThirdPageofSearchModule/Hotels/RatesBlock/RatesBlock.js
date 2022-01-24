@@ -12,18 +12,25 @@ import { OccupancyTypes } from '../../../../Library/StaticJsonData/OccupancyType
 import {Pax} from '../../../../Library/Icons/pax'
 import {AvailableOptions} from './AvailableOptions'
 import {useWindowWidthAndHeight} from '../../../Helpers/WindowResizeHook'
+import {getHotelSearch} from '../../../../../Redux/actions/hotelsearchdata'
 
 import './RatesBlockCSS.css'
 
 export const RatesBlock = ({search_data}) =>{
 
   const location = useLocation();
+
+  // const redux_search_data = useSelector(state=>state.hotelsearchdata.hotel_search_data)
    
     const dispatch = useDispatch();
     const hotelratesRatesBlock = useSelector(state => state.hotelrates.hotelrates)
     // const pickedHotelRooms = useSelector(state=>state.availabilitychoice.avail_rooms)
     const { user: currentUser } = useSelector((state) => state.auth);
     const userId = currentUser.user_id;
+
+    // useEffect(()=>{
+    //   dispatch(getHotelSearch(search_data))
+    // },[])
 
     // console.log('PICKEDHOTELROOMS',pickedHotelRooms)
 

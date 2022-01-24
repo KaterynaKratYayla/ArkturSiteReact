@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react'
 import { useSelector,useDispatch} from 'react-redux'
 import { getHotelRates } from '../../../../../Redux/actions'
 import { HotelRateGridTitles } from '../../../../Library/StaticJsonData/HotelRateGridTitles'
-import {locale} from 'react-intl'
+import {useIntl} from 'react-intl'
 import {BookButtonHotel} from '../BookButtonHotel'
 // import {getRoomsChoice} from '../../../../Redux/actions/hotelroomschoice'
 // import {getAvail} from '../../../../../Redux/actions/availabilitychoice'
@@ -18,16 +18,22 @@ export const LargeScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
     // const hotelratesRatesBlock = useSelector(state => state.hotelrates.hotelrates)
     const pickedHotelRooms = useSelector(state=>state.availabilitychoice.avail_rooms)
 
+    const {locale} = useIntl();
     console.log('PICKEDHOTELROOMS',pickedHotelRooms)
 
     for (let key in OccupancyTypes){
       console.log('KEY_TEST', key)
     }
 
+  //  console.log('HotelRateGridTitles',HotelRateGridTitles)
+
+
   //  if(!hotelratesRatesBlock){
   //    return <div>...Loading</div>
   //  }
+  const hotelRateGridTitles = HotelRateGridTitles(locale);
 
+    let tariff_policy;
     let empty_array = [];
 
   // useEffect ( () => {
@@ -41,7 +47,7 @@ export const LargeScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
         <div> 
           <ul className = 'RatesGridWrapper Header'>
              {
-               HotelRateGridTitles&&HotelRateGridTitles.map((title)=>{
+               hotelRateGridTitles&&hotelRateGridTitles.map((title)=>{
                 return(
                  <li className = 'RatesGridHeader'>
                    {title}
@@ -113,13 +119,19 @@ export const LargeScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
                                                                     item.tariffs&&item.tariffs.map((tariff)=>{
                                                                         
                                                                       if(tariff.tariff_id === item3.tariff_id){
+                                                                        tariff_policy = tariff.tariff_nrf;
                                                                         return(
                                                                          <h5 style={{fontSize: '17px',
                                                                              color:'blue',
                                                                              fontFamily:'Arial',
                                                                              fontWeight:'bold',
                                                                              }}>
-                                                                                  {tariff.tariff_type_name}
+                                                                                  <span>{tariff.tariff_type_name}</span>
+                                                                                  <span style={{color:'darkred',
+                                                                                                marginLeft:'5px',
+                                                                                                fontStyle:'italic'}}>
+                                                                                                       {tariff.tariff_nrf === '1'? 'Non Refundable':null}
+                                                                                  </span>
                                                                          </h5>
                                                                         
                                                                         )
@@ -147,7 +159,9 @@ export const LargeScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
                                                                             tariff_id={item3.tariff_id}
                                                                             availability={item3.availability}
                                                                             refpartner={search_data.refpartner?search_data.refpartner:null}
-
+                                                                            tariff_policy={tariff_policy}
+                                                                            start={search_data.start}
+                                                                            end={search_data.end}
                                                                             />
                                                     </h5>
                                                 </>

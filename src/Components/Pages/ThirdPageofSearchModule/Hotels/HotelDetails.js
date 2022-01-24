@@ -2,7 +2,7 @@ import React ,{useState, useEffect} from 'react';
 import axios from "axios"
 import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
-import {useIntl} from 'react-intl'
+import {useIntl,FormattedMessage} from 'react-intl'
 import {ValidateQuery} from '../../Helpers/helper'
 import {Star} from '../../../Library/Icons/star'
 import { getHotelContent, getHotelSearch} from '../../../../Redux/actions';
@@ -16,9 +16,10 @@ import './HotelDetailsCSS.css'
 
 export const HotelDetails = () =>{
 
-    const {locale} = useIntl();
+    const {locale,messages} = useIntl();
     const history = useHistory();
     const location = useLocation ();
+
     let search_data = ValidateQuery(location)
 
     console.log('[HOTEL_DETAILS_SEARCH]', search_data)
@@ -75,7 +76,18 @@ useEffect(() =>{
                         fontSize: '24px',
                         fontWeight: 'bold',
                         marginTop: '3vh',
-                        }}>Availability</h3>
+                        }}>
+
+                          {
+                            messages&&messages.map((item)=>{
+                              if(item.id === 164){
+                                 return (
+                                    <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                    )
+                                 }
+                              })
+                           } 
+                    </h3>
 
                     <InnerSearchBlock search_data={search_data} 
                                       hotelName={filtered_hotel_name}/>

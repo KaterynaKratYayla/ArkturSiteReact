@@ -11,7 +11,7 @@ import './RatesBlockCSS.css'
 
 export const AvailableOptions = (props) =>{
 
-    const {currency,index,rooms,room_id,room_name,sum,tariff_id,availability,occupancy,contract_id,pickedCurrency,refpartner} = props;
+    const {currency,index,rooms,room_id,room_name,sum,tariff_id,availability,occupancy,contract_id,pickedCurrency,refpartner,tariff_policy,start,end} = props;
     const currencies = useSelector(state=>state.currency.currencies)
     console.log('PROPS', props)
     let exchangeRate;
@@ -103,6 +103,9 @@ export const AvailableOptions = (props) =>{
         occupancy={occupancy}
         pickedCurrency={pickedCurrency}
         refpartner={refpartner}
+        tariff_policy={tariff_policy}
+        start={start}
+        end={end}
       />
       </h5>
   </>

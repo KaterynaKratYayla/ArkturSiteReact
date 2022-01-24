@@ -1,4 +1,5 @@
 import React,{useState} from 'react'
+import { FormattedMessage , useIntl} from 'react-intl'
 import {Star} from '../../../Library/Icons/star'
 import ReactHtmlParser from 'react-html-parser'
 import {Gallery} from '../../../Library/PhotoGallery/PhotoGallery'
@@ -12,6 +13,8 @@ export const ContentBlock = ({hotelcontents,search_data,localized_hotel_name,loc
   console.log('[HOTELCONTENTS]', hotelcontents)
 const [photoHeight, setPhotoHeight] = useState('55vh')
 const [width, height] = useWindowWidthAndHeight()
+
+const {locale, messages} = useIntl();
 
 console.log('WIDTH',width)
 
@@ -35,7 +38,15 @@ console.log('WIDTH',width)
                               <div style={{fontFamily:'Arial',
                                             color: 'blue'}}>
                                 <span style={{fontWeight:'bold'}}>
-                                              Hotel Address : 
+                                  {
+                                    messages&&messages.map((item)=>{
+                                        if(item.id === 155){
+                                          return (
+                                            <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                         )
+                                       }
+                                    })
+                                  }  
                                 </span> {trip[key].address}
                               </div>
                            

@@ -43,7 +43,19 @@ export const BookingForm = (props) =>{
     console.log('ciphertext',ciphertext)
 
     const date_difference = moment(search_data.start).diff(moment(moment().format('YYYY-MM-DD')),'days')
-    const canx_deadline_date=moment(search_data.start).subtract(7, 'days').calendar()
+    
+    let canx_deadline_date;
+    
+    if(search_data.service_type_id === '11'&&search_data.nrf === '0'){
+      canx_deadline_date = moment(search_data.start).subtract(7, 'days').calendar()
+    }
+    else if(search_data.service_type_id === '1'&&search_data.nrf === '0'){
+      canx_deadline_date = moment(search_data.start).subtract(1, 'days').calendar()
+    }
+    else if(search_data.nrf === '1'){
+      canx_deadline_date = moment(search_data.start).calendar()
+    }
+
     console.log('DATE_DIFFERENCE',date_difference)
 
     return(
@@ -61,9 +73,96 @@ export const BookingForm = (props) =>{
           {/* Secure booking — only takes 2 minutes! */}
         </h2>
         <h3 class="HeadPolicies">
-            <span>{date_difference<7?(
-              "Your booking is for arrivals in less then 7 days. In case of cancellation, the fee will amount to 100% of the reservaton cost")
-                  :(`Free cancellation before 12:00 pm on ${moment(canx_deadline_date).format('YYYY-MM-DD')} (E. Europe Standard Time).You can change or cancel this stay for a full refund if plans change. Because flexibility matters.`)}
+            <span>
+              {
+                search_data.service_type_id === '11'?
+                 (date_difference<7?
+                 
+                    <span>Your booking is for arrivals in less then 7 days. In case of cancellation, the fee will amount to 100% of the reservaton cost</span>
+                       :
+                    <>
+                        <span style={{marginRight:'5px'}}>
+                          {
+                             messages.map((item)=>{
+                               if(item.id === 134){
+                                 return (
+                                   <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                          }
+                          <span style={{marginLeft:'5px'}}>{moment(canx_deadline_date).format('YYYY-MM-DD')}</span>
+                      </span>
+                       <span>
+                          {
+                             messages.map((item)=>{
+                               if(item.id === 133){
+                                 return (
+                                   <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                          }
+                       </span>
+                    </>
+                  )
+                 :
+                 search_data.service_type_id === '1'&&search_data.nrf === '0'?
+                   <>
+                     <span style={{marginRight:'5px'}}>
+                          {
+                             messages.map((item)=>{
+                               if(item.id === 134){
+                                 return (
+                                   <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                          }
+                          <span style={{marginLeft:'5px'}}>{moment(canx_deadline_date).format('YYYY-MM-DD')}</span>
+                    </span>
+                     <span>
+                         {
+                           messages.map((item)=>{
+                             if(item.id === 133){
+                                return (
+                                  <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                     )
+                                  }
+                                 })
+                          }
+                       </span>
+                    </>  
+                :
+                  search_data.service_type_id === '1'&&search_data.nrf === '1'? 
+                     <>
+                       <span style={{marginRight:'5px'}}>
+                          {
+                             messages.map((item)=>{
+                               if(item.id === 134){
+                                 return (
+                                   <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                          }
+                          <span style={{marginLeft:'5px'}}>{moment(canx_deadline_date).format('YYYY-MM-DD')}</span>
+                      </span>
+                       <span>
+                       {
+                         messages.map((item)=>{
+                           if(item.id === 135){
+                              return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                   )
+                                }
+                               })
+                        }
+                     </span>
+                  </>  :
+                 null
+                }
+            
             </span>
         </h3>
           <div class={`${width>1000?'RegWrapper':'RegWrapperSmallScreen'}`}>

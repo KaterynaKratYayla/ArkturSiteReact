@@ -12,7 +12,7 @@ export const OnlineSummary = ({name,surname,phone,email,app_service_id,cart}) =>
 	const { user: currentUser } = useSelector((state) => state.auth);
 
     const locale = useIntl();
-    
+
     useEffect(() => {
         const ActionRQ = {
                 "username":"Serodynringa",

@@ -121,7 +121,38 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName,c
                                           color: 'grey',
                                           fontWeight: 'bold',
                                           marginBottom:'1vh'}}>
-                                                Total for {date_difference} days, {adults} adults
+                                                 {
+                                                    messages&&messages.map((item)=>{
+                                                      if(item.id === 144){
+                                                        return (
+                                                          <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                                        )
+                                                      }
+                                                    })
+                                                 } 
+                                                 <span style={{marginLeft:'5px'}}></span> 
+
+                                                 {date_difference}<span style={{marginRight:'5px'}}></span>
+                                                 {
+                                                    messages&&messages.map((item)=>{
+                                                      if(item.id === 163){
+                                                        return (
+                                                          <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                                        )
+                                                      }
+                                                    })
+                                                 } 
+                                                 
+                                                 , {adults} <span style={{marginRight:'5px'}}></span>
+                                                      {
+                                                        messages&&messages.map((item)=>{
+                                                          if(item.id === 141){
+                                                            return (
+                                                              <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                                              )
+                                                            }
+                                                          })
+                                                      } 
                             </div>
                             
                             <div style={{
@@ -138,7 +169,15 @@ export const HotelRates = ({key,hotelTariff,hotelRooms,searchResults,hotelName,c
                  gridColumn:'2',
                  gridRow:'2',
                  textAlign:'end'}}>
-                            Includes taxes and charges
+                              {
+                                messages&&messages.map((item)=>{
+                                  if(item.id === 162){
+                                     return (
+                                          <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                         )
+                                       }
+                                     })
+                                } 
         </h4>
          <div style={{
             gridColumn:'2',

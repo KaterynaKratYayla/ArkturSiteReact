@@ -4,11 +4,13 @@ import axios from 'axios'
 import { useLocation, useHistory} from "react-router-dom";
 import { Radio ,Checkbox} from 'antd';
 import {useSelector} from "react-redux";
+import {useIntl,FormattedMessage} from 'react-intl'
 
 import {ClientTitles} from '../../Library/StaticJsonData/ClientTitles'
 import {ConfirmButton} from './ConfirmButton'
 import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 import {TermsConditions} from './TermsConditions'
+import {PlaceHolderStrings} from '../../Library/Localization/placeholders'
 
 import './BookingForm.css'
 import './ClientDetailsCSS.css'
@@ -19,12 +21,16 @@ import './ClientDetailsCSS.css'
 export const ClientDetails = ({cart}) => {
 
     const { user: currentUser } = useSelector((state) => state.auth);
-    console.log('currentUser: ClientDetails.js', currentUser);
+    // console.log('currentUser: ClientDetails.js', currentUser);
     const {promocode} = useSelector((state) => state.promocode);
-    console.log('promocode:', promocode);
+    // console.log('promocode:', promocode);
+
+    const {locale,messages} = useIntl();
 
     const [sendCart, setSendCart] = useState([{}]);
     // const [userData, setUserData] = useState(null);
+
+    const placeholder = PlaceHolderStrings();
 
     const [nameInput, setNameInput]= useState('');
     const [surnameInput, setSurnameInput] = useState('');
@@ -61,7 +67,7 @@ export const ClientDetails = ({cart}) => {
                 // "user_id" : currentUser ? currentUser.user_id : 1426,
                 // "user_id" : 1426,
                 "user_id" : currentUser.user_id,
-                "refpartner":cart.refpartner,
+                "refpartner":cart.refpartner?cart.refpartner:null,
                 "action":"AddToCartRQ",
                 "data" :
                     {
@@ -72,7 +78,8 @@ export const ClientDetails = ({cart}) => {
                                     "start" : cart.start,
                                     "end": cart.end? cart.end: null,
                                     "contract_id" : cart.contract_id,  //former tour_id
-                                    "tariff_id" : cart.tariff_id, //former tour_tariff_id
+                                    // "tariff_id" : cart.tariff_id, //former tour_tariff_id
+                                    "tariff_id" : cart.refpartner&&cart.refpartner==='1497'&&cart.hotel_id==='686'? 252 : cart.refpartner&&cart.refpartner==='1497'&&cart.hotel_id==='889'? 325 : cart.tariff_id, 
                                     "room_id" : cart.room_id, //former tour_room_id
                                     "numberofunits" : cart.service_type_id === parseInt(1)? cart.numberofunits: parseInt(1),
                                     "hotel_id" : cart.hotel_id,
@@ -245,7 +252,17 @@ export const ClientDetails = ({cart}) => {
         <form className={`${width>1000?'myForm':'myFormSmallScreen'}`} onSubmit={onSubmit}>
 
           <div class='InputBlock'>
-            <label class='FormLabel'>{'Lead Client Details'}</label>
+            <label class='FormLabel'>
+               {
+                        messages.map((item)=>{
+                         if(item.id === 147){
+                            return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                )
+                      }
+                   })
+                }
+            </label>
               <div style={{display:'flex', flexDirection:'row', justifyContent:'space-evenly',width:'100%'}}>
 
                     <select style={{marginRight:'0.5vw',width:'10%'}}>
@@ -264,7 +281,7 @@ export const ClientDetails = ({cart}) => {
                         type={'text'}
                         value={nameInput}
                         onChange={NameInputFunc}
-                        placeholder={`Name`}
+                        placeholder={placeholder.placeHolderName}
                         maxLength='50'
                         style={{
                             width:'45%',
@@ -276,7 +293,7 @@ export const ClientDetails = ({cart}) => {
                         type={'text'}
                         value={surnameInput}
                         onChange={SurnameInputFunc}
-                        placeholder={`Surname`}
+                        placeholder={placeholder.placeHolderSurname}
                         maxLength='50'
                         style={{width:'45%'}}
                         required/>
@@ -288,13 +305,22 @@ export const ClientDetails = ({cart}) => {
             <div class='InputBlock'>
                 <label class='FormLabel'
                        for="phone">
-                            {'Telephone Number:'}</label>
+                          {
+                            messages.map((item)=>{
+                               if(item.id === 148){
+                                  return (
+                                      <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                     )
+                                  }
+                              })
+                           }            
+                </label>
 
                     <input
                         type='tel'
                         value={phoneInput}
                         onChange={PhoneInputFunc}
-                        placeholder={`Please input phone number`}
+                        placeholder={placeholder.placeHolderPhone}
                         required
                         // pattern="^(\+[0-9]{10}|\+[0-9]{12})$"
                         // pattern="(/[0-9]/g)"
@@ -303,19 +329,37 @@ export const ClientDetails = ({cart}) => {
 
             <div class='InputBlock'>
                 <label class='FormLabel'>
-                    {'E-mail Address:'}
+                   {
+                        messages.map((item)=>{
+                         if(item.id === 150){
+                            return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                )
+                         }
+                      })
+                   }
                 </label>
 
                 <input
                     type={'email'}
                     value={emailInput}
                     onChange={EmailInputFunc}
-                    placeholder={`Enter your ${'Email Address'}`}
+                    placeholder={placeholder.placeHolderEmail}
                     required/>
             </div>
 
             <div style={{display:'flex',flexDirection:'row',justifyContent:'flex-start',marginTop:'3vh',width:'80%'}}>
-              <label class='FormLabel'>Do you book for somebody else?</label>
+              <label class='FormLabel'>
+                  {
+                        messages.map((item)=>{
+                         if(item.id === 151){
+                            return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                )
+                        }
+                      })
+                   }
+              </label>
               <div>
                 <Radio.Group onChange={bookerTravelsChoice}
                              value={bookerTravels}
@@ -323,11 +367,29 @@ export const ClientDetails = ({cart}) => {
 
                                 <Radio style={{color:'#102D69',fontWeight:'bold'}}
                                        value={1}
-                                       key={1}>Yes
+                                       key={1}>
+                                                {
+                                                    messages.map((item)=>{
+                                                        if(item.id === 153){
+                                                            return (
+                                                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                                          )
+                                                      }
+                                                    })
+                                                }
                                 </Radio>
                                 <Radio style={{color:'#102D69',fontWeight:'bold'}}
                                        value={0}
-                                       key={0}>No
+                                       key={0}>
+                                                  {
+                                                     messages.map((item)=>{
+                                                        if(item.id === 154){
+                                                            return (
+                                                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                                             )
+                                                          }
+                                                        })
+                                                    }
                                 </Radio>
                 </Radio.Group>
                 </div>
@@ -384,7 +446,15 @@ export const ClientDetails = ({cart}) => {
                        disabled={clicked === false? false: true}/>
               <div class='TermsConditions'
                   onClick={ReadTermsFunc}>
-                             I Agree to Terms and Conditions
+                             {
+                               messages.map((item)=>{
+                                    if(item.id === 152){
+                                        return (
+                                            <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                        )
+                                    }
+                                })
+                            }
               </div>
          </div>
           {

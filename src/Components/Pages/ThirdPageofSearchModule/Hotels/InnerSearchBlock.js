@@ -5,7 +5,7 @@ import {HotelsPaxChoice} from '../../../Library/PageDevices/HotelsPaxChoice'
 import {RatesBlock} from './RatesBlock/RatesBlock'
 import {useDispatch, useSelector} from 'react-redux'
 import {getPaxInnerSearch} from '../../../../Redux/actions/paxchoice'
-import {getHotelRates} from '../../../../Redux/actions/hotelrates'
+import {getHotelSearch} from '../../../../Redux/actions/hotelsearchdata'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
 import moment from 'moment';
@@ -17,10 +17,10 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
 
     const {locale,messages} = useIntl();
 
-    const [startDate, setStartDate] = useState(search_data.start?search_data.start:'');
-    const [endDate, setEndDate] = useState(search_data.end?search_data.end:'');
+    const [startDate, setStartDate] = useState('');
+    const [endDate, setEndDate] = useState('');
     const [paxListOpen, setPaxListOpen] = useState(false);
-    const [newList,setNewList] = useState(search_data);
+    const [newList,setNewList] = useState({});
     const [clicked, setClicked] = useState(false);
     const [pickedStartValue, setPickedStartValue] = useState(search_data.start?true:false);
     const [pickedEndValue, setPickedEndValue] = useState(search_data.end?true:false);
@@ -81,7 +81,7 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
           
           setNewList(List)
           setClicked(true)
-        //   dispatch(getHotelRates(newList))
+         
 
         }
     //     return <RatesBlock
@@ -96,7 +96,17 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
     return(
       <div>
         <h3 class={`${width>768?"SearchDetails":"SearchDetailsSmallScreen"}`}>
-            <h4><span>Check-in date : </span>
+            <h4><span>            
+                        {
+                          messages&&messages.map((item)=>{
+                            if(item.id === 156){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                        }  
+               </span>
             {!search_data.start?(
              <Space direction="vertical">
                     <DatePicker 
@@ -114,7 +124,17 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
                  )
                 }
             </h4>
-            <h4><span>Check-out date :</span>
+            <h4><span>
+                      {
+                          messages&&messages.map((item)=>{
+                            if(item.id === 157){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                        }  
+                </span>
             {
             !search_data.end?(
             <Space direction="vertical">
@@ -133,7 +153,19 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
                 )
                 }
             </h4>
-            <h4> <span>Details of your stay :</span> 
+            <h4> <span>
+              
+                       {
+                          messages&&messages.map((item)=>{
+                            if(item.id === 158){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                        } 
+              
+                </span> 
                 <HotelsPaxChoice
                     MakeVisible={MakeVisible}
                     paxListOpen={paxListOpen}
@@ -172,10 +204,10 @@ export const InnerSearchBlock = ({search_data,hotelName}) =>{
              clicked === true?
                 (<RatesBlock 
                     search_data={newList}
-                 />):(
-                 <RatesBlock 
+                 />):
+                (<RatesBlock 
                     search_data={search_data}/>
-                        )
+                )
             }    
 
       </div>

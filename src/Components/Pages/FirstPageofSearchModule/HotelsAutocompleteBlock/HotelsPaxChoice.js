@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useCallback}  from 'react'
 // import axios from "axios"
+import {useIntl, FormattedMessage} from 'react-intl'
 import {useDispatch, useSelector} from 'react-redux'
 import {getPax} from "../../../../Redux/actions/paxchoice"
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
@@ -14,7 +15,9 @@ import 'antd/dist/antd.css';
 export const HotelsPaxChoice =({MakeVisible, paxListOpen,searchProps}) =>{
 
   const totalPaxRedux = useSelector(state => state.paxchoice.pax)
-  console.log('totalPaxRedux',totalPaxRedux)
+  // console.log('totalPaxRedux',totalPaxRedux)
+
+  const {locale, messages} = useIntl();
 
 //   const [paxAmountNew, setPaxAmountNew] = useState([])
   const [counterAdults, setCounterAdults] = useState(searchProps?parseInt(searchProps.adults):1)
@@ -79,9 +82,44 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,searchProps}) =>{
                               onClick={TotalPax}>
 
                      <Pax />
-                      <div style={{paddingLeft:'1vw'}}> {counterAdults} Adults</div>, 
-                      <div style={{paddingLeft:'1vw'}}> {counterChild} Children</div>,
-                      <div style={{paddingLeft:'1vw'}}> {counterRooms} Rooms </div>
+                     <div style={{paddingLeft:'1vw',fontSize:'14px'}}> {counterAdults} <span style={{marginLeft:'3px'}}></span>
+                      {
+                          messages&&messages.map((item)=>{
+                            if(item.id === 141){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                        } 
+                      
+                      </div>, 
+                      <div style={{paddingLeft:'1vw',fontSize:'14px'}}> {counterChild}<span style={{marginLeft:'3px'}}></span> 
+                      
+                      {
+                          messages&&messages.map((item)=>{
+                            if(item.id === 142){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                        } 
+
+                      </div>,
+                      <div style={{paddingLeft:'1vw',fontSize:'14px'}}> {counterRooms} <span style={{marginLeft:'3px'}}></span>
+                      
+                      {
+                          messages&&messages.map((item)=>{
+                            if(item.id === 159){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                        } 
+
+                      </div>
                       {/* {counterInfant} Infants,  */}
                       <DownOutlined className='DownOutlined'/>
 
@@ -94,7 +132,19 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,searchProps}) =>{
                                  }}>
                     <div style={{display: 'grid',  
                                  gridTemplateColumns: '25% 17% 16% 17% 25%'}}>
-                        <h4>Adults</h4>
+                        <h4>
+
+                        {
+                           messages&&messages.map((item)=>{
+                            if(item.id === 141){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                          } 
+
+                        </h4>
                         <h4><MinusOutlined className='Minus' onClick={deduct}/></h4>
                         <h4>{counterAdults}</h4>  
                         <h4><PlusOutlined className='Plus' onClick={add}/></h4>
@@ -103,7 +153,19 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,searchProps}) =>{
 
                     <div style={{display: 'grid',  
                                  gridTemplateColumns: '25% 17% 16% 17% 25%'}}>
-                        <h4>Children</h4>
+                        <h4>
+
+                        {
+                          messages&&messages.map((item)=>{
+                            if(item.id === 142){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                        } 
+
+                        </h4>
                         <h4><MinusOutlined className='Minus' onClick={deductChild}/></h4>
                         <h4>{counterChild}</h4>
                         <h4><PlusOutlined className='Plus' onClick={addChild}/></h4>
@@ -121,7 +183,18 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,searchProps}) =>{
 
                     <div style={{display: 'grid',  
                                  gridTemplateColumns: '25% 17% 16% 17% 25%'}}>
-                        <h4>Rooms</h4>
+                        <h4>
+                        {
+                          messages&&messages.map((item)=>{
+                            if(item.id === 159){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                        } 
+
+                        </h4>
                         <h4><MinusOutlined className='Minus' onClick={deductRooms}/></h4>
                         <h4>{counterRooms}</h4>
                         <h4><PlusOutlined className='Plus' onClick={addRooms}/></h4>
@@ -133,7 +206,15 @@ export const HotelsPaxChoice =({MakeVisible, paxListOpen,searchProps}) =>{
                   <div onClick={TotalPax} style={{textAlign:'center'}}>
                   
                     <button class="PopUpButton" onClick={MakeVisible}>
-                            Confirm
+                    {
+                          messages&&messages.map((item)=>{
+                            if(item.id === 160){
+                               return (
+                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
+                                  )
+                                }
+                            })
+                        } 
                     </button>
                   </div>
                         
