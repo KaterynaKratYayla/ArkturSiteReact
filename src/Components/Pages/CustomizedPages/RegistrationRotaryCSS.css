@@ -1,0 +1,56 @@
+.GrantIcons:hover{
+    background-color: rgb(186, 213, 252);
+    border-radius: 10px;
+    width:8vw;
+    height:8vw;
+    cursor:pointer;
+    margin-left:auto;
+    margin-right:auto;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.RegistrationForm{
+    display:grid;
+    grid-template-columns: 30% 70%;
+    grid-auto-rows: auto;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid rgb(249, 250, 250);
+    font-size:28px;
+    font-family: 'Arial Narrow';
+}
+
+.Form_Key{
+    /* border-right:2px solid rgb(9, 122, 160); */
+    border-right:2px solid rgb(249, 250, 250);
+    color:darkblue;
+    font-weight:bold;
+    padding-left:2vw;
+    background-color: lightblue;
+}
+
+.Form_Value{
+    color:darkblue;
+    font-weight:bold;
+    text-align: center;
+    background-color: rgb(247, 239, 218);
+}
+
+.Rotary{
+    margin-right:auto;
+    margin-left: auto;
+    margin-top:5vh;
+    grid-template-columns: 30% 70%;
+}
+
+.Registration{
+    font-size: 25px;
+}
+
+.Registration:hover:hover{
+    font-size: 25px;
+}

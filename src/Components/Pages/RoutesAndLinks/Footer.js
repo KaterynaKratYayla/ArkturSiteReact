@@ -9,6 +9,7 @@ import axios from "axios"
 import {ContentPages,SitePageType,SitePageRegion} from '../PageComponents/ContentPages'
 import {SitePagesList} from './SitePagesList'
 import {getPages} from '../../../Redux/actions/pages'
+import cards from '../../Library/Images/visamastercard.jpg'
 import './footer.css'
 import { PureContent } from '../PageComponents/MenuPageGenerator'
 
@@ -53,8 +54,13 @@ const pages = ContentPages();
 							</>		 
 
 	     		  </Row> 
+				   <div style={{marginTop:'2vw'}}>
+				     <span style={{marginRight:'1vw', color:'white', fontSize:'10px', fontFamily:'Arial',fontStyle:'italic'}}>Ми приймаємо</span>
+				     <img src={cards}
+			       		style={{width:'5vw', height:'2vw',marginLeft:'auto',marginRight:'auto'}}/>
+				   </div>
 			  </Container>
-
+			  
 			 </footer>
 	
    )

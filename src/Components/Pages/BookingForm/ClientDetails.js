@@ -78,8 +78,8 @@ export const ClientDetails = ({cart}) => {
                                     "start" : cart.start,
                                     "end": cart.end? cart.end: null,
                                     "contract_id" : cart.contract_id,  //former tour_id
-                                    // "tariff_id" : cart.tariff_id, //former tour_tariff_id
-                                    "tariff_id" : cart.refpartner&&cart.refpartner==='1497'&&cart.hotel_id==='686'? 252 : cart.refpartner&&cart.refpartner==='1497'&&cart.hotel_id==='889'? 325 : cart.tariff_id, 
+                                    "tariff_id" : cart.tariff_id, //former tour_tariff_id
+                                    // "tariff_id" : cart.refpartner&&cart.refpartner==='1497'&&cart.hotel_id==='686'? 252 : cart.refpartner&&cart.refpartner==='1497'&&cart.hotel_id==='889'? 325 : cart.tariff_id, 
                                     "room_id" : cart.room_id, //former tour_room_id
                                     "numberofunits" : cart.service_type_id === parseInt(1)? cart.numberofunits: parseInt(1),
                                     "hotel_id" : cart.hotel_id,

@@ -11,7 +11,7 @@ return (
  <div    
     style={{
             width: '100%',
-            paddingTop: '2vw',
+            paddingTop: '0.5vw',
             paddingBottom: '5vw',
         //     textAlign: 'left',
             backgroundSize: 'cover',
@@ -21,8 +21,9 @@ return (
     >
       <img 
         // style={{width: '50%', height: '60vh' }} 
-        style={{height: `${height/2}px`, width:'100%'}} 
-        src={content.includes('jpg') ? 'http://' + content : ArkturDMClogo}/> 
+        style={{height: `${height/2}px`,width:'40%'}} 
+        // src={content.includes('jpg') ? 'http://' + content : ArkturDMClogo}/> 
+        src={content}/>
  </div>
  )
 }

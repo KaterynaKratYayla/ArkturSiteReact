@@ -11,7 +11,9 @@ export const OnlineSummary = ({name,surname,phone,email,app_service_id,cart}) =>
     const [ModifyClientsRQ_Add, setModifyClientsRQ_Add] = useState([]);
 	const { user: currentUser } = useSelector((state) => state.auth);
 
-    const locale = useIntl();
+    const {locale} = useIntl();
+
+    console.log('LOCAL',locale)
 
     useEffect(() => {
         const ActionRQ = {
@@ -69,14 +71,15 @@ export const OnlineSummary = ({name,surname,phone,email,app_service_id,cart}) =>
                       />
      <div>
          {
-             ModifyClientsRQ_Add.length > 0? (ModifyClientsRQ_Add.map((item)=>{
+             ModifyClientsRQ_Add.length>0 && ModifyClientsRQ_Add.map((item) => {
                 return(
                     <>
                       {/* <h4>{item.action}</h4> */}
                       <div>Thank your reservation!</div>
                    </>
                 )
-             })):<OfflineSummary wait={2000}/>
+             })
+            //  ):<OfflineSummary wait={2000}/>
          }
      </div>
      </>

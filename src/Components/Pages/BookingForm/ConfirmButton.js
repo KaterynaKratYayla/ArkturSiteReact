@@ -37,6 +37,9 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
        {
           clicked === true&&smart_order_id?(
               <>
+              {
+                console.log('YES smart_order_id',smart_order_id)
+              }
                <OnlineSummary
                     name={name}
                     surname={surname}
@@ -56,8 +59,12 @@ export const ConfirmButton = ({AddContacts, name,surname,phone,email, app_servic
                </>
             ):(
               clicked === true&&!smart_order_id?(
+                 
               <>
-                <OfflineSummary wait={2000}/>
+              {
+                console.log('NOT smart_order_id',smart_order_id)
+              }
+                <OfflineSummary wait={10000}/>
                 <IncompleteSendEmail
                     name={name}
                     surname={surname}

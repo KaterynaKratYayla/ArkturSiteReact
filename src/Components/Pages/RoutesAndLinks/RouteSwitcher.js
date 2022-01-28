@@ -28,7 +28,7 @@ import PaymentResult from "../LiqPay/PaymentResult";
 import {changeLang} from "../../../Redux/actions/locale"
 import { logout } from "../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
 import {useIntl} from 'react-intl'
-import {RegistrationRotary} from '../../Library/PageDevices/RegistrationRotary'
+import {RegistrationRotary} from '../CustomizedPages/RegistrationRotary'
 
 import {NotFound} from '../PageComponents/MenuPageGenerator'
 
