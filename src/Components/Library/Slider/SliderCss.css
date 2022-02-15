@@ -37,7 +37,7 @@
 
   
   .prev:hover, .next:hover {
-    background-color: rgb(207, 181, 149 , 0.8);
+    background-color: rgba(207, 181, 149 , 0.8);
     /* background-color: rgb(3,3,63,0.6); */
     border-radius: 7vw;
   }
