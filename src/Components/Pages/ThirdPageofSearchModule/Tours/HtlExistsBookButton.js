@@ -3,14 +3,14 @@ import {useHistory , useLocation} from "react-router-dom"
 import {useDispatch, useSelector} from 'react-redux'
 import {useIntl,FormattedMessage} from 'react-intl'
 
-import {getPax} from "../../../Redux/actions/paxchoice"
+// import {getPax} from "../../../../Redux/actions/paxchoice"
 import axios from "axios"
-import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 // import {CartDemo} from '../Cart/Cart'
 
 import './TourDetailsCSS.css'
 
-export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoice,tour_room,hotel_id,tariff}) =>{
+export const HtlExistsBookButton = ({hotel_room_id,value,totalPax,start,tour_id,hotelChoice,tour_room,hotel_id,tariff}) =>{
     
     // console.log("TARIFF",tariff[0],tour_room)
     const {locale,messages} = useIntl();
@@ -28,7 +28,7 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
         const newBooking={
             tour_id:tour_id,
             tour_tariff_id:e.target.value,
-            tourDate: date,
+            tourDate: start,
             totalPax: totalPax,
             paxPerRoom: value,
             hotel_room_id: hotel_room_id,
@@ -42,7 +42,7 @@ export const BookButton = ({hotel_room_id,value,totalPax,date,tour_id,hotelChoic
         setBooking([newBooking])
 
         // const route_query_form = `${location.search},smart_id=123234`
-        const route_query_form = `?start=${date},contract_id=${tour_id},tariff_id=${e.target.value},room_id=${tour_room.id},hotel_id=${hotel_id},hotel_room_id=${hotel_room_id},adults=${totalPax.counterAdults},children=${totalPax.counterChild},infant=${totalPax.counterInfant},htlName=${hotelChoice},amount=${param},service_type_id=${11}`
+        const route_query_form = `?start=${start},contract_id=${tour_id},tariff_id=${e.target.value},room_id=${tour_room.id},hotel_id=${hotel_id},hotel_room_id=${hotel_room_id},adults=${totalPax.counterAdults},children=${totalPax.counterChild},infant=${totalPax.counterInfant},htlName=${hotelChoice},amount=${param},service_type_id=${11}`
         history.push(`/${locale}/booking_form/${route_query_form}`, [...booking, newBooking])
     }
 

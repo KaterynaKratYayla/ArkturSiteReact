@@ -125,5 +125,6 @@ input::placeholder{
 
 .MonthPicker .ant-picker-input{
     width:20vw;
+    padding-top:0.8vw;
 }
 

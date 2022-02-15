@@ -1,12 +1,12 @@
-import { GET_TOUR_REQ, GET_TOUR_RES , GET_TOUR_ERR} from '../constants'
+import { GET_TOURDETAILS_REQ, GET_TOURDETAILS_RES , GET_TOURDETAILS_ERR} from '../constants'
 import { GET_EN_TOUR_REQ, GET_EN_TOUR_RES , GET_EN_TOUR_ERR} from '../constants'
 import { GET_IMAGES_TOUR_REQ, GET_IMAGES_TOUR_RES , GET_IMAGES_TOUR_ERR} from '../constants'
 import { GET_CONTENT_REQ ,GET_CONTENT_RES, GET_CONTENT_ERR} from '../constants'
 
 const initState = {
-	touritems: [],
+	touritems: [{}],
 	touritems_loaded: false,
-	errors: [],
+	touritems_errors: [],
 
     en_touritems: [],
     en_touritems_loaded: false,
@@ -25,25 +25,25 @@ const initState = {
 const reducer = ( state = initState, action ) => {
 	switch( action.type ){
 
-		case GET_TOUR_REQ:
-			return({
-				...state,
-				touritems_loaded: false
-			})
+		case GET_TOURDETAILS_REQ:
+              return({
+                ...state,
+                touritems_loaded: false
+                })
+        
+        case GET_TOURDETAILS_RES:
+              return({
+                 ...state,
+                 touritems_loaded: true,
+                 touritems: action.payload
+                })
+        
+        case GET_TOURDETAILS_ERR:
+              return({
+                   ...state,
+                   touritems_errors: [...state.errors, action.error ]
+               })
 
-		case GET_TOUR_RES:
-			return({
-				...state,
-				touritems_loaded: true,
-				touritems: action.payload
-			})
-
-
-		case GET_TOUR_ERR:
-			return({
-				...state,
-				errors: [...state.errors, action.error ]
-			})
 
             case GET_EN_TOUR_REQ:
                 return({

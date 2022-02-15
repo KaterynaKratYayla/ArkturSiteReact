@@ -138,7 +138,7 @@ console.log('[TEST]', test)
                   fontWeight:'bold'}}>
                      {
                         messages&&messages.map((item)=>{
-                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 25){
+                          if(item.sitepage_region_id === 6&&item.sitepage_type_id === 25&&item.id===88){
                             return (
                                <FormattedMessage id={item.title.map((item1)=>item1.text)}/>
                             )

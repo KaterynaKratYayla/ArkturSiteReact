@@ -1,44 +1,53 @@
 import React, {useState, useEffect}  from 'react'
 import axios from "axios"
 import {useDispatch, useSelector} from 'react-redux'
-import {getPax} from "../../../Redux/actions/paxchoice"
+import {getPax} from "../../../../Redux/actions/paxchoice"
 
 import {PlusOutlined, MinusOutlined, DownOutlined} from '@ant-design/icons'
-import {Pax} from '../../Library/Icons/pax.js'
+import {Pax} from '../../../Library/Icons/pax.js'
 import {RateChoiceBlock} from './RateChoiceBlock'
 
 import './TourDetailsCSS.css'
 import 'antd/dist/antd.css';
 
-export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
+export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails,choiceDetailsNew}) =>{
+
+  const dispatch = useDispatch();
 
   const [paxAmountNew, setPaxAmountNew] = useState([])
-  const [counterAdults, setCounterAdults] = useState(2)
+  const [counterAdults, setCounterAdults] = useState(1)
   const [counterChild, setCounterChild] = useState(0)
   const [counterInfant, setCounterInfant] = useState(0)
   const [total, setTotal] = useState({counterAdults,counterChild,counterInfant})
 
-
   useEffect (() =>{
     axios.get(`${process.env.REACT_APP_SMART_URL}interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`)
     .then(res => {
-      let tour_capacity
+
+      // let tour_capacity
+      let minmax_array = [];
+
+      console.log('TESTPAXCHOICE',res.data)
+
       res.data[0].tariff.forEach((item)=>{
              item.rooms.forEach((item1)=>{
-              tour_capacity = item1.rates.map((item2)=>{
+              item1.rates.forEach((item2)=>{
                     let min = item2.rate_details.sort((a,b)=>(a.min_adult-b.min_adult))[0].min_adult
                     let max = item2.rate_details[0].max_adult
                            for(let i=0;i<item2.rate_details.length; i++){
                             if(item2.rate_details[i].max_adult>max){
                              max=item2.rate_details[i].max_adult
+                            
                            }
                          }
-                         return (min+max)
-              }).join('').split('').sort((a,b)=>(a-b))
+                    minmax_array = [parseInt(min),parseInt(max)]
+                   
+              })
+              // .join('').split('').sort((a,b)=>(a-b))
              })       
        })
 
-         setPaxAmountNew(tour_capacity)              
+         setPaxAmountNew(minmax_array)              
   
     })
     .catch(error =>{
@@ -47,7 +56,8 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
     });
   },[]); 
 
-  console.log('PAX AMOUNT NEW', paxAmountNew[0], paxAmountNew[paxAmountNew.length-1])
+  console.log('MINMAX',paxAmountNew)
+  //  paxAmountNew[0], paxAmountNew[paxAmountNew.length-1])
 
     if( !paxAmountNew ){
       return <div> Loading...</div>
@@ -62,6 +72,7 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
       counterInfant: counterInfant
     }
 
+    dispatch(getPax(counterAdults,counterChild))
     setTotal(totalpax)
   }
 
@@ -90,7 +101,7 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
 
    
      return(
-        <div style={{marginTop:'3vh'}}>
+        
             <div class='TourPaxChoiceWrapper'>
                  <div class='PaxChoice'>
                     <Pax />
@@ -147,11 +158,6 @@ export const PaxChoice =({MakeVisible, open, tour_id, selectionDetails}) =>{
                         
                </div> 
             </div>
-  
-                 <RateChoiceBlock 
-                   totalPax={total}
-                   tour_id={tour_id}
-                   selectionDetails={selectionDetails}/>
-      </div>
+    
     )
 } 

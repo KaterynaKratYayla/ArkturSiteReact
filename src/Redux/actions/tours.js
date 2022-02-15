@@ -1,31 +1,33 @@
-
 import axios from '../helpers/public.axios';
 
-import { GET_TOUR_REQ, GET_TOUR_RES , GET_TOUR_ERR } from '../constants';
+import { GET_TOURDETAILS_REQ, GET_TOURDETAILS_RES , GET_TOURDETAILS_ERR } from '../constants';
 import { GET_EN_TOUR_REQ, GET_EN_TOUR_RES , GET_EN_TOUR_ERR } from '../constants';
 import { GET_IMAGES_TOUR_REQ, GET_IMAGES_TOUR_RES , GET_IMAGES_TOUR_ERR } from '../constants';
 
-export const tourResponse = ( res ) => ({
-    type: GET_TOUR_RES,
+export const tourDetailsResponse = ( res ) => ({
+    type: GET_TOURDETAILS_RES,
     payload: res
 });
 
-export const getTour = () => ( dispatch, getState ) => {
+export const getTourDetails = (id, date) => ( dispatch, getState ) => {
 
-    dispatch({ type: GET_TOUR_REQ });
+    // console.log('REDUX',tour_id,selectionDetails)
 
-    axios.get('https://hotelsukraine.travel/ua/my_list_hotels/?type=full&hotels=16752&json=1&_dc=1608289903506&getDescription=Ext.data.JsonP.getDescription',  {
-        }) 
-        .then( res => {
-            // console.log( JSON.parse(res.data.substring(30, res.data.length-1)) );
-            dispatch( tourResponse(JSON.parse(res.data.substring(30, res.data.length-1))) );
-        
+    dispatch({ type: GET_TOURDETAILS_REQ });
+
+    //   axios.get(`${process.env.REACT_APP_SMART_URL}interface/sitechoice3new?tour_id=${tour_id}&date=${selectionDetails}`,  {
+        axios.get(`https://hotels-ua.biz/interface/sitechoice3new?tour_id=${id}&date=${date}`) 
+
+        .then(res => {
+            dispatch(tourDetailsResponse(res.data))      
+            // console.log('choiceDetailsNew',res)             
         })
         .catch( err => {
-            dispatch({ type: GET_TOUR_ERR, error: err });
+            dispatch({ type: GET_TOURDETAILS_ERR, error: err });
         });
 
 }
+
 
 export const ENtourResponse = ( res ) => ({
     type: GET_EN_TOUR_RES,

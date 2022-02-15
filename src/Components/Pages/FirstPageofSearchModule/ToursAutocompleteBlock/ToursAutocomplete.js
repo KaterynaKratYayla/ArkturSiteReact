@@ -148,7 +148,7 @@ const disabledDate = (current) =>{
   return(
         <div>
             <form className={formClass} onSubmit={onSubmit}> 
-                <div>
+                <div style={{gridColumn:'1/3'}}>
                  
                    <Autocomplete
                      {...props}
@@ -165,8 +165,8 @@ const disabledDate = (current) =>{
                           borderBottom: 'none',
                           borderLeft: 'none',
                           marginTop: '0.2vw',
-                          marginLeft: '2vw',
-                          
+                          textAlign:'center',
+                          position:"relative"  
                         }, 
                           
                       placeholder: placeholder.placeHolderTour,
@@ -181,11 +181,13 @@ const disabledDate = (current) =>{
                                 boxShadow: '0 2px 12px rgba(0, 0, 0, 0.1)',
                                 background: 'rgba(255, 255, 255)',
                                 padding: '3px',
-                                position: 'fixed',
-                                overflow: 'auto',
-                                maxHeight: '30%',
-                                zIndex:'1000',
-                                border:'2px solid grey'
+                                border:'2px solid grey',
+                                position:'absolute',
+                                overflow:'scroll',
+                                maxHeight: '30vh',
+                                zIndex:'2000',
+                                left:'10',
+                                top:'5'
                                }
                               }
                       

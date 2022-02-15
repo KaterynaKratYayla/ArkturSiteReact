@@ -35,7 +35,8 @@ export const CartGallery = ({photos,photoHeight,photoWidth,smallImageHeight}) =>
                             // maxHeight:'65vh',
                             objectFit:'cover',
                             //   height:`${photoHeight}`,
-                              borderRadius:'0.7vw'
+                              borderRadius:'0.7vw',
+                              overflow:'auto'
                    }}/>
             </div>
                               

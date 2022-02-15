@@ -6,16 +6,19 @@ import { useHistory , useLocation} from "react-router-dom";
 import {useIntl} from 'react-intl'
 import moment from 'moment';
 import { Select } from 'antd';
-import {getContent} from '../../../Redux/actions/content'
-import {ValidateQuery} from '../Helpers/helper'
+// import {getPax} from '../../../../Redux/actions/paxchoice'
+import { OccupancyRates } from './OccupancyRates';
+import {getTourContents} from '../../../../Redux/actions/tourcontents'
+import {ValidateQuery} from '../../Helpers/helper'
 import 'antd/dist/antd.css';
 import {RateChoiceBlock} from './RateChoiceBlock'
-import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
-import {Moon} from '../../Library/Icons/moon.js'
-import {Sun} from '../../Library/Icons/sun.js'
+// import {Gallery} from '../../Library/PhotoGallery/PhotoGallery'
+import {CartGallery} from '../../../Library/PageDevices/CartGallery/CartGallery'
+import {Moon} from '../../../Library/Icons/moon.js'
+import {Sun} from '../../../Library/Icons/sun'
 import {CalendarOutlined} from '@ant-design/icons'
 import {PaxChoice} from './PaxChoice'
-import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
+import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'
 
 import './TourDetailsCSS.css'
 
@@ -24,10 +27,42 @@ import './TourDetailsCSS.css'
     const {locale} = useIntl();
     let location = useLocation();
     let history = useHistory();
+    const dispatch = useDispatch();
 
-    console.log('PROPS', props)
+    const choiceDetailsNew = useSelector(state => state.tourcontents.tourcontents)
+
+    useEffect(() =>{
+      dispatch(getTourContents(search_data.tour_id, search_data.selection))
+    },[])
+
+    console.log('choiceDetailsNew',choiceDetailsNew)
+
+    let mappingExists;
+    let hotelsExist;
+    
+    for (let key in choiceDetailsNew[0]){
+      if(key.includes('mapping')){
+        if(choiceDetailsNew[0][key].join('').includes('no mapping hotels')){
+         mappingExists = 'false'
+        }
+        else mappingExists = 'true'
+      }
+    }
+    for (let key in choiceDetailsNew[0]){
+      if(key.includes('hotels')){
+        if(choiceDetailsNew[0][key].join('').includes('no attached hotels')){
+          hotelsExist = 'false'
+         }
+         else hotelsExist = 'true'
+      }
+    }
+    console.log('TEST',mappingExists,hotelsExist)
+
+    // console.log('PROPS', props)
     let search_data = ValidateQuery(location)
-    console.log('Tour Details Location', search_data.selection)
+    // console.log('Tour Details Location', search_data.selection)
+
+    // const totalPax = useSelector(state=>state.pax)
 
     const [details, setDetails] = useState([{}]);
     const [rateDetails, setrateDetails] = useState([{}]);
@@ -39,6 +74,7 @@ import './TourDetailsCSS.css'
 
     const [width, height] = useWindowWidthAndHeight()
 
+ 
     useEffect ( () => {
       axios.get(`${process.env.REACT_APP_SMART_URL}interface/content?id=${search_data.tour_id}&language=${locale}`)
         .then( res => {
@@ -158,10 +194,12 @@ const MakeVisible = () =>{
                 {
                    details && details.map((item) =>{
                     if(item.content_name === "Image"){
+                      console.log('CARTGALLERY',item)
                       return (
                           <div class='GalleryTourDetails'
-                               style={{width:`${width>1000?'40%':'100%'}`, height:`${height/2}px`}}>
-                             <Gallery galleryImages={item.text}/>
+                               style={{height:`${height/2}px`}}
+                               >
+                             <CartGallery photos={item}/>
                           </div>
                         )
                       }
@@ -171,32 +209,56 @@ const MakeVisible = () =>{
               {/* </div> */}
               <div class='TourBookingDetails'
                    style={{width:`${width>1000?'60%':'100%'}`}}>
+
                 <h3>Tour Booking Details {rateDetails[0].duration}</h3>
-                 <div class='TourBookingChoice'>
+                
+                <div class='ChosenCalendar'>
+                     
+                  <div style={{textAlign:'right'}}>
+                    <CalendarOutlined style={{fontSize: '2vw',
+                                        border: '2px solid white',
+                                        color: '#102D69'}}/>
+                  </div>
+                  
+                    <h4 style={{
+                                color: 'rgb(77, 75, 75)',
+                                fontSize:'17px',
+                                fontFamily:'Arial Narrow',
+                                fontWeight:'bold',
+                                display:'flex',
+                                alignItems:'center'}}>
+                                      Chosen date of travel : 
+                    </h4>         
 
-                 {/* <div style={{
-                      display:'grid',
-                      gridTemplateColumns:'repeat(2,50%)',
-                      gridTemplateRows:'auto'
-                 }}> */}
-                     <div class='BookingChoiceInner'
-                        style={{gridRow:'1',gridColumn:'1'}}>
-                            <div style={{
-                                        display: 'flex',
-                                        flexDirection: 'row'
-                                        }}>
-                               <CalendarOutlined
-                                  style={{fontSize: '2vw',
-                                          border: '2px solid white',
-                                          color: '#102D69'}}
-                                  />
-                               <h4>Chosen date of travel : </h4>
-                            </div>
-                         <div class='DateSelection'>{selectionDetails}</div>
-                     </div>
+                    <h4 class='DateSelection'>{selectionDetails}</h4>
+                
+                </div>
 
-                     <div class='BookingChoiceInner'
-                     style={{gridRow:'1',gridColumn:'2'}}>
+                <RateChoiceBlock 
+                  //  totalPax={total}
+                   tour_id={search_data.tour_id}
+                   selectionDetails={selectionDetails}
+                   choiceDetailsNew={choiceDetailsNew}/>
+
+              <h3 class='TourUpdateBlock'>Update your tour booking details</h3>
+              
+              <div class='TourBookingChoice'>
+                  
+                 <div style={{gridColumn:'1',
+                              display:'flex',
+                              justifyContent:'center',
+                              width:'100%'}}>
+
+                      <PaxChoice
+                         selectionDetails={selectionDetails}
+                         tour_id={search_data.tour_id}
+                         MakeVisible = {MakeVisible}
+                         open={open}
+                         choiceDetailsNew={choiceDetailsNew}
+                      />
+                  </div>
+
+                 <div style={{gridColumn:'2'}}>
                        <h4>Available dates :</h4>
                        <Select
                           defaultValue={selectionDetails}
@@ -218,32 +280,38 @@ const MakeVisible = () =>{
                             </>
                      </Select>
                      </div>
-                {/* </div>!!!!!!!!!!!!!! */}
-                  {/* <RateChoiceBlock
-                      selectionDetails={selectionDetails}
-                      tour_id={search_data.tour_id}/> */}
-                      <div style={{gridRow:'2',gridColumn:'1/4'}}>
-                      <PaxChoice
-                         selectionDetails={selectionDetails}
-                         tour_id={search_data.tour_id}
-                         MakeVisible = {MakeVisible}
-                         open={open}
-                      />
-                      </div>
                </div>
 
               </div> 
+
+
               </div>
+            <div class='CostBreakdown'>
+                  <h3>Cost breakdown</h3>
+                  <OccupancyRates
+                                // choiceDetailsNew={choiceDetailsNew}
+                                // hotelChoice={hotelChoice}
+                                selectionDetails={selectionDetails}
+                                tour_id={search_data.tour_id}
+                                // totalPax={AmountPax}
+                                choiceDetailsNew={choiceDetailsNew}
+                                mappingExists={mappingExists}
+                                hotelsExist={hotelsExist}
+                                pickedCurrency={search_data.selected_currency}
+                                />
+            </div>
 
             <div>
               
               {
                 details && details.map((item) =>{
                   if(item.content_name === 'Body'){
-                    return (
+                    return (  
                         <div class='DescriptionTourDetails'>
+                            <h3>Tour Itinerary</h3>
                             {ReactHtmlParser(item.text)}
                         </div>
+                      
                       )
                     }
                 })

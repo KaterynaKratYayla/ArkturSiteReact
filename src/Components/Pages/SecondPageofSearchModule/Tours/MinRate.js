@@ -40,7 +40,7 @@ moment.locale('uk')
                       console.log('[SORTED ARRAY] : ' , minRateValue[0])
 
     return(
-      <div className='minimumRate_details'>Rates from {minRateValue[0].price/exchangeRate} {pickedCurrency}</div>
+      <div className='minimumRate_details'>Rates from {pickedCurrency} {Math.round(minRateValue[0].price/exchangeRate)}</div>
     )
   }
   

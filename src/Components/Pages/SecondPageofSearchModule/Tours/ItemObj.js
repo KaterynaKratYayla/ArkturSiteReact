@@ -11,7 +11,7 @@ import {SearchInner} from '../../../Library/SearchPanneldel/SearchPanneldel'
 import moment from 'moment';
 import ReactHtmlParser from 'react-html-parser'
 import {MinRate} from './MinRate'
-import {TourDetails} from '../../ThirdPageofSearchModule/TourDetails'
+import {TourDetails} from '../../ThirdPageofSearchModule/Tours/TourDetails'
 import {ValidateQuery} from '../../Helpers/helper'
 // import 'moment/locale/uk'
 import {useWindowWidthAndHeight} from '../../Helpers/WindowResizeHook'

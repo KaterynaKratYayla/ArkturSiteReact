@@ -40,10 +40,11 @@ export const CartDetails = ({cart,cartClass}) =>{
 
     const [width, height] = useWindowWidthAndHeight();
 
+    console.log('TOURCONTENTS',tourcontents)
     console.log('CARTSERVICE', cart.service_type_id)
     
-    const content = cart.service_type_id === 11? tourcontents : hotelcontents
-    console.log('CONTENT',content)
+    const content = cart.service_type_id === '11'? tourcontents : hotelcontents
+    console.log('myCONTENT',content)
 
        // useEffect ( () => {
     //     axios.get(`${process.env.REACT_APP_SMART_URL}interface/content?id=${cart.contract_id}&language=en`) //former cart.tour_id

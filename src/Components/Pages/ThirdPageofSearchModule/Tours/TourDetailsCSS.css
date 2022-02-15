@@ -9,7 +9,7 @@
 .TourDetailsWrapper h2{
     color: #102D69;
     font-family: "Arial";
-    font-size: 22px;
+    font-size: 30px;
     font-weight: bold;
 }
 
@@ -30,10 +30,10 @@
 }
 
 .TourDetailsInner{
-    display: flex;
-    flex-direction: row;
-    align-items: space-between;
-    width: 100%;
+    display: grid;
+    grid-template-columns: 60% 40%;
+    column-gap: 3vw;
+    /* width: 100%; */
 }
 
 .TourDetailsInnerSmallScreen{
@@ -45,26 +45,39 @@
 
 .GalleryTourDetails{
     /* max-width: 45%; */
-    margin-right: 3vw;
+    margin-top: 2vw;
+    width:100%;
+    overflow:auto;
+    min-height: 60vh;
 }
 
 .TourBookingDetails{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    /* min-width: 45%; */
-    min-height: 60vh;
+    min-width: 100%;
+    min-height: 20vh;
     border: 2px solid rgb(206, 207, 209);
     border-radius: 6px;
     margin-top: 2vw;
+    /* overflow: auto; */
 }
 
 .TourBookingDetails h3{
-    text-align: center;
+    /* text-align: center;
     color: #005AEB;
     font-size: 22px;
     font-weight: bold;
-    font-family: 'Arial Narrow';
+    font-family: 'Arial Narrow'; */
+
+    margin-bottom:2vh;
+    color:#1141a0;
+    font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+    padding:1vh;
+    width:100%;
+    box-shadow: 0 0 10px rgba(141, 156, 243, 0.5)
 }
 
 /* .BookingChoice{
@@ -77,8 +90,9 @@
 .TourBookingChoice{
     display:grid;
     grid-template-columns:repeat(2,50%);
-    grid-template-rows:auto;
-    margin-left:3vw;
+    width:100%;
+    margin-left:auto;
+    margin-right:auto;
 }
 
 /* .RateChoiceBlock{
@@ -121,10 +135,22 @@
     color: rgb(77, 75, 75);
 }
 
+.TourUpdateBlock{
+    margin-bottom:2vh;
+    margin-top: 2vh;
+    color:#1141a0;
+    font-size: 28px;
+    text-align: center;
+    font-weight: bold;
+    /* background: lightsteelblue; */
+    padding:1vh;
+    width:100%;
+    box-shadow: 0 0 10px rgba(141, 156, 243, 0.5)
+}
+
+
 .TourPaxChoiceWrapper{
-    /* padding-left: 3vw; */
-    /* max-width: 20vw; */
-    width: 50%;
+    width: 80%;
 }
 
 .TourPaxChoiceWrapper h4{
@@ -135,10 +161,21 @@
 }
 
 .TourInclusionsBlock{
-    display:flex;
-    flex-direction:column;
-    /* margin-left: 40px; */
-    /* margin-top: -50px; */
+    display:grid;
+    grid-template-columns: 30% 70%;
+    grid-column: 1/span 2;
+    width:80%;
+    border: 1px solid rgb(163, 174, 185);;
+    border-radius: 10px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+.InclusionIcons{
+    display:grid;
+    grid-template-columns: 33% 33% 34%;
+    grid-auto-rows: auto;
+    grid-column: 2;
 }
 
 .TourInclusionsBlock h4{
@@ -213,8 +250,51 @@
 }
 
 .DescriptionTourDetails{
-    /* max-width: 50%; */
     margin-left: 4vw;
+    color:#102D69;
+    font-size: 18px;
+    text-align: justify;
+    margin-top:2vw;
+    margin-bottom: 3vw;
+    padding:2vw;
+    border:1px solid lightgrey;
+    border-radius: 10px;
+}
+
+.DescriptionTourDetails h4{
+    margin-bottom:2vh;
+    color:#1141a0;
+    font-size: 22px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.DescriptionTourDetails h3{
+    margin-bottom:2vh;
+    color:#1141a0;
+    font-size: 28px;
+    text-align: left;
+    font-weight: bold;
+}
+
+.CostBreakdown{
+    margin-left: 4vw;
+    color:#102D69;
+    font-size: 18px;
+    text-align: justify;
+    margin-top:2vw;
+    /* margin-bottom: 3vw; */
+    padding:2vw;
+    border:1px solid lightgrey;
+    border-radius: 10px;
+}
+
+.CostBreakdown h3{
+    margin-bottom:2vh;
+    color:#1141a0;
+    font-size: 28px;
+    text-align: left;
+    font-weight: bold;
 }
 
 .TourPopUpNotActive{
@@ -247,15 +327,24 @@
     margin-bottom: 6px;
 }
 
-.BookingChoiceInner{
-    display:flex;
-    flex-direction:column;
+.ChosenCalendar{
+    display:grid;
+    grid-template-columns: 20% 50% 30%;
+    width:80%;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top: 3vh;
+    border: 1px solid rgb(163, 174, 185);
+    border-radius: 10px;
 }
 
+
 .DateSelection{
-    font-size: 14px;
+    font-size: 17px;
     color:blue;
     font-weight: bold;
+    display:flex;
+    align-items:center;
 }
 
 .Minus{
@@ -331,19 +420,95 @@
     background: #009FE3;
     color: white;
     border: 1px solid grey;
-    border-radius: 2px;
+    border-radius: 6px;
     font-weight: bold;
     font-size: 19px;
-    width: 45%;
-    height: 6vh;
+    /* width: 45%; */
+    max-height: 5vh;
     text-align: center;
-    padding-bottom: 5px;
-    margin-top: 25px;
-    margin-bottom: 8px; 
+    vertical-align: middle;
+    padding-bottom: 1vh;
+    padding-top: 1vh;
+    /* margin-top: 25px; */
+    /* margin-bottom: 8px;  */
     position:relative;
     z-index: 50;  
+    width:70%;
 }
 
 .AddToCartTour:hover{
     cursor:pointer;
+}
+
+.TourDetailsCost{
+    display: grid;
+    grid-template-columns: 20% 80%;
+    list-style: none; 
+    background-color: white;
+    /* column-gap: 1.5vh; */
+}
+
+.TourDetailsCost_First{
+    grid-column:1;
+    grid-row: 1/span 2;
+    color: #102D69;
+    font-size: 20px;
+    font-family:Arial;
+    font-weight:bold;
+    background: rgb(228, 228, 247);
+    /* padding-top:1vh; */
+    /* padding-bottom:1vh; */
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    border:1px solid white;
+    border-radius: 10px;
+}
+
+.TourDetailsCost_Second{
+    grid-column:2;
+    display:grid;
+    grid-template-columns: 25% 15% 5% 20% 5% 15% 15%;
+    grid-auto-rows:auto;
+    font-size: 19px;
+    color: #102D69;
+    font-family:Arial;
+    font-weight:bold;
+    margin-left:auto;
+    margin-right:auto;
+    width:100%;
+    /* background:rgb(228, 228, 247); */
+    /* border:1px solid white; */
+    /* border-radius: 10px; */
+    border-bottom:3px solid rgb(228, 228, 247);
+}
+
+.TourCostHeader{
+    background: white;
+    padding:1.5vh;
+    /* width:100%; */
+    background: rgb(210, 227, 250);
+    /* box-shadow: 0 0 10px rgba(141, 156, 243, 0.5); */
+    display:grid;
+    grid-template-columns:20% 20% 12% 4% 16% 4% 12% 12%;
+    border-radius: 7px;
+}
+
+.TourCostHeader li{
+    list-style: none;
+    font-family:Arial;
+    color:#1141a0;
+    font-size:23px;
+    font-weight:bold;
+    margin-top: auto;
+    margin-bottom: auto;
+    /* line-height: 4; */
+    /* box-shadow: 0 0 10px rgba(141, 156, 243, 0.5);; */
+    border-left: 0.5px solid rgb(109, 109, 196);
+    text-align: center;
+    /* box-shadow: 0 0 10px rgba(141, 156, 243, 0.5); */
+}
+
+.TourCostHeader li:nth-child(1){
+    border-left: none;
 }

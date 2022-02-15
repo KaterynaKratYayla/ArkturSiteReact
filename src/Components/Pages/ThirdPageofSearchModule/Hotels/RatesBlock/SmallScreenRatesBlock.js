@@ -28,16 +28,6 @@ export const SmallScreenRatesBlock = ({hotelratesRatesBlock,search_data}) =>{
     let empty_array = [];
 
     const {locale} = useIntl();
-
-    const HotelRateGridTitles = HotelRateGridTitles(locale);
-
-  // useEffect ( () => {
-  //   dispatch (getHotelRates(search_data));
-  // }, [search_data])
-
-  // console.log('SEARCH_DATA',search_data)
-  // console.log('RATESBLOCK',hotelratesRatesBlock)
-
     return(
         <div> 
           {/* <ul className = 'RatesGridWrapper Header'>

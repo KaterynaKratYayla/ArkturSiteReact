@@ -1,5 +1,5 @@
 export * from './list';
-export * from './tour';
+export * from './tours';
 export * from './cities';
 export * from './content';
 export * from './pages';
@@ -13,5 +13,7 @@ export * from './hotelrates';
 export * from './hotelroomschoice';
 export * from './availabilitychoice';
 export * from './hotelsearchdata';
-export * from './hotelcities'
-export * from './currency'
+export * from './hotelcities';
+export * from './currency';
+export * from './hotelchoiceintours';
+export * from './tourcontents';
