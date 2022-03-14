@@ -1,0 +1,46 @@
+[
+  {
+    "lang" : "en",
+    "type":["Hotel","Apartment","Hostel","Villa","Homestay - free stay","Campsites"],
+    "rooms":"amount of rooms",
+    "year":"year of hotel opening",
+    "address":"address",
+    "phone":"phone",
+    "e-mail":"e-mail address",
+    "refugees":["ready to accept refugees free of charge","ready to accept refugees at special rate"],
+    "ownership_types":["owner","sales manager","reservation manager","reseller"]
+  },
+  {
+    "lang" : "uk",
+    "type":["Готель","Квартира","Хостел","Приватний будинок","Проживання у родині","Кемпінг"],
+    "rooms":"кількість номерів",
+    "year":"рік останньої реконструкції",
+    "address":"адреса",
+    "phone":"номер телефону",
+    "e-mail":"електронна адреса",
+    "refugees":["Готові розмістити біженців безоплатно","Готові розмістити біженців за спеціальним тарифом"],
+    "ownership_types":["володар","менеджер з продажу","менеджер з бронювання","агент"]
+  },
+  {
+    "lang" : "ru",
+    "type":["Гостиница","Квартира","Хостел","Частный дом","Проживание в семье","Кемпинг"],
+    "rooms":"Количество номеров",
+    "year":"год последней реконструкции",
+    "address":"адрес",
+    "phone":"номер телефона",
+    "e-mail":"електроный адрес",
+    "refugees":["Готовы принять беженцев безплатно","Готовы принять беженцев по специальной цене"],
+    "ownership_types":["владелец","менеджер по продажам","менеджер по бронирования","агент"]
+  },
+  {
+    "lang" : "tr",
+    "type":["Otel","Apartment","Hostel","Villa","Aylede konaklama","Kamping"],
+    "rooms":"Oda sayısı",
+    "year":"son yenileme yılı",
+    "address":"adresi",
+    "phone":"telefon numerası",
+    "e-mail":"e-posta",
+    "refugees":["mültecileri ücretsiz kabul etmeye hazır","mültecileri özel fiyatla kabul etmeye hazır"],
+    "ownership_types":["sahibi","satış yoneticisi","rezervasyon yoneticisi","acenta"]
+  }
+]

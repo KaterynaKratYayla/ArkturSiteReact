@@ -22,6 +22,8 @@ import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 
 import YearAnimation from '../../Library/PageDevices/Animation/yearanimation'
 
+import {SupplierPartnerForm} from '../../Library/PageDevices/Forms/SupplierPartnerForm.js'
+
 import '../PageComponents/ResponsiveHeader/header.css'
 import './MenuPageGeneratorCSS.css'
 
@@ -126,6 +128,11 @@ export const PureContent = () => {
                 <AboutUs text={page.text}/>
               )
              }
+             else if(search_data.id === '167'){
+              return(
+               <SupplierPartnerForm text={page.text}/>
+              )
+            }
              else {
              return (
                <div style={{maxWidth:`${width}px`,overflow:'hidden',order:'1',marginTop:'2vh'}}>{ReactHtmlParser(page.text)}</div>

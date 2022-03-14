@@ -14,6 +14,10 @@ export const PlaceHolderStrings = () =>{
     let feature7;
     let feature8;
     let feature9;
+    let feature10;
+    let feature11;
+    let feature12;
+    let feature13;
 
       messages&&messages.forEach((item)=>{
           if (item.sitepage_region_id ===8&&item.sitepage_type_id === 27){
@@ -60,6 +64,22 @@ export const PlaceHolderStrings = () =>{
               feature9 = item1.text
              }) 
           }
+          else if (item.id === 169){
+            item.title.forEach((item1)=>{
+              feature10 = item1.text
+             }) 
+          }
+          else if (item.id === 170){
+            item.title.forEach((item1)=>{
+              feature11 = item1.text
+             }) 
+          }
+          else if (item.id === 172){
+            item.title.forEach((item1)=>{
+              feature12 = item1.text
+             }) 
+          }
+
         }
       )
 
@@ -72,7 +92,11 @@ export const PlaceHolderStrings = () =>{
                     placeHolderName:feature6,
                     placeHolderSurname:feature7,
                     placeHolderPhone:feature8,
-                    placeHolderEmail:feature9
+                    placeHolderEmail:feature9,
+                    placeHolderCountry:feature10,
+                    placeHolderCity:feature11,
+                    placeHolderSelect:feature12,
+                    
                 }
 
       return object;
