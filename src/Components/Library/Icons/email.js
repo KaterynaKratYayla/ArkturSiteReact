@@ -1,3 +1,5 @@
+import React from 'react'
+
 export const EmailIcon = () =>{
  return(
   <a href='mailto:inquiry@arktur.ua'>
