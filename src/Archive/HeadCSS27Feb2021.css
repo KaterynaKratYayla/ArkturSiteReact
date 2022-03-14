@@ -182,7 +182,7 @@ a{
     list-style-type: none;
     position:absolute;
     z-index: 1000;
-    background-color: rgb(235, 214, 188);
+    background-color: rgba(235, 214, 188);
     border: 2px solid burlywood;
     border-radius: 10px;
     padding: 0 auto;
