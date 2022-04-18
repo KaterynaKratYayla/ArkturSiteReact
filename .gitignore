@@ -32,3 +32,4 @@ yarn-error.log*
 /dist
 yarn.lock
 package-lock.json
+.vscode/settings.json
