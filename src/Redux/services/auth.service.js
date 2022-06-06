@@ -18,15 +18,16 @@ const register = (firstName, lastName, username, email, password) => {
 
 const login = (username, password) => {
   return axios
-    .post(API_URL + "login", JSON.stringify({
+    .post(API_URL + 'login', JSON.stringify({
       "username": username,
       "password": password,
     }))
     .then((response) => {
-      if (response.data.accessToken) {
-        localStorage.setItem("user", JSON.stringify(response.data));
-      }
-      return response.data;
+      // if (response.data.accessToken) {
+        localStorage.setItem("user", response.config.data);
+        // localStorage.setItem('generalUser',JSON.stringify(response))
+      // }
+      return response.config.data;
     });
 };
 

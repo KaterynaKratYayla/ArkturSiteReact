@@ -37,6 +37,7 @@ import {CurrencySelectionTool} from '../../PageComponents/CurrencySelectionTool/
 import {ValidateQuery} from '../../Helpers/helper'
 import {PhoneIcon} from '../../../Library/Icons/phoneicon'
 import {EmailIcon} from '../../../Library/Icons/email'
+import {Pax} from '../../../Library/Icons/pax'
 
 import './header.css'
 // import './ResponsiveCSS.css'
@@ -191,6 +192,7 @@ export const TopMenu = () => {
 					)}
 				</div>
 
+				<LocalizationNavLink exact to={`/mybooking`}><Pax color={"white"}/></LocalizationNavLink>
 				<LocalizationNavLink exact to={`/`}><HomeOutlined className='HomeIcon'/></LocalizationNavLink>
 
 				</div>

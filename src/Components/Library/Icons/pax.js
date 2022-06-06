@@ -1,11 +1,11 @@
 import React from 'react';
 
-export const Pax = () =>{
+export const Pax = ({color}) =>{
     return(
     <svg 
         width='20'
         height='20'
-        color="#102D69"
+        color={color?color:"#102D69"}
         aria-hidden="true" 
         focusable="false" 
         data-prefix="fas" 

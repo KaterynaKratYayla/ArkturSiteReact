@@ -1,0 +1,28 @@
+.CanxForm{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 4vh;
+}
+
+.CanxBookingButton{
+    background: #009FE3;
+    color: white;
+    border: 1px solid grey;
+    border-radius: 2px;
+    font-weight: bold;
+    font-size: 90%;
+    width: 25%;
+    text-align: center;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+    margin-top: 25px;
+    margin-bottom: 8px;
+    align-self: center;  
+}
+
+.CanxBookingButton:hover{
+    background: darkblue;
+}

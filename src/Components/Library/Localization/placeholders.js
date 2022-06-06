@@ -18,6 +18,9 @@ export const PlaceHolderStrings = () =>{
     let feature11;
     let feature12;
     let feature13;
+    let feature14;
+    let feature15;
+    let feature16;
 
       messages&&messages.forEach((item)=>{
           if (item.sitepage_region_id ===8&&item.sitepage_type_id === 27){
@@ -79,6 +82,26 @@ export const PlaceHolderStrings = () =>{
               feature12 = item1.text
              }) 
           }
+          else if (item.id === 153){
+            item.title.forEach((item1)=>{
+              feature13 = item1.text
+             }) 
+          }
+          else if (item.id === 154){
+            item.title.forEach((item1)=>{
+              feature14 = item1.text
+             }) 
+          }
+          else if (item.id === 188){
+            item.title.forEach((item1)=>{
+              feature15 = item1.text
+             }) 
+          }
+          else if (item.id === 189){
+            item.title.forEach((item1)=>{
+              feature16 = item1.text
+             }) 
+          }
 
         }
       )
@@ -96,6 +119,10 @@ export const PlaceHolderStrings = () =>{
                     placeHolderCountry:feature10,
                     placeHolderCity:feature11,
                     placeHolderSelect:feature12,
+                    placeHolderYes:feature13,
+                    placeHolderNo:feature14,
+                    placeHolderNotsure:feature15,
+                    placeHolderDateTurkey:feature16
                     
                 }
 

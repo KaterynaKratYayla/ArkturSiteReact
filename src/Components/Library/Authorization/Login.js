@@ -44,6 +44,7 @@ captchaSettings.set({
 const Login = (props) => {
   const form = useRef();
   const checkBtn = useRef();
+  console.log('CHECKBUTTON_1',checkBtn)
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -66,6 +67,8 @@ const Login = (props) => {
     setPassword(password);
   };
   const {locale} = useIntl();
+
+  // console.log('Ausername',username,'Apassword',password)
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -94,6 +97,7 @@ const Login = (props) => {
         postData, {headers: {'Content-Type': 'application/json; charset=utf-8'}})
         .then(response => {
           console.log('response.data: ', response.data);
+          // console.log('checkbox',checkBtn.current.context._errors.length)
           if (response.data.success === false) {
             // captcha validation failed; reload image
             captcha.reloadImage();
@@ -102,7 +106,9 @@ const Login = (props) => {
           } else {
             // TODO: captcha validation succeeded; proceed with your workflow
 
-            if (checkBtn.current.context._errors.length === 0) {
+            // if (checkBtn.current.context._errors.length === 0) {
+            if (Object.values(checkBtn.current)[7]._errors.length === 0){
+             
               dispatch(login(username, password))
                   .then(() => {
                     // props.history.push("/profile");
@@ -112,7 +118,7 @@ const Login = (props) => {
                   .catch(() => {
                     // setLoading(false);
                   });
-            } else {
+             } else {
               // setLoading(false);
             }
           }
@@ -199,6 +205,9 @@ const Login = (props) => {
                 </div>
               )}
               <CheckButton style={{ display: "none" }} ref={checkBtn} />
+              {
+                console.log('CHECKBUTTON',<CheckButton/>)
+              }
             </Form>
           </div>
         </div>

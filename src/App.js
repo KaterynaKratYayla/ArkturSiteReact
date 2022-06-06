@@ -44,6 +44,11 @@ function App() {
         }
     }, [currentUser]);
 
+    console.log('CHECKINGcurrentUser', currentUser)
+
+
+    console.log('currentUser.user_id',currentUser.user_id)
+
     const logOut = () => {
         dispatch(logout());
     };

@@ -29,6 +29,8 @@ import {changeLang} from "../../../Redux/actions/locale"
 import { logout } from "../../../Redux/actions/auth";// import { findByLabelText } from '@testing-library/react'
 import {useIntl} from 'react-intl'
 import {RegistrationRotary} from '../CustomizedPages/RegistrationRotary'
+import {RefugeeDetailsForm} from '../../Library/PageDevices/Forms/RefugeeForm/RefugeeDetailsForm'
+import {CanxBooking} from '../../Pages/ChangeBooking/CanxBooking'
 
 import {NotFound} from '../PageComponents/MenuPageGenerator'
 
@@ -87,7 +89,8 @@ console.log(localizeRoutePath('/'))
 			<LocalizationRoute exact path='/offlineSummary' component={OfflineSummary}/>
 			<LocalizationRoute exact path='/test' component={NotFound}/>
 			<LocalizationRoute exact path='/rotaryform' component={RegistrationRotary}/>
-		
+			<LocalizationRoute exact path='/mybooking' component={CanxBooking}/>
+
  			{
  			  pages&&pages.map((page)=>{
 			    if(page.name.includes('Hotels')===true){

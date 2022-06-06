@@ -1,0 +1,16 @@
+[
+    {
+      "lang" : "en",
+      "type":["Refugee","Temporary Stay","Permanent Stay Permit"]
+    },
+    { "lang" : "uk",
+      "type":["Біженець","Тимчасове Проживання","Посвідка на постійне проживання"]
+    },
+    { "lang" : "ru",
+      "type":["Беженец","Временное проживание","Постоянное место жительства"]
+
+    },
+    { "lang" : "tr",
+        "type":["Refugee","Temporary Stay","Permanent Stay Permit"]
+    }
+]

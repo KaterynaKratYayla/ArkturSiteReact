@@ -31,7 +31,7 @@ export const SendForm =({list})=>{
                }
               };
 
-            axios.post(`http://arkturdmc.com.ua:8011/reg_form.php`, JSON.stringify({ActionRQ}))
+            axios.post(`https://arkturdmc.com.ua/reg_form.php`, JSON.stringify({ActionRQ}))
             .then(response => setSupplierForm(response.data));
 
         }, []);

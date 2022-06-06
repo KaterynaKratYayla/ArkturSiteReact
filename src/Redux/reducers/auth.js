@@ -6,8 +6,9 @@ import {
   LOGOUT,
 } from "../actions/types";
 
-console.log("user: ", localStorage.getItem("user"));
+// console.log("user: ", localStorage.getItem("user"));
 const user = JSON.parse(localStorage.getItem("user"));
+console.log('user',user)
 
 const notRegisteredUser = {
   user_id: 1426,
@@ -16,7 +17,7 @@ const notRegisteredUser = {
 };
 
 const initialState = user
-  ? { isLoggedIn: true, user }
+  ? { isLoggedIn: true, user}
   : { isLoggedIn: false,
       user: notRegisteredUser
     };

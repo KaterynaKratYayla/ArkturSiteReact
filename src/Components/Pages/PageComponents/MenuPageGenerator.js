@@ -23,6 +23,7 @@ import {useWindowWidthAndHeight} from '../Helpers/WindowResizeHook'
 import YearAnimation from '../../Library/PageDevices/Animation/yearanimation'
 
 import {SupplierPartnerForm} from '../../Library/PageDevices/Forms/SupplierPartnerForm.js'
+import { RefugeeDetailsForm } from '../../Library/PageDevices/Forms/RefugeeForm/RefugeeDetailsForm'
 
 import '../PageComponents/ResponsiveHeader/header.css'
 import './MenuPageGeneratorCSS.css'
@@ -131,6 +132,11 @@ export const PureContent = () => {
              else if(search_data.id === '167'){
               return(
                <SupplierPartnerForm text={page.text}/>
+              )
+            }
+            else if(search_data.id === '187'){
+              return(
+               <RefugeeDetailsForm text={page.text}/>
               )
             }
              else {
